@@ -1,0 +1,693 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="5aq3Hk9DM7v_wqCNzXJVTLKo24-XFgeEKMql9-1uyis" />
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Satisfy:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Python,SQLAlchemy,文档,翻译," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本篇是 胡乱 翻译自SQLAlchemy 1.0官方文档 Object Relational Tutorial一章的第四篇笔记。
+各种保留了原文的术语可以参考SQLAlchemy术语表。
+摸鱼根本停不下来
+
+上一部分讲的是关系的建立和使用关系进行查询。在映射类中使用relationship()建立关系，查询时使用Query.join()进行连接查询，用aliased()创建映射类的别名在连接中多次">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQLAlchemy文档和笔记 (2.4) - ORM指南 (4)">
+<meta property="og:url" content="https://tgmerge.me/2016/04/0218-sqlalchemy-document-learning-note-2-4-orm-tutorial/index.html">
+<meta property="og:site_name" content="tgmerge's such blog">
+<meta property="og:description" content="本篇是 胡乱 翻译自SQLAlchemy 1.0官方文档 Object Relational Tutorial一章的第四篇笔记。
+各种保留了原文的术语可以参考SQLAlchemy术语表。
+摸鱼根本停不下来
+
+上一部分讲的是关系的建立和使用关系进行查询。在映射类中使用relationship()建立关系，查询时使用Query.join()进行连接查询，用aliased()创建映射类的别名在连接中多次">
+<meta property="og:updated_time" content="2016-04-30T15:02:27.873Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SQLAlchemy文档和笔记 (2.4) - ORM指南 (4)">
+<meta name="twitter:description" content="本篇是 胡乱 翻译自SQLAlchemy 1.0官方文档 Object Relational Tutorial一章的第四篇笔记。
+各种保留了原文的术语可以参考SQLAlchemy术语表。
+摸鱼根本停不下来
+
+上一部分讲的是关系的建立和使用关系进行查询。在映射类中使用relationship()建立关系，查询时使用Query.join()进行连接查询，用aliased()创建映射类的别名在连接中多次">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> SQLAlchemy文档和笔记 (2.4) - ORM指南 (4) | tgmerge's such blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">tgmerge's such blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">It's dangerous to go<br>along! Take this.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                SQLAlchemy文档和笔记 (2.4) - ORM指南 (4)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-30T16:55:00+08:00" content="2016-04-30">
+              2016-04-30
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/0218-sqlalchemy-document-learning-note-2-4-orm-tutorial/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/0218-sqlalchemy-document-learning-note-2-4-orm-tutorial/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本篇是 <del>胡乱</del> 翻译自<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/tutorial.html" target="_blank" rel="external">SQLAlchemy 1.0官方文档 Object Relational Tutorial一章</a>的第四篇笔记。</p>
+<p>各种保留了原文的术语可以参考<a href="http://docs.sqlalchemy.org/en/rel_1_0/glossary.html" target="_blank" rel="external">SQLAlchemy术语表</a>。</p>
+<p><del>摸鱼根本停不下来</del></p>
+<hr>
+<p>上一部分讲的是关系的建立和使用关系进行查询。在映射类中使用<code>relationship()</code>建立关系，查询时使用<code>Query.join()</code>进行连接查询，用<code>aliased()</code>创建映射类的别名在连接中多次使用同一张表，使用<code>func.count()</code>和<code>statement</code>进行子查询计数之类的等等。</p>
+<p>接着从Eager Loading一节开始。要在REPL中还原之前的数据，可以：</p>
+<a id="more"></a>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># In REPL: run this file with</span></span><br><span class="line"><span class="comment"># exec(open('path/to/this.py').read())</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sqlalchemy</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine, Column, Integer, String, func, ForeignKey</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker, relationship</span><br><span class="line"></span><br><span class="line">engine = create_engine(<span class="string">'sqlite:///:memory:'</span>, echo=<span class="keyword">True</span>)</span><br><span class="line">Base = declarative_base()</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(Base)</span>:</span></span><br><span class="line">    __tablename__ = <span class="string">'users'</span></span><br><span class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    name = Column(String)</span><br><span class="line">    fullname = Column(String)</span><br><span class="line">    password = Column(String)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></span><br><span class="line">       <span class="keyword">return</span> <span class="string">"&lt;User(name='%s', fullname='%s', password='%s')&gt;"</span> % (self.name, self.fullname, self.password)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Address</span><span class="params">(Base)</span>:</span></span><br><span class="line">    __tablename__ = <span class="string">'addresses'</span></span><br><span class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    email_address = Column(String, nullable=<span class="keyword">False</span>)</span><br><span class="line">    user_id = Column(Integer, ForeignKey(<span class="string">'users.id'</span>))</span><br><span class="line">    user = relationship(<span class="string">"User"</span>, back_populates=<span class="string">"addresses"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"&lt;Address(email_address='%s')&gt;"</span> % self.email_address</span><br><span class="line"></span><br><span class="line">User.addresses = relationship(<span class="string">'Address'</span>, order_by=Address.id, back_populates=<span class="string">'user'</span>)</span><br><span class="line"></span><br><span class="line">Base.metadata.create_all(engine)</span><br><span class="line"></span><br><span class="line">Session = sessionmaker(bind=engine)</span><br><span class="line">session = Session()</span><br><span class="line">session.add_all([</span><br><span class="line">    User(name=<span class="string">'ed'</span>, fullname=<span class="string">'Ed Jones'</span>, password=<span class="string">'f8s7ccs'</span>),</span><br><span class="line">    User(name=<span class="string">'wendy'</span>, fullname=<span class="string">'Wendy Williams'</span>, password=<span class="string">'foobar'</span>),</span><br><span class="line">    User(name=<span class="string">'mary'</span>, fullname=<span class="string">'Mary Contrary'</span>, password=<span class="string">'xxg527'</span>),</span><br><span class="line">    User(name=<span class="string">'fred'</span>, fullname=<span class="string">'Fred Flinstone'</span>, password=<span class="string">'blah'</span>)])</span><br><span class="line">jack = User(name=<span class="string">'jack'</span>, fullname=<span class="string">'Jack Bean'</span>, password=<span class="string">'gjffdd'</span>)</span><br><span class="line">jack.addresses = [</span><br><span class="line">    Address(email_address=<span class="string">'jack@google.com'</span>),</span><br><span class="line">    Address(email_address=<span class="string">'j25@yahoo.com'</span>)]</span><br><span class="line">session.add(jack)</span><br><span class="line">session.commit()</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="Eager-Loading-尽早加载-贪婪加载"><a href="#Eager-Loading-尽早加载-贪婪加载" class="headerlink" title="Eager Loading / 尽早加载/贪婪加载"></a>Eager Loading / 尽早加载/贪婪加载</h3><p>记得之前我们使用过<strong>惰性加载</strong>的例子吧：当访问<code>User.addresses</code>的时候，立即执行了一条SQL语句。而很多时候需要减少SQL查询的次数，这就需要使用<strong>贪婪加载</strong>机制了。SQLAlchemy提供了三种贪婪加载方式，其中两种是自动执行的，另一种由自定义的条件触发。这三种方式都由写在<code>Query.options()</code>方法中的配置来调用。<code>Query.options()</code>提供给<code>Query</code>一些额外信息，主要是我们希望一些属性被如何从数据库加载进来。</p>
+<h4 id="Subquery-Load-子查询加载"><a href="#Subquery-Load-子查询加载" class="headerlink" title="Subquery Load / 子查询加载"></a>Subquery Load / 子查询加载</h4><p>如果希望在加载一系列对象的同时，让这些对象相关联的其他对象集合也被加载，最好使用<code>orm.subqueryload()</code>配置。它将在载入结果对象之后立即执行另一条SELECT语句，完整地载入和结果对象相关联的对象集合。这种配置的名字”subquery”来源于，它将在SELECT关联对象（第二条SQL）的时候将第一条SQL作为子查询嵌入进去。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> subqueryload</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>jack = session.query(User).options(subqueryload(User.addresses)).filter_by(name=<span class="string">'jack'</span>).one()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>jack</span><br><span class="line">&lt;User(name=<span class="string">'jack'</span>, fullname=<span class="string">'Jack Bean'</span>, password=<span class="string">'gjffdd'</span>)&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>jack.addresses</span><br><span class="line">[&lt;Address(email_address=<span class="string">'jack@google.com'</span>)&gt;, &lt;Address(email_address=<span class="string">'j25@yahoo.com'</span>)&gt;]</span><br></pre></td></tr></table></figure>
+<p>注意：当使用<code>Query.first()</code>、<code>Query.limit()</code>、<code>Query.offset()</code>的时候，应该和<code>Query.order_by()</code>连用，保证结果顺序的一致性。</p>
+<h4 id="Joined-Load-连接加载"><a href="#Joined-Load-连接加载" class="headerlink" title="Joined Load / 连接加载"></a>Joined Load / 连接加载</h4><p>另一种自动加载的方法更常见一些，称为<code>orm.joinedload()</code>。这种方法会执行一条JOIN（默认是LEFT OUTER JOIN），让主要的结果对象和他们的关联对象在一步查询内全部返回。下面将用这种方法执行和上面的例子一样的操作：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> joinedload</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>jack = session.query(User).options(joinedload(User.addresses)).filter_by(name=<span class="string">'jack'</span>).one()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>jack</span><br><span class="line">&lt;User(name=<span class="string">'jack'</span>, fullname=<span class="string">'Jack Bean'</span>, password=<span class="string">'gjffdd'</span>)&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>jack.addresses</span><br><span class="line">[&lt;Address(email_address=<span class="string">'jack@google.com'</span>)&gt;, &lt;Address(email_address=<span class="string">'j25@yahoo.com'</span>)&gt;]</span><br></pre></td></tr></table></figure>
+<p>即便LEFT OUTER JOIN返回了多余的jack行（由于jack有两个邮箱地址），结果中我们仍然只得到了一个jack。<code>Query</code>在这种情况下会使用”uniquing”策略排除相同的对象，让尽早加载的查询结果不会影响到主查询。</p>
+<p>和<code>joinedload()</code>相比，<code>subqueryload()</code>出现得比较晚。<code>subqueryload()</code>更适合于加载“某些对象相关联的对象集合”即一对多关系；而<code>joinedload()</code>更适合加载多对一关系，毕竟只有在多对一中LEFT OUTER JOIN不会在左侧出现重复的行。</p>
+<p>另外，<code>joinedload()</code>的结果中多出来的表列对你来说是“匿名的”，你不能在查询的其他部分使用到这些列做任何操作，所以不能用它替代<code>join()</code>。<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/loading_relationships.html#zen-of-eager-loading" target="_blank" rel="external">The Zen of Eager Loading</a>详细描述了其中的原理。</p>
+<h4 id="Explicit-Join-Eagerload-显式JOIN-尽早加载"><a href="#Explicit-Join-Eagerload-显式JOIN-尽早加载" class="headerlink" title="Explicit Join + Eagerload / 显式JOIN+尽早加载"></a>Explicit Join + Eagerload / 显式JOIN+尽早加载</h4><p>第三种尽早加载的方式是，显式创建一个JOIN来获取主要查询的对象，并连结另外的表到主要查询的对象上，来将他们一并载入。使用这种方式需要用到<code>orm.contains_eager()</code>。这种方式适用于尽早加载需要对“一”的那一边过滤的多对一关系。</p>
+<hr>
+<p>Note: 这个蛋疼的说法……就是说，现在有一个多对一关系（比如Address-User），我们需要获取某个/某些User的Address（即主要查询对象是Address），于是需要用name之类的条件来过滤关系的“一”也就是User那一边。</p>
+<p>但是同时我们在获取这些Address之后，如果要访问它们的User，又要进行一次SQL查询。contains_eager可以用一个INNER JOIN来把过滤得到的User直接加载进来，省掉了一次查询。</p>
+<p>下面的例子，就是我们要获取jack的所有Address，同时加载jack对象本身。之后在访问两个结果中的任意一个Address的user（也就是jack）的时候，就不用再查询一次jack了。</p>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> contains_eager</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>jacks_addresses = session.query(Address).\</span><br><span class="line"><span class="meta">... </span>                    join(Address.user).filter(User.name==<span class="string">'jack'</span>).\</span><br><span class="line"><span class="meta">... </span>                    options(contains_eager(Address.user)).all()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>jacks_addresses</span><br><span class="line">[&lt;Address(email_address=<span class="string">'jack@google.com'</span>)&gt;, &lt;Address(email_address=<span class="string">'j25@yahoo.com'</span>)&gt;]</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>jacks_addresses[<span class="number">0</span>].user</span><br><span class="line">&lt;User(name=<span class="string">'jack'</span>, fullname=<span class="string">'Jack Bean'</span>, password=<span class="string">'gjffdd'</span>)&gt;</span><br></pre></td></tr></table></figure>
+<p>更多关于尽早加载的细节可以参看<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/loading_relationships.html" target="_blank" rel="external">Relationship Loading Techniques</a>。</p>
+<h3 id="Deleting-删除"><a href="#Deleting-删除" class="headerlink" title="Deleting / 删除"></a>Deleting / 删除</h3><p>现在来试试删除<code>jack</code>。在session中添加一个删除操作，然后查询一下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>session.delete(jack)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>session.query(User).filter_by(name=<span class="string">'jack'</span>).count()</span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> addresses <span class="keyword">SET</span> user_id=? <span class="keyword">WHERE</span> addresses.id = ?</span><br><span class="line">((<span class="keyword">None</span>, <span class="number">1</span>), (<span class="keyword">None</span>, <span class="number">2</span>))</span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> <span class="keyword">users</span> <span class="keyword">WHERE</span> users.id = ?</span><br><span class="line">(<span class="number">5</span>,)</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">count</span>(*) <span class="keyword">AS</span> count_1</span><br><span class="line"><span class="keyword">FROM</span> (<span class="keyword">SELECT</span> users.id <span class="keyword">AS</span> users_id,</span><br><span class="line">        users.name <span class="keyword">AS</span> users_name,</span><br><span class="line">        users.fullname <span class="keyword">AS</span> users_fullname,</span><br><span class="line">        users.password <span class="keyword">AS</span> users_password</span><br><span class="line"><span class="keyword">FROM</span> <span class="keyword">users</span></span><br><span class="line"><span class="keyword">WHERE</span> users.name = ?) <span class="keyword">AS</span> anon_1</span><br><span class="line">(<span class="string">'jack'</span>,)</span><br></pre></td></tr></table></figure>
+<p>但Jack的<code>Address</code>对象仍然存在：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>session.query(Address).filter(Address.email_address.in_([<span class="string">'jack@google.com'</span>, <span class="string">'j25@yahoo.com'</span>])).count()</span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>这看上去不太巧妙？实际上这几个地址的<code>user_id</code>已经被设置为NULL了，但数据行本身没有被删除掉。SQLAlchemy默认不会进行级联删除操作，除非你明确指定。</p>
+<h4 id="Configuring-delete-delete-orphan-Cascade-删除或级联删除孤立对象"><a href="#Configuring-delete-delete-orphan-Cascade-删除或级联删除孤立对象" class="headerlink" title="Configuring delete/delete-orphan Cascade / 删除或级联删除孤立对象"></a>Configuring delete/delete-orphan Cascade / 删除或级联删除孤立对象</h4><p>我们需要配置<code>User.addresses</code>的<strong>级联/cascade</strong>属性来改变上面提到的这种行为。我们现在需要完全解除映射并重新开始，也就是关闭<code>Session</code>然后使用一个新的<code>declarative_base()</code>：</p>
+<p>Note: SQLalchemy允许你在任何时候给映射类添加新的属性和关系，但更改似乎不行。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>session.close()</span><br><span class="line">ROLLBACK</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Base = declarative_base()</span><br></pre></td></tr></table></figure>
+<p>现在定义<code>User</code>映射类，添加含有级联配置项的<code>addresses</code>关系：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(Base)</span>:</span></span><br><span class="line"><span class="meta">... </span>    __tablename__ = <span class="string">'users'</span></span><br><span class="line"><span class="meta">... </span>    </span><br><span class="line"><span class="meta">... </span>    id = Column(Integer, primary_key=<span class="keyword">True</span>)</span><br><span class="line"><span class="meta">... </span>    name = Column(String)</span><br><span class="line"><span class="meta">... </span>    fullname = Column(String)</span><br><span class="line"><span class="meta">... </span>    password = Column(String)</span><br><span class="line">...</span><br><span class="line"><span class="meta">... </span>    addresses = relationship(<span class="string">"Address"</span>, back_populates=<span class="string">'user'</span>,</span><br><span class="line"><span class="meta">... </span>                    cascade=<span class="string">"all, delete, delete-orphan"</span>)</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">return</span> <span class="string">"&lt;User(name='%s', fullname='%s', password='%s')&gt;"</span> % (</span><br><span class="line"><span class="meta">... </span>                                self.name, self.fullname, self.password)</span><br></pre></td></tr></table></figure>
+<p>然后重新创建<code>Address</code>，和以前完全一样：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Address</span><span class="params">(Base)</span>:</span></span><br><span class="line"><span class="meta">... </span>    __tablename__ = <span class="string">'addresses'</span></span><br><span class="line"><span class="meta">... </span>    id = Column(Integer, primary_key=<span class="keyword">True</span>)</span><br><span class="line"><span class="meta">... </span>    email_address = Column(String, nullable=<span class="keyword">False</span>)</span><br><span class="line"><span class="meta">... </span>    user_id = Column(Integer, ForeignKey(<span class="string">'users.id'</span>))</span><br><span class="line"><span class="meta">... </span>    user = relationship(<span class="string">"User"</span>, back_populates=<span class="string">"addresses"</span>)</span><br><span class="line">...</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">return</span> <span class="string">"&lt;Address(email_address='%s')&gt;"</span> % self.email_address</span><br></pre></td></tr></table></figure>
+<p>现在载入<code>jack</code>（下面使用<code>get()</code>方法，直接用主键载入对象），从它的<code>addresses</code>中删除一个邮箱地址，这将导致<code>Address</code>被直接删除：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>jack = session.query(User).get(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">del</span> jack.addresses[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>session.query(Address).filter(Address.email_address.in_([<span class="string">'jack@google.com'</span>, <span class="string">'j25@yahoo.com'</span>])).count()</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>其中第二步导致第三步的开头执行了下面的SQL：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> addresses <span class="keyword">WHERE</span> addresses.id = ?</span><br><span class="line">(<span class="number">2</span>,)</span><br></pre></td></tr></table></figure>
+<p>然后，删除Jack的话，将会一并删除Jack和他剩下的<code>Address</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>session.delete(jack)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>session.query(User).filter_by(name=<span class="string">'jack'</span>).count()</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>session.query(Address).filter(Address.email_address.in_([<span class="string">'jack@google.com'</span>, <span class="string">'j25@yahoo.com'</span>])).count()</span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>在<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/cascades.html#unitofwork-cascades" target="_blank" rel="external">Cascades</a>中将详细解释关于级联的细节。级联操作也可以用关系数据库的<code>ON DELETE CASCADE</code>功能实现，参看<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/collections.html#passive-deletes" target="_blank" rel="external">Using Passive Deletes</a></p>
+<hr>
+<blockquote>
+<p>就快完啦233 下一节：Building a Many To Many Relationship</p>
+</blockquote>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag">#Python</a>
+          
+            <a href="/tags/SQLAlchemy/" rel="tag">#SQLAlchemy</a>
+          
+            <a href="/tags/文档/" rel="tag">#文档</a>
+          
+            <a href="/tags/翻译/" rel="tag">#翻译</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/0217-sqlalchemy-document-learning-note-2-3-orm-tutorial/" rel="next" title="SQLAlchemy文档和笔记 (2.3) - ORM指南 (3)">
+                <i class="fa fa-chevron-left"></i> SQLAlchemy文档和笔记 (2.3) - ORM指南 (3)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/0219-sqlalchemy-document-learning-note-2-5-orm-tutorial/" rel="prev" title="SQLAlchemy文档和笔记 (2.5) - ORM指南 (5)">
+                SQLAlchemy文档和笔记 (2.5) - ORM指南 (5) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/0218-sqlalchemy-document-learning-note-2-4-orm-tutorial/"
+           data-title="SQLAlchemy文档和笔记 (2.4) - ORM指南 (4)" data-url="https://tgmerge.me/2016/04/0218-sqlalchemy-document-learning-note-2-4-orm-tutorial/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/avatar.png"
+               alt="tgmerge" />
+          <p class="site-author-name" itemprop="name">tgmerge</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">95</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tgmerge" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/tgmerge" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/+tgmergeSipan" target="_blank" title="G+">
+                  
+                    <i class="fa fa-google-plus-square"></i>
+                  
+                  G+
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Eager-Loading-尽早加载-贪婪加载"><span class="nav-text">Eager Loading / 尽早加载/贪婪加载</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Subquery-Load-子查询加载"><span class="nav-text">Subquery Load / 子查询加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Joined-Load-连接加载"><span class="nav-text">Joined Load / 连接加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Explicit-Join-Eagerload-显式JOIN-尽早加载"><span class="nav-text">Explicit Join + Eagerload / 显式JOIN+尽早加载</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deleting-删除"><span class="nav-text">Deleting / 删除</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Configuring-delete-delete-orphan-Cascade-删除或级联删除孤立对象"><span class="nav-text">Configuring delete/delete-orphan Cascade / 删除或级联删除孤立对象</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tgmerge</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"tgmerge"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

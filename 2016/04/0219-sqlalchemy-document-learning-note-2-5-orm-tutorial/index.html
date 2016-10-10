@@ -1,0 +1,678 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="5aq3Hk9DM7v_wqCNzXJVTLKo24-XFgeEKMql9-1uyis" />
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Satisfy:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Python,SQLAlchemy,文档,翻译," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本篇是 胡乱 翻译自SQLAlchemy 1.0官方文档 Object Relational Tutorial一章的第五篇/最后一篇笔记。
+
+上一部分主要讲Eager Loading、删除和级联删除。
+接下来从Building a Many To Many Relationship一节开始。Object Relational Tutorial到本篇就算是大致翻译完了。
+Building a Man">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQLAlchemy文档和笔记 (2.5) - ORM指南 (5)">
+<meta property="og:url" content="https://tgmerge.me/2016/04/0219-sqlalchemy-document-learning-note-2-5-orm-tutorial/index.html">
+<meta property="og:site_name" content="tgmerge's such blog">
+<meta property="og:description" content="本篇是 胡乱 翻译自SQLAlchemy 1.0官方文档 Object Relational Tutorial一章的第五篇/最后一篇笔记。
+
+上一部分主要讲Eager Loading、删除和级联删除。
+接下来从Building a Many To Many Relationship一节开始。Object Relational Tutorial到本篇就算是大致翻译完了。
+Building a Man">
+<meta property="og:updated_time" content="2016-04-30T15:20:58.758Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SQLAlchemy文档和笔记 (2.5) - ORM指南 (5)">
+<meta name="twitter:description" content="本篇是 胡乱 翻译自SQLAlchemy 1.0官方文档 Object Relational Tutorial一章的第五篇/最后一篇笔记。
+
+上一部分主要讲Eager Loading、删除和级联删除。
+接下来从Building a Many To Many Relationship一节开始。Object Relational Tutorial到本篇就算是大致翻译完了。
+Building a Man">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> SQLAlchemy文档和笔记 (2.5) - ORM指南 (5) | tgmerge's such blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">tgmerge's such blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">It's dangerous to go<br>along! Take this.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                SQLAlchemy文档和笔记 (2.5) - ORM指南 (5)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-30T23:01:00+08:00" content="2016-04-30">
+              2016-04-30
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/0219-sqlalchemy-document-learning-note-2-5-orm-tutorial/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/0219-sqlalchemy-document-learning-note-2-5-orm-tutorial/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本篇是 <del>胡乱</del> 翻译自<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/tutorial.html" target="_blank" rel="external">SQLAlchemy 1.0官方文档 Object Relational Tutorial一章</a>的第五篇/最后一篇笔记。</p>
+<hr>
+<p>上一部分主要讲Eager Loading、删除和级联删除。</p>
+<p>接下来从Building a Many To Many Relationship一节开始。Object Relational Tutorial到本篇就算是大致翻译完了。</p>
+<h3 id="Building-a-Many-To-Many-Relationship-建立多对多关系"><a href="#Building-a-Many-To-Many-Relationship-建立多对多关系" class="headerlink" title="Building a Many To Many Relationship / 建立多对多关系"></a>Building a Many To Many Relationship / 建立多对多关系</h3><p>最后来看看多对多关系，顺便稍微展示一些SQLAlchemy的其他功能。比如说我们要做一个blog应用，用户可以添加<code>BlogPost</code>项目，而每个<code>BlogPost</code>都有一些相关联的<code>Keyword</code>项目。</p>
+<p>对于这种多对多的关系，我们需要创建一个未映射的<code>Table</code>作为关系表：</p>
+<a id="more"></a>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> Table, Text</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># association table</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>post_keywords = Table(<span class="string">'post_keywords'</span>, Base.metadata,</span><br><span class="line"><span class="meta">... </span>    Column(<span class="string">'post_id'</span>, ForeignKey(<span class="string">'posts.id'</span>), primary_key=<span class="keyword">True</span>),</span><br><span class="line"><span class="meta">... </span>    Column(<span class="string">'keyword_id'</span>, ForeignKey(<span class="string">'keywords.id'</span>), primary_key=<span class="keyword">True</span>)</span><br><span class="line"><span class="meta">... </span>)</span><br></pre></td></tr></table></figure>
+<p>上面直接使用<code>Table</code>定义了一个关系表，和之前用映射类定义表的方式有些不同。其中<code>Column</code>对象的名称是用字符串显式赋予的，而不是使用类的属性名。</p>
+<hr>
+<p>Note: 虽然使用集成Base的映射类表示many-to-many的关联表也是可以的，但各种文档都强烈建议不使用Declarative系统和映射类，而建议直接用<code>Table</code>的方式定义。比如<a href="http://flask-sqlalchemy.pocoo.org/2.1/models/#many-to-many-relationships" target="_blank" rel="external">Flask-SQLAlchemy的文档</a>。</p>
+<hr>
+<p>接下来定义<code>BlogPost</code>和<code>Keyword</code>，使用互补的<code>relationship()</code>，每个关系均指向<code>post_keywords</code>表：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">BlogPost</span><span class="params">(Base)</span>:</span></span><br><span class="line"><span class="meta">... </span>    __tablename__ = <span class="string">'posts'</span></span><br><span class="line">...</span><br><span class="line"><span class="meta">... </span>    id = Column(Integer, primary_key=<span class="keyword">True</span>)</span><br><span class="line"><span class="meta">... </span>    user_id = Column(Integer, ForeignKey(<span class="string">'users.id'</span>))</span><br><span class="line"><span class="meta">... </span>    headline = Column(String(<span class="number">255</span>), nullable=<span class="keyword">False</span>)</span><br><span class="line"><span class="meta">... </span>    body = Column(Text)</span><br><span class="line">...</span><br><span class="line"><span class="meta">... </span>    <span class="comment"># many to many BlogPost&lt;-&gt;Keyword</span></span><br><span class="line"><span class="meta">... </span>    keywords = relationship(<span class="string">'Keyword'</span>,</span><br><span class="line"><span class="meta">... </span>                            secondary=post_keywords,</span><br><span class="line"><span class="meta">... </span>                            back_populates=<span class="string">'posts'</span>)</span><br><span class="line">...</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, headline, body, author)</span>:</span></span><br><span class="line"><span class="meta">... </span>        self.author = author</span><br><span class="line"><span class="meta">... </span>        self.headline = headline</span><br><span class="line"><span class="meta">... </span>        self.body = body</span><br><span class="line">...</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">return</span> <span class="string">"BlogPost(%r, %r, %r)"</span> % (self.headline, self.body, self.author)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Keyword</span><span class="params">(Base)</span>:</span></span><br><span class="line"><span class="meta">... </span>    __tablename__ = <span class="string">'keywords'</span></span><br><span class="line">...</span><br><span class="line"><span class="meta">... </span>    id = Column(Integer, primary_key=<span class="keyword">True</span>)</span><br><span class="line"><span class="meta">... </span>    keyword = Column(String(<span class="number">50</span>), nullable=<span class="keyword">False</span>, unique=<span class="keyword">True</span>)</span><br><span class="line"><span class="meta">... </span>    posts = relationship(<span class="string">'BlogPost'</span>,</span><br><span class="line"><span class="meta">... </span>                         secondary=post_keywords,</span><br><span class="line"><span class="meta">... </span>                         back_populates=<span class="string">'keywords'</span>)</span><br><span class="line">...</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, keyword)</span>:</span></span><br><span class="line"><span class="meta">... </span>        self.keyword = keyword</span><br></pre></td></tr></table></figure>
+<p>注意，上面的类定义显式声明了<code>__init__()</code>方法。但当使用Declarative的时候，可以不显式声明<code>__init__()</code>。</p>
+<p>上面的例子中，多对多关系是<code>BlogPost.keywords</code>。定义多对多关系的关键在于<code>secondary</code>参数，它被传入了一个代表关联表的<code>Table</code>对象。关联表只包含代表关系两侧引用的列。如果它需要有任何其他的列，比如它自己的主键，或者另外的外键，SQLAlchemy就要求使用另一种叫“关联对象（association object）”的定义模式，在<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/basic_relationships.html#association-pattern" target="_blank" rel="external">Association Object</a>中说明。</p>
+<p>我们还希望<code>BlogPost</code>类拥有一个<code>author</code>属性，我们可以添加另一个双向关系。每个用户可以有多篇文章，但当我们访问<code>User.posts</code>的时候，我们并不希望一下加载他的所有的文章集合。我们可以用<code>relationship()</code>的一个参数<code>lazy=&#39;dynamic&#39;</code>配置这种行为。这种配置被称为属性的<strong>加载策略（loader strategy）</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>BlogPost.author = relationship(User, back_populates=<span class="string">"posts"</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>User.posts = relationship(BlogPost, back_populates=<span class="string">"author"</span>, lazy=<span class="string">"dynamic"</span>)</span><br></pre></td></tr></table></figure>
+<hr>
+<p>Note: 上面的BlogPost类已经定义了user_id外键，约束于users.id，所以直接在BlogPost和User两个类上定义relationship，SQLAlchemy会自动识别出是从User到BlogPost的一对多关系。</p>
+<hr>
+<p>现在创建新表：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>Base.metadata.create_all(engine)</span><br></pre></td></tr></table></figure>
+<p>接下来试着使用它们，给Wendy创建一些文章：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>wendy = session.query(User).filter_by(name=<span class="string">'wendy'</span>).one()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>post = BlogPost(<span class="string">"Wendy's Blog Post"</span>, <span class="string">"This is a test"</span>, wendy)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>session.add(post)</span><br></pre></td></tr></table></figure>
+<p>然后创建一些文章的关键词：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>post.keywords.append(Keyword(<span class="string">'wendy'</span>))</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>post.keywords.append(Keyword(<span class="string">'firstpost'</span>))</span><br></pre></td></tr></table></figure>
+<p>现在就可以查询所有包含”firstpost”关键词的文章了。我们用<code>any</code>操作符来寻找“任何一个关键词是’firstpost’的文章”：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>session.query(BlogPost).filter(BlogPost.keywords.any(keyword=<span class="string">'firstpost'</span>)).all()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>[BlogPost(<span class="string">"Wendy's Blog Post"</span>, <span class="string">'This is a test'</span>, &lt;User(name=<span class="string">'wendy'</span>, fullname=<span class="string">'Wendy Williams'</span>, password=<span class="string">'foobar'</span>)&gt;)]</span><br></pre></td></tr></table></figure>
+<p>或者，我们可以用Wendy的<code>posts</code>关系来在他的文章中查询。因为<code>posts</code>关系是一个定义为<code>lazy=dynamic</code>的关系，在访问<code>wendy.posts</code>的时候，它并不会一下全部加载：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>wendy.posts.filter(BlogPost.keywords.any(keywords=<span class="string">'firstpost'</span>)).all()</span><br><span class="line">[BlogPost(<span class="string">"Wendy's Blog Post"</span>, <span class="string">'This is a test'</span>, &lt;User(name=<span class="string">'wendy'</span>, fullname=<span class="string">'Wendy Williams'</span>, password=<span class="string">'foobar'</span>)&gt;)]</span><br></pre></td></tr></table></figure>
+<h3 id="Further-Reference-参见"><a href="#Further-Reference-参见" class="headerlink" title="Further Reference / 参见"></a>Further Reference / 参见</h3><ul>
+<li>Mapper参考文档：<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/mapper_config.html" target="_blank" rel="external">Mapper Configuration</a></li>
+<li>Relatioinship参考文档：<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/relationships.html" target="_blank" rel="external">Relationship Configuration</a></li>
+<li>Session参考文档：<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/session.html" target="_blank" rel="external">Using the Session</a></li>
+</ul>
+<hr>
+<p>Note: 于是<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/tutorial.html" target="_blank" rel="external">Object Relational Tutorial</a>这篇文档的中文翻译就全部结束辣 :) 接下来大概会翻译和读一下<a href="http://flask-sqlalchemy.pocoo.org/2.1/" target="_blank" rel="external">Flask-SQLAlchemy的文档</a>？虽然网上现在有一个0.16翻译版，但版本号现在已经到了2.1，感觉会有出入。</p>
+<p>然后重新玩玩Flask（希望比上次不知为什么熟练一点hhh）</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag">#Python</a>
+          
+            <a href="/tags/SQLAlchemy/" rel="tag">#SQLAlchemy</a>
+          
+            <a href="/tags/文档/" rel="tag">#文档</a>
+          
+            <a href="/tags/翻译/" rel="tag">#翻译</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/0218-sqlalchemy-document-learning-note-2-4-orm-tutorial/" rel="next" title="SQLAlchemy文档和笔记 (2.4) - ORM指南 (4)">
+                <i class="fa fa-chevron-left"></i> SQLAlchemy文档和笔记 (2.4) - ORM指南 (4)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/0219-sqlalchemy-document-learning-note-2-5-orm-tutorial/"
+           data-title="SQLAlchemy文档和笔记 (2.5) - ORM指南 (5)" data-url="https://tgmerge.me/2016/04/0219-sqlalchemy-document-learning-note-2-5-orm-tutorial/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/avatar.png"
+               alt="tgmerge" />
+          <p class="site-author-name" itemprop="name">tgmerge</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">95</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tgmerge" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/tgmerge" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/+tgmergeSipan" target="_blank" title="G+">
+                  
+                    <i class="fa fa-google-plus-square"></i>
+                  
+                  G+
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Building-a-Many-To-Many-Relationship-建立多对多关系"><span class="nav-text">Building a Many To Many Relationship / 建立多对多关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Further-Reference-参见"><span class="nav-text">Further Reference / 参见</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tgmerge</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"tgmerge"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
