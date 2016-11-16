@@ -29,7 +29,9 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -67,9 +69,11 @@
 
 
 
+
+
 <link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Python,SQLAlchemy,文档,翻译," />
@@ -81,7 +85,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
 
 
 
@@ -121,16 +125,22 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: '0',
       author: '博主'
     }
   };
 </script>
 
+
+
+
+  <link rel="canonical" href="https://tgmerge.me/2016/04/0217-sqlalchemy-document-learning-note-2-3-orm-tutorial/"/>
+
+
   <title> SQLAlchemy文档和笔记 (2.3) - ORM指南 (3) | tgmerge's such blog </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -151,7 +161,7 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
@@ -183,7 +193,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -193,7 +203,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -203,7 +213,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -236,7 +246,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
       <header class="post-header">
@@ -301,11 +311,11 @@
 <p>上一部分讲的是<code>Query</code>，以及在<code>Query</code>中可以使用的各种查询限定方法。包括分页（<code>offset()</code>和<code>limit()</code>）、筛选（<code>filter()</code>）和其中的多种操作符、获取Scalar（<code>all()</code>和<code>one()</code>等）、计数（<code>count()</code>）之类。</p>
 <p>下面从Building a Relationship一节开始。如果在新的REPL中测试之后的python语句，需要还原之前插入的数据，可以使用这个：</p>
 <a id="more"></a>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在REPL中使用下面的语句执行：</span></span><br><span class="line"><span class="comment"># exec(open('path/to/this_file.py').read())</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sqlalchemy</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine, Column, Integer, String, func</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker</span><br><span class="line"></span><br><span class="line">engine = create_engine(<span class="string">'sqlite:///:memory:'</span>, echo=<span class="keyword">True</span>)</span><br><span class="line">Base = declarative_base()</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(Base)</span>:</span></span><br><span class="line">    __tablename__ = <span class="string">'users'</span></span><br><span class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    name = Column(String)</span><br><span class="line">    fullname = Column(String)</span><br><span class="line">    password = Column(String)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></span><br><span class="line">       <span class="keyword">return</span> <span class="string">"&lt;User(name='%s', fullname='%s', password='%s')&gt;"</span> % (self.name, self.fullname, self.password)</span><br><span class="line"></span><br><span class="line">Base.metadata.create_all(engine)</span><br><span class="line"></span><br><span class="line">Session = sessionmaker(bind=engine)</span><br><span class="line">session = Session()</span><br><span class="line">session.add_all([</span><br><span class="line">    User(name=<span class="string">'ed'</span>, fullname=<span class="string">'Ed Jones'</span>, password=<span class="string">'f8s7ccs'</span>),</span><br><span class="line">    User(name=<span class="string">'wendy'</span>, fullname=<span class="string">'Wendy Williams'</span>, password=<span class="string">'foobar'</span>),</span><br><span class="line">    User(name=<span class="string">'mary'</span>, fullname=<span class="string">'Mary Contrary'</span>, password=<span class="string">'xxg527'</span>),</span><br><span class="line">    User(name=<span class="string">'fred'</span>, fullname=<span class="string">'Fred Flinstone'</span>, password=<span class="string">'blah'</span>)])</span><br><span class="line">session.commit()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在REPL中使用下面的语句执行：</span></span><br><span class="line"><span class="comment"># exec(open('path/to/this_file.py').read())</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sqlalchemy</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine, Column, Integer, String, func</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.ext.declarative <span class="keyword">import</span> declarative_base</span><br><span class="line"><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> sessionmaker</span><br><span class="line"></span><br><span class="line">engine = create_engine(<span class="string">'sqlite:///:memory:'</span>, echo=<span class="keyword">True</span>)</span><br><span class="line">Base = declarative_base()</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(Base)</span>:</span></span><br><span class="line">    __tablename__ = <span class="string">'users'</span></span><br><span class="line">    id = Column(Integer, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    name = Column(String)</span><br><span class="line">    fullname = Column(String)</span><br><span class="line">    password = Column(String)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></span><br><span class="line">       <span class="keyword">return</span> <span class="string">"&lt;User(name='%s', fullname='%s', password='%s')&gt;"</span> % (self.name, self.fullname, self.password)</span><br><span class="line"></span><br><span class="line">Base.metadata.create_all(engine)</span><br><span class="line"></span><br><span class="line">Session = sessionmaker(bind=engine)</span><br><span class="line">session = Session()</span><br><span class="line">session.add_all([</span><br><span class="line">    User(name=<span class="string">'ed'</span>, fullname=<span class="string">'Ed Jones'</span>, password=<span class="string">'f8s7ccs'</span>),</span><br><span class="line">    User(name=<span class="string">'wendy'</span>, fullname=<span class="string">'Wendy Williams'</span>, password=<span class="string">'foobar'</span>),</span><br><span class="line">    User(name=<span class="string">'mary'</span>, fullname=<span class="string">'Mary Contrary'</span>, password=<span class="string">'xxg527'</span>),</span><br><span class="line">    User(name=<span class="string">'fred'</span>, fullname=<span class="string">'Fred Flinstone'</span>, password=<span class="string">'blah'</span>)])</span><br><span class="line">session.commit()</span><br></pre></td></tr></table></figure>
 <h3 id="Building-a-Relationship-建立关系"><a href="#Building-a-Relationship-建立关系" class="headerlink" title="Building a Relationship / 建立关系"></a>Building a Relationship / 建立关系</h3><p><del>要建立关系先去表白吧hhh</del></p>
 <!-- more -->
 <p>比如说，每个<code>User</code>可以保存任意数量的电子邮箱地址。我们需要一个存储电子邮箱地址的新表<code>addresses</code>，然后用一个从<code>users</code>表到<code>addresses</code>表的<strong>一对多</strong>关系来实现。使用declarative系统，我们可以为这个新表定义一个<code>Address</code>映射类：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> ForeignKey</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> relationship</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Address</span><span class="params">(Base)</span>:</span></span><br><span class="line"><span class="meta">... </span>    __tablename__ = <span class="string">'addresses'</span></span><br><span class="line"><span class="meta">... </span>    id = Column(Integer, primary_key=<span class="keyword">True</span>)</span><br><span class="line"><span class="meta">... </span>    email_address = Column(String, nullable=<span class="keyword">False</span>)</span><br><span class="line"><span class="meta">... </span>    user_id = Column(Integer, ForeignKey(<span class="string">'users.id'</span>))</span><br><span class="line">...</span><br><span class="line"><span class="meta">... </span>    user = relationship(<span class="string">"User"</span>, back_populates=<span class="string">"addresses"</span>)</span><br><span class="line">...</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">return</span> <span class="string">"&lt;Address(email_address='%s')&gt;"</span> % self.email_address</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>User.addresses = relationship(<span class="string">"Address"</span>, order_by=Address.id, back_populates=<span class="string">"user"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> ForeignKey</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> relationship</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">Address</span><span class="params">(Base)</span>:</span></span><br><span class="line"><span class="meta">... </span>    __tablename__ = <span class="string">'addresses'</span></span><br><span class="line"><span class="meta">... </span>    id = Column(Integer, primary_key=<span class="keyword">True</span>)</span><br><span class="line"><span class="meta">... </span>    email_address = Column(String, nullable=<span class="keyword">False</span>)</span><br><span class="line"><span class="meta">... </span>    user_id = Column(Integer, ForeignKey(<span class="string">'users.id'</span>))</span><br><span class="line">...</span><br><span class="line"><span class="meta">... </span>    user = relationship(<span class="string">"User"</span>, back_populates=<span class="string">"addresses"</span>)</span><br><span class="line">...</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">return</span> <span class="string">"&lt;Address(email_address='%s')&gt;"</span> % self.email_address</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>User.addresses = relationship(<span class="string">"Address"</span>, order_by=Address.id, back_populates=<span class="string">"user"</span>)</span><br></pre></td></tr></table></figure>
 <p>上面这个映射类中出现的<code>ForeignKey</code>，是<code>Column</code>中可以使用的一个描述符(directive)。它声明这个列的值应该被约束于另一列的数据值之中。这是关系数据库的核心功能之一，用于“粘结”两个数据表。上面的<code>ForeignKey</code>表示，<code>address.user_id</code>这一列的值应该被约束于<code>users.id</code>一列。</p>
 <p>而描述符<code>relationship()</code>告诉ORM，<code>Address</code>这个类本身应该被连接到<code>User</code>类。连接使用<code>Address.user</code>这个属性。<code>relationship()</code>使用两个表中的外键关联来识别连接的类型，在这里它识别出<code>Address.user</code>应该是一个<strong>多对一</strong>关系。另外一边，<code>User</code>映射类里面也放置了一个<code>relationship()</code>，位于<code>User.addresses</code>属性中。在这两个<code>relationship()</code>描述符中，参数<code>relationship.back_populates</code>被设为“对面”的那个属性，这样一来<code>relationship()</code>就能知道，<code>Address.user</code>是另一边的一个<code>User</code>实例，而<code>User.addresses</code>是另一边的<code>Address</code>实例的列表。</p>
 <p>注意：<code>relationship.back_populates</code>替代了过去版本的<code>relationship.backref</code>。<code>relationship.backref</code>参数仍然可用，但<code>relationship.back_populates</code>的名字更容易理解一点。详情可以参考<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/backref.html#relationships-backref" target="_blank" rel="external">Linking Relationships with Backref</a>。</p>
@@ -314,90 +324,90 @@
 <p>传递给<code>relationship()</code>一些表示其他映射类的参数时，如果使用了Declarative系统，你可以用字符串把类名传递过去。所有映射结束的时候，这些字符串将被求值（evaluated）为Python表达式，产生实际的参数。在上面的例子中，实际的参数就是<code>User</code>类。所有继承了declared base的类都可以作为参数。</p>
 <p>关于FOREIGN KEY的一点知识：FOREIGN KEY数据列将在它连结的列数据更新的时候，自动更新自己。FOREIGN KEY约束也可以将多个列连结到多个主键列，称为“复合外键”。</p>
 <p>接下来需要在数据库中创建<code>addresses</code>表：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>Base.metadata.create_all(engine)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>Base.metadata.create_all(engine)</span><br></pre></td></tr></table></figure>
 <h3 id="Working-with-Related-Objects-使用包含关系的对象"><a href="#Working-with-Related-Objects-使用包含关系的对象" class="headerlink" title="Working with Related Objects / 使用包含关系的对象"></a>Working with Related Objects / 使用包含关系的对象</h3><p>现在，当我们创建一个<code>User</code>对象的时候，将会包含一个空的<code>addresses</code>集合。默认来说这个集合的数据类型会是list，但也可以用<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/collections.html#custom-collections" target="_blank" rel="external">Customizing Collection Access</a>中的方式自定义为其他的集合类型，比如set和dictionary。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>jack = User(name=<span class="string">'jack'</span>, fullname=<span class="string">'Jack Bean'</span>, password=<span class="string">'gjffdd'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>jack.addresses</span><br><span class="line">[]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>jack = User(name=<span class="string">'jack'</span>, fullname=<span class="string">'Jack Bean'</span>, password=<span class="string">'gjffdd'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>jack.addresses</span><br><span class="line">[]</span><br></pre></td></tr></table></figure>
 <p>你可以任意向<code>User</code>对象中添加<code>Address</code>对象。这里我们直接赋予其一个列表：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>jack.addresses = [</span><br><span class="line"><span class="meta">... </span>                Address(email_address=<span class="string">'jack@google.com'</span>),</span><br><span class="line"><span class="meta">... </span>                Address(email_address=<span class="string">'j25@yahoo.com'</span>)]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>jack.addresses = [</span><br><span class="line"><span class="meta">... </span>                Address(email_address=<span class="string">'jack@google.com'</span>),</span><br><span class="line"><span class="meta">... </span>                Address(email_address=<span class="string">'j25@yahoo.com'</span>)]</span><br></pre></td></tr></table></figure>
 <p>当使用双向关系的时候，在一个方向上添加的元素将立即在另一个方向上变得可见。即使当没有任何SQL执行的时候，也是如此：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>jack.addresses[<span class="number">1</span>]</span><br><span class="line">&lt;Address(email_address=<span class="string">'j25@yahoo.com'</span>)&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>jack.addresses[<span class="number">1</span>].user</span><br><span class="line">&lt;User(name=<span class="string">'jack'</span>, fullname=<span class="string">'Jack Bean'</span>, password=<span class="string">'gjffdd'</span>)&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>jack.addresses[<span class="number">1</span>]</span><br><span class="line">&lt;Address(email_address=<span class="string">'j25@yahoo.com'</span>)&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>jack.addresses[<span class="number">1</span>].user</span><br><span class="line">&lt;User(name=<span class="string">'jack'</span>, fullname=<span class="string">'Jack Bean'</span>, password=<span class="string">'gjffdd'</span>)&gt;</span><br></pre></td></tr></table></figure>
 <p>现在让我们将<code>Jack Bean</code>添加到数据库中。<code>jack</code>和它<code>address</code>中的两个<code>Address</code>成员都会一起被级联地（cascading）添加到session中：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>session.add(jack)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>session.commit()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>session.add(jack)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>session.commit()</span><br></pre></td></tr></table></figure>
 <p>现在查询Jack，会发现执行的SQL只查询了Jack本身，我们也只得到了Jack本身：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>jack = session.query(User).filter_by(name=<span class="string">'jack'</span>).one()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>jack</span><br><span class="line">&lt;User(name=<span class="string">'jack'</span>, fullname=<span class="string">'Jack Bean'</span>, password=<span class="string">'gjffdd'</span>)&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">BEGIN</span> (implicit)</span><br><span class="line"><span class="keyword">SELECT</span> users.id <span class="keyword">AS</span> users_id,</span><br><span class="line">        users.name <span class="keyword">AS</span> users_name,</span><br><span class="line">        users.fullname <span class="keyword">AS</span> users_fullname,</span><br><span class="line">        users.password <span class="keyword">AS</span> users_password</span><br><span class="line"><span class="keyword">FROM</span> <span class="keyword">users</span></span><br><span class="line"><span class="keyword">WHERE</span> users.name = ?</span><br><span class="line">(<span class="string">'jack'</span>,)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>jack = session.query(User).filter_by(name=<span class="string">'jack'</span>).one()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>jack</span><br><span class="line">&lt;User(name=<span class="string">'jack'</span>, fullname=<span class="string">'Jack Bean'</span>, password=<span class="string">'gjffdd'</span>)&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">BEGIN</span> (implicit)</span><br><span class="line"><span class="keyword">SELECT</span> users.id <span class="keyword">AS</span> users_id,</span><br><span class="line">        users.name <span class="keyword">AS</span> users_name,</span><br><span class="line">        users.fullname <span class="keyword">AS</span> users_fullname,</span><br><span class="line">        users.password <span class="keyword">AS</span> users_password</span><br><span class="line"><span class="keyword">FROM</span> <span class="keyword">users</span></span><br><span class="line"><span class="keyword">WHERE</span> users.name = ?</span><br><span class="line">(<span class="string">'jack'</span>,)</span><br></pre></td></tr></table></figure>
 <p>现在来看看Jack的<code>addresses</code>属性。会发现下面的SQL立即被执行：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>jack.addresses</span><br><span class="line">[&lt;Address(email_address=<span class="string">'jack@google.com'</span>)&gt;, &lt;Address(email_address=<span class="string">'j25@yahoo.com'</span>)&gt;]</span><br></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> addresses.id <span class="keyword">AS</span> addresses_id,</span><br><span class="line">        addresses.email_address <span class="keyword">AS</span></span><br><span class="line">        addresses_email_address,</span><br><span class="line">        addresses.user_id <span class="keyword">AS</span> addresses_user_id</span><br><span class="line"><span class="keyword">FROM</span> addresses</span><br><span class="line"><span class="keyword">WHERE</span> ? = addresses.user_id <span class="keyword">ORDER</span> <span class="keyword">BY</span> addresses.id</span><br><span class="line">(<span class="number">5</span>,)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>jack.addresses</span><br><span class="line">[&lt;Address(email_address=<span class="string">'jack@google.com'</span>)&gt;, &lt;Address(email_address=<span class="string">'j25@yahoo.com'</span>)&gt;]</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> addresses.id <span class="keyword">AS</span> addresses_id,</span><br><span class="line">        addresses.email_address <span class="keyword">AS</span></span><br><span class="line">        addresses_email_address,</span><br><span class="line">        addresses.user_id <span class="keyword">AS</span> addresses_user_id</span><br><span class="line"><span class="keyword">FROM</span> addresses</span><br><span class="line"><span class="keyword">WHERE</span> ? = addresses.user_id <span class="keyword">ORDER</span> <span class="keyword">BY</span> addresses.id</span><br><span class="line">(<span class="number">5</span>,)</span><br></pre></td></tr></table></figure>
 <p>这是一个<a href="http://docs.sqlalchemy.org/en/rel_1_0/glossary.html#term-lazy-loading" target="_blank" rel="external">惰性加载/延迟加载（lazy loading）</a>关系的例子。<code>addresses</code>集现在的行为就像普通的列表一样了。之后会讲讲如何优化这种加载方式。</p>
 <h3 id="Querying-with-Joins-含有表连接的查询"><a href="#Querying-with-Joins-含有表连接的查询" class="headerlink" title="Querying with Joins / 含有表连接的查询"></a>Querying with Joins / 含有表连接的查询</h3><p>现在可以展示<code>Query</code>的更多功能了。要构造包含<code>User</code>和<code>Address</code>的、最简单的隐式INNER JOIN，可以直接用<code>Query.filter()</code>限定让它们相关联的列相等。比如说：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> u, a <span class="keyword">in</span> session.query(User, address).\</span><br><span class="line"><span class="meta">... </span>                    filter(User.id==Address.user_id).\</span><br><span class="line"><span class="meta">... </span>                    filter(Address.email_address==<span class="string">'jack@google.com'</span>).\</span><br><span class="line"><span class="meta">... </span>                    all():</span><br><span class="line"><span class="meta">... </span>    print(u)</span><br><span class="line"><span class="meta">... </span>    print(a)</span><br><span class="line">&lt;User(name=<span class="string">'jack'</span>, fullname=<span class="string">'Jack Bean'</span>, password=<span class="string">'gjffdd'</span>)&gt; &lt;Address(email_address=<span class="string">'jack@google.com'</span>)&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> users.id <span class="keyword">AS</span> users_id,</span><br><span class="line">        users.name <span class="keyword">AS</span> users_name,</span><br><span class="line">        users.fullname <span class="keyword">AS</span> users_fullname,</span><br><span class="line">        users.password <span class="keyword">AS</span> users_password,</span><br><span class="line">        addresses.id <span class="keyword">AS</span> addresses_id,</span><br><span class="line">        addresses.email_address <span class="keyword">AS</span> addresses_email_address,</span><br><span class="line">        addresses.user_id <span class="keyword">AS</span> addresses_user_id</span><br><span class="line"><span class="keyword">FROM</span> <span class="keyword">users</span>, addresses</span><br><span class="line"><span class="keyword">WHERE</span> users.id = addresses.user_id</span><br><span class="line">        <span class="keyword">AND</span> addresses.email_address = ?</span><br><span class="line">(<span class="string">'jack@google.com'</span>,)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> u, a <span class="keyword">in</span> session.query(User, address).\</span><br><span class="line"><span class="meta">... </span>                    filter(User.id==Address.user_id).\</span><br><span class="line"><span class="meta">... </span>                    filter(Address.email_address==<span class="string">'jack@google.com'</span>).\</span><br><span class="line"><span class="meta">... </span>                    all():</span><br><span class="line"><span class="meta">... </span>    print(u)</span><br><span class="line"><span class="meta">... </span>    print(a)</span><br><span class="line">&lt;User(name=<span class="string">'jack'</span>, fullname=<span class="string">'Jack Bean'</span>, password=<span class="string">'gjffdd'</span>)&gt; &lt;Address(email_address=<span class="string">'jack@google.com'</span>)&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> users.id <span class="keyword">AS</span> users_id,</span><br><span class="line">        users.name <span class="keyword">AS</span> users_name,</span><br><span class="line">        users.fullname <span class="keyword">AS</span> users_fullname,</span><br><span class="line">        users.password <span class="keyword">AS</span> users_password,</span><br><span class="line">        addresses.id <span class="keyword">AS</span> addresses_id,</span><br><span class="line">        addresses.email_address <span class="keyword">AS</span> addresses_email_address,</span><br><span class="line">        addresses.user_id <span class="keyword">AS</span> addresses_user_id</span><br><span class="line"><span class="keyword">FROM</span> <span class="keyword">users</span>, addresses</span><br><span class="line"><span class="keyword">WHERE</span> users.id = addresses.user_id</span><br><span class="line">        <span class="keyword">AND</span> addresses.email_address = ?</span><br><span class="line">(<span class="string">'jack@google.com'</span>,)</span><br></pre></td></tr></table></figure>
 <p>要显式地构造SQL JOIN，使用<code>Query.join()</code>比较容易：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>session.query(User).join(Address).\</span><br><span class="line"><span class="meta">... </span>        filter(Address.email_address==<span class="string">'jack@google.com'</span>).\</span><br><span class="line"><span class="meta">... </span>        all()</span><br><span class="line">[&lt;User(name=<span class="string">'jack'</span>, fullname=<span class="string">'Jack Bean'</span>, password=<span class="string">'gjffdd'</span>)&gt;]</span><br></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> users.id <span class="keyword">AS</span> users_id,</span><br><span class="line">        users.name <span class="keyword">AS</span> users_name,</span><br><span class="line">        users.fullname <span class="keyword">AS</span> users_fullname,</span><br><span class="line">        users.password <span class="keyword">AS</span> users_password</span><br><span class="line"><span class="keyword">FROM</span> <span class="keyword">users</span> <span class="keyword">JOIN</span> addresses <span class="keyword">ON</span> users.id = addresses.user_id</span><br><span class="line"><span class="keyword">WHERE</span> addresses.email_address = ?</span><br><span class="line">(<span class="string">'jack@google.com'</span>,)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>session.query(User).join(Address).\</span><br><span class="line"><span class="meta">... </span>        filter(Address.email_address==<span class="string">'jack@google.com'</span>).\</span><br><span class="line"><span class="meta">... </span>        all()</span><br><span class="line">[&lt;User(name=<span class="string">'jack'</span>, fullname=<span class="string">'Jack Bean'</span>, password=<span class="string">'gjffdd'</span>)&gt;]</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> users.id <span class="keyword">AS</span> users_id,</span><br><span class="line">        users.name <span class="keyword">AS</span> users_name,</span><br><span class="line">        users.fullname <span class="keyword">AS</span> users_fullname,</span><br><span class="line">        users.password <span class="keyword">AS</span> users_password</span><br><span class="line"><span class="keyword">FROM</span> <span class="keyword">users</span> <span class="keyword">JOIN</span> addresses <span class="keyword">ON</span> users.id = addresses.user_id</span><br><span class="line"><span class="keyword">WHERE</span> addresses.email_address = ?</span><br><span class="line">(<span class="string">'jack@google.com'</span>,)</span><br></pre></td></tr></table></figure>
 <p><code>Query.join()</code>知道如何连接<code>User</code>和<code>Address</code>，因为他们之间只有一个外键关联。如果没有外键、或有多个外键，<code>Query.join()</code>在下面几种形式下工作得更好：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">query.join(Address, User.id==Address.user_id)       <span class="comment"># 显示声明条件</span></span><br><span class="line">query.join(User.addresses)                          <span class="comment"># 声明左侧到右侧的关系</span></span><br><span class="line">query.join(Address, User.addresses)                 <span class="comment"># 和上一种相同，但显式制定了连结目标</span></span><br><span class="line">query.join(<span class="string">'addresses'</span>)                             <span class="comment"># 和第二种相同，使用字符串指定</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">query.join(Address, User.id==Address.user_id)       <span class="comment"># 显示声明条件</span></span><br><span class="line">query.join(User.addresses)                          <span class="comment"># 声明左侧到右侧的关系</span></span><br><span class="line">query.join(Address, User.addresses)                 <span class="comment"># 和上一种相同，但显式制定了连结目标</span></span><br><span class="line">query.join(<span class="string">'addresses'</span>)                             <span class="comment"># 和第二种相同，使用字符串指定</span></span><br></pre></td></tr></table></figure>
 <p>OUTER JOIN可以用<code>outerjoin()</code>指定：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">query.outerjoin(User.addresses)   <span class="comment"># LEFT OUTER JOIN</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">query.outerjoin(User.addresses)   <span class="comment"># LEFT OUTER JOIN</span></span><br></pre></td></tr></table></figure>
 <p><code>join()</code>的参考文档会详细说明它可以接受的参数类型和其他使用方法。</p>
 <p><strong>注意：</strong>当为<code>Query</code>提供了多个参数的时候，<code>Query.join()</code>默认将首先连接最左边的那个。比如<code>session.query(User, Address).join(Address).all()</code>将执行<code>FROM users JOIN addresses ON users.id = addresses.user_id</code>。如果要改变JOIN的第一项，可以使用<code>Query.select_from()</code>方法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">query = Session.query(User, Address).select_from(Address).join(User)</span><br><span class="line"><span class="comment"># 将执行 FROM addresses JOIN users ON users.id = addresses.user_id</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">query = Session.query(User, Address).select_from(Address).join(User)</span><br><span class="line"><span class="comment"># 将执行 FROM addresses JOIN users ON users.id = addresses.user_id</span></span><br></pre></td></tr></table></figure>
 <h4 id="Using-Aliases-使用别名"><a href="#Using-Aliases-使用别名" class="headerlink" title="Using Aliases / 使用别名"></a>Using Aliases / 使用别名</h4><p>当在多个表中查询的时候，如果某张表需要多次在连接中使用，SQL一般需要这张表在多次出现时使用不同的别名作为区分。<code>Query</code>可以用<code>aliased</code>显式地做到这一点。下面，为了查询拥有两个特定的邮箱地址的用户，需要连接<code>Address</code>两次：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> aliased</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>adalias1 = aliased(Address)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>adalias2 = aliased(Address)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> username, email1, email2 <span class="keyword">in</span> \</span><br><span class="line"><span class="meta">... </span>    session.query(User.name, adalias1.email_address, adalias2.email_address).\</span><br><span class="line"><span class="meta">... </span>    join(adalias1, User.addresses).\</span><br><span class="line"><span class="meta">... </span>    join(adalias2, User.addresses).\</span><br><span class="line"><span class="meta">... </span>    filter(adalias1.email_address==<span class="string">'jack@google.com'</span>).\</span><br><span class="line"><span class="meta">... </span>    filter(adalias2.email_address==<span class="string">'j25@yahoo.com'</span>):</span><br><span class="line"><span class="meta">... </span>    print(username, email1, email2)</span><br><span class="line">jack jack@google.com j25@yahoo.com</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sqlalchemy.orm <span class="keyword">import</span> aliased</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>adalias1 = aliased(Address)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>adalias2 = aliased(Address)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> username, email1, email2 <span class="keyword">in</span> \</span><br><span class="line"><span class="meta">... </span>    session.query(User.name, adalias1.email_address, adalias2.email_address).\</span><br><span class="line"><span class="meta">... </span>    join(adalias1, User.addresses).\</span><br><span class="line"><span class="meta">... </span>    join(adalias2, User.addresses).\</span><br><span class="line"><span class="meta">... </span>    filter(adalias1.email_address==<span class="string">'jack@google.com'</span>).\</span><br><span class="line"><span class="meta">... </span>    filter(adalias2.email_address==<span class="string">'j25@yahoo.com'</span>):</span><br><span class="line"><span class="meta">... </span>    print(username, email1, email2)</span><br><span class="line">jack jack@google.com j25@yahoo.com</span><br></pre></td></tr></table></figure>
 <h4 id="Using-Subqueries-使用子查询"><a href="#Using-Subqueries-使用子查询" class="headerlink" title="Using Subqueries / 使用子查询"></a>Using Subqueries / 使用子查询</h4><p><code>Query</code>能生成可被用作子查询的语句。比如说，我们需要获取<code>User</code>和每个<code>User</code>具有<code>Address</code>的数量，最佳的SQL查询方案是按<code>User</code>的id分组获取<code>Address</code>的数量，然后将他们JOIN到<code>User</code>上。为了让没有任何邮箱地址的用户也返回一行数据，我们需要使用LEFT OUTER JOIN。SQL像这样：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> users.*, adr_count.address_count <span class="keyword">FROM</span> <span class="keyword">users</span> <span class="keyword">LEFT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span></span><br><span class="line">    (<span class="keyword">SELECT</span> user_id, <span class="keyword">count</span>(*) <span class="keyword">AS</span> address_count</span><br><span class="line">        <span class="keyword">FROM</span> addresses <span class="keyword">GROUP</span> <span class="keyword">BY</span> user_id) <span class="keyword">AS</span> adr_count</span><br><span class="line">    <span class="keyword">ON</span> users.id=adr_count.user_id</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> users.*, adr_count.address_count <span class="keyword">FROM</span> <span class="keyword">users</span> <span class="keyword">LEFT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span></span><br><span class="line">    (<span class="keyword">SELECT</span> user_id, <span class="keyword">count</span>(*) <span class="keyword">AS</span> address_count</span><br><span class="line">        <span class="keyword">FROM</span> addresses <span class="keyword">GROUP</span> <span class="keyword">BY</span> user_id) <span class="keyword">AS</span> adr_count</span><br><span class="line">    <span class="keyword">ON</span> users.id=adr_count.user_id</span><br></pre></td></tr></table></figure>
 <p>使用<code>Query</code>构建语句的时候，需要自内而外。首先，<code>Query</code>的<code>statement</code>属性将返回生成的SQL表达式，在这里这是<code>select()</code>结构的一个实例：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sqlalchemy.sql <span class="keyword">import</span> func</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>stmt = session.query(Address.user_id, func.count(<span class="string">'*'</span>).label(<span class="string">'address_count'</span>)).\</span><br><span class="line"><span class="meta">... </span>        group_by(Address.user_id).subquery()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sqlalchemy.sql <span class="keyword">import</span> func</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>stmt = session.query(Address.user_id, func.count(<span class="string">'*'</span>).label(<span class="string">'address_count'</span>)).\</span><br><span class="line"><span class="meta">... </span>        group_by(Address.user_id).subquery()</span><br></pre></td></tr></table></figure>
 <p><code>func</code>将生成SQL函数，而<code>Query</code>的<code>subquery()</code>方法将生成一个SQL表达式结构，代表整个SELECT语句，并包含在一个别名（alias）中。实际上，<code>subquery()</code>是<code>query.statement.alias()</code>的简便写法。</p>
 <hr>
 <p>Note: 上面这个说法其实蛮乱的……看看这个执行结果可能比较容易理解。<code>Query</code>的<code>statement</code>属性返回了代表这个SQL结构的对象，在这里是<code>AnnotatedSelect</code>，其实是SQLAlchemy内部用于表示一个SELECT的对象。再调用<code>alias()</code>即为它创建了一个别名（和上面<code>aliased()</code>创建的<code>AliasedClass</code>不同）：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>session.query(Address.user_id, func.count(<span class="string">'*'</span>).label(<span class="string">'address_count'</span>)).group_by(Address.user_id).statement</span><br><span class="line">&lt;sqlalchemy.sql.annotation.AnnotatedSelect at <span class="number">0x1e532da5668</span>; AnnotatedSelect object&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>session.query(Address.user_id, func.count(<span class="string">'*'</span>).label(<span class="string">'address_count'</span>)).group_by(Address.user_id).statement.alias()</span><br><span class="line">&lt;sqlalchemy.sql.selectable.Alias at <span class="number">0x1e532da5860</span>; %(<span class="number">2083912308832</span> anon)s&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>session.query(Address.user_id, func.count(<span class="string">'*'</span>).label(<span class="string">'address_count'</span>)).group_by(Address.user_id).statement</span><br><span class="line">&lt;sqlalchemy.sql.annotation.AnnotatedSelect at <span class="number">0x1e532da5668</span>; AnnotatedSelect object&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>session.query(Address.user_id, func.count(<span class="string">'*'</span>).label(<span class="string">'address_count'</span>)).group_by(Address.user_id).statement.alias()</span><br><span class="line">&lt;sqlalchemy.sql.selectable.Alias at <span class="number">0x1e532da5860</span>; %(<span class="number">2083912308832</span> anon)s&gt;</span><br></pre></td></tr></table></figure>
 <hr>
 <p>好现在我们有了一个SQL语句对象（上面的<code>stmt</code>）。它现在的行为和<code>Table</code>就是一样的了。你可以认为，它代表了它查询后的结果。这个语句对象的表列（columns）可以用名为<code>c</code>的属性获取（卧槽啥鬼？）：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> u, count <span class="keyword">in</span> session.query(User, stmt.c.address_count).\</span><br><span class="line"><span class="meta">... </span>    outerjoin(stmt, User.id==stmt.c.user_id).order_by(User.id):</span><br><span class="line"><span class="meta">... </span>    print(u, count)</span><br><span class="line">&lt;User(name=<span class="string">'ed'</span>, fullname=<span class="string">'Ed Jones'</span>, password=<span class="string">'f8s7ccs'</span>)&gt; <span class="keyword">None</span></span><br><span class="line">&lt;User(name=<span class="string">'wendy'</span>, fullname=<span class="string">'Wendy Williams'</span>, password=<span class="string">'foobar'</span>)&gt; <span class="keyword">None</span></span><br><span class="line">&lt;User(name=<span class="string">'mary'</span>, fullname=<span class="string">'Mary Contrary'</span>, password=<span class="string">'xxg527'</span>)&gt; <span class="keyword">None</span></span><br><span class="line">&lt;User(name=<span class="string">'fred'</span>, fullname=<span class="string">'Fred Flinstone'</span>, password=<span class="string">'blah'</span>)&gt; <span class="keyword">None</span></span><br><span class="line">&lt;User(name=<span class="string">'jack'</span>, fullname=<span class="string">'Jack Bean'</span>, password=<span class="string">'gjffdd'</span>)&gt; <span class="number">2</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> users.id <span class="keyword">AS</span> users_id,</span><br><span class="line">        users.name <span class="keyword">AS</span> users_name,</span><br><span class="line">        users.fullname <span class="keyword">AS</span> users_fullname,</span><br><span class="line">        users.password <span class="keyword">AS</span> users_password,</span><br><span class="line">        anon_1.address_count <span class="keyword">AS</span> anon_1_address_count</span><br><span class="line"><span class="keyword">FROM</span> <span class="keyword">users</span> <span class="keyword">LEFT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span></span><br><span class="line">    (<span class="keyword">SELECT</span> addresses.user_id <span class="keyword">AS</span> user_id, <span class="keyword">count</span>(?) <span class="keyword">AS</span> address_count</span><br><span class="line">    <span class="keyword">FROM</span> addresses <span class="keyword">GROUP</span> <span class="keyword">BY</span> addresses.user_id) <span class="keyword">AS</span> anon_1</span><br><span class="line">    <span class="keyword">ON</span> users.id = anon_1.user_id</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> users.id</span><br><span class="line">(<span class="string">'*'</span>,)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> u, count <span class="keyword">in</span> session.query(User, stmt.c.address_count).\</span><br><span class="line"><span class="meta">... </span>    outerjoin(stmt, User.id==stmt.c.user_id).order_by(User.id):</span><br><span class="line"><span class="meta">... </span>    print(u, count)</span><br><span class="line">&lt;User(name=<span class="string">'ed'</span>, fullname=<span class="string">'Ed Jones'</span>, password=<span class="string">'f8s7ccs'</span>)&gt; <span class="keyword">None</span></span><br><span class="line">&lt;User(name=<span class="string">'wendy'</span>, fullname=<span class="string">'Wendy Williams'</span>, password=<span class="string">'foobar'</span>)&gt; <span class="keyword">None</span></span><br><span class="line">&lt;User(name=<span class="string">'mary'</span>, fullname=<span class="string">'Mary Contrary'</span>, password=<span class="string">'xxg527'</span>)&gt; <span class="keyword">None</span></span><br><span class="line">&lt;User(name=<span class="string">'fred'</span>, fullname=<span class="string">'Fred Flinstone'</span>, password=<span class="string">'blah'</span>)&gt; <span class="keyword">None</span></span><br><span class="line">&lt;User(name=<span class="string">'jack'</span>, fullname=<span class="string">'Jack Bean'</span>, password=<span class="string">'gjffdd'</span>)&gt; <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> users.id <span class="keyword">AS</span> users_id,</span><br><span class="line">        users.name <span class="keyword">AS</span> users_name,</span><br><span class="line">        users.fullname <span class="keyword">AS</span> users_fullname,</span><br><span class="line">        users.password <span class="keyword">AS</span> users_password,</span><br><span class="line">        anon_1.address_count <span class="keyword">AS</span> anon_1_address_count</span><br><span class="line"><span class="keyword">FROM</span> <span class="keyword">users</span> <span class="keyword">LEFT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span></span><br><span class="line">    (<span class="keyword">SELECT</span> addresses.user_id <span class="keyword">AS</span> user_id, <span class="keyword">count</span>(?) <span class="keyword">AS</span> address_count</span><br><span class="line">    <span class="keyword">FROM</span> addresses <span class="keyword">GROUP</span> <span class="keyword">BY</span> addresses.user_id) <span class="keyword">AS</span> anon_1</span><br><span class="line">    <span class="keyword">ON</span> users.id = anon_1.user_id</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> users.id</span><br><span class="line">(<span class="string">'*'</span>,)</span><br></pre></td></tr></table></figure>
 <hr>
 <p>Note: 上面这个概念也是有点乱orz 意思大概是，子查询（作为其查询结果）可以用做像是<code>User</code>一样的表，直接参与其他查询。其中的表列要用一个<code>c</code>属性访问，和当时定义的一样。在上面，<code>stmt.c</code>中包含<code>stmt.c.user_id</code>和<code>stmt.c.address_count</code>两个子属性，其实就是子查询完成后的表列名称。</p>
 <hr>
 <h4 id="Selecting-Entities-from-Subqueries-从子查询中选择数据对象"><a href="#Selecting-Entities-from-Subqueries-从子查询中选择数据对象" class="headerlink" title="Selecting Entities from Subqueries / 从子查询中选择数据对象"></a>Selecting Entities from Subqueries / 从子查询中选择数据对象</h4><p>在上面的例子中，我们只是从子查询中选择了包含一个列（address_count）的结果。如果需要把子查询和数据对象实体对应起来呢？我们可以使用<code>aliased()</code>来关联一个有了别名的映射类和子查询：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>stmt = session.query(Address).filter(Address.email_address != <span class="string">'j25@yahoo.com'</span>).subquery()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>adalias = aliased(Address, stmt)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> user, address <span class="keyword">in</span> session.query(User, adalias).join(adalias, User.addresses):</span><br><span class="line"><span class="meta">... </span>    print(user)</span><br><span class="line"><span class="meta">... </span>    print(address)</span><br><span class="line">&lt;User(name=<span class="string">'jack'</span>, fullname=<span class="string">'Jack Bean'</span>, password=<span class="string">'gjffdd'</span>)&gt;</span><br><span class="line">&lt;Address(email_address=<span class="string">'jack@google.com'</span>)&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>stmt = session.query(Address).filter(Address.email_address != <span class="string">'j25@yahoo.com'</span>).subquery()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>adalias = aliased(Address, stmt)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> user, address <span class="keyword">in</span> session.query(User, adalias).join(adalias, User.addresses):</span><br><span class="line"><span class="meta">... </span>    print(user)</span><br><span class="line"><span class="meta">... </span>    print(address)</span><br><span class="line">&lt;User(name=<span class="string">'jack'</span>, fullname=<span class="string">'Jack Bean'</span>, password=<span class="string">'gjffdd'</span>)&gt;</span><br><span class="line">&lt;Address(email_address=<span class="string">'jack@google.com'</span>)&gt;</span><br></pre></td></tr></table></figure>
 <hr>
 <p>Note: 上面这种实际上就是给了子查询的结果一个对应的类的别名，区别于上上面那个“把子查询作为一个新的类似于映射类的Table”的方式。上面这种方式的、现有映射类的别名具有现有映射类的所有属性。</p>
 <p>另外，用这种方式创建子查询的类别名的时候，最好在子查询的<code>Query()</code>中直接选择整个类，即类似<code>Query(User)</code>的形式，而不是某个属性（如<code>Query(User.id)</code>），否则会自动生成隐式的JOIN，蛮奇怪的（。</p>
 <hr>
 <h4 id="Using-EXISTS-使用EXISTS"><a href="#Using-EXISTS-使用EXISTS" class="headerlink" title="Using EXISTS / 使用EXISTS"></a>Using EXISTS / 使用EXISTS</h4><p>SQL中的EXISTS是一个判断某个查询表达式是否包含数据行的布尔操作符。在SQLAlchemy中可以这样表示：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sqlalchemy.sql <span class="keyword">import</span> exists</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>stmt = exists().where(Address.user_id==User.id)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> name, <span class="keyword">in</span> session.query(User.name).filter(stmt):</span><br><span class="line"><span class="meta">... </span>    print(name)</span><br><span class="line">jack</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sqlalchemy.sql <span class="keyword">import</span> exists</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>stmt = exists().where(Address.user_id==User.id)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> name, <span class="keyword">in</span> session.query(User.name).filter(stmt):</span><br><span class="line"><span class="meta">... </span>    print(name)</span><br><span class="line">jack</span><br></pre></td></tr></table></figure>
 <p>或者也可以写成</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> name, <span class="keyword">in</span> session.query(User.name).filter(exists().where(Address.user_id==User.id)):</span><br><span class="line"><span class="meta">... </span>    print(name)</span><br><span class="line">jack</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> name, <span class="keyword">in</span> session.query(User.name).filter(exists().where(Address.user_id==User.id)):</span><br><span class="line"><span class="meta">... </span>    print(name)</span><br><span class="line">jack</span><br></pre></td></tr></table></figure>
 <p><code>Query</code>有几个操作符会自动生成EXISTS。上面的这个语句可以在<code>User.addresses</code>关系上用<code>any()</code>改写成：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> name, <span class="keyword">in</span> session.query(User.name).filter(User.addresses.any()):</span><br><span class="line"><span class="meta">... </span>    print(name)</span><br><span class="line">jack</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> name, <span class="keyword">in</span> session.query(User.name).filter(User.addresses.any()):</span><br><span class="line"><span class="meta">... </span>    print(name)</span><br><span class="line">jack</span><br></pre></td></tr></table></figure>
 <p><code>any()</code>也可以加入限制条件：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> name, <span class="keyword">in</span> session.query(User.name).filter(User.addresses.any(Address.email_address.like(<span class="string">'%google%'</span>))):</span><br><span class="line"><span class="meta">... </span>    print(name)</span><br><span class="line">jack</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> name, <span class="keyword">in</span> session.query(User.name).filter(User.addresses.any(Address.email_address.like(<span class="string">'%google%'</span>))):</span><br><span class="line"><span class="meta">... </span>    print(name)</span><br><span class="line">jack</span><br></pre></td></tr></table></figure>
 <p><code>has()</code>是和<code>any()</code>类似的操作符，但用于多对一关系（注意<code>~</code>操作符，意为“非”）：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>session.query(Address).filter(~Address.user.has(User.name==<span class="string">'jack'</span>)).all()</span><br><span class="line">[]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>session.query(Address).filter(~Address.user.has(User.name==<span class="string">'jack'</span>)).all()</span><br><span class="line">[]</span><br></pre></td></tr></table></figure>
 <h4 id="Common-Relationship-Operators-常用关系操作符"><a href="#Common-Relationship-Operators-常用关系操作符" class="headerlink" title="Common Relationship Operators / 常用关系操作符"></a>Common Relationship Operators / 常用关系操作符</h4><p>这些操作符用在关系操作上：</p>
 <ul>
 <li><p><code>__eq__()</code>（多对一关系的“相等”比较）：</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">query.filter(Address.user == someuser)</span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">query.filter(Address.user == someuser)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>__ne__()</code>（多对一关系的“不等”比较）：</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">query.filter(Address.user != someuser)</span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">query.filter(Address.user != someuser)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>IS NULL（多对一关系的比较，也用<code>__eq()__</code>实现）：</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">query.filter(Address.user == <span class="keyword">None</span>)</span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">query.filter(Address.user == <span class="keyword">None</span>)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>contains()</code>（用于一对多关系中的集合）：</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">query.filter(User.addresses.contains(someaddress))</span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">query.filter(User.addresses.contains(someaddress))</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>any()</code>（用于集合）：</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">query.filter(User.addresses.any(Address.email_address == <span class="string">'bar'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 也通过命名参数接受比较条件：</span></span><br><span class="line">query.filter(User.addresses.any(email_address=<span class="string">'bar'</span>))</span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">query.filter(User.addresses.any(Address.email_address == <span class="string">'bar'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 也通过命名参数接受比较条件：</span></span><br><span class="line">query.filter(User.addresses.any(email_address=<span class="string">'bar'</span>))</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>has()</code>（用于“一”那一侧的引用）：</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">query.filter(Address.user.has(name=<span class="string">'ed'</span>))</span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">query.filter(Address.user.has(name=<span class="string">'ed'</span>))</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>Query.with_parent()</code>（用于任意关系，查询关系的另一头是否是某个对象）：</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session.query(Address).with_parent(someuser, <span class="string">'addresses'</span>)</span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">session.query(Address).with_parent(someuser, <span class="string">'addresses'</span>)</span><br></pre></td></tr></table></figure>
 <p>  Note: <code>with_parent()</code>实际上就是查询“关系另一头是某个对象的”这一头的对象。第二个参数用于标明另一头（第一个参数的类型那一头，上面的例子第一个参数是<code>User</code>）和要查询的对象相关联的集合是什么。当这两个映射类只有唯一一个关系的时候，第二个参数是可以省略的。</p>
 </li>
 </ul>
@@ -408,16 +418,18 @@
 
       
     </div>
-    
+
     <div>
       
         
+
       
     </div>
 
     <div>
       
         
+
       
     </div>
 
@@ -512,7 +524,7 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/assets/avatar.png"
                alt="tgmerge" />
@@ -522,7 +534,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">95</span>
+              <span class="site-state-item-count">97</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -532,7 +544,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -548,7 +560,7 @@
               <span class="links-of-author-item">
                 <a href="https://github.com/tgmerge" target="_blank" title="GitHub">
                   
-                    <i class="fa fa-github"></i>
+                    <i class="fa fa-fw fa-github"></i>
                   
                   GitHub
                 </a>
@@ -557,7 +569,7 @@
               <span class="links-of-author-item">
                 <a href="http://weibo.com/tgmerge" target="_blank" title="Weibo">
                   
-                    <i class="fa fa-weibo"></i>
+                    <i class="fa fa-fw fa-weibo"></i>
                   
                   Weibo
                 </a>
@@ -566,9 +578,18 @@
               <span class="links-of-author-item">
                 <a href="https://plus.google.com/+tgmergeSipan" target="_blank" title="G+">
                   
-                    <i class="fa fa-google-plus-square"></i>
+                    <i class="fa fa-fw fa-google-plus-square"></i>
                   
                   G+
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://xiefan.me/" target="_blank" title="　">
+                  
+                    <i class="fa fa-fw fa-heart"></i>
+                  
+                  　
                 </a>
               </span>
             
@@ -578,7 +599,7 @@
         
         
           <div class="cc-license motion-element" itemprop="license">
-            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
               <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
             </a>
           </div>
@@ -623,7 +644,7 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -686,32 +707,32 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
 
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
 
 
 
@@ -736,14 +757,18 @@
 
   
     
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
 
 
 
+
   
   
+
   
 
   

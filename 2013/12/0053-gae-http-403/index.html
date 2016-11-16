@@ -29,7 +29,9 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -67,9 +69,11 @@
 
 
 
+
+
 <link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="GAE," />
@@ -81,7 +85,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
 
 
 
@@ -112,16 +116,22 @@ DNS换成8.8.8.8倒也不是不可以，但访问校网会不时抽风，设了�
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: '0',
       author: '博主'
     }
   };
 </script>
 
+
+
+
+  <link rel="canonical" href="https://tgmerge.me/2013/12/0053-gae-http-403/"/>
+
+
   <title> Google App Engine等一堆网站的403问题 | tgmerge's such blog </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -142,7 +152,7 @@ DNS换成8.8.8.8倒也不是不可以，但访问校网会不时抽风，设了�
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
@@ -174,7 +184,7 @@ DNS换成8.8.8.8倒也不是不可以，但访问校网会不时抽风，设了�
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -184,7 +194,7 @@ DNS换成8.8.8.8倒也不是不可以，但访问校网会不时抽风，设了�
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -194,7 +204,7 @@ DNS换成8.8.8.8倒也不是不可以，但访问校网会不时抽风，设了�
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -227,7 +237,7 @@ DNS换成8.8.8.8倒也不是不可以，但访问校网会不时抽风，设了�
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
       <header class="post-header">
@@ -287,19 +297,21 @@ DNS换成8.8.8.8倒也不是不可以，但访问校网会不时抽风，设了�
       
         <p>最近发现很多站点就算改了hosts开了gogent还是会403 Permission Denied……结果是因为很多hosts源最近没有更新，或者hosts偷懒把appengine.google.com写到了Google的分发服务器，结果https就悲剧了</p>
 <p>DNS换成8.8.8.8倒也不是不可以，但访问校网会不时抽风，设了备用DNS也一样。最后的解决方法是跑去opendns直接解析下这几个域名写进hosts里……很麻烦不过暂且这样了。今天opendns的结果是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">74.125.239.128 appengine.google.com</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    
-    <div>
-      
-        
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">74.125.239.128 appengine.google.com</span><br></pre></td></tr></table></figure>
       
     </div>
 
     <div>
       
         
+
+      
+    </div>
+
+    <div>
+      
+        
+
       
     </div>
 
@@ -388,7 +400,7 @@ DNS换成8.8.8.8倒也不是不可以，但访问校网会不时抽风，设了�
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/assets/avatar.png"
                alt="tgmerge" />
@@ -398,7 +410,7 @@ DNS换成8.8.8.8倒也不是不可以，但访问校网会不时抽风，设了�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">95</span>
+              <span class="site-state-item-count">97</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -408,7 +420,7 @@ DNS换成8.8.8.8倒也不是不可以，但访问校网会不时抽风，设了�
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -424,7 +436,7 @@ DNS换成8.8.8.8倒也不是不可以，但访问校网会不时抽风，设了�
               <span class="links-of-author-item">
                 <a href="https://github.com/tgmerge" target="_blank" title="GitHub">
                   
-                    <i class="fa fa-github"></i>
+                    <i class="fa fa-fw fa-github"></i>
                   
                   GitHub
                 </a>
@@ -433,7 +445,7 @@ DNS换成8.8.8.8倒也不是不可以，但访问校网会不时抽风，设了�
               <span class="links-of-author-item">
                 <a href="http://weibo.com/tgmerge" target="_blank" title="Weibo">
                   
-                    <i class="fa fa-weibo"></i>
+                    <i class="fa fa-fw fa-weibo"></i>
                   
                   Weibo
                 </a>
@@ -442,9 +454,18 @@ DNS换成8.8.8.8倒也不是不可以，但访问校网会不时抽风，设了�
               <span class="links-of-author-item">
                 <a href="https://plus.google.com/+tgmergeSipan" target="_blank" title="G+">
                   
-                    <i class="fa fa-google-plus-square"></i>
+                    <i class="fa fa-fw fa-google-plus-square"></i>
                   
                   G+
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://xiefan.me/" target="_blank" title="　">
+                  
+                    <i class="fa fa-fw fa-heart"></i>
+                  
+                  　
                 </a>
               </span>
             
@@ -454,7 +475,7 @@ DNS换成8.8.8.8倒也不是不可以，但访问校网会不时抽风，设了�
         
         
           <div class="cc-license motion-element" itemprop="license">
-            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
               <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
             </a>
           </div>
@@ -499,7 +520,7 @@ DNS换成8.8.8.8倒也不是不可以，但访问校网会不时抽风，设了�
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -562,32 +583,32 @@ DNS换成8.8.8.8倒也不是不可以，但访问校网会不时抽风，设了�
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
 
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
 
 
 
@@ -612,14 +633,18 @@ DNS换成8.8.8.8倒也不是不可以，但访问校网会不时抽风，设了�
 
   
     
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
 
 
 
+
   
   
+
   
 
   

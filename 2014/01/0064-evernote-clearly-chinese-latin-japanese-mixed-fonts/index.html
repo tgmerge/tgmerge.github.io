@@ -29,7 +29,9 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -67,9 +69,11 @@
 
 
 
+
+
 <link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="font,Evernote," />
@@ -81,7 +85,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
 
 
 
@@ -90,14 +94,14 @@
 
 <meta name="description" content="Clearly相当方便，但多种语言混排的时候，只用PT Serif, Hiragino Sans GB W3这样的字体设置会让日文假名显示得一坨……
 所以只好用@font-face按Unicode自定义字体的方法。Clearly的自定义CSS:
-1234567891011121314#body &amp;#123;line-height: 1.75em !important;&amp;#125;/* 未定义的部分">
+#body &amp;#123;line-height: 1.75em !important;&amp;#125;/* 未定义的部分 */@font-face &amp;#123">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Evernote Clearly中文、英文和日文混排时的字体设置">
 <meta property="og:url" content="https://tgmerge.me/2014/01/0064-evernote-clearly-chinese-latin-japanese-mixed-fonts/index.html">
 <meta property="og:site_name" content="tgmerge's such blog">
 <meta property="og:description" content="Clearly相当方便，但多种语言混排的时候，只用PT Serif, Hiragino Sans GB W3这样的字体设置会让日文假名显示得一坨……
 所以只好用@font-face按Unicode自定义字体的方法。Clearly的自定义CSS:
-1234567891011121314#body &amp;#123;line-height: 1.75em !important;&amp;#125;/* 未定义的部分">
+#body &amp;#123;line-height: 1.75em !important;&amp;#125;/* 未定义的部分 */@font-face &amp;#123">
 <meta property="og:image" content="https://tgmerge.me/assets/0064-01.png">
 <meta property="og:image" content="https://tgmerge.me/assets/0064-02.png">
 <meta property="og:updated_time" content="2015-04-14T15:04:28.653Z">
@@ -105,7 +109,7 @@
 <meta name="twitter:title" content="Evernote Clearly中文、英文和日文混排时的字体设置">
 <meta name="twitter:description" content="Clearly相当方便，但多种语言混排的时候，只用PT Serif, Hiragino Sans GB W3这样的字体设置会让日文假名显示得一坨……
 所以只好用@font-face按Unicode自定义字体的方法。Clearly的自定义CSS:
-1234567891011121314#body &amp;#123;line-height: 1.75em !important;&amp;#125;/* 未定义的部分">
+#body &amp;#123;line-height: 1.75em !important;&amp;#125;/* 未定义的部分 */@font-face &amp;#123">
 <meta name="twitter:image" content="https://tgmerge.me/assets/0064-01.png">
 
 
@@ -118,16 +122,22 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: '0',
       author: '博主'
     }
   };
 </script>
 
+
+
+
+  <link rel="canonical" href="https://tgmerge.me/2014/01/0064-evernote-clearly-chinese-latin-japanese-mixed-fonts/"/>
+
+
   <title> Evernote Clearly中文、英文和日文混排时的字体设置 | tgmerge's such blog </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -148,7 +158,7 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
@@ -180,7 +190,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -190,7 +200,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -200,7 +210,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -233,7 +243,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
       <header class="post-header">
@@ -293,7 +303,7 @@
       
         <p>Clearly相当方便，但多种语言混排的时候，只用<code>PT Serif, Hiragino Sans GB W3</code>这样的字体设置会让日文假名显示得一坨……</p>
 <p>所以只好用<code>@font-face</code>按Unicode自定义字体的方法。Clearly的自定义CSS:</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#body</span> &#123;<span class="attribute">line-height</span>: <span class="number">1.75em</span> <span class="meta">!important</span>;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 未定义的部分 */</span></span><br><span class="line">@<span class="keyword">font-face</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: Clearfont;</span><br><span class="line">  <span class="attribute">src</span>: <span class="built_in">local</span>(<span class="string">"Hiragino Sans GB W3"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* U+3040 - U+30FF，日文假名 */</span></span><br><span class="line">@<span class="keyword">font-face</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: Clearfont;</span><br><span class="line">  <span class="attribute">unicode-range</span>: U+<span class="number">3040</span>-<span class="number">30</span>FF;</span><br><span class="line">  <span class="attribute">src</span>: <span class="built_in">local</span>(Meiryo UI);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-id">#body</span> &#123;<span class="attribute">line-height</span>: <span class="number">1.75em</span> <span class="meta">!important</span>;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 未定义的部分 */</span></span><br><span class="line">@<span class="keyword">font-face</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: Clearfont;</span><br><span class="line">  <span class="attribute">src</span>: <span class="built_in">local</span>(<span class="string">"Hiragino Sans GB W3"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* U+3040 - U+30FF，日文假名 */</span></span><br><span class="line">@<span class="keyword">font-face</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: Clearfont;</span><br><span class="line">  <span class="attribute">unicode-range</span>: U+<span class="number">3040</span>-<span class="number">30</span>FF;</span><br><span class="line">  <span class="attribute">src</span>: <span class="built_in">local</span>(Meiryo UI);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>之后把Clearly的字体设置成<code>PT Serif, Clearfont</code>就好。</p>
 <p>这样的话假名部分会显示成Meiryo UI，中文部分则是Hiragino Sans GB W3。虽然只有英文是衬线体的PT Serif但效果还不错。</p>
 <p><img src="/assets/0064-01.png" alt=""></p>
@@ -301,16 +311,18 @@
 
       
     </div>
-    
+
     <div>
       
         
+
       
     </div>
 
     <div>
       
         
+
       
     </div>
 
@@ -401,7 +413,7 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/assets/avatar.png"
                alt="tgmerge" />
@@ -411,7 +423,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">95</span>
+              <span class="site-state-item-count">97</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -421,7 +433,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -437,7 +449,7 @@
               <span class="links-of-author-item">
                 <a href="https://github.com/tgmerge" target="_blank" title="GitHub">
                   
-                    <i class="fa fa-github"></i>
+                    <i class="fa fa-fw fa-github"></i>
                   
                   GitHub
                 </a>
@@ -446,7 +458,7 @@
               <span class="links-of-author-item">
                 <a href="http://weibo.com/tgmerge" target="_blank" title="Weibo">
                   
-                    <i class="fa fa-weibo"></i>
+                    <i class="fa fa-fw fa-weibo"></i>
                   
                   Weibo
                 </a>
@@ -455,9 +467,18 @@
               <span class="links-of-author-item">
                 <a href="https://plus.google.com/+tgmergeSipan" target="_blank" title="G+">
                   
-                    <i class="fa fa-google-plus-square"></i>
+                    <i class="fa fa-fw fa-google-plus-square"></i>
                   
                   G+
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://xiefan.me/" target="_blank" title="　">
+                  
+                    <i class="fa fa-fw fa-heart"></i>
+                  
+                  　
                 </a>
               </span>
             
@@ -467,7 +488,7 @@
         
         
           <div class="cc-license motion-element" itemprop="license">
-            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
               <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
             </a>
           </div>
@@ -512,7 +533,7 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -575,32 +596,32 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
 
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
 
 
 
@@ -625,14 +646,18 @@
 
   
     
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
 
 
 
+
   
   
+
   
 
   

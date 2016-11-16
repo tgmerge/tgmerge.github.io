@@ -29,7 +29,9 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -67,9 +69,11 @@
 
 
 
+
+
 <link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="personal, blog, memo, coding, tgmerge" />
@@ -81,7 +85,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
 
 
 
@@ -108,16 +112,22 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: '0',
       author: '博主'
     }
   };
 </script>
 
+
+
+
+  <link rel="canonical" href="https://tgmerge.me/page/10/"/>
+
+
   <title> tgmerge's such blog </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -140,7 +150,7 @@
  ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
@@ -172,7 +182,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -182,7 +192,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -192,7 +202,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -225,7 +235,228 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2013/12/0052-gae-python/" itemprop="url">
+                  gae, python :: Part I
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-12-05T17:31:00+08:00" content="2013-12-05">
+              2013-12-05
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2013/12/0052-gae-python/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/12/0052-gae-python/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>稍微整理下gae相关的东西。</p>
+<h4 id="关于scaling"><a href="#关于scaling" class="headerlink" title="关于scaling"></a>关于scaling</h4><p>根据Google在这篇<a href="https://developers.google.com/appengine/docs/python/modules/" target="_blank" rel="external">Python App的运行模式</a>的描述，Google非常厚道地给了<code>automatic_scaling</code> 每天28小时免费的实例时间，也就是说如果全天候跑着一个<code>automatic_scaling</code>的示例，免费额度是不会跑完的。</p>
+<p>但剩下的两种模式，也就是<code>basic_scaling</code>和<code>manual_scaling</code>，每天只有8小时额度。用<code>basic_scaling</code>的话要控制好最大空闲时间<code>idle_timeout</code>，但用<code>manual_scaling</code>几乎必定会超额。</p>
+<p>自己暂且用的是这个</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># app.yaml</span><br><span class="line">automatic_scaling:</span><br><span class="line">  min_idle_instances: 0</span><br><span class="line">  max_idle_instances: 1</span><br><span class="line">  max_pending_latency: 15s</span><br></pre></td></tr></table></figure>
+<p>顺便一提，</p>
+<blockquote>
+<p>For example an F2 consumes instance hours at twice the rate of an F1.</p>
+</blockquote>
+<p>调高性能配额的话，Instance hours会烧得更快。</p>
+<h4 id="CookieJar-in-App-Engine"><a href="#CookieJar-in-App-Engine" class="headerlink" title="CookieJar in App Engine"></a>CookieJar in App Engine</h4><p>因为要用CookieJar所以前面那个scaling的问题麻烦了不少……理想情况是有一个Instance一直在跑，里面的CookieJar在内存里一直保留着收集下的cookie。但是问题在于至今还没搞清楚Automatic Scaling到底是以什么机制掐实例的……总之观察一阵子。</p>
+<p>虽然知道最标准的方案是把cookie存到datastore里但不就是懒吗‎……暂且把对象一直塞在内存里。</p>
+<h4 id="Memcache"><a href="#Memcache" class="headerlink" title="Memcache"></a>Memcache</h4><p>Google的Memcache简直良心，看一眼这篇<a href="https://developers.google.com/appengine/docs/python/memcache/usingmemcache?hl=zh-cn" target="_blank" rel="external">使用内存缓存</a>基本上就没问题了。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#memcache_demo.py</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_data</span><span class="params">()</span>:</span></span><br><span class="line">    data = memcache.get(<span class="string">"key"</span>)</span><br><span class="line">    <span class="keyword">if</span> data <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">        <span class="keyword">return</span> data</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        data = self.query_for_data()</span><br><span class="line">        memcache.add(<span class="string">"key"</span>, data, <span class="number">60</span>)</span><br><span class="line">        <span class="keyword">return</span> data</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2013/12/0051-upload-to-gae/" itemprop="url">
+                  上传到GAE
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-12-03T18:08:00+08:00" content="2013-12-03">
+              2013-12-03
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2013/12/0051-upload-to-gae/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/12/0051-upload-to-gae/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>试用Google App Engine……先把Deploy的时候遇到的问题记下来。</p>
+<p><a href="https://developers.google.com/appengine/docs/python/tools/uploadinganapp?hl=zh-cn" target="_blank" rel="external">上传使用的appcfg.py命令行参考</a>和<a href="https://developers.google.com/appengine/docs/python/tools/uploadinganapp" target="_blank" rel="external">英文版本（有oauth等更多内容）</a>。</p>
+<h4 id="解决GFW"><a href="#解决GFW" class="headerlink" title="解决GFW"></a>解决GFW</h4><p>Gae上传的时候用的是<code>appcfg.py</code>，根据<a href="https://developers.google.com/appengine/docs/python/tools/uploadinganapp?hl=zh-cn" target="_blank" rel="external">appcfg.py命令行参考</a>，虽说它可以用在cmd中</p>
+<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span> HTTP_PROXY=http://cache.mycompany.com:<span class="number">3128</span></span><br><span class="line"><span class="built_in">set</span> HTTPS_PROXY=http://cache.mycompany.com:<span class="number">3128</span></span><br><span class="line">appcfg.py update myapp</span><br></pre></td></tr></table></figure>
+<p>这样的方法来设置代理服务器，但如果直接这样然后用goagent的话会因为SSL证书和域名不一致的问题产生<code>InvalidCertificateException</code>错误。其他方式翻墙的话不太会有问题。至于Smarthosts之类的，因为太久没更新也会出错。</p>
+<p>总之最后解决的办法是Opendns……到<a href="http://www.opendns.com/support/cache/?d=appengine.google.com" target="_blank" rel="external">这里</a>解析下<code>appengine.google.com</code>的最新地址然后写进hosts吧。</p>
+<h4 id="OAuth"><a href="#OAuth" class="headerlink" title="OAuth"></a>OAuth</h4><pre><code>appcfg.py --oauth2 update
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
       <header class="post-header">
@@ -325,7 +556,7 @@
         
       
     </div>
-    
+
     <div>
       
     </div>
@@ -357,7 +588,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
       <header class="post-header">
@@ -429,7 +660,7 @@
         
       
     </div>
-    
+
     <div>
       
     </div>
@@ -461,7 +692,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
       <header class="post-header">
@@ -536,215 +767,7 @@
         
       
     </div>
-    
-    <div>
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/11/0047-unititled-photo/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-11-24T00:54:06+08:00" content="2013-11-24">
-              2013-11-24
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2013/11/0047-unititled-photo/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/11/0047-unititled-photo/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="/assets/0047-01.jpg" alt=""></p>
-<p>在 浙江大学 Zhejiang University</p>
-
-          
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/11/0046-miruhiore/" itemprop="url">
-                  要不要再虐原主角一点 :: みるひおれ :: Part I
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-11-19T00:41:00+08:00" content="2013-11-19">
-              2013-11-19
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2013/11/0046-miruhiore/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/11/0046-miruhiore/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>手贱去百度贴吧转了一圈发现有写这游戏的帖子，写的剧情完全是错的，不要乱猜误导人好吗……</p>
-<p>先放一张True End的图</p>
-<p><img src="/assets/0046-01.png" alt=""></p>
-<p>TRUE END 世の中、金</p>
-<p>至于发生了什么……本外传的故事“基本都是”发生在みっくすおれ之前的，真是好剧情好结局皆大欢喜<del>本作主角小次郎因为梨奏父亲留下的上亿欠款发愁正好怀揣两亿遗产的贯太郎被车撞到失忆就顺水推舟策划了整个みっくすおれ的事件骗到两亿之后和妹子没羞没躁地生活在了一起HAPPY END撒花！</del></p>
-<p>还有两个BAD END，感觉没有TRUE END赞。</p>
-
-          
-        
-      
-    </div>
-    
     <div>
       
     </div>
@@ -771,7 +794,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -802,7 +825,7 @@
       
 
       <section class="site-overview sidebar-panel  sidebar-panel-active ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/assets/avatar.png"
                alt="tgmerge" />
@@ -812,7 +835,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">95</span>
+              <span class="site-state-item-count">97</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -822,7 +845,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -838,7 +861,7 @@
               <span class="links-of-author-item">
                 <a href="https://github.com/tgmerge" target="_blank" title="GitHub">
                   
-                    <i class="fa fa-github"></i>
+                    <i class="fa fa-fw fa-github"></i>
                   
                   GitHub
                 </a>
@@ -847,7 +870,7 @@
               <span class="links-of-author-item">
                 <a href="http://weibo.com/tgmerge" target="_blank" title="Weibo">
                   
-                    <i class="fa fa-weibo"></i>
+                    <i class="fa fa-fw fa-weibo"></i>
                   
                   Weibo
                 </a>
@@ -856,9 +879,18 @@
               <span class="links-of-author-item">
                 <a href="https://plus.google.com/+tgmergeSipan" target="_blank" title="G+">
                   
-                    <i class="fa fa-google-plus-square"></i>
+                    <i class="fa fa-fw fa-google-plus-square"></i>
                   
                   G+
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://xiefan.me/" target="_blank" title="　">
+                  
+                    <i class="fa fa-fw fa-heart"></i>
+                  
+                  　
                 </a>
               </span>
             
@@ -868,7 +900,7 @@
         
         
           <div class="cc-license motion-element" itemprop="license">
-            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
               <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
             </a>
           </div>
@@ -902,7 +934,7 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -965,28 +997,28 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
 
 
 
   
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
 
 
 
@@ -1011,14 +1043,18 @@
 
   
     
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
 
 
 
+
   
   
+
   
 
   

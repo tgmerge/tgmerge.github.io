@@ -29,7 +29,9 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -67,9 +69,11 @@
 
 
 
+
+
 <link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="personal, blog, memo, coding, tgmerge" />
@@ -81,7 +85,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
 
 
 
@@ -108,16 +112,22 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: '0',
       author: '博主'
     }
   };
 </script>
 
+
+
+
+  <link rel="canonical" href="https://tgmerge.me/"/>
+
+
   <title> tgmerge's such blog </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -140,7 +150,7 @@
  ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
@@ -172,7 +182,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -182,7 +192,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -192,7 +202,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -225,7 +235,228 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/0221-my-very-own-tips-on-android/" itemprop="url">
+                  Android: My Very Own Tips (1)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-17T00:23:00+08:00" content="2016-11-17">
+              2016-11-17
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/0221-my-very-own-tips-on-android/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/0221-my-very-own-tips-on-android/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>感觉大部分都已经是常识了，但说不定以后遇到<a href="https://xkcd.com/1513/">这样的事情</a>能用得上呢……</p>
+<h2 id="项目结构相关"><a href="#项目结构相关" class="headerlink" title="项目结构相关"></a>项目结构相关</h2><h3 id="按功能组织-Java-package"><a href="#按功能组织-Java-package" class="headerlink" title="按功能组织 Java package"></a>按功能组织 Java package</h3><p>按类（activity, fragment, presenter, adapter, etc.）组织 package 会把相互关联的类打散在各种 package 中，造成混乱。</p>
+<p>合理的组织方式应该是按功能（login, mail, search, etc.）组织 package。<a href="https://github.com/sockeqwe/mosby/tree/d1d83bc58c7bc7786e69f41ce88f7ed936103884/sample-mail/src/main/java/com/hannesdorfmann/mosby/sample/mail">Mosby demo 这种形式</a>就很不错。</p>
+<h3 id="组织一个-backbone或者类似的包"><a href="#组织一个-backbone或者类似的包" class="headerlink" title="组织一个_backbone或者类似的包"></a>组织一个<code>_backbone</code>或者类似的包</h3><p>在项目中把个人编写、和业务无关的“框架”独立成一个 Java package 或者 module。</p>
+<p>虽然在前面加下划线这种风格并不为 Java 所推荐，但个人还是使用了这些：</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/0221-my-very-own-tips-on-android/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/0220-android-get-complete-screenshot-of-recycler-view/" itemprop="url">
+                  Android: 获取RecyclerView的完整截图
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-23T14:53:00+08:00" content="2016-10-23">
+              2016-10-23
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/0220-android-get-complete-screenshot-of-recycler-view/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/0220-android-get-complete-screenshot-of-recycler-view/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>写 Android 应用的时候，偶尔会遇到“需要对某个 view 截图”的问题。对一个单独的简单 view ，常见的实现方法有以下两种：</p>
+<ol>
+<li><p>使用<code>view.getDrawingCache()</code>方法。如：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">TextView textView = findViewById(R.id.some_activity_some_article_text);</span><br><span class="line">textView.setDrawingCacheEnabled(<span class="keyword">true</span>);</span><br><span class="line">Bitmap drawingCache = textView.getDrawingCache();</span><br></pre></td></tr></table></figure>
+<p>所得到的<code>drawingCache</code>即为<code>textView</code>显示在屏幕上的图像。这种方法比较简单，但对于比较高的 view ，经常会由于 drawing cache 不够大而出现 <a href="http://stackoverflow.com/questions/16500379/view-too-large-to-fit-into-drawing-cache-when-calling-getdrawingcache">View too large to fit into drawing cache</a> 的问题。</p>
+</li>
+<li><p>使用<code>view.draw(canvas)</code>方法。如：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">TextView textView = findViewById(R.id.some_activity_some_article_text);</span><br><span class="line">Bitmap viewBitmap = Bitmap.createBitmap(textView.getMeasuredWidth(), textView.getMeasuredHeight(), Bitmap.Config.RGBA_8888);</span><br><span class="line">Canvas canvas = <span class="keyword">new</span> Canvas(viewBitmap);</span><br><span class="line">textView.draw(canvas);</span><br></pre></td></tr></table></figure>
+<p>这之后<code>viewBitmap</code>这个 Bitmap 即为<code>textView</code>的图像。这对普通的 view 基本已经够用了，除非 view 的高度太大，可能还是会内存不足。</p>
+</li>
+</ol>
+<p>然而实际需求中，这种截图常常用于“分享”之类的功能，需要截图的部分一般都是比较复杂的 ViewGroup 。而其中 RecyclerView 的截图尤其麻烦，由于它回收复用 view 和 ViewHolder 的特性，难以用普通的方法截到完整的图片。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/0220-android-get-complete-screenshot-of-recycler-view/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
       <header class="post-header">
@@ -301,7 +532,7 @@
         
       
     </div>
-    
+
     <div>
       
     </div>
@@ -333,7 +564,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
       <header class="post-header">
@@ -409,7 +640,7 @@
         
       
     </div>
-    
+
     <div>
       
     </div>
@@ -441,7 +672,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
       <header class="post-header">
@@ -517,225 +748,7 @@
         
       
     </div>
-    
-    <div>
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/0216-sqlalchemy-document-learning-note-2-2-orm-tutorial/" itemprop="url">
-                  SQLAlchemy文档和笔记 (2.2) - ORM指南 (2)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-28T02:00:00+08:00" content="2016-04-28">
-              2016-04-28
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/0216-sqlalchemy-document-learning-note-2-2-orm-tutorial/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/0216-sqlalchemy-document-learning-note-2-2-orm-tutorial/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>本篇 <del>胡乱</del> 翻译自<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/tutorial.html">SQLAlchemy 1.0官方文档 Object Relational Tutorial一章</a>。</p>
-<p>各种保留了原文的术语可以参考<a href="http://docs.sqlalchemy.org/en/rel_1_0/glossary.html">SQLAlchemy术语表</a>。</p>
-<hr>
-<p>这章的上一部分讲的基本是<code>Engine</code>，<code>Declarative Base</code>，<code>Mapping Class</code>和<code>Mapping Class</code>的实例，以及<code>Session</code>。</p>
-<p>下面的部分从Querying一节开始。</p>
-<h3 id="Querying-查询"><a href="#Querying-查询" class="headerlink" title="Querying / 查询"></a>Querying / 查询</h3><p>使用<code>Session</code>对象的<code>query()</code>方法，就可以创建一个<code>Query</code>对象。<code>query()</code>方法接受多种不同的参数，可以是类、或描述对象（class-instrumented descriptors）的任意组合。</p>
-<p>下面使用<code>Query</code>来读取<code>User</code>实例。在迭代环境中运行的时候，将会返回一个包含<code>User</code>对象的结果列表：</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/0216-sqlalchemy-document-learning-note-2-2-orm-tutorial/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/0215-sqlalchemy-document-learning-note-2-1-orm-tutorial/" itemprop="url">
-                  SQLAlchemy文档和笔记 (2.1) - ORM指南 (1)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-27T00:51:00+08:00" content="2016-04-27">
-              2016-04-27
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/0215-sqlalchemy-document-learning-note-2-1-orm-tutorial/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/0215-sqlalchemy-document-learning-note-2-1-orm-tutorial/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>本篇 <del>胡乱</del> 翻译自<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/tutorial.html">SQLAlchemy 1.0官方文档 Object Relational Tutorial一章</a>。</p>
-<p>术语各种拿不定……可以参考<a href="http://docs.sqlalchemy.org/en/rel_1_0/glossary.html">SQLAlchemy术语表</a>。</p>
-<hr>
-<h2 id="Object-Relational-Tutorial-对象-关系映射指南"><a href="#Object-Relational-Tutorial-对象-关系映射指南" class="headerlink" title="Object Relational Tutorial / 对象-关系映射指南"></a>Object Relational Tutorial / 对象-关系映射指南</h2><p>这一章作为文档中ORM部分的第一章，整体介绍ORM的基本概念和使用方法。倒不如说懒省事的话直接看这一章就行？</p>
-<p>SQLAlchemy ORM提供了一种关联用户定义的Python类和数据库表、以及这些类的实例和表中的行的方法。ORM包含在对象和它们关联的数据库表行中透明地同步变更的机制，称作<a href="http://docs.sqlalchemy.org/en/rel_1_0/glossary.html#term-unit-of-work">unit of work</a>。ORM还包含在用户定义的类和他们代表的数据库表之间的关系中转换查询的方法。</p>
-<p>和SQLAlchemy Expression Language相比，ORM的抽象层级较高。然而在使用ORM的应用中，偶尔也可以通过直接使用Expression Language的方法来进行某些和数据库的直接交互操作。</p>
-<h3 id="Connecting-连接到数据库"><a href="#Connecting-连接到数据库" class="headerlink" title="Connecting / 连接到数据库"></a>Connecting / 连接到数据库</h3><p>在这里暂时使用内存中的SQLite数据库。用<code>create_engine()</code>建立连接：</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/0215-sqlalchemy-document-learning-note-2-1-orm-tutorial/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-    
     <div>
       
     </div>
@@ -762,7 +775,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -793,7 +806,7 @@
       
 
       <section class="site-overview sidebar-panel  sidebar-panel-active ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/assets/avatar.png"
                alt="tgmerge" />
@@ -803,7 +816,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">95</span>
+              <span class="site-state-item-count">97</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -813,7 +826,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -829,7 +842,7 @@
               <span class="links-of-author-item">
                 <a href="https://github.com/tgmerge" target="_blank" title="GitHub">
                   
-                    <i class="fa fa-github"></i>
+                    <i class="fa fa-fw fa-github"></i>
                   
                   GitHub
                 </a>
@@ -838,7 +851,7 @@
               <span class="links-of-author-item">
                 <a href="http://weibo.com/tgmerge" target="_blank" title="Weibo">
                   
-                    <i class="fa fa-weibo"></i>
+                    <i class="fa fa-fw fa-weibo"></i>
                   
                   Weibo
                 </a>
@@ -847,9 +860,18 @@
               <span class="links-of-author-item">
                 <a href="https://plus.google.com/+tgmergeSipan" target="_blank" title="G+">
                   
-                    <i class="fa fa-google-plus-square"></i>
+                    <i class="fa fa-fw fa-google-plus-square"></i>
                   
                   G+
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://xiefan.me/" target="_blank" title="　">
+                  
+                    <i class="fa fa-fw fa-heart"></i>
+                  
+                  　
                 </a>
               </span>
             
@@ -859,7 +881,7 @@
         
         
           <div class="cc-license motion-element" itemprop="license">
-            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
               <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
             </a>
           </div>
@@ -893,7 +915,7 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -956,28 +978,28 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
 
 
 
   
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
 
 
 
@@ -1002,14 +1024,18 @@
 
   
     
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
 
 
 
+
   
   
+
   
 
   

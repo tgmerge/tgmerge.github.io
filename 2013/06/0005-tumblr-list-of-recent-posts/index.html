@@ -29,7 +29,9 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -67,9 +69,11 @@
 
 
 
+
+
 <link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="tumblr," />
@@ -81,7 +85,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
 
 
 
@@ -90,20 +94,20 @@
 
 <meta name="description" content="tumblr是有多喜欢dashboard……很不喜欢在侧边栏显示个关注列表搞得跟SNS一样，结果发现居然没有最近文章列表这个widget，只能改主题吗……
 比较简单的实现是抓RSS配合jQuery撸一个列表出来。先把jQuery塞进主题
-1234567891011&amp;lt;script type=&quot;text/javascript&quot;     src=&quot;http://www.google.com/jsa">
+&amp;lt;script type=&quot;text/javascript&quot;     src=&quot;http://www.google.com/jsapi&quot;&amp;gt;&amp;lt;/s">
 <meta property="og:type" content="article">
 <meta property="og:title" content="tumblr里的最近文章列表">
 <meta property="og:url" content="https://tgmerge.me/2013/06/0005-tumblr-list-of-recent-posts/index.html">
 <meta property="og:site_name" content="tgmerge's such blog">
 <meta property="og:description" content="tumblr是有多喜欢dashboard……很不喜欢在侧边栏显示个关注列表搞得跟SNS一样，结果发现居然没有最近文章列表这个widget，只能改主题吗……
 比较简单的实现是抓RSS配合jQuery撸一个列表出来。先把jQuery塞进主题
-1234567891011&amp;lt;script type=&quot;text/javascript&quot;     src=&quot;http://www.google.com/jsa">
+&amp;lt;script type=&quot;text/javascript&quot;     src=&quot;http://www.google.com/jsapi&quot;&amp;gt;&amp;lt;/s">
 <meta property="og:updated_time" content="2015-04-11T07:00:21.802Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tumblr里的最近文章列表">
 <meta name="twitter:description" content="tumblr是有多喜欢dashboard……很不喜欢在侧边栏显示个关注列表搞得跟SNS一样，结果发现居然没有最近文章列表这个widget，只能改主题吗……
 比较简单的实现是抓RSS配合jQuery撸一个列表出来。先把jQuery塞进主题
-1234567891011&amp;lt;script type=&quot;text/javascript&quot;     src=&quot;http://www.google.com/jsa">
+&amp;lt;script type=&quot;text/javascript&quot;     src=&quot;http://www.google.com/jsapi&quot;&amp;gt;&amp;lt;/s">
 
 
 
@@ -115,16 +119,22 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: '0',
       author: '博主'
     }
   };
 </script>
 
+
+
+
+  <link rel="canonical" href="https://tgmerge.me/2013/06/0005-tumblr-list-of-recent-posts/"/>
+
+
   <title> tumblr里的最近文章列表 | tgmerge's such blog </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -145,7 +155,7 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
@@ -177,7 +187,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -187,7 +197,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -197,7 +207,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -230,7 +240,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
       <header class="post-header">
@@ -290,26 +300,28 @@
       
         <p>tumblr是有多喜欢dashboard……很不喜欢在侧边栏显示个关注列表搞得跟SNS一样，结果发现居然没有最近文章列表这个widget，只能改主题吗……</p>
 <p>比较简单的实现是抓RSS配合jQuery撸一个列表出来。先把jQuery塞进主题</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span> </span><br><span class="line">    src=<span class="string">"http://www.google.com/jsapi"</span>&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">  google.load(<span class="string">"jquery"</span>, <span class="string">"1.3"</span>);</span><br><span class="line">  google.setOnLoadCallback(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    jQuery(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// do some stuff here, eg load your tweets, ...</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span> </span><br><span class="line">    src=<span class="string">"http://www.google.com/jsapi"</span>&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">  google.load(<span class="string">"jquery"</span>, <span class="string">"1.3"</span>);</span><br><span class="line">  google.setOnLoadCallback(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    jQuery(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// do some stuff here, eg load your tweets, ...</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 <p>然后在setOnLoadCallback()添加</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> url = <span class="string">'/rss'</span>;</span><br><span class="line">    <span class="keyword">var</span> $list = $(<span class="string">'#recent-posts'</span>);</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        url: url,</span><br><span class="line">        type: <span class="string">'GET'</span>,</span><br><span class="line">        dataType: <span class="string">'xml'</span>,</span><br><span class="line">        success: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;                </span><br><span class="line">            <span class="keyword">var</span> $items = $(data).find(<span class="string">'item'</span>);</span><br><span class="line">            $items.each( <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">var</span> $item = $(<span class="keyword">this</span>);</span><br><span class="line">                <span class="keyword">var</span> link = $item.children(<span class="string">'link'</span>).text();</span><br><span class="line">                <span class="keyword">var</span> title = $item.children(<span class="string">'title'</span>).text();</span><br><span class="line">                <span class="keyword">if</span> (link &amp;&amp; title) &#123;</span><br><span class="line">                    $list.append($(<span class="string">'&lt;li&gt;&lt;a href="'</span> + link + <span class="string">'"&gt;'</span> + title + <span class="string">'&lt;/a&gt;&lt;/li&gt;'</span>));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> url = <span class="string">'/rss'</span>;</span><br><span class="line">    <span class="keyword">var</span> $list = $(<span class="string">'#recent-posts'</span>);</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        url: url,</span><br><span class="line">        type: <span class="string">'GET'</span>,</span><br><span class="line">        dataType: <span class="string">'xml'</span>,</span><br><span class="line">        success: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;                </span><br><span class="line">            <span class="keyword">var</span> $items = $(data).find(<span class="string">'item'</span>);</span><br><span class="line">            $items.each( <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">var</span> $item = $(<span class="keyword">this</span>);</span><br><span class="line">                <span class="keyword">var</span> link = $item.children(<span class="string">'link'</span>).text();</span><br><span class="line">                <span class="keyword">var</span> title = $item.children(<span class="string">'title'</span>).text();</span><br><span class="line">                <span class="keyword">if</span> (link &amp;&amp; title) &#123;</span><br><span class="line">                    $list.append($(<span class="string">'&lt;li&gt;&lt;a href="'</span> + link + <span class="string">'"&gt;'</span> + title + <span class="string">'&lt;/a&gt;&lt;/li&gt;'</span>));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>最后随便在哪里添加上</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul id=”recent-posts”&gt;&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;ul id=”recent-posts”&gt;&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
 <p>资料：</p>
 <p><a href="http://blog.alicialiu.net/post/28774045588/how-to-add-list-of-recent-posts-to-tumblr" target="_blank" rel="external">Alicia Liu | Blog</a><br><a href="http://latenite.tumblr.com/post/523511693/use-jquery-in-your-tumblr-theme" target="_blank" rel="external">Late Nite</a></p>
 
       
     </div>
-    
+
     <div>
       
         
+
       
     </div>
 
     <div>
       
         
+
       
     </div>
 
@@ -398,7 +410,7 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/assets/avatar.png"
                alt="tgmerge" />
@@ -408,7 +420,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">95</span>
+              <span class="site-state-item-count">97</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -418,7 +430,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -434,7 +446,7 @@
               <span class="links-of-author-item">
                 <a href="https://github.com/tgmerge" target="_blank" title="GitHub">
                   
-                    <i class="fa fa-github"></i>
+                    <i class="fa fa-fw fa-github"></i>
                   
                   GitHub
                 </a>
@@ -443,7 +455,7 @@
               <span class="links-of-author-item">
                 <a href="http://weibo.com/tgmerge" target="_blank" title="Weibo">
                   
-                    <i class="fa fa-weibo"></i>
+                    <i class="fa fa-fw fa-weibo"></i>
                   
                   Weibo
                 </a>
@@ -452,9 +464,18 @@
               <span class="links-of-author-item">
                 <a href="https://plus.google.com/+tgmergeSipan" target="_blank" title="G+">
                   
-                    <i class="fa fa-google-plus-square"></i>
+                    <i class="fa fa-fw fa-google-plus-square"></i>
                   
                   G+
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://xiefan.me/" target="_blank" title="　">
+                  
+                    <i class="fa fa-fw fa-heart"></i>
+                  
+                  　
                 </a>
               </span>
             
@@ -464,7 +485,7 @@
         
         
           <div class="cc-license motion-element" itemprop="license">
-            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
               <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
             </a>
           </div>
@@ -509,7 +530,7 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -572,32 +593,32 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
 
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
 
 
 
@@ -622,14 +643,18 @@
 
   
     
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
 
 
 
+
   
   
+
   
 
   

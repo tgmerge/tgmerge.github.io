@@ -29,7 +29,9 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -67,9 +69,11 @@
 
 
 
+
+
 <link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="GAE," />
@@ -81,7 +85,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
 
 
 
@@ -91,7 +95,7 @@
 <meta name="description" content="试用Google App Engine……先把Deploy的时候遇到的问题记下来。
 上传使用的appcfg.py命令行参考和英文版本（有oauth等更多内容）。
 解决GFWGae上传的时候用的是appcfg.py，根据appcfg.py命令行参考，虽说它可以用在cmd中
-123set HTTP_PROXY=http://cache.mycompany.com:3128set HTTPS_PROXY">
+set HTTP_PROXY=http://cache.mycompany.com:3128set HTTPS_PROXY=ht">
 <meta property="og:type" content="article">
 <meta property="og:title" content="上传到GAE">
 <meta property="og:url" content="https://tgmerge.me/2013/12/0051-upload-to-gae/index.html">
@@ -99,14 +103,14 @@
 <meta property="og:description" content="试用Google App Engine……先把Deploy的时候遇到的问题记下来。
 上传使用的appcfg.py命令行参考和英文版本（有oauth等更多内容）。
 解决GFWGae上传的时候用的是appcfg.py，根据appcfg.py命令行参考，虽说它可以用在cmd中
-123set HTTP_PROXY=http://cache.mycompany.com:3128set HTTPS_PROXY">
+set HTTP_PROXY=http://cache.mycompany.com:3128set HTTPS_PROXY=ht">
 <meta property="og:updated_time" content="2015-04-14T14:52:52.761Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="上传到GAE">
 <meta name="twitter:description" content="试用Google App Engine……先把Deploy的时候遇到的问题记下来。
 上传使用的appcfg.py命令行参考和英文版本（有oauth等更多内容）。
 解决GFWGae上传的时候用的是appcfg.py，根据appcfg.py命令行参考，虽说它可以用在cmd中
-123set HTTP_PROXY=http://cache.mycompany.com:3128set HTTPS_PROXY">
+set HTTP_PROXY=http://cache.mycompany.com:3128set HTTPS_PROXY=ht">
 
 
 
@@ -118,16 +122,22 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: '0',
       author: '博主'
     }
   };
 </script>
 
+
+
+
+  <link rel="canonical" href="https://tgmerge.me/2013/12/0051-upload-to-gae/"/>
+
+
   <title> 上传到GAE | tgmerge's such blog </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -148,7 +158,7 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
@@ -180,7 +190,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -190,7 +200,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -200,7 +210,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -233,7 +243,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
       <header class="post-header">
@@ -294,23 +304,25 @@
         <p>试用Google App Engine……先把Deploy的时候遇到的问题记下来。</p>
 <p><a href="https://developers.google.com/appengine/docs/python/tools/uploadinganapp?hl=zh-cn" target="_blank" rel="external">上传使用的appcfg.py命令行参考</a>和<a href="https://developers.google.com/appengine/docs/python/tools/uploadinganapp" target="_blank" rel="external">英文版本（有oauth等更多内容）</a>。</p>
 <h4 id="解决GFW"><a href="#解决GFW" class="headerlink" title="解决GFW"></a>解决GFW</h4><p>Gae上传的时候用的是<code>appcfg.py</code>，根据<a href="https://developers.google.com/appengine/docs/python/tools/uploadinganapp?hl=zh-cn" target="_blank" rel="external">appcfg.py命令行参考</a>，虽说它可以用在cmd中</p>
-<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> HTTP_PROXY=http://cache.mycompany.com:<span class="number">3128</span></span><br><span class="line"><span class="built_in">set</span> HTTPS_PROXY=http://cache.mycompany.com:<span class="number">3128</span></span><br><span class="line">appcfg.py update myapp</span><br></pre></td></tr></table></figure>
+<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span> HTTP_PROXY=http://cache.mycompany.com:<span class="number">3128</span></span><br><span class="line"><span class="built_in">set</span> HTTPS_PROXY=http://cache.mycompany.com:<span class="number">3128</span></span><br><span class="line">appcfg.py update myapp</span><br></pre></td></tr></table></figure>
 <p>这样的方法来设置代理服务器，但如果直接这样然后用goagent的话会因为SSL证书和域名不一致的问题产生<code>InvalidCertificateException</code>错误。其他方式翻墙的话不太会有问题。至于Smarthosts之类的，因为太久没更新也会出错。</p>
 <p>总之最后解决的办法是Opendns……到<a href="http://www.opendns.com/support/cache/?d=appengine.google.com" target="_blank" rel="external">这里</a>解析下<code>appengine.google.com</code>的最新地址然后写进hosts吧。</p>
 <h4 id="OAuth"><a href="#OAuth" class="headerlink" title="OAuth"></a>OAuth</h4><pre><code>appcfg.py --oauth2 update
 </code></pre>
       
     </div>
-    
+
     <div>
       
         
+
       
     </div>
 
     <div>
       
         
+
       
     </div>
 
@@ -399,7 +411,7 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/assets/avatar.png"
                alt="tgmerge" />
@@ -409,7 +421,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">95</span>
+              <span class="site-state-item-count">97</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -419,7 +431,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -435,7 +447,7 @@
               <span class="links-of-author-item">
                 <a href="https://github.com/tgmerge" target="_blank" title="GitHub">
                   
-                    <i class="fa fa-github"></i>
+                    <i class="fa fa-fw fa-github"></i>
                   
                   GitHub
                 </a>
@@ -444,7 +456,7 @@
               <span class="links-of-author-item">
                 <a href="http://weibo.com/tgmerge" target="_blank" title="Weibo">
                   
-                    <i class="fa fa-weibo"></i>
+                    <i class="fa fa-fw fa-weibo"></i>
                   
                   Weibo
                 </a>
@@ -453,9 +465,18 @@
               <span class="links-of-author-item">
                 <a href="https://plus.google.com/+tgmergeSipan" target="_blank" title="G+">
                   
-                    <i class="fa fa-google-plus-square"></i>
+                    <i class="fa fa-fw fa-google-plus-square"></i>
                   
                   G+
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://xiefan.me/" target="_blank" title="　">
+                  
+                    <i class="fa fa-fw fa-heart"></i>
+                  
+                  　
                 </a>
               </span>
             
@@ -465,7 +486,7 @@
         
         
           <div class="cc-license motion-element" itemprop="license">
-            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
               <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
             </a>
           </div>
@@ -510,7 +531,7 @@
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
@@ -573,32 +594,32 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
 
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
 
 
 
@@ -623,14 +644,18 @@
 
   
     
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
 
 
 
+
   
   
+
   
 
   

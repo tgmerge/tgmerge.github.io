@@ -1,0 +1,711 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="5aq3Hk9DM7v_wqCNzXJVTLKo24-XFgeEKMql9-1uyis" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Satisfy:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,Java," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="写 Android 应用的时候，偶尔会遇到“需要对某个 view 截图”的问题。对一个单独的简单 view ，常见的实现方法有以下两种：
+
+使用view.getDrawingCache()方法。如：
+TextView textView = findViewById(R.id.some_activity_some_article_text);textView.setDrawingCacheEnabl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android: 获取RecyclerView的完整截图">
+<meta property="og:url" content="https://tgmerge.me/2016/10/0220-android-get-complete-screenshot-of-recycler-view/index.html">
+<meta property="og:site_name" content="tgmerge's such blog">
+<meta property="og:description" content="写 Android 应用的时候，偶尔会遇到“需要对某个 view 截图”的问题。对一个单独的简单 view ，常见的实现方法有以下两种：
+
+使用view.getDrawingCache()方法。如：
+TextView textView = findViewById(R.id.some_activity_some_article_text);textView.setDrawingCacheEnabl">
+<meta property="og:updated_time" content="2016-10-23T10:32:07.146Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android: 获取RecyclerView的完整截图">
+<meta name="twitter:description" content="写 Android 应用的时候，偶尔会遇到“需要对某个 view 截图”的问题。对一个单独的简单 view ，常见的实现方法有以下两种：
+
+使用view.getDrawingCache()方法。如：
+TextView textView = findViewById(R.id.some_activity_some_article_text);textView.setDrawingCacheEnabl">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://tgmerge.me/2016/10/0220-android-get-complete-screenshot-of-recycler-view/"/>
+
+
+  <title> Android: 获取RecyclerView的完整截图 | tgmerge's such blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">tgmerge's such blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">It's dangerous to go<br>along! Take this.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android: 获取RecyclerView的完整截图
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-23T14:53:00+08:00" content="2016-10-23">
+              2016-10-23
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/0220-android-get-complete-screenshot-of-recycler-view/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/0220-android-get-complete-screenshot-of-recycler-view/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>写 Android 应用的时候，偶尔会遇到“需要对某个 view 截图”的问题。对一个单独的简单 view ，常见的实现方法有以下两种：</p>
+<ol>
+<li><p>使用<code>view.getDrawingCache()</code>方法。如：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">TextView textView = findViewById(R.id.some_activity_some_article_text);</span><br><span class="line">textView.setDrawingCacheEnabled(<span class="keyword">true</span>);</span><br><span class="line">Bitmap drawingCache = textView.getDrawingCache();</span><br></pre></td></tr></table></figure>
+<p>所得到的<code>drawingCache</code>即为<code>textView</code>显示在屏幕上的图像。这种方法比较简单，但对于比较高的 view ，经常会由于 drawing cache 不够大而出现 <a href="http://stackoverflow.com/questions/16500379/view-too-large-to-fit-into-drawing-cache-when-calling-getdrawingcache" target="_blank" rel="external">View too large to fit into drawing cache</a> 的问题。</p>
+</li>
+<li><p>使用<code>view.draw(canvas)</code>方法。如：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">TextView textView = findViewById(R.id.some_activity_some_article_text);</span><br><span class="line">Bitmap viewBitmap = Bitmap.createBitmap(textView.getMeasuredWidth(), textView.getMeasuredHeight(), Bitmap.Config.RGBA_8888);</span><br><span class="line">Canvas canvas = <span class="keyword">new</span> Canvas(viewBitmap);</span><br><span class="line">textView.draw(canvas);</span><br></pre></td></tr></table></figure>
+<p>这之后<code>viewBitmap</code>这个 Bitmap 即为<code>textView</code>的图像。这对普通的 view 基本已经够用了，除非 view 的高度太大，可能还是会内存不足。</p>
+</li>
+</ol>
+<p>然而实际需求中，这种截图常常用于“分享”之类的功能，需要截图的部分一般都是比较复杂的 ViewGroup 。而其中 RecyclerView 的截图尤其麻烦，由于它回收复用 view 和 ViewHolder 的特性，难以用普通的方法截到完整的图片。</p>
+<a id="more"></a>
+<p>StackOverflow 上有人给出了一个<a href="http://stackoverflow.com/a/30124162/2996355" target="_blank" rel="external">对 RecyclerView 截图的方案</a>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Bitmap <span class="title">getRecyclerViewScreenshot</span><span class="params">(RecyclerView view)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> size = view.getAdapter().getItemCount();</span><br><span class="line">        RecyclerView.ViewHolder holder = view.getAdapter().createViewHolder(view, <span class="number">0</span>);</span><br><span class="line">        view.getAdapter().onBindViewHolder(holder, <span class="number">0</span>);</span><br><span class="line">        holder.itemView.measure(View.MeasureSpec.makeMeasureSpec(view.getWidth(), View.MeasureSpec.EXACTLY),</span><br><span class="line">                View.MeasureSpec.makeMeasureSpec(<span class="number">0</span>, View.MeasureSpec.UNSPECIFIED));</span><br><span class="line">        holder.itemView.layout(<span class="number">0</span>, <span class="number">0</span>, holder.itemView.getMeasuredWidth(), holder.itemView.getMeasuredHeight());</span><br><span class="line">        Bitmap bigBitmap = Bitmap.createBitmap(view.getMeasuredWidth(), holder.itemView.getMeasuredHeight() * size,</span><br><span class="line">                Bitmap.Config.ARGB_8888);</span><br><span class="line">        Canvas bigCanvas = <span class="keyword">new</span> Canvas(bigBitmap);</span><br><span class="line">        bigCanvas.drawColor(Color.WHITE);</span><br><span class="line">        Paint paint = <span class="keyword">new</span> Paint();</span><br><span class="line">        <span class="keyword">int</span> iHeight = <span class="number">0</span>;</span><br><span class="line">        holder.itemView.setDrawingCacheEnabled(<span class="keyword">true</span>);</span><br><span class="line">        holder.itemView.buildDrawingCache();</span><br><span class="line">        bigCanvas.drawBitmap(holder.itemView.getDrawingCache(), <span class="number">0f</span>, iHeight, paint);</span><br><span class="line">        holder.itemView.setDrawingCacheEnabled(<span class="keyword">false</span>);</span><br><span class="line">        holder.itemView.destroyDrawingCache();</span><br><span class="line">        iHeight += holder.itemView.getMeasuredHeight();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; size; i++) &#123;</span><br><span class="line">            view.getAdapter().onBindViewHolder(holder, i);</span><br><span class="line">            holder.itemView.setDrawingCacheEnabled(<span class="keyword">true</span>);</span><br><span class="line">            holder.itemView.buildDrawingCache();</span><br><span class="line">            bigCanvas.drawBitmap(holder.itemView.getDrawingCache(), <span class="number">0f</span>, iHeight, paint);</span><br><span class="line">            iHeight += holder.itemView.getMeasuredHeight();</span><br><span class="line">            holder.itemView.setDrawingCacheEnabled(<span class="keyword">false</span>);</span><br><span class="line">            holder.itemView.destroyDrawingCache();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> bigBitmap;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>思路是，对 RecyclerView 的每个 item 依次创建对应的 ViewHolder ，<code>onBindViewHolder()</code>并<code>measure()</code>它们，分别获取每个 ViewHolder 的图像，最后拼接成一个大号的整体截图(<code>bitBitmap</code>)。</p>
+<p>这种方法已经可以完整地截取一些 RecyclerView 的图像了。<del>然而谁都知道从 StackOverflow 直接抄代码的坑有多深……</del>在截取包含图像的 RecyclerView 时，这样截取的图片经常会出现 ImageView 区域空白的问题。究其原因，含有图片的 ViewHolder 是在<code>onBindViewHolde()</code>的时候，从URL加载图片显示在 ImageView 上的，而加载图片往往是异步过程。调用<code>onBindViewHolder()</code>之后立即获取它的 drawing cache 、或者把它画在 Canvas 上，此时可能还没有下载到图片，显然只能得到空白的 ImageView 。</p>
+<hr>
+<p>简单折腾一下之后解决了这个问题，不过也需要对 RecyclerView 的 adapter 进行一点修改。</p>
+<p>思路其实蛮简单的，让 adapter 实现一个阻塞的<code>onBindViewHolder()</code>，特殊处理含有图片的 ViewHolder 就可以了。</p>
+<p>当然，为了做到这一点，含有图片的 ViewHolder 也需要实现一个阻塞地更新内容的方法。将问题从下到上解决，是这样的：</p>
+<ol>
+<li><p>提供一个阻塞地从 URL 加载图片到 ImageView 的方法</p>
+<p>这里使用的是 Universal Image Loader 的<code>loadImageSync()</code>， Glide 和 Picasso 也有类似的方法。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> com.nostra13.universalimageloader.core.ImageLoader;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ImageUtil</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// ... 普通的图片显示工具方法 ...</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * 阻塞地在ImageView上显示图片</span><br><span class="line">    * timeoutInSecond: 最大超时</span><br><span class="line">     * failResId: 如果经过了timeoutInSecond秒仍没有完成加载，则显示这个resId作为图片内容</span><br><span class="line">    *</span><br><span class="line">     * 网络请求不能在UIThread上执行，需要加载新的线程操作UIL的loadImageSync。</span><br><span class="line">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">displayImageSync</span><span class="params">(<span class="keyword">final</span> String uri, <span class="keyword">final</span> ImageView imageView, <span class="keyword">int</span> timeoutInSecond, <span class="keyword">final</span> <span class="keyword">int</span> failResId)</span> </span>&#123;</span><br><span class="line">        imageView.setImageResource(failResId);</span><br><span class="line">        Thread t = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                Bitmap bitmap = ImageLoader.getInstance().loadImageSync(uri);</span><br><span class="line">                imageView.setImageBitmap(bitmap);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        t.start();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            t.join(timeoutInSecond * <span class="number">1000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其实这里蛮蠢的……由于后面其他部分的实现方式已经放在其他线程中了，这里其实可以不需要单独开线程使用<code>loadImageSync()</code>。单独开线程的好处只有可以控制等待加载的时间……</p>
+</li>
+<li><p>让含有图片的 ViewHolder 提供阻塞的更新方法</p>
+<p>我倾向于让 ViewHolder 提供一个<code>update()</code>方法来更新 ViewHolder 内的 UI 元件，于是增加一个<code>updateSync()</code>方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">ImageViewHolder</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">ViewHolder</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> ImageView imageView;</span><br><span class="line">    <span class="keyword">private</span> TextView titleView;</span><br><span class="line"></span><br><span class="line">    ImageViewHolder(View itemView, ViewGroup parent) &#123;</span><br><span class="line">        <span class="keyword">super</span>(itemView);</span><br><span class="line">        imageView = (ImageView) itemView.findViewById(R.id.image);</span><br><span class="line">        titleView = (TextView) itemView.findViewById(R.id.title);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(String imageUrl, String title)</span> </span>&#123;</span><br><span class="line">        url = imageUrl;</span><br><span class="line">        <span class="comment">// 普通的非阻塞图片加载方法</span></span><br><span class="line">        ImageUtil.displayImage(imageUrl, imageView, ImageUtil.optionWithCacheWithLoading);</span><br><span class="line">        titleView.setText(title);</span><br><span class="line">        imageView.setOnClickListener(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">updateSync</span><span class="params">(String imageUrl, String title)</span> </span>&#123;</span><br><span class="line">        url = imageUrl;</span><br><span class="line">        <span class="comment">// 阻塞的图片加载方法</span></span><br><span class="line">        ImageUtil.displayImageSync(imageUrl, imageView, <span class="number">5</span>, R.drawable.ic_load_failed);</span><br><span class="line">        titleView.setText(title);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>让 RecyclerView 的 adapter 提供阻塞的<code>onBindViewHolder()</code>方法</p>
+<p>创建一个提供阻塞版<code>onBindViewHolder()</code>方法的接口：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">CapturableAdapter</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">onBindViewHolderSync</span><span class="params">(RecyclerView.ViewHolder holder, <span class="keyword">int</span> position)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>让需要截图的 RecyclerView 的 adapter 实现它：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">final</span> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DetailAdapter</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">Adapter</span>&lt;<span class="title">RecyclerView</span>.<span class="title">ViewHolder</span>&gt; <span class="keyword">implements</span> <span class="title">CapturableAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ... ...</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindViewHolder</span><span class="params">(RecyclerView.ViewHolder holder, <span class="keyword">int</span> position)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (holder <span class="keyword">instanceof</span> HeaderViewHolder) &#123;</span><br><span class="line">            <span class="comment">// ... 更新不含图片的ViewHolder</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (holder <span class="keyword">instanceof</span> TextViewHolder) &#123;</span><br><span class="line">            <span class="comment">// ... 更新不含图片的ViewHolder</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (holder <span class="keyword">instanceof</span> ImageViewHolder) &#123;</span><br><span class="line">            imageViewHolder.update(<span class="comment">/* 更新含图片的ViewHolder */</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindViewHolderSync</span><span class="params">(RecyclerView.ViewHolder holder, <span class="keyword">int</span> position)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (holder <span class="keyword">instanceof</span> ImageViewHolder) &#123;</span><br><span class="line">            imageViewHolder.updateSync(<span class="comment">/* 更新含有图片的ViewHolder */</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 不含图片的ViewHolder仍然用普通的onBindViewHolder方法更新</span></span><br><span class="line">            onBindViewHolder(holder, position);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>最后，对 RecyclerView 截图的工具方法：</p>
+<p>使用之前的思路，分别对每个 ViewHolder 截图，最后拼接成一个大号的 Bitmap 就可以了。可以在内存占用方面考虑得多一点，截取按比例缩小的图片、使用<code>RGB_565</code>而不是<code>RGBA_8888</code>，牺牲一点图像质量，换取更少的内存消耗。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 截取一个RecyclerView的图片（用于分享之类）</span><br><span class="line"> * <span class="doctag">@param</span> scale  图片的缩放比例（e.g. 0.5 - 图片是原来的0.5倍尺寸）</span><br><span class="line"> * <span class="doctag">@return</span>       截取到的图片</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">private</span> Bitmap <span class="title">getScreenshotFromRecyclerView</span><span class="params">(RecyclerView view, <span class="keyword">float</span> scale)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1. 获取RecyclerView的Adapter，生成一个Bitmap用于绘制</span></span><br><span class="line">    RecyclerView.Adapter adapter = view.getAdapter();</span><br><span class="line">    Bitmap bigBitmap = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">if</span> (adapter == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> bigBitmap;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> itemCount = adapter.getItemCount();</span><br><span class="line">    <span class="keyword">int</span> bigHeight = <span class="number">0</span>;  <span class="comment">// bigBitmap的高度，随着ViewHolder的绘制逐渐增高</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 估计一下能用的内存数量 放一个LruCache作每个ViewHolder的图像存储</span></span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> maxMemory = (<span class="keyword">int</span>) (Runtime.getRuntime().maxMemory() / <span class="number">1024</span> / <span class="number">1024</span>);</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> cacheSize = maxMemory / <span class="number">4</span>;</span><br><span class="line">    LruCache&lt;Integer, Bitmap&gt; bitmapCache = <span class="keyword">new</span> LruCache&lt;&gt;(cacheSize);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; itemCount; i++) &#123;</span><br><span class="line">        <span class="comment">// 3. 创建每一个ViewHolder...</span></span><br><span class="line">        RecyclerView.ViewHolder holder = adapter.createViewHolder(view, adapter.getItemViewType(i));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 4. 如果Adapter实现了“阻塞地onBindViewHolder”，则调用阻塞的onBindViewHolderSync方法</span></span><br><span class="line">        <span class="keyword">if</span> (adapter <span class="keyword">instanceof</span> CapturableAdapter) &#123;</span><br><span class="line">            ((CapturableAdapter) adapter).onBindViewHolderSync(holder, i);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            adapter.onBindViewHolder(holder, i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        holder.itemView.measure(View.MeasureSpec.makeMeasureSpec(view.getWidth(), View.MeasureSpec.EXACTLY),</span><br><span class="line">                View.MeasureSpec.makeMeasureSpec(<span class="number">0</span>, View.MeasureSpec.UNSPECIFIED));</span><br><span class="line">        holder.itemView.layout(<span class="number">0</span>, <span class="number">0</span>, holder.itemView.getMeasuredWidth(), holder.itemView.getMeasuredHeight());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 5. 按缩放比例创建Bitmap和Canvas，把ViewHolder的View画上去</span></span><br><span class="line">        <span class="comment">//    并把得到的Bitmap放进LruCache</span></span><br><span class="line">        <span class="comment">//    这里使用RGB_565而不是ARGB_8888，大概节约一半内存</span></span><br><span class="line">        Bitmap itemBitmap = Bitmap.createBitmap(</span><br><span class="line">                (<span class="keyword">int</span>) (holder.itemView.getMeasuredWidth() * scale),</span><br><span class="line">                (<span class="keyword">int</span>) (holder.itemView.getMeasuredHeight() * scale), Bitmap.Config.RGB_565);</span><br><span class="line">        Canvas itemCanvas = <span class="keyword">new</span> Canvas(itemBitmap);</span><br><span class="line">        itemCanvas.scale(scale, scale);</span><br><span class="line">        itemBitmap.eraseColor(Color.WHITE);</span><br><span class="line">        holder.itemView.draw(itemCanvas);</span><br><span class="line">        <span class="keyword">if</span> (itemBitmap != <span class="keyword">null</span>) &#123;</span><br><span class="line">            bitmapCache.put(i, itemBitmap);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 6. 增加总高度</span></span><br><span class="line">        bigHeight += holder.itemView.getMeasuredHeight() * scale;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 7. 弄一个大号的Bitmap出来放置所有内容，尺寸当然也是缩放过的</span></span><br><span class="line">    bigBitmap = Bitmap.createBitmap((<span class="keyword">int</span>) (view.getMeasuredWidth() * scale), bigHeight, Bitmap.Config.RGB_565);</span><br><span class="line">    Canvas bigCanvas = <span class="keyword">new</span> Canvas(bigBitmap);</span><br><span class="line">    bigCanvas.drawColor(Color.WHITE);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 8. 依次把LruCache里的Bitmap画到相应位置</span></span><br><span class="line">    Paint paint = <span class="keyword">new</span> Paint();</span><br><span class="line">    <span class="keyword">int</span> height = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; itemCount; i++) &#123;</span><br><span class="line">        Bitmap bitmap = bitmapCache.get(i);</span><br><span class="line">        <span class="keyword">if</span> (bitmap != <span class="keyword">null</span>) &#123;</span><br><span class="line">            bigCanvas.drawBitmap(bitmap, <span class="number">0f</span>, height, paint);</span><br><span class="line">            height += bitmap.getHeight();</span><br><span class="line">            bitmap.recycle();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> bigBitmap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>又要加载图片又要截图，这种耗时间的操作当然需要异步完成，可以包在一个 Thread 里或者包装成 AsyncTask 。这里简单地包了一个新线程：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public interface AfterScreenshotHandler &#123;</span><br><span class="line">    void done(Bitmap bmp);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static public void getScreenshotFromRecyclerViewAsync(final RecyclerView view, final float scale, final AfterScreenshotHandler onDone) &#123;</span><br><span class="line">    Thread t = new Thread(new Runnable() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void run() &#123;</span><br><span class="line">            final Bitmap bmp = getScreenshotFromRecyclerView(view, scale);</span><br><span class="line">            view.post(new Runnable() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                public void run() &#123;</span><br><span class="line">                    onDone.done(bmp);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    t.start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由于之前的<code>loadImageSync()</code>方法设置了最大超时，截图不会无限卡死。可以在截图过程中放一个 ProgressBar 之类的防止用户误操作，在<code>onDone.done()</code>中完成后续操作就可以了。</p>
+</li>
+<li><p>一个使用的例子：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ... 在某个Activity中</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">screenshotAndShare</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    showToast(<span class="string">"准备分享图片……"</span>);</span><br><span class="line">    showLoadingView();  <span class="comment">// 显示ProgressBar</span></span><br><span class="line">    ScreenshotUtil.getScreenshotFromRecyclerViewAsync(recyclerView, <span class="number">0.5f</span>, <span class="keyword">new</span> ScreenshotUtil.AfterScreenshotHandler() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">done</span><span class="params">(Bitmap bmp)</span> </span>&#123;</span><br><span class="line">            stopLoadingView();  <span class="comment">// 关闭ProgressBar</span></span><br><span class="line">            ShareUtil.shareBmp(SectionDetailActivity.<span class="keyword">this</span>, bmp);  <span class="comment">// 分享得到的截图</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>经过测试，这种方法可以比较完美地截取较长的 RecyclerView 图片（数个到十几个屏幕的尺寸）。</p>
+<p>感觉可以通过 RecyclerView 中 item 的数量，动态设置<code>scale</code>的缩放比例；或者把每个 ViewHolder 的图像先写到文件里这种方式来进一步避免内存问题……不过暂时已经足够了，就先这样。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/Java/" rel="tag">#Java</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/0219-sqlalchemy-document-learning-note-2-5-orm-tutorial/" rel="next" title="SQLAlchemy文档和笔记 (2.5) - ORM指南 (5)">
+                <i class="fa fa-chevron-left"></i> SQLAlchemy文档和笔记 (2.5) - ORM指南 (5)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/0221-my-very-own-tips-on-android/" rel="prev" title="Android: My Very Own Tips (1)">
+                Android: My Very Own Tips (1) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/0220-android-get-complete-screenshot-of-recycler-view/"
+           data-title="Android: 获取RecyclerView的完整截图" data-url="https://tgmerge.me/2016/10/0220-android-get-complete-screenshot-of-recycler-view/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/avatar.png"
+               alt="tgmerge" />
+          <p class="site-author-name" itemprop="name">tgmerge</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">97</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tgmerge" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/tgmerge" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/+tgmergeSipan" target="_blank" title="G+">
+                  
+                    <i class="fa fa-fw fa-google-plus-square"></i>
+                  
+                  G+
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://xiefan.me/" target="_blank" title="　">
+                  
+                    <i class="fa fa-fw fa-heart"></i>
+                  
+                  　
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tgmerge</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"tgmerge"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
