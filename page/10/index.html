@@ -245,6 +245,108 @@
             
               
                 
+                <a class="post-title-link" href="/2013/12/0053-gae-http-403/" itemprop="url">
+                  Google App Engine等一堆网站的403问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-12-06T11:45:57+08:00" content="2013-12-06">
+              2013-12-06
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2013/12/0053-gae-http-403/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/12/0053-gae-http-403/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近发现很多站点就算改了hosts开了gogent还是会403 Permission Denied……结果是因为很多hosts源最近没有更新，或者hosts偷懒把appengine.google.com写到了Google的分发服务器，结果https就悲剧了</p>
+<p>DNS换成8.8.8.8倒也不是不可以，但访问校网会不时抽风，设了备用DNS也一样。最后的解决方法是跑去opendns直接解析下这几个域名写进hosts里……很麻烦不过暂且这样了。今天opendns的结果是</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">74.125.239.128 appengine.google.com</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2013/12/0052-gae-python/" itemprop="url">
                   gae, python :: Part I
                 </a>
@@ -681,113 +783,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/11/0048-game-kawarimono/" itemprop="url">
-                  没有选项但结局有三个 :: カワリモノ
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-11-24T14:57:00+08:00" content="2013-11-24">
-              2013-11-24
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2013/11/0048-game-kawarimono/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/11/0048-game-kawarimono/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p><strong>カワリモノ</strong><br>稍微有点精神猎奇和SF向的短篇故事。<br>虽然没有选项，但结局有三个。<br>并不会因为游戏回数、点击特定地点、存档读档等造成路线分歧。</p>
-</blockquote>
-<p><img src="/assets/0048-01.png" alt=""></p>
-<p><img src="/assets/0048-02.png" alt=""></p>
-<p>大概是根据看剧情的快慢决定结局的吧→（一周目）情节稍微有点猎奇→（二周目）卧槽还真是这样？</p>
-<p>就是这么简单易懂的设定。至于故事情节……是将被执行死刑的女子和被她杀掉的男子的克隆体的对话。关于结局，快速地看剧情是“克隆体也无法原谅对方”这样的发展；普通地看是“总之想把对方救出来”这样；看得很慢则是“既然能克隆那就无所谓咯”这样的发展。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -833,7 +828,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">97</span>
+              <span class="site-state-item-count">98</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -843,7 +838,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

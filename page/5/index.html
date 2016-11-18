@@ -245,6 +245,116 @@
             
               
                 
+                <a class="post-title-link" href="/2015/04/0202-android-captive-portal-wifi-warning-icon/" itemprop="url">
+                  Android Wi-Fi图标的感叹号
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-04-16T12:56:00+08:00" content="2015-04-16">
+              2015-04-16
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/04/0202-android-captive-portal-wifi-warning-icon/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/0202-android-captive-portal-wifi-warning-icon/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Android 4以上的版本在连接到Wi-Fi网络之后，会先尝试访问<code>clients3.google.com/generate_204</code>这个地址来判断这个Wi-Fi能否连接到互联网、是否需要登录。如果访问结果是<code>HTTP 204</code>，或者返回空内容，则认为网络正常；否则认为该网络无法连接到互联网，同时显示感叹号图标，提醒用户登录Wi-Fi网络。</p>
+<p>但是在天朝<code>clients3.google.com</code>显然是无法访问的。所以就算已经通过网页登录无线网络，那个感叹号图标还是会一直显示……</p>
+<p>这个问题有两种解决方法，都不需要Root权限。<code>adb shell</code>或者用终端模拟器之类就可以。</p>
+<ol>
+<li><p><code>settings put global captive_portal_detection_enabled 0</code><br>完全关闭Wi-Fi连接性检查，缺点是无法提醒登录。</p>
+</li>
+<li><p><code>settings put global captive_portal_server www.265.com</code><br>更换连接性检查的地址（换成<code>www.265.com/generate_204</code>），推荐用这种。<br>所以说为啥Google家的265导航在天朝没被墙？</p>
+</li>
+</ol>
+<p>其实自己弄一个能返回HTTP 204或者空页面的服务器也可以。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/04/0201-kindle-cn/" itemprop="url">
                   kindle和其他
                 </a>
@@ -654,117 +764,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/12/0073-python-encoding-on-windows/" itemprop="url">
-                  Windows, python, cmd, encoding, _(:3 / L)_
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-12-02T22:42:00+08:00" content="2014-12-02">
-              2014-12-02
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/12/0073-python-encoding-on-windows/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/12/0073-python-encoding-on-windows/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>就不说windows和python编码的那一大坨问题了，只大概记一下怎么科学地鸟枪法码代码。</p>
-<ul>
-<li><code>sys.getfilesystemencoding()</code>可以得到系统内用于文件系统的编码，在windows上很大可能是<code>mbcs</code>这个蛋疼的东西。</li>
-<li><code>sys.stdout.encoding</code>是用于subprocess等标准输出的编码，根据运行环境不同可能是<code>utf-8</code>，<code>gb2312</code>或者其他啥的。</li>
-</ul>
-<p>以上两个东西在用到<code>subprocess</code>调用其它可执行文件或命令行的时候尤其蛋疼。实在没办法，把出问题的文件放到浅一点的目录里，在repl里面<code>subprocess.check_output()</code>试试。</p>
-<p>总之不管什么东西，只要一进来就确保<code>decode()</code>成unicode，能<code>type(str) =&gt; unicode</code>就好。输出的话，再<code>encode</code>出去。</p>
-<p><code>subprocess</code>出问题的时候，从没有问题的路径调用想要调用的程序，试着让它输出有问题的路径。</p>
-<p>然后用<code>chardet</code>这个模块检测一下输出结果的编码。用法是<code>chatdet.detect(myStr)</code>。输入的编码应该和这个相同。</p>
-<p>最后把<code>subprocess</code>的每个参数都<code>encode()</code>成这个编码吧。<strong>别忘了文件路径两边的双引号。</strong></p>
-<p>唔python的subprocess编码支持其实有问题……233</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -810,7 +809,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">97</span>
+              <span class="site-state-item-count">98</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -820,7 +819,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
