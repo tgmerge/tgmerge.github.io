@@ -245,6 +245,114 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/0218-sqlalchemy-document-learning-note-2-4-orm-tutorial/" itemprop="url">
+                  SQLAlchemy文档和笔记 (2.4) - ORM指南 (4)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-30T16:55:00+08:00" content="2016-04-30">
+              2016-04-30
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/0218-sqlalchemy-document-learning-note-2-4-orm-tutorial/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/0218-sqlalchemy-document-learning-note-2-4-orm-tutorial/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>本篇是 <del>胡乱</del> 翻译自<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/tutorial.html">SQLAlchemy 1.0官方文档 Object Relational Tutorial一章</a>的第四篇笔记。</p>
+<p>各种保留了原文的术语可以参考<a href="http://docs.sqlalchemy.org/en/rel_1_0/glossary.html">SQLAlchemy术语表</a>。</p>
+<p><del>摸鱼根本停不下来</del></p>
+<hr>
+<p>上一部分讲的是关系的建立和使用关系进行查询。在映射类中使用<code>relationship()</code>建立关系，查询时使用<code>Query.join()</code>进行连接查询，用<code>aliased()</code>创建映射类的别名在连接中多次使用同一张表，使用<code>func.count()</code>和<code>statement</code>进行子查询计数之类的等等。</p>
+<p>接着从Eager Loading一节开始。要在REPL中还原之前的数据，可以：</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/0218-sqlalchemy-document-learning-note-2-4-orm-tutorial/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/0217-sqlalchemy-document-learning-note-2-3-orm-tutorial/" itemprop="url">
                   SQLAlchemy文档和笔记 (2.3) - ORM指南 (3)
                 </a>
@@ -663,108 +771,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/0213-chrome-mactype-missing-characters-part-2/" itemprop="url">
-                  Chrome+MacType丢失文字的问题 Part2
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-09-15T12:43:00+08:00" content="2015-09-15">
-              2015-09-15
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/0213-chrome-mactype-missing-characters-part-2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/0213-chrome-mactype-missing-characters-part-2/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Chrome 45之后，使用MacType的情况下，某些文字丢失的问题使用<a href="/2015/04/0203-chrome-mactype-missing-characters/">之前这篇文章</a>说的方法已经无法解决了。</p>
-<p>新的解决方法是，在<code>chrome://flags</code>里，找到<code>#num-raster-threads</code>这个配置项。更改其值为<code>1</code>。用了一段时间没出问题。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -810,7 +816,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">98</span>
+              <span class="site-state-item-count">99</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

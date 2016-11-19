@@ -245,6 +245,123 @@
             
               
                 
+                <a class="post-title-link" href="/2013/08/0019-thinkpad-e420-hd6630-win8-driver/" itemprop="url">
+                  Thinkpad E420 HD6630M显卡在Win8下的正确驱动配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-08-04T01:41:00+08:00" content="2013-08-04">
+              2013-08-04
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2013/08/0019-thinkpad-e420-hd6630-win8-driver/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/08/0019-thinkpad-e420-hd6630-win8-driver/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>HD6630M显卡无论单独使用联想官方的驱动还是AMD网站上下载的测试版驱动（正式版驱动因为是订制显卡的缘故无法安装），都会出现或多或少的问题，比如</p>
+<ul>
+<li>无法使用独立显卡工作，系统体验指数显示方面只有3.8 </li>
+<li>无法完全使用独立显卡工作，无论手动切换还是自动切换体验指数显示方面只有4.5 </li>
+<li>独立显卡下无法更改系统亮度</li>
+<li>无法启动winsat </li>
+</ul>
+<p>之类。反复试验之后不知怎么的就解决了……后来总结了下步骤</p>
+<ul>
+<li>按顺序安装<strong>联想提供的E420 HD6630M Win8驱动</strong>和<strong>AMD提供的测试版驱动</strong> </li>
+<li>关闭BIOS的CPU电源管理和PCI电源管理 </li>
+<li>打开显卡的PowerPlay功能</li>
+<li>使用手动切换显卡模式</li>
+</ul>
+<p>可以正确更改亮度，系统体验指数显示方面6.6。</p>
+<p>正确安装驱动后软件版本如下</p>
+<p><img src="/assets/0019-01.png" alt=""></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2013/07/0018-about-tsuyuri/" itemprop="url">
                   「つゆり」→「栗花落」→「五月七日」
                 </a>
@@ -708,107 +825,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/06/0014-finish-those-report-and-coding/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-06-27T09:01:00+08:00" content="2013-06-27">
-              2013-06-27
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2013/06/0014-finish-those-report-and-coding/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/06/0014-finish-those-report-and-coding/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>待我撸完这堆报告和代码……</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -854,7 +870,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">98</span>
+              <span class="site-state-item-count">99</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

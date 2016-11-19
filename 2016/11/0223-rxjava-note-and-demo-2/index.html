@@ -1,0 +1,735 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="5aq3Hk9DM7v_wqCNzXJVTLKo24-XFgeEKMql9-1uyis" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Satisfy:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,Java,RxJava,ReactiveX,RxAndroid,Retrofit," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="RxJava 的适用场景与 Retrofit 的结合Code 17 - RxJava + Retrofit 进行网络请求
+这个示例模拟了“在网络请求发起时更新UI -&amp;gt; 处理请求结果 -&amp;gt; 根据请求结果再次更新UI”的过程。
+使用了JSONPlaceholder API。
+
+在发起请求时更新UI 在subscribeOn()中完成；
+处理请求结果 在map()中完成；
+根据处理后的结果">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RxJava 笔记和 Demo (2) - 适用场景">
+<meta property="og:url" content="https://tgmerge.me/2016/11/0223-rxjava-note-and-demo-2/index.html">
+<meta property="og:site_name" content="tgmerge's such blog">
+<meta property="og:description" content="RxJava 的适用场景与 Retrofit 的结合Code 17 - RxJava + Retrofit 进行网络请求
+这个示例模拟了“在网络请求发起时更新UI -&amp;gt; 处理请求结果 -&amp;gt; 根据请求结果再次更新UI”的过程。
+使用了JSONPlaceholder API。
+
+在发起请求时更新UI 在subscribeOn()中完成；
+处理请求结果 在map()中完成；
+根据处理后的结果">
+<meta property="og:image" content="https://tgmerge.me/assets/0222-06.png">
+<meta property="og:image" content="http://reactivex.io/documentation/operators/images/ofClass.png">
+<meta property="og:updated_time" content="2016-11-19T16:00:11.449Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RxJava 笔记和 Demo (2) - 适用场景">
+<meta name="twitter:description" content="RxJava 的适用场景与 Retrofit 的结合Code 17 - RxJava + Retrofit 进行网络请求
+这个示例模拟了“在网络请求发起时更新UI -&amp;gt; 处理请求结果 -&amp;gt; 根据请求结果再次更新UI”的过程。
+使用了JSONPlaceholder API。
+
+在发起请求时更新UI 在subscribeOn()中完成；
+处理请求结果 在map()中完成；
+根据处理后的结果">
+<meta name="twitter:image" content="https://tgmerge.me/assets/0222-06.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://tgmerge.me/2016/11/0223-rxjava-note-and-demo-2/"/>
+
+
+  <title> RxJava 笔记和 Demo (2) - 适用场景 | tgmerge's such blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">tgmerge's such blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">It's dangerous to go<br>along! Take this.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                RxJava 笔记和 Demo (2) - 适用场景
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-19T23:57:00+08:00" content="2016-11-19">
+              2016-11-19
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/0223-rxjava-note-and-demo-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/0223-rxjava-note-and-demo-2/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="RxJava-的适用场景"><a href="#RxJava-的适用场景" class="headerlink" title="RxJava 的适用场景"></a>RxJava 的适用场景</h2><h3 id="与-Retrofit-的结合"><a href="#与-Retrofit-的结合" class="headerlink" title="与 Retrofit 的结合"></a>与 Retrofit 的结合</h3><p><a href="https://github.com/tgmerge/rx-java-playground/blob/8f8f79766f7ad731529fe2bb15348b76250a4632/app/src/main/java/me/tgmerge/rxjavaplayground/part2_retrofit/RxRetro1Activity.java#L31" target="_blank" rel="external">Code 17 - RxJava + Retrofit 进行网络请求</a></p>
+<p>这个示例模拟了“在网络请求发起时更新UI -&gt; 处理请求结果 -&gt; 根据请求结果再次更新UI”的过程。</p>
+<p>使用了<a href="https://jsonplaceholder.typicode.com" target="_blank" rel="external">JSONPlaceholder</a> API。</p>
+<ul>
+<li><strong>在发起请求时更新UI</strong> 在<code>subscribeOn()</code>中完成；</li>
+<li><strong>处理请求结果</strong> 在<code>map()</code>中完成；</li>
+<li><strong>根据处理后的结果更新UI</strong> 在<code>subscribe()</code>中完成。</li>
+</ul>
+<p>期间根据需求调度线程。</p>
+<p><a href="https://github.com/tgmerge/rx-java-playground/blob/8f8f79766f7ad731529fe2bb15348b76250a4632/app/src/main/java/me/tgmerge/rxjavaplayground/part2_retrofit/RxRetro2Activity.java#L36" target="_blank" rel="external">Code 18 - RxJava + Retrofit 按顺序依次发起两个请求</a></p>
+<p>这个示例模拟了“更新 UI -&gt; 发起请求 A -&gt; 利用请求 A 的结果发起请求 B -&gt; 处理请求 B 的结果 -&gt; 根据请求 B 的结果再次更新 UI”的过程。</p>
+<a id="more"></a>
+<p>具体来说，它会发起一个 JSONPlaceholder 的<code>/posts</code>请求，用这个请求<code>返回字符串的长度 % 10 + 1</code>作为<code>id</code>，发起<code>/post/{id}</code>请求。</p>
+<p><img src="/assets/0222-06.png" alt=""></p>
+<p>实际应用中类似的情景是，先发起一个请求获取 token，然后使用这个 token 发起其他请求。</p>
+<p>RxJava 有一点好，就是在链式声明的任意位置抛出的异常都会被 Subscriber 的<code>onError()</code>接到，可以统一处理。</p>
+<h3 id="RxBus-作为事件总线"><a href="#RxBus-作为事件总线" class="headerlink" title="RxBus 作为事件总线"></a>RxBus 作为事件总线</h3><p><a href="https://github.com/tgmerge/rx-java-playground/blob/fcaa9496c926a10eb5f8fcfbf9b8b2fe3e719552/app/src/main/java/me/tgmerge/rxjavaplayground/part3_rxbus/RxBus.java#L15" target="_blank" rel="external">Code 19 - RxJava 作为事件总线</a></p>
+<p>RxJava 可以作为事件总线使用。</p>
+<p>最基本的用法是，将一个单例的 Observable 作为总线，让其发送和处理事件。然而这么做会造成两个很麻烦的问题：</p>
+<ol>
+<li>无法实现 sticky 的事件（订阅某事件的 subscriber 会在订阅时马上收到订阅之前最后一次触发的该事件，而不需要等到下次事件触发）；</li>
+<li>订阅者处理事件的过程中一旦出现错误，将触发<code>onError()</code>导致订阅中断。</li>
+</ol>
+<p>解决这些问题，并将 RxBus 整合进 MVP 结构中，参考：</p>
+<ul>
+<li><a href="http://www.jianshu.com/p/ca090f6e2fe2" target="_blank" rel="external">用RxJava实现事件总线(Event Bus)</a></li>
+<li><a href="http://www.jianshu.com/p/0493cc28a811" target="_blank" rel="external">深入RxBus：［异常处理］</a></li>
+<li><a href="https://github.com/googlesamples/android-architecture" target="_blank" rel="external">Google 的 android-architecture</a></li>
+</ul>
+<h4 id="ofType-操作符"><a href="#ofType-操作符" class="headerlink" title="ofType 操作符"></a>ofType 操作符</h4><p><a href="http://reactivex.io/documentation/operators/filter.html#collapseRxJava 1․x" target="_blank" rel="external">Rx 文档对 ofType 操作符的解释</a>是：</p>
+<p><img src="http://reactivex.io/documentation/operators/images/ofClass.png" alt=""></p>
+<p>该操作符仅在 observable 发射的事件对象和指定的类型一致时，才继续传递该对象。</p>
+<p>这个操作符天生适合进行对总线上不同类型事件的过滤，只要在作为总线的 observable 上叠一层<code>ofType(EventType.class)</code>，我们的事件订阅者就只会收到<code>EventType</code>类型的事件了。</p>
+<h4 id="sticky-事件的处理"><a href="#sticky-事件的处理" class="headerlink" title="sticky 事件的处理"></a>sticky 事件的处理</h4><p><a href="https://github.com/tgmerge/rx-java-playground/blob/fcaa9496c926a10eb5f8fcfbf9b8b2fe3e719552/app/src/main/java/me/tgmerge/rxjavaplayground/part3_rxbus/RxBus.java#L67" target="_blank" rel="external">Code 20 - RxBus 对 sticky 事件的处理</a></p>
+<p><a href="http://www.jianshu.com/p/71ab00a2677b" target="_blank" rel="external">深入RxBus：［支持Sticky事件］</a>这篇文章中使用了<code>ConcurrentHashMap&lt;EventType, Event&gt;</code>来保存每种事件最近一次触发的事件对象，在每次 sticky 事件触发的时候更新之，并在新的 sticky 事件订阅者订阅事件的时候，取出相应类型的事件对象并发送。</p>
+<p><strong>Note</strong> 这种方法和 EventBus 比较像，由于事件对象被保存在了单例的 RxBus 中，可能造成内存泄漏。文章作者推荐在不需要使用某种事件的时候，通过<code>removeStickyEvent(EventType)</code>的方法从 HashMap 移除它；另外在应用退出时，用<code>removeAllStickyEvents()</code>清理所有的 sticky 事件对象。</p>
+<h4 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h4><p><a href="https://github.com/tgmerge/rx-java-playground/blob/fcaa9496c926a10eb5f8fcfbf9b8b2fe3e719552/app/src/main/java/me/tgmerge/rxjavaplayground/part3_rxbus/SubscriberFragment.java#L75" target="_blank" rel="external">Code 21 - RxBus 异常时重新订阅</a></p>
+<p>RxBus 事件监听时的异常可能发生在 Subscriber 处理事件的过程中（各种<code>lift()</code>），也可能发生在最终事件到达的<code>onNext()</code>里。</p>
+<p>如果是在处理事件的过程中抛出了异常，会直接调用<code>Subscriber.onError()</code>，继而终止整个订阅，事件监听就断掉了。</p>
+<p>在<code>Subscriber.onError()</code>中重新订阅事件是一种可行的方法，但只适用于非 sticky 事件。如果 sticky 事件监听处<code>onError()</code>中重新订阅事件，将反复接收到引起异常的那个事件，导致死循环。</p>
+<h4 id="CompositeSubscription，以及-RxBus-和-MVP-的整合"><a href="#CompositeSubscription，以及-RxBus-和-MVP-的整合" class="headerlink" title="CompositeSubscription，以及 RxBus 和 MVP 的整合"></a>CompositeSubscription，以及 RxBus 和 MVP 的整合</h4><p>参考<a href="https://github.com/googlesamples/android-architecture/blob/todo-mvp-rxjava/todoapp/app/src/main/java/com/example/android/architecture/blueprints/todoapp/tasks/TasksPresenter.java" target="_blank" rel="external">Google android-architecture 进行 RxJava 和 MVP 整合的做法</a>，Presenter 有责任发送和监听事件，并在接收到事件的时候通知 View 更新内容。</p>
+<p>于是 Presenter 需要在生命周期内管理它内部的<code>Subscription</code>，即<code>订阅</code>。</p>
+<p>RxJava 提供了<a href="http://reactivex.io/RxJava/javadoc/rx/subscriptions/CompositeSubscription.html" target="_blank" rel="external"><code>CompositeSubscription</code></a>用于统一 unsubscribe 多个<code>Subscription</code>。主要的方法只有两个：</p>
+<ul>
+<li><code>clear()</code>：解除订阅<code>CompositeSubscription</code>中已有的 Subscription，之后可以重新添加其他的 Subscription；</li>
+<li><code>unsubscribe()</code>：解除订阅自身和其中所有的 Subscription，之后再添加的 Subscription 也会直接被解除订阅。</li>
+</ul>
+<p>Presenter 可以在和 View 解除关联的时候使用<code>unsubscribe()</code>解除所有订阅。</p>
+<p>参考 <a href="http://www.paul-woitaschek.de/blog/when-to-use-composite-subscription-unsubscribe/" target="_blank" rel="external">When to use CompositeSubscription.unsubscribe</a></p>
+<p>归结起来，和 RxBus 结合的 Presenter 需要做这些事情：</p>
+<ol>
+<li>持有一个<code>CompositeSubscription</code>；</li>
+<li>在 Presenter 和 View 建立关系时，初始化<code>CompositeSubscription</code>；</li>
+<li>在 Presenter 和 View 解除关系时，使用<code>CompositeSubscription.unsubscribe()</code>解除订阅。</li>
+</ol>
+<p>另外，Presenter 的每个 Subscription（包括 Retrofit 网络请求、RxBus 监听和其他自定义的 Subscriber）都需要被添加到<code>CompositeSubscription</code>中：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Subscription subs = RxBus.getDefault().toObservable(Event.class)</span><br><span class="line">        .map(... ...);</span><br><span class="line">        .subscribe(... ...);</span><br><span class="line">mCompositeSubscription.add(subs);</span><br></pre></td></tr></table></figure>
+<p>如果需要单独控制某个 Subscription 的订阅/解除订阅，也需要将它添加到 CompositeSubscription 中。</p>
+<p>例如某个刷新内容的网络请求，如果发起请求时前一次请求的结果还没有返回，需要先解除这个请求的订阅：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Subscription refreshSubs;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">refresh</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (refreshSubs != <span class="keyword">null</span> &amp;&amp; !refreshSubs.isUnsubscribed()) &#123;</span><br><span class="line">        refreshSubs.unsubscribe();</span><br><span class="line">    &#125;</span><br><span class="line">    refreshSubs = SomeAPI.getSomething().subscribe(... ...);</span><br><span class="line">    mCompositeSubscription.add(refreshSubs);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/Java/" rel="tag">#Java</a>
+          
+            <a href="/tags/RxJava/" rel="tag">#RxJava</a>
+          
+            <a href="/tags/ReactiveX/" rel="tag">#ReactiveX</a>
+          
+            <a href="/tags/RxAndroid/" rel="tag">#RxAndroid</a>
+          
+            <a href="/tags/Retrofit/" rel="tag">#Retrofit</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/0222-rxjava-note-and-demo-1/" rel="next" title="RxJava 笔记和 Demo (1) - 介绍和原理">
+                <i class="fa fa-chevron-left"></i> RxJava 笔记和 Demo (1) - 介绍和原理
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/0223-rxjava-note-and-demo-2/"
+           data-title="RxJava 笔记和 Demo (2) - 适用场景" data-url="https://tgmerge.me/2016/11/0223-rxjava-note-and-demo-2/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/avatar.png"
+               alt="tgmerge" />
+          <p class="site-author-name" itemprop="name">tgmerge</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">99</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tgmerge" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/tgmerge" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/+tgmergeSipan" target="_blank" title="G+">
+                  
+                    <i class="fa fa-fw fa-google-plus-square"></i>
+                  
+                  G+
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://xiefan.me/" target="_blank" title="　">
+                  
+                    <i class="fa fa-fw fa-heart"></i>
+                  
+                  　
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#RxJava-的适用场景"><span class="nav-text">RxJava 的适用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#与-Retrofit-的结合"><span class="nav-text">与 Retrofit 的结合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RxBus-作为事件总线"><span class="nav-text">RxBus 作为事件总线</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ofType-操作符"><span class="nav-text">ofType 操作符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sticky-事件的处理"><span class="nav-text">sticky 事件的处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误处理"><span class="nav-text">错误处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CompositeSubscription，以及-RxBus-和-MVP-的整合"><span class="nav-text">CompositeSubscription，以及 RxBus 和 MVP 的整合</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tgmerge</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"tgmerge"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
