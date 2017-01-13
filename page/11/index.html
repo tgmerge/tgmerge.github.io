@@ -245,6 +245,113 @@
             
               
                 
+                <a class="post-title-link" href="/2013/12/0051-upload-to-gae/" itemprop="url">
+                  上传到GAE
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-12-03T18:08:00+08:00" content="2013-12-03">
+              2013-12-03
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2013/12/0051-upload-to-gae/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/12/0051-upload-to-gae/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>试用Google App Engine……先把Deploy的时候遇到的问题记下来。</p>
+<p><a href="https://developers.google.com/appengine/docs/python/tools/uploadinganapp?hl=zh-cn" target="_blank" rel="external">上传使用的appcfg.py命令行参考</a>和<a href="https://developers.google.com/appengine/docs/python/tools/uploadinganapp" target="_blank" rel="external">英文版本（有oauth等更多内容）</a>。</p>
+<h4 id="解决GFW"><a href="#解决GFW" class="headerlink" title="解决GFW"></a>解决GFW</h4><p>Gae上传的时候用的是<code>appcfg.py</code>，根据<a href="https://developers.google.com/appengine/docs/python/tools/uploadinganapp?hl=zh-cn" target="_blank" rel="external">appcfg.py命令行参考</a>，虽说它可以用在cmd中</p>
+<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span> HTTP_PROXY=http://cache.mycompany.com:<span class="number">3128</span></span><br><span class="line"><span class="built_in">set</span> HTTPS_PROXY=http://cache.mycompany.com:<span class="number">3128</span></span><br><span class="line">appcfg.py update myapp</span><br></pre></td></tr></table></figure>
+<p>这样的方法来设置代理服务器，但如果直接这样然后用goagent的话会因为SSL证书和域名不一致的问题产生<code>InvalidCertificateException</code>错误。其他方式翻墙的话不太会有问题。至于Smarthosts之类的，因为太久没更新也会出错。</p>
+<p>总之最后解决的办法是Opendns……到<a href="http://www.opendns.com/support/cache/?d=appengine.google.com" target="_blank" rel="external">这里</a>解析下<code>appengine.google.com</code>的最新地址然后写进hosts吧。</p>
+<h4 id="OAuth"><a href="#OAuth" class="headerlink" title="OAuth"></a>OAuth</h4><pre><code>appcfg.py --oauth2 update
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2013/12/0050-game-kanojo/" itemprop="url">
                   醒醒吧你没有妹子 :: 彼女
                 </a>
@@ -669,117 +776,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/11/0046-miruhiore/" itemprop="url">
-                  要不要再虐原主角一点 :: みるひおれ :: Part I
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-11-19T00:41:00+08:00" content="2013-11-19">
-              2013-11-19
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2013/11/0046-miruhiore/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/11/0046-miruhiore/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>手贱去百度贴吧转了一圈发现有写这游戏的帖子，写的剧情完全是错的，不要乱猜误导人好吗……</p>
-<p>先放一张True End的图</p>
-<p><img src="/assets/0046-01.png" alt=""></p>
-<p>TRUE END 世の中、金</p>
-<p>至于发生了什么……本外传的故事“基本都是”发生在みっくすおれ之前的，真是好剧情好结局皆大欢喜<del>本作主角小次郎因为梨奏父亲留下的上亿欠款发愁正好怀揣两亿遗产的贯太郎被车撞到失忆就顺水推舟策划了整个みっくすおれ的事件骗到两亿之后和妹子没羞没躁地生活在了一起HAPPY END撒花！</del></p>
-<p>还有两个BAD END，感觉没有TRUE END赞。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -820,7 +821,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">100</span>
+              <span class="site-state-item-count">101</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -830,7 +831,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -245,6 +245,137 @@
             
               
                 
+                <a class="post-title-link" href="/2017/01/0225-wrap-content-recycler-view-in-scroll-view/" itemprop="url">
+                  WRAP_CONTENT 的 RecyclerView 在 ScrollView 中无法显示完整内容
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-13T15:50:00+08:00" content="2017-01-13">
+              2017-01-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/0225-wrap-content-recycler-view-in-scroll-view/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/0225-wrap-content-recycler-view-in-scroll-view/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>形如下面这样的布局中：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ScrollView</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">...</span> <span class="attr">android:oriention</span>=<span class="string">"vertical"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">SomeView</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">RecyclerView</span> <span class="attr">...</span> <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">SomeView</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ScrollView</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>RecyclerView 在项目较多时将无法按 <code>WRAP_CONTENT</code> 的预期显示完整内容，只会显示一部分项目。</p>
+<h2 id="失败的解决方法"><a href="#失败的解决方法" class="headerlink" title="失败的解决方法"></a>失败的解决方法</h2><ol>
+<li><code>recyclerView.getLayoutManager().setAutoMeasureEnabled(false)</code>；</li>
+<li><code>recyclerView.setHasFixedSize(false)</code>；</li>
+<li><code>recyclerView.setNestedScrollingEnabled(false)</code>；</li>
+</ol>
+<p>均不能解决问题。</p>
+<h2 id="成功但莫名其妙的解决方法"><a href="#成功但莫名其妙的解决方法" class="headerlink" title="成功但莫名其妙的解决方法"></a>成功但莫名其妙的解决方法</h2><p>像这样：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ScrollView</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">...</span> <span class="attr">android:oriention</span>=<span class="string">"vertical"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">SomeView</span> <span class="attr">...</span> <span class="attr">android:layout_height</span>=<span class="string">"1000dp"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">RecyclerView</span> <span class="attr">...</span> <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">SomeView</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ScrollView</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>让 RecyclerView 不一开始就显示在屏幕上，而是从下方滚动出来，这样 RecyclerView 就会按 <code>WRAP_CONTENT</code> 的预期正常工作。</p>
+<p>但这种方法并没有什么实际作用……</p>
+<h2 id="失败的解决方法-2"><a href="#失败的解决方法-2" class="headerlink" title="失败的解决方法 #2"></a>失败的解决方法 #2</h2><p>在给 RecyclerView 的 adapter 添加数据后调用：</p>
+<ol>
+<li><code>recyclerView.invalidate()</code>；</li>
+<li><code>recyclerParent.invalidate()</code>（recyclerParent 是 RecyclerView 的 Parent view）；</li>
+<li><code>recyclerView.requestLayout()</code>；</li>
+<li><code>recyclerParent.requestLayout()</code></li>
+</ol>
+<p>或者使用 <code>postDelayed()</code> 避开动画再使用上述方法，均不能解决问题。按说 invalidate() 之后 LayoutManager 应该会重新 measure 的，但实际上并没有？</p>
+<h2 id="成功的解决方法"><a href="#成功的解决方法" class="headerlink" title="成功的解决方法"></a>成功的解决方法</h2><ol>
+<li><p>使用 NestedScrollView 替换 ScrollView：</p>
+ <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">android.support.v4.widget.NestedScrollView</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">...</span> <span class="attr">android:oriention</span>=<span class="string">"vertical"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">SomeView</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">RecyclerView</span> <span class="attr">...</span> <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">SomeView</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ScrollView</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 RelativeLayout 替换 LinearLayout：</p>
+ <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ScrollView</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">RelativeLayout</span> <span class="attr">...</span> <span class="attr">android:oriention</span>=<span class="string">"vertical"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">SomeView</span> <span class="attr">...</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">RecyclerView</span> <span class="attr">...</span> <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> <span class="attr">below</span>=<span class="string">"..."</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">SomeView</span> <span class="attr">below</span>=<span class="string">"..."</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ScrollView</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这样 RecyclerView 就能作为 ScrollView 的一部分在长页面中正常滚动了。</p>
+<p>当然不能忘记使用 <code>recyclerView.setNestedScrollingEnabled(false)</code> 禁用 RecyclerView 本身的 nested scrolling。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/01/0224-android-studio-new-version-2-3/" itemprop="url">
                   Android Studio 2.3 - 值得注意的新特性
                 </a>
@@ -331,6 +462,9 @@
 <blockquote>
 <p>写 layout 不用 tools namespace 写预览内容的人，养的猫都会很丑，而且会在 30 岁的时候不得已和不喜欢的人结婚</p>
 </blockquote>
+<h2 id="顺便说一个关于快捷键的事情"><a href="#顺便说一个关于快捷键的事情" class="headerlink" title="顺便说一个关于快捷键的事情"></a>顺便说一个关于快捷键的事情</h2><p>Android Studio 的 “Class Name Completion” 这个自动补全操作可以提示 XML 中可选的属性值，Windows 下默认 Keymap <code>Ctrl+Alt+Space</code></p>
+<p><img src="/assets/0224-05.png" alt="自动补全 Layout XML 中的属性值"></p>
+<p>没发现这个操作名字和快捷键的时候都是重新敲一遍属性名称触发它的哈哈哈</p>
 
           
         
@@ -696,125 +830,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/0220-android-get-complete-screenshot-of-recycler-view/" itemprop="url">
-                  Android: 获取RecyclerView的完整截图
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-23T14:53:00+08:00" content="2016-10-23">
-              2016-10-23
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/0220-android-get-complete-screenshot-of-recycler-view/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/0220-android-get-complete-screenshot-of-recycler-view/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>写 Android 应用的时候，偶尔会遇到“需要对某个 view 截图”的问题。对一个单独的简单 view ，常见的实现方法有以下两种：</p>
-<ol>
-<li><p>使用<code>view.getDrawingCache()</code>方法。如：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">TextView textView = findViewById(R.id.some_activity_some_article_text);</span><br><span class="line">textView.setDrawingCacheEnabled(<span class="keyword">true</span>);</span><br><span class="line">Bitmap drawingCache = textView.getDrawingCache();</span><br></pre></td></tr></table></figure>
-<p>所得到的<code>drawingCache</code>即为<code>textView</code>显示在屏幕上的图像。这种方法比较简单，但对于比较高的 view ，经常会由于 drawing cache 不够大而出现 <a href="http://stackoverflow.com/questions/16500379/view-too-large-to-fit-into-drawing-cache-when-calling-getdrawingcache">View too large to fit into drawing cache</a> 的问题。</p>
-</li>
-<li><p>使用<code>view.draw(canvas)</code>方法。如：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">TextView textView = findViewById(R.id.some_activity_some_article_text);</span><br><span class="line">Bitmap viewBitmap = Bitmap.createBitmap(textView.getMeasuredWidth(), textView.getMeasuredHeight(), Bitmap.Config.RGBA_8888);</span><br><span class="line">Canvas canvas = <span class="keyword">new</span> Canvas(viewBitmap);</span><br><span class="line">textView.draw(canvas);</span><br></pre></td></tr></table></figure>
-<p>这之后<code>viewBitmap</code>这个 Bitmap 即为<code>textView</code>的图像。这对普通的 view 基本已经够用了，除非 view 的高度太大，可能还是会内存不足。</p>
-</li>
-</ol>
-<p>然而实际需求中，这种截图常常用于“分享”之类的功能，需要截图的部分一般都是比较复杂的 ViewGroup 。而其中 RecyclerView 的截图尤其麻烦，由于它回收复用 view 和 ViewHolder 的特性，难以用普通的方法截到完整的图片。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/0220-android-get-complete-screenshot-of-recycler-view/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -855,7 +875,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">100</span>
+              <span class="site-state-item-count">101</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -865,7 +885,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

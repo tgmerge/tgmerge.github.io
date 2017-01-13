@@ -245,6 +245,115 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/0215-sqlalchemy-document-learning-note-2-1-orm-tutorial/" itemprop="url">
+                  SQLAlchemy文档和笔记 (2.1) - ORM指南 (1)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-27T00:51:00+08:00" content="2016-04-27">
+              2016-04-27
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/0215-sqlalchemy-document-learning-note-2-1-orm-tutorial/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/0215-sqlalchemy-document-learning-note-2-1-orm-tutorial/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>本篇 <del>胡乱</del> 翻译自<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/tutorial.html">SQLAlchemy 1.0官方文档 Object Relational Tutorial一章</a>。</p>
+<p>术语各种拿不定……可以参考<a href="http://docs.sqlalchemy.org/en/rel_1_0/glossary.html">SQLAlchemy术语表</a>。</p>
+<hr>
+<h2 id="Object-Relational-Tutorial-对象-关系映射指南"><a href="#Object-Relational-Tutorial-对象-关系映射指南" class="headerlink" title="Object Relational Tutorial / 对象-关系映射指南"></a>Object Relational Tutorial / 对象-关系映射指南</h2><p>这一章作为文档中ORM部分的第一章，整体介绍ORM的基本概念和使用方法。倒不如说懒省事的话直接看这一章就行？</p>
+<p>SQLAlchemy ORM提供了一种关联用户定义的Python类和数据库表、以及这些类的实例和表中的行的方法。ORM包含在对象和它们关联的数据库表行中透明地同步变更的机制，称作<a href="http://docs.sqlalchemy.org/en/rel_1_0/glossary.html#term-unit-of-work">unit of work</a>。ORM还包含在用户定义的类和他们代表的数据库表之间的关系中转换查询的方法。</p>
+<p>和SQLAlchemy Expression Language相比，ORM的抽象层级较高。然而在使用ORM的应用中，偶尔也可以通过直接使用Expression Language的方法来进行某些和数据库的直接交互操作。</p>
+<h3 id="Connecting-连接到数据库"><a href="#Connecting-连接到数据库" class="headerlink" title="Connecting / 连接到数据库"></a>Connecting / 连接到数据库</h3><p>在这里暂时使用内存中的SQLite数据库。用<code>create_engine()</code>建立连接：</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/0215-sqlalchemy-document-learning-note-2-1-orm-tutorial/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/0214-sqlalchemy-document-learning-note-1-1-overview/" itemprop="url">
                   SQLAlchemy文档和笔记 (1.1) - 总览
                 </a>
@@ -644,113 +753,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/05/0210-nekoatsume/" itemprop="url">
-                  ねこあつめ
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-05-28T01:20:00+08:00" content="2015-05-28">
-              2015-05-28
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/05/0210-nekoatsume/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/0210-nekoatsume/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="/assets/0210-01.jpg" alt=""></p>
-<p><img src="/assets/0210-02.jpg" alt=""></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -791,7 +798,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">100</span>
+              <span class="site-state-item-count">101</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -801,7 +808,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
