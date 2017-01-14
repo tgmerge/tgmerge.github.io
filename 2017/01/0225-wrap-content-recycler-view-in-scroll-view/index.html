@@ -98,7 +98,7 @@
 <meta property="og:site_name" content="tgmerge's such blog">
 <meta property="og:description" content="问题形如下面这样的布局中：
 &amp;lt;ScrollView&amp;gt;    &amp;lt;LinearLayout ... android:oriention=&quot;vertical&quot;&amp;gt;        &amp;lt;SomeView /&amp;gt;        &amp;lt;RecyclerView ... android:layout_height=&quot;wrap_content&quot; /&amp;gt;        &amp;lt;So">
-<meta property="og:updated_time" content="2017-01-13T07:59:56.065Z">
+<meta property="og:updated_time" content="2017-01-14T04:29:19.428Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WRAP_CONTENT 的 RecyclerView 在 ScrollView 中无法显示完整内容">
 <meta name="twitter:description" content="问题形如下面这样的布局中：
@@ -303,6 +303,7 @@
 </ol>
 <p>均不能解决问题。</p>
 <h2 id="成功但莫名其妙的解决方法"><a href="#成功但莫名其妙的解决方法" class="headerlink" title="成功但莫名其妙的解决方法"></a>成功但莫名其妙的解决方法</h2><p>像这样：</p>
+<a id="more"></a>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ScrollView</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">...</span> <span class="attr">android:oriention</span>=<span class="string">"vertical"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">SomeView</span> <span class="attr">...</span> <span class="attr">android:layout_height</span>=<span class="string">"1000dp"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">RecyclerView</span> <span class="attr">...</span> <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">SomeView</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ScrollView</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>让 RecyclerView 不一开始就显示在屏幕上，而是从下方滚动出来，这样 RecyclerView 就会按 <code>WRAP_CONTENT</code> 的预期正常工作。</p>
 <p>但这种方法并没有什么实际作用……</p>
@@ -321,9 +322,12 @@
 <li><p>使用 RelativeLayout 替换 LinearLayout：</p>
  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ScrollView</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">RelativeLayout</span> <span class="attr">...</span> <span class="attr">android:oriention</span>=<span class="string">"vertical"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">SomeView</span> <span class="attr">...</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">RecyclerView</span> <span class="attr">...</span> <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> <span class="attr">below</span>=<span class="string">"..."</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">SomeView</span> <span class="attr">below</span>=<span class="string">"..."</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ScrollView</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
+<li><p>使用 RelativeLayout 包裹 RecyclerView，在 LinearLayout 中使用。</p>
+</li>
 </ol>
 <p>这样 RecyclerView 就能作为 ScrollView 的一部分在长页面中正常滚动了。</p>
-<p>当然不能忘记使用 <code>recyclerView.setNestedScrollingEnabled(false)</code> 禁用 RecyclerView 本身的 nested scrolling。</p>
+<p>当然不能忘记使用 <code>recyclerView.setNestedScrollingEnabled(false)</code> 禁用 RecyclerView 本身的 nested scrolling，以及使用 <code>recyclerView.getLayoutManager().setAutoMeasureEnabled(true)</code> 启用 LayoutManager 的 AutoMeasure 功能自动计算布局。</p>
+<p>参考：<a href="https://github.com/amardeshbd/android-recycler-view-wrap-content" target="_blank" rel="external">android-recycler-view-wrap-content</a>，<a href="http://stackoverflow.com/a/37338715/2996355" target="_blank" rel="external">RecyclerView inside ScrollView is not working</a> 和 <a href="http://stackoverflow.com/a/38995399/2996355" target="_blank" rel="external">RecyclerView inside ScrollView is not working</a></p>
 
       
     </div>
