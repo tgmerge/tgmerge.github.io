@@ -245,6 +245,120 @@
             
               
                 
+                <a class="post-title-link" href="/2013/12/0052-gae-python/" itemprop="url">
+                  gae, python :: Part I
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-12-05T17:31:00+08:00" content="2013-12-05">
+              2013-12-05
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2013/12/0052-gae-python/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/12/0052-gae-python/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>稍微整理下gae相关的东西。</p>
+<h4 id="关于scaling"><a href="#关于scaling" class="headerlink" title="关于scaling"></a>关于scaling</h4><p>根据Google在这篇<a href="https://developers.google.com/appengine/docs/python/modules/" target="_blank" rel="external">Python App的运行模式</a>的描述，Google非常厚道地给了<code>automatic_scaling</code> 每天28小时免费的实例时间，也就是说如果全天候跑着一个<code>automatic_scaling</code>的示例，免费额度是不会跑完的。</p>
+<p>但剩下的两种模式，也就是<code>basic_scaling</code>和<code>manual_scaling</code>，每天只有8小时额度。用<code>basic_scaling</code>的话要控制好最大空闲时间<code>idle_timeout</code>，但用<code>manual_scaling</code>几乎必定会超额。</p>
+<p>自己暂且用的是这个</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># app.yaml</span><br><span class="line">automatic_scaling:</span><br><span class="line">  min_idle_instances: 0</span><br><span class="line">  max_idle_instances: 1</span><br><span class="line">  max_pending_latency: 15s</span><br></pre></td></tr></table></figure>
+<p>顺便一提，</p>
+<blockquote>
+<p>For example an F2 consumes instance hours at twice the rate of an F1.</p>
+</blockquote>
+<p>调高性能配额的话，Instance hours会烧得更快。</p>
+<h4 id="CookieJar-in-App-Engine"><a href="#CookieJar-in-App-Engine" class="headerlink" title="CookieJar in App Engine"></a>CookieJar in App Engine</h4><p>因为要用CookieJar所以前面那个scaling的问题麻烦了不少……理想情况是有一个Instance一直在跑，里面的CookieJar在内存里一直保留着收集下的cookie。但是问题在于至今还没搞清楚Automatic Scaling到底是以什么机制掐实例的……总之观察一阵子。</p>
+<p>虽然知道最标准的方案是把cookie存到datastore里但不就是懒吗‎……暂且把对象一直塞在内存里。</p>
+<h4 id="Memcache"><a href="#Memcache" class="headerlink" title="Memcache"></a>Memcache</h4><p>Google的Memcache简直良心，看一眼这篇<a href="https://developers.google.com/appengine/docs/python/memcache/usingmemcache?hl=zh-cn" target="_blank" rel="external">使用内存缓存</a>基本上就没问题了。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#memcache_demo.py</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_data</span><span class="params">()</span>:</span></span><br><span class="line">    data = memcache.get(<span class="string">"key"</span>)</span><br><span class="line">    <span class="keyword">if</span> data <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">        <span class="keyword">return</span> data</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        data = self.query_for_data()</span><br><span class="line">        memcache.add(<span class="string">"key"</span>, data, <span class="number">60</span>)</span><br><span class="line">        <span class="keyword">return</span> data</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2013/12/0051-upload-to-gae/" itemprop="url">
                   上传到GAE
                 </a>
@@ -674,108 +788,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/11/0047-unititled-photo/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-11-24T00:54:06+08:00" content="2013-11-24">
-              2013-11-24
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2013/11/0047-unititled-photo/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013/11/0047-unititled-photo/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="/assets/0047-01.jpg" alt=""></p>
-<p>在 浙江大学 Zhejiang University</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -821,7 +833,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">101</span>
+              <span class="site-state-item-count">102</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

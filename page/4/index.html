@@ -245,6 +245,108 @@
             
               
                 
+                <a class="post-title-link" href="/2015/06/0211-nekoatsume-2/" itemprop="url">
+                  ねこあつめ 2
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-06-05T21:43:00+08:00" content="2015-06-05">
+              2015-06-05
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/06/0211-nekoatsume-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/0211-nekoatsume-2/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="/assets/0211-01.jpg" alt=""></p>
+<p>玉泉猫图鉴？</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/05/0210-nekoatsume/" itemprop="url">
                   ねこあつめ
                 </a>
@@ -638,113 +740,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/05/0206-zju-l2tp-not-stable/" itemprop="url">
-                  用浙大的VPN上网，还需要一点玄学(?)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-05-21T20:33:00+08:00" content="2015-05-21">
-              2015-05-21
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/05/0206-zju-l2tp-not-stable/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/0206-zju-l2tp-not-stable/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>目指世界一流大学的母校浙大，似乎并不觉得网速和它的目标有什么关系……如果在浙大的寝室之类，用学校的L2TP VPN上网——尤其是用自己的路由器连接VPN上网，却发现看视频或者下载大文件时经常会中断，那下面这个办法说不定能解决问题。</p>
-<p>试着在看视频的时候拿Wireshark抓个包，最好用Bilibili这种播放器比较垃圾，解决不了太多网络问题的视频站。视频加载卡住之前一般能看到一大串的<code>TCP Dup ACK</code>和<code>TCP Out-Of-Order</code>，就像这样：</p>
-<p><img src="/assets/0206-01.png" alt=""></p>
-<p>如果和这类似，那有相当大的可能是路由器<a href="http://www.wikiwand.com/zh/%E6%9C%80%E5%A4%A7%E4%BC%A0%E8%BE%93%E5%8D%95%E5%85%83" target="_blank" rel="external">MTU值</a>的锅。随便猜一下原因：MTU的大小一般是自动发现的；但浙大的网络似乎过滤了部分ICMP包（结果之一是用学校分配的静态地址Ping不到寝室电脑），导致自动发现失效，VPN服务器的MTU设置又和大部分其他地方的L2TP VPN采用的1460不一样。于是小流量的时候没什么问题，流量一大就各种丢包。</p>
-<p><strong>解决方法是，在路由器的WAN口连接设置里（TP-LINK的话，<code>网络参数</code>-&gt;<code>WAN口设置</code>），把MTU的值改成<code>1428</code>这个玄学的数字。</strong></p>
-<p>改完之后断开路由器的VPN连接再重连。第一次连接时间可能会很长，耐心等一下。重新开视频抓包试试，如果<code>TCP Dup ACK</code>几乎消失，那就算解决了。</p>
-<p>题外话，cc98那里关于这个问题还有几个不同的玄学数字，比如1410、144X之类。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -790,7 +785,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">101</span>
+              <span class="site-state-item-count">102</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
