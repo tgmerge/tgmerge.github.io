@@ -245,6 +245,113 @@
             
               
                 
+                <a class="post-title-link" href="/2017/03/0227-sublime-repl-lua-no-output/" itemprop="url">
+                  SublimeREPL 中，Lua 脚本缺少输出的问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-31T20:39:00+08:00" content="2017-03-31">
+              2017-03-31
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/03/0227-sublime-repl-lua-no-output/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/0227-sublime-repl-lua-no-output/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>SublimeText 非常有名的插件 <a href="https://packagecontrol.io/packages/SublimeREPL" target="_blank" rel="external">SublimeREPL</a> 在运行 Lua 脚本的时候，可能会出现<code>io.read()</code>之前的输出不在 REPL 标签页中显示的问题。比如，用 SublimeREPL 结合 <a href="https://packagecontrol.io/packages/Load%20file%20to%20REPL" target="_blank" rel="external">Load file to REPL</a> 插件，运行这样的脚本（Command: <code>SublimeREPL - Load current file</code>）：</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"Hello, Lua"</span>)</span><br><span class="line">a = <span class="built_in">io</span>.read(<span class="string">"*n"</span>)</span><br><span class="line"><span class="built_in">print</span>(a)</span><br></pre></td></tr></table></figure>
+<p>那么 <code>Hello, Lua</code> 并不会一开始就显示出来，而是在输入字符并按 <kbd>Enter</kbd> 之后才会和 <code>print(a)</code> 的输出一同显示在 REPL 中。</p>
+<p>这是因为 Lua 使用了输出缓冲区，阻碍了 REPL 的 <code>subprocess()</code> 读取最新的输出。解决方法是，在 REPL 运行文件之前先执行一下 <code>io.output():setvbuf(&#39;no&#39;)</code>，禁用输出缓冲区。</p>
+<p>如果用 Load file to REPL 插件的话，在它的配置文件（Command: <code>Preferences: LoadFileToRepl Settings</code>）中，将 Lua 的运行命令修改成这样</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">... ...</span><br><span class="line">    , <span class="string">"python_load_command"</span>       : <span class="string">"exec(open(\"%s\").read())"</span></span><br><span class="line">    , <span class="string">"lua_load_command"</span>          : <span class="string">"io.output():setvbuf('no');dofile(\"%s\")"</span></span><br><span class="line">    , <span class="string">"powershell_load_command"</span>   : <span class="string">". %s"</span></span><br><span class="line">... ...</span><br></pre></td></tr></table></figure>
+<p>就可以了。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/01/0226-jetbrains-ide-strict-drag-n-drop/" itemprop="url">
                   For 板子党：关闭 Jetbrains IDE 中的拖动操作
                 </a>
@@ -665,123 +772,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/0222-rxjava-note-and-demo-1/" itemprop="url">
-                  RxJava 笔记和 Demo (1) - 介绍和原理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-18T14:05:00+08:00" content="2016-11-18">
-              2016-11-18
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/0222-rxjava-note-and-demo-1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/0222-rxjava-note-and-demo-1/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>用了蛮久 Rx 结果还没有正儿八经学一下感觉不太科学（笑</p>
-<p>所以一边读<a href="http://gank.io/post/560e15be2dca930e00da1083">给 Android 开发者的 RxJava 详解</a>这篇文章，一边写了个 <a href="https://github.com/tgmerge/rx-java-playground">playground 式的小应用</a>。</p>
-<p>笔记是给自己看的所以写得很乱；文章中类似 Code 1 这样的地方会链接到相应的代码示例。</p>
-<h2 id="概念：扩展的观察者模式"><a href="#概念：扩展的观察者模式" class="headerlink" title="概念：扩展的观察者模式"></a>概念：扩展的观察者模式</h2><p>RxJava 是一个观察者模式的工具库。</p>
-<p>RxJava 中的基本概念：</p>
-<ol>
-<li>Observable - 被观察者</li>
-<li>Observer - 观察者</li>
-<li>subscribe - 订阅</li>
-<li>事件</li>
-</ol>
-<p>RxJava 的事件回调，最基本的事件是<code>onNext()</code>，它相当于<code>onClick()</code>和<code>onEvent()</code>之类。</p>
-<p>特殊的事件：表示事件队列完结的<code>onCompleted()</code>和表示事件队列异常的<code>onError()</code>，正确运行的事件队列中，他们有且仅有一个（不是各有一个），且是事件序列中的最后一个。</p>
-<h2 id="基本实现"><a href="#基本实现" class="headerlink" title="基本实现"></a>基本实现</h2><p><a href="https://github.com/tgmerge/rx-java-playground/blob/8f8f79766f7ad731529fe2bb15348b76250a4632/app/src/main/java/me/tgmerge/rxjavaplayground/part1_rx/RxTest1Activity.java#L30">Code 1 - 创建 Observer（观察者）</a></p>
-<p><a href="https://github.com/tgmerge/rx-java-playground/blob/8f8f79766f7ad731529fe2bb15348b76250a4632/app/src/main/java/me/tgmerge/rxjavaplayground/part1_rx/RxTest1Activity.java#L49">Code 2 - 创建 Subscriber</a></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/0222-rxjava-note-and-demo-1/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -827,7 +817,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">102</span>
+              <span class="site-state-item-count">103</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -837,7 +827,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
