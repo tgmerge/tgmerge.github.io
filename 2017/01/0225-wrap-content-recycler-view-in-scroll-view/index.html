@@ -3,10 +3,10 @@
 
 
 
-<html class="theme-next pisces">
+<html class="theme-next pisces" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -27,9 +27,12 @@
 
 
 
+
+
+
   
   
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -57,11 +60,17 @@
   
 
   
+    
+      
+    
+
+    
+  
 
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Satisfy:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:300,300italic,400,400italic,700,700italic|Satisfy:300,300italic,400,400italic,700,700italic|Inconsolata:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -69,9 +78,9 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Android,Troubleshooting," />
@@ -83,55 +92,67 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
 
 
 
-<meta name="description" content="问题形如下面这样的布局中：
-&amp;lt;ScrollView&amp;gt;    &amp;lt;LinearLayout ... android:oriention=&quot;vertical&quot;&amp;gt;        &amp;lt;SomeView /&amp;gt;        &amp;lt;RecyclerView ... android:layout_height=&quot;wrap_content&quot; /&amp;gt;        &amp;lt;So">
+<meta name="description" content="问题形如下面这样的布局中： &amp;lt;ScrollView&amp;gt;    &amp;lt;LinearLayout ... android:oriention=&quot;vertical&quot;&amp;gt;        &amp;lt;SomeView /&amp;gt;        &amp;lt;RecyclerView ... android:layout_height=&quot;wrap_content&quot; /&amp;gt;        &amp;lt;So">
+<meta name="keywords" content="Android,Troubleshooting">
 <meta property="og:type" content="article">
 <meta property="og:title" content="WRAP_CONTENT 的 RecyclerView 在 ScrollView 中无法显示完整内容">
 <meta property="og:url" content="https://tgmerge.me/2017/01/0225-wrap-content-recycler-view-in-scroll-view/index.html">
 <meta property="og:site_name" content="tgmerge's such blog">
-<meta property="og:description" content="问题形如下面这样的布局中：
-&amp;lt;ScrollView&amp;gt;    &amp;lt;LinearLayout ... android:oriention=&quot;vertical&quot;&amp;gt;        &amp;lt;SomeView /&amp;gt;        &amp;lt;RecyclerView ... android:layout_height=&quot;wrap_content&quot; /&amp;gt;        &amp;lt;So">
+<meta property="og:description" content="问题形如下面这样的布局中： &amp;lt;ScrollView&amp;gt;    &amp;lt;LinearLayout ... android:oriention=&quot;vertical&quot;&amp;gt;        &amp;lt;SomeView /&amp;gt;        &amp;lt;RecyclerView ... android:layout_height=&quot;wrap_content&quot; /&amp;gt;        &amp;lt;So">
 <meta property="og:updated_time" content="2017-01-14T04:29:19.428Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WRAP_CONTENT 的 RecyclerView 在 ScrollView 中无法显示完整内容">
-<meta name="twitter:description" content="问题形如下面这样的布局中：
-&amp;lt;ScrollView&amp;gt;    &amp;lt;LinearLayout ... android:oriention=&quot;vertical&quot;&amp;gt;        &amp;lt;SomeView /&amp;gt;        &amp;lt;RecyclerView ... android:layout_height=&quot;wrap_content&quot; /&amp;gt;        &amp;lt;So">
+<meta name="twitter:description" content="问题形如下面这样的布局中： &amp;lt;ScrollView&amp;gt;    &amp;lt;LinearLayout ... android:oriention=&quot;vertical&quot;&amp;gt;        &amp;lt;SomeView /&amp;gt;        &amp;lt;RecyclerView ... android:layout_height=&quot;wrap_content&quot; /&amp;gt;        &amp;lt;So">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: false,
     duoshuo: {
       userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
 
-
   <link rel="canonical" href="https://tgmerge.me/2017/01/0225-wrap-content-recycler-view-in-scroll-view/"/>
+
+
+
 
 
   <title> WRAP_CONTENT 的 RecyclerView 在 ScrollView 中无法显示完整内容 | tgmerge's such blog </title>
 </head>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
+
+
+
+
 
 
 
@@ -147,29 +168,33 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">tgmerge's such blog</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">tgmerge's such blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">It's dangerous to go<br>along! Take this.</h1>
+      
   </div>
-  <p class="site-subtitle">It's dangerous to go<br>along! Take this.</p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -216,6 +241,8 @@
   
 </nav>
 
+
+
  </div>
     </header>
 
@@ -229,59 +256,73 @@
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tgmerge.me/2017/01/0225-wrap-content-recycler-view-in-scroll-view/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tgmerge">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tgmerge's such blog">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
                 WRAP_CONTENT 的 RecyclerView 在 ScrollView 中无法显示完整内容
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-13T15:50:00+08:00" content="2017-01-13">
-              2017-01-13
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-13T15:50:00+08:00">
+                2017-01-13
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/01/0225-wrap-content-recycler-view-in-scroll-view/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/0225-wrap-content-recycler-view-in-scroll-view/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -294,7 +335,7 @@
 
       
         <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>形如下面这样的布局中：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ScrollView</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">...</span> <span class="attr">android:oriention</span>=<span class="string">"vertical"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">SomeView</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">RecyclerView</span> <span class="attr">...</span> <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">SomeView</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ScrollView</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ScrollView</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">...</span> <span class="attr">android:oriention</span>=<span class="string">"vertical"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">SomeView</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">RecyclerView</span> <span class="attr">...</span> <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">SomeView</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ScrollView</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>RecyclerView 在项目较多时将无法按 <code>WRAP_CONTENT</code> 的预期显示完整内容，只会显示一部分项目。</p>
 <h2 id="失败的解决方法"><a href="#失败的解决方法" class="headerlink" title="失败的解决方法"></a>失败的解决方法</h2><ol>
 <li><code>recyclerView.getLayoutManager().setAutoMeasureEnabled(false)</code>；</li>
@@ -304,7 +345,7 @@
 <p>均不能解决问题。</p>
 <h2 id="成功但莫名其妙的解决方法"><a href="#成功但莫名其妙的解决方法" class="headerlink" title="成功但莫名其妙的解决方法"></a>成功但莫名其妙的解决方法</h2><p>像这样：</p>
 <a id="more"></a>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ScrollView</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">...</span> <span class="attr">android:oriention</span>=<span class="string">"vertical"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">SomeView</span> <span class="attr">...</span> <span class="attr">android:layout_height</span>=<span class="string">"1000dp"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">RecyclerView</span> <span class="attr">...</span> <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">SomeView</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ScrollView</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ScrollView</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">...</span> <span class="attr">android:oriention</span>=<span class="string">"vertical"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">SomeView</span> <span class="attr">...</span> <span class="attr">android:layout_height</span>=<span class="string">"1000dp"</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">RecyclerView</span> <span class="attr">...</span> <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">SomeView</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ScrollView</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>让 RecyclerView 不一开始就显示在屏幕上，而是从下方滚动出来，这样 RecyclerView 就会按 <code>WRAP_CONTENT</code> 的预期正常工作。</p>
 <p>但这种方法并没有什么实际作用……</p>
 <h2 id="失败的解决方法-2"><a href="#失败的解决方法-2" class="headerlink" title="失败的解决方法 #2"></a>失败的解决方法 #2</h2><p>在给 RecyclerView 的 adapter 添加数据后调用：</p>
@@ -317,10 +358,10 @@
 <p>或者使用 <code>postDelayed()</code> 避开动画再使用上述方法，均不能解决问题。按说 invalidate() 之后 LayoutManager 应该会重新 measure 的，但实际上并没有？</p>
 <h2 id="成功的解决方法"><a href="#成功的解决方法" class="headerlink" title="成功的解决方法"></a>成功的解决方法</h2><ol>
 <li><p>使用 NestedScrollView 替换 ScrollView：</p>
- <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">android.support.v4.widget.NestedScrollView</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">...</span> <span class="attr">android:oriention</span>=<span class="string">"vertical"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">SomeView</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">RecyclerView</span> <span class="attr">...</span> <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">SomeView</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ScrollView</span>&gt;</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight xml"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">android.support.v4.widget.NestedScrollView</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">...</span> <span class="attr">android:oriention</span>=<span class="string">"vertical"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">SomeView</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">RecyclerView</span> <span class="attr">...</span> <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">SomeView</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ScrollView</span>&gt;</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>使用 RelativeLayout 替换 LinearLayout：</p>
- <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ScrollView</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">RelativeLayout</span> <span class="attr">...</span> <span class="attr">android:oriention</span>=<span class="string">"vertical"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">SomeView</span> <span class="attr">...</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">RecyclerView</span> <span class="attr">...</span> <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> <span class="attr">below</span>=<span class="string">"..."</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">SomeView</span> <span class="attr">below</span>=<span class="string">"..."</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ScrollView</span>&gt;</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight xml"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ScrollView</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">RelativeLayout</span> <span class="attr">...</span> <span class="attr">android:oriention</span>=<span class="string">"vertical"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">SomeView</span> <span class="attr">...</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">RecyclerView</span> <span class="attr">...</span> <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span> <span class="attr">below</span>=<span class="string">"..."</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">SomeView</span> <span class="attr">below</span>=<span class="string">"..."</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ScrollView</span>&gt;</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>使用 RelativeLayout 包裹 RecyclerView，在 LinearLayout 中使用。</p>
 </li>
@@ -346,31 +387,44 @@
       
     </div>
 
+    <div>
+      
+        
+
+      
+    </div>
+
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag">#Android</a>
+            <a href="/tags/Android/" rel="tag"># Android</a>
           
-            <a href="/tags/Troubleshooting/" rel="tag">#Troubleshooting</a>
+            <a href="/tags/Troubleshooting/" rel="tag"># Troubleshooting</a>
           
         </div>
+      
+
+      
+        
       
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/0224-android-studio-new-version-2-3/" rel="next" title="Android Studio 2.3 - 值得注意的新特性">
-                <i class="fa fa-chevron-left"></i> Android Studio 2.3 - 值得注意的新特性
+              <a href="/2017/01/0226-jetbrains-ide-strict-drag-n-drop/" rel="next" title="For 板子党：关闭 Jetbrains IDE 中的拖动操作">
+                <i class="fa fa-chevron-left"></i> For 板子党：关闭 Jetbrains IDE 中的拖动操作
               </a>
             
           </div>
 
+          <span class="post-nav-divider"></span>
+
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/01/0226-jetbrains-ide-strict-drag-n-drop/" rel="prev" title="For 板子党：关闭 Jetbrains IDE 中的拖动操作">
-                For 板子党：关闭 Jetbrains IDE 中的拖动操作 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/01/0224-android-studio-new-version-2-3/" rel="prev" title="Android Studio 2.3 - 值得注意的新特性">
+                Android Studio 2.3 - 值得注意的新特性 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -396,10 +450,6 @@
 
           
   <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2017/01/0225-wrap-content-recycler-view-in-scroll-view/"
-           data-title="WRAP_CONTENT 的 RecyclerView 在 ScrollView 中无法显示完整内容" data-url="https://tgmerge.me/2017/01/0225-wrap-content-recycler-view-in-scroll-view/">
-      </div>
     
   </div>
 
@@ -432,27 +482,34 @@
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/assets/avatar.png"
                alt="tgmerge" />
           <p class="site-author-name" itemprop="name">tgmerge</p>
-          <p class="site-description motion-element" itemprop="description"></p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
         </div>
         <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">103</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
 
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">103</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
           
 
           
+
+          
+            
+            
             <div class="site-state-item site-state-tags">
-              <a href="/tags">
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">标签</span>
               </a>
@@ -517,19 +574,29 @@
         
         
 
+        
+
+
       </section>
 
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#失败的解决方法"><span class="nav-text">失败的解决方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#成功但莫名其妙的解决方法"><span class="nav-text">成功但莫名其妙的解决方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#失败的解决方法-2"><span class="nav-text">失败的解决方法 #2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#成功的解决方法"><span class="nav-text">成功的解决方法</span></a></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
+      
+
       
 
     </div>
@@ -552,6 +619,7 @@
   <span class="author" itemprop="copyrightHolder">tgmerge</span>
 </div>
 
+
 <div class="powered-by">
   由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
@@ -563,15 +631,20 @@
   </a>
 </div>
 
+
         
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
   </div>
 
   
@@ -594,88 +667,99 @@
 
 
 
-  
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
 
 
 
   
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
-
-
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
 
 
 
   
 
-  
-    
-  
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"tgmerge"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
 
   
-    
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
+
+
+  
+
+
+
+
+	
+
+
+
+
+
   
 
 
 
 
 
+  
+
+
+
+
 
   
+
+
+
+
+
+
+  
+
+
+
+
+
   
 
   

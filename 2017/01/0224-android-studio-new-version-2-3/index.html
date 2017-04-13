@@ -3,10 +3,10 @@
 
 
 
-<html class="theme-next pisces">
+<html class="theme-next pisces" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -27,9 +27,12 @@
 
 
 
+
+
+
   
   
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -57,11 +60,17 @@
   
 
   
+    
+      
+    
+
+    
+  
 
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Satisfy:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:300,300italic,400,400italic,700,700italic|Satisfy:300,300italic,400,400italic,700,700italic|Inconsolata:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -69,9 +78,9 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Android,Java,Android Studio," />
@@ -83,21 +92,20 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
 
 
 
-<meta name="description" content="Android Studio 2.3 两个星期以前发布到了 beta 版本，从这些新特性上又给无脑写代码提供了大量便利：
-Instant Run 的改进Android Studio 2.2 的 Instant Run 按钮很不方便使用：在 Instant Run 出问题的时候，很难快速来一次传统的 “Run” 来重装应用。现在，Android 2.3 把 Instant Run 按钮和 Run 按">
+<meta name="description" content="Android Studio 2.3 两个星期以前发布到了 beta 版本，从这些新特性上又给无脑写代码提供了大量便利： Instant Run 的改进Android Studio 2.2 的 Instant Run 按钮很不方便使用：在 Instant Run 出问题的时候，很难快速来一次传统的 “Run” 来重装应用。现在，Android 2.3 把 Instant Run 按钮和 Run 按">
+<meta name="keywords" content="Android,Java,Android Studio">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android Studio 2.3 - 值得注意的新特性">
 <meta property="og:url" content="https://tgmerge.me/2017/01/0224-android-studio-new-version-2-3/index.html">
 <meta property="og:site_name" content="tgmerge's such blog">
-<meta property="og:description" content="Android Studio 2.3 两个星期以前发布到了 beta 版本，从这些新特性上又给无脑写代码提供了大量便利：
-Instant Run 的改进Android Studio 2.2 的 Instant Run 按钮很不方便使用：在 Instant Run 出问题的时候，很难快速来一次传统的 “Run” 来重装应用。现在，Android 2.3 把 Instant Run 按钮和 Run 按">
+<meta property="og:description" content="Android Studio 2.3 两个星期以前发布到了 beta 版本，从这些新特性上又给无脑写代码提供了大量便利： Instant Run 的改进Android Studio 2.2 的 Instant Run 按钮很不方便使用：在 Instant Run 出问题的时候，很难快速来一次传统的 “Run” 来重装应用。现在，Android 2.3 把 Instant Run 按钮和 Run 按">
 <meta property="og:image" content="https://tgmerge.me/assets/0224-01.png">
 <meta property="og:image" content="https://tgmerge.me/assets/0224-02.png">
 <meta property="og:image" content="https://tgmerge.me/assets/0224-03.png">
@@ -106,38 +114,51 @@ Instant Run 的改进Android Studio 2.2 的 Instant Run 按钮很不方便使用
 <meta property="og:updated_time" content="2017-01-14T04:29:01.050Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Studio 2.3 - 值得注意的新特性">
-<meta name="twitter:description" content="Android Studio 2.3 两个星期以前发布到了 beta 版本，从这些新特性上又给无脑写代码提供了大量便利：
-Instant Run 的改进Android Studio 2.2 的 Instant Run 按钮很不方便使用：在 Instant Run 出问题的时候，很难快速来一次传统的 “Run” 来重装应用。现在，Android 2.3 把 Instant Run 按钮和 Run 按">
+<meta name="twitter:description" content="Android Studio 2.3 两个星期以前发布到了 beta 版本，从这些新特性上又给无脑写代码提供了大量便利： Instant Run 的改进Android Studio 2.2 的 Instant Run 按钮很不方便使用：在 Instant Run 出问题的时候，很难快速来一次传统的 “Run” 来重装应用。现在，Android 2.3 把 Instant Run 按钮和 Run 按">
 <meta name="twitter:image" content="https://tgmerge.me/assets/0224-01.png">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: false,
     duoshuo: {
       userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
 
-
   <link rel="canonical" href="https://tgmerge.me/2017/01/0224-android-studio-new-version-2-3/"/>
+
+
+
 
 
   <title> Android Studio 2.3 - 值得注意的新特性 | tgmerge's such blog </title>
 </head>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
+
+
+
+
 
 
 
@@ -153,29 +174,33 @@ Instant Run 的改进Android Studio 2.2 的 Instant Run 按钮很不方便使用
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">tgmerge's such blog</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">tgmerge's such blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">It's dangerous to go<br>along! Take this.</h1>
+      
   </div>
-  <p class="site-subtitle">It's dangerous to go<br>along! Take this.</p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -222,6 +247,8 @@ Instant Run 的改进Android Studio 2.2 的 Instant Run 按钮很不方便使用
   
 </nav>
 
+
+
  </div>
     </header>
 
@@ -235,59 +262,73 @@ Instant Run 的改进Android Studio 2.2 的 Instant Run 按钮很不方便使用
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tgmerge.me/2017/01/0224-android-studio-new-version-2-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tgmerge">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tgmerge's such blog">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
                 Android Studio 2.3 - 值得注意的新特性
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-01T17:57:00+08:00" content="2017-01-01">
-              2017-01-01
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-01T17:57:00+08:00">
+                2017-01-01
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/01/0224-android-studio-new-version-2-3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/0224-android-studio-new-version-2-3/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -315,7 +356,7 @@ Instant Run 的改进Android Studio 2.2 的 Instant Run 按钮很不方便使用
 <p><strong>Chain 约束</strong>允许创建平均分布的多个视图组合，嵌套 <code>LinearLayout</code> 有望成为历史：</p>
 <p><img src="/assets/0224-03.png" alt="多种 Chain 类型"></p>
 <p><strong>Ratio 约束</strong>允许以多种形式约束 View 的长宽比，各种 RatioImageView 大概也要成为历史了：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 约束长宽比 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span><br><span class="line">        <span class="attr">android:layout_height</span>=<span class="string">"0dp"</span></span><br><span class="line">        <span class="attr">app:layout_constraintDimensionRatio</span>=<span class="string">"1:1"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 约束仅作用于高度：</span><br><span class="line">     Button 的宽度将和 parent 一致，高度将自动调整，使按钮的长宽比是 16:9 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></span><br><span class="line">        <span class="attr">android:layout_height</span>=<span class="string">"0dp"</span></span><br><span class="line">        <span class="attr">app:layout_constraintDimensionRatio</span>=<span class="string">"H,16:9"</span></span><br><span class="line">        <span class="attr">app:layout_constraintBottom_toBottomOf</span>=<span class="string">"parent"</span></span><br><span class="line">        <span class="attr">app:layout_constraintTop_toTopOf</span>=<span class="string">"parent"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 约束长宽比 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"0dp"</span></div><div class="line">        <span class="attr">app:layout_constraintDimensionRatio</span>=<span class="string">"1:1"</span> /&gt;</div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 约束仅作用于高度：</span></div><div class="line">     Button 的宽度将和 parent 一致，高度将自动调整，使按钮的长宽比是 16:9 --&gt;</div><div class="line"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"0dp"</span></div><div class="line">        <span class="attr">app:layout_constraintDimensionRatio</span>=<span class="string">"H,16:9"</span></div><div class="line">        <span class="attr">app:layout_constraintBottom_toBottomOf</span>=<span class="string">"parent"</span></div><div class="line">        <span class="attr">app:layout_constraintTop_toTopOf</span>=<span class="string">"parent"</span>/&gt;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>I love it!</p>
 <p><img src="/assets/0224-04.jpg" alt="I love it!"></p>
@@ -324,7 +365,7 @@ Instant Run 的改进Android Studio 2.2 的 Instant Run 按钮很不方便使用
 <h2 id="Lint-的改进"><a href="#Lint-的改进" class="headerlink" title="Lint 的改进"></a>Lint 的改进</h2><p>Lint 结果终于有了 Material design 的样子，这样大概关掉 lint 的人也会少一点吧（讲真为什么要关？嫌慢的话换电脑啊</p>
 <h2 id="Data-binding"><a href="#Data-binding" class="headerlink" title="Data binding"></a>Data binding</h2><p>Android Studio 2.3 改进了对 <a href="https://developer.android.com/topic/libraries/data-binding/index.html" target="_blank" rel="external">Data Binding Library</a> 的支持。</p>
 <p><a href="https://realm.io/news/data-binding-android-boyar-mount/" target="_blank" rel="external">Layout 中 Data binding 的支持</a>简直好顶赞，语法一看就让人想起 AngularJS：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">layout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">data</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">variable</span> <span class="attr">name</span>=<span class="string">"user"</span> <span class="attr">type</span>=<span class="string">"com.android.example.User"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">data</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">RelativeLayout</span></span><br><span class="line">            <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span><br><span class="line">            <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">TextView</span> <span class="attr">android:text</span>=<span class="string">"@&#123;user.name&#125;"</span></span><br><span class="line">                  <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span><br><span class="line">                  <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">TextView</span> <span class="attr">android:text</span>=<span class="string">"@&#123;user.lastname&#125;"</span></span><br><span class="line">                  <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span><br><span class="line">                  <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">layout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">layout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">data</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">variable</span> <span class="attr">name</span>=<span class="string">"user"</span> <span class="attr">type</span>=<span class="string">"com.android.example.User"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">data</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">RelativeLayout</span></span></div><div class="line">            <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">            <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">TextView</span> <span class="attr">android:text</span>=<span class="string">"@&#123;user.name&#125;"</span></span></div><div class="line">                  <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">                  <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span>/&gt;</div><div class="line">        <span class="tag">&lt;<span class="name">TextView</span> <span class="attr">android:text</span>=<span class="string">"@&#123;user.lastname&#125;"</span></span></div><div class="line">                  <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></div><div class="line">                  <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span>/&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">layout</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>Data Binding Library 还支持更多绑定属性、通过 <code>ViewHolder</code> 使用多种 View type 的 layout 等复杂特性。</p>
 <p>以及大家都喜欢的自动 <code>null</code> 检查！再也没有 <code>NullPointerException</code> 辣！取而代之的是空白 Item（笑</p>
 <blockquote>
@@ -356,33 +397,46 @@ Instant Run 的改进Android Studio 2.2 的 Instant Run 按钮很不方便使用
       
     </div>
 
+    <div>
+      
+        
+
+      
+    </div>
+
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag">#Android</a>
+            <a href="/tags/Android/" rel="tag"># Android</a>
           
-            <a href="/tags/Java/" rel="tag">#Java</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
-            <a href="/tags/Android-Studio/" rel="tag">#Android Studio</a>
+            <a href="/tags/Android-Studio/" rel="tag"># Android Studio</a>
           
         </div>
+      
+
+      
+        
       
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/0223-rxjava-note-and-demo-2/" rel="next" title="RxJava 笔记和 Demo (2) - 适用场景">
-                <i class="fa fa-chevron-left"></i> RxJava 笔记和 Demo (2) - 适用场景
+              <a href="/2017/01/0225-wrap-content-recycler-view-in-scroll-view/" rel="next" title="WRAP_CONTENT 的 RecyclerView 在 ScrollView 中无法显示完整内容">
+                <i class="fa fa-chevron-left"></i> WRAP_CONTENT 的 RecyclerView 在 ScrollView 中无法显示完整内容
               </a>
             
           </div>
 
+          <span class="post-nav-divider"></span>
+
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/01/0225-wrap-content-recycler-view-in-scroll-view/" rel="prev" title="WRAP_CONTENT 的 RecyclerView 在 ScrollView 中无法显示完整内容">
-                WRAP_CONTENT 的 RecyclerView 在 ScrollView 中无法显示完整内容 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/11/0223-rxjava-note-and-demo-2/" rel="prev" title="RxJava 笔记和 Demo (2) - 适用场景">
+                RxJava 笔记和 Demo (2) - 适用场景 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -408,10 +462,6 @@ Instant Run 的改进Android Studio 2.2 的 Instant Run 按钮很不方便使用
 
           
   <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2017/01/0224-android-studio-new-version-2-3/"
-           data-title="Android Studio 2.3 - 值得注意的新特性" data-url="https://tgmerge.me/2017/01/0224-android-studio-new-version-2-3/">
-      </div>
     
   </div>
 
@@ -444,27 +494,34 @@ Instant Run 的改进Android Studio 2.2 的 Instant Run 按钮很不方便使用
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/assets/avatar.png"
                alt="tgmerge" />
           <p class="site-author-name" itemprop="name">tgmerge</p>
-          <p class="site-description motion-element" itemprop="description"></p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
         </div>
         <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">103</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
 
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">103</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
           
 
           
+
+          
+            
+            
             <div class="site-state-item site-state-tags">
-              <a href="/tags">
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">标签</span>
               </a>
@@ -529,19 +586,29 @@ Instant Run 的改进Android Studio 2.2 的 Instant Run 按钮很不方便使用
         
         
 
+        
+
+
       </section>
 
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Instant-Run-的改进"><span class="nav-text">Instant Run 的改进</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译缓存"><span class="nav-text">编译缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Layout-编辑器"><span class="nav-text">Layout 编辑器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#App-Links-支持"><span class="nav-text">App Links 支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lint-的改进"><span class="nav-text">Lint 的改进</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-binding"><span class="nav-text">Data binding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#很多的-Bug-fix"><span class="nav-text">很多的 Bug fix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#顺便说一个关于快捷键的事情"><span class="nav-text">顺便说一个关于快捷键的事情</span></a></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
+      
+
       
 
     </div>
@@ -564,6 +631,7 @@ Instant Run 的改进Android Studio 2.2 的 Instant Run 按钮很不方便使用
   <span class="author" itemprop="copyrightHolder">tgmerge</span>
 </div>
 
+
 <div class="powered-by">
   由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
@@ -575,15 +643,20 @@ Instant Run 的改进Android Studio 2.2 的 Instant Run 按钮很不方便使用
   </a>
 </div>
 
+
         
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
   </div>
 
   
@@ -606,88 +679,99 @@ Instant Run 的改进Android Studio 2.2 的 Instant Run 按钮很不方便使用
 
 
 
-  
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
 
 
 
   
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
-
-
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
 
 
 
   
 
-  
-    
-  
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"tgmerge"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
 
   
-    
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
+
+
+  
+
+
+
+
+	
+
+
+
+
+
   
 
 
 
 
 
+  
+
+
+
+
 
   
+
+
+
+
+
+
+  
+
+
+
+
+
   
 
   

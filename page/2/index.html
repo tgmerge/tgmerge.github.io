@@ -3,10 +3,10 @@
 
 
 
-<html class="theme-next pisces">
+<html class="theme-next pisces" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -27,9 +27,12 @@
 
 
 
+
+
+
   
   
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -57,11 +60,17 @@
   
 
   
+    
+      
+    
+
+    
+  
 
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Satisfy:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:300,300italic,400,400italic,700,700italic|Satisfy:300,300italic,400,400italic,700,700italic|Inconsolata:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -69,65 +78,76 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="personal, blog, memo, coding, tgmerge" />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
+  <meta name="keywords" content="tgmerge, personal, blog, memo, coding, diary, android" />
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
 
 
 
-<meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="tgmerge's such blog">
 <meta property="og:url" content="https://tgmerge.me/page/2/index.html">
 <meta property="og:site_name" content="tgmerge's such blog">
-<meta property="og:description">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tgmerge's such blog">
-<meta name="twitter:description">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: false,
     duoshuo: {
       userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
 
-
   <link rel="canonical" href="https://tgmerge.me/page/2/"/>
+
+
+
 
 
   <title> tgmerge's such blog </title>
 </head>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
+
+
+
+
 
 
 
@@ -143,31 +163,35 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
+  <div class="container sidebar-position-left 
    page-home 
  ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">tgmerge's such blog</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">tgmerge's such blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">It's dangerous to go<br>along! Take this.</h1>
+      
   </div>
-  <p class="site-subtitle">It's dangerous to go<br>along! Take this.</p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -214,6 +238,8 @@
   
 </nav>
 
+
+
  </div>
     </header>
 
@@ -227,20 +253,30 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tgmerge.me/2016/11/0222-rxjava-note-and-demo-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tgmerge">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tgmerge's such blog">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -250,39 +286,43 @@
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-18T14:05:00+08:00" content="2016-11-18">
-              2016-11-18
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-18T14:05:00+08:00">
+                2016-11-18
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/0222-rxjava-note-and-demo-1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/0222-rxjava-note-and-demo-1/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -310,12 +350,18 @@
 <p>特殊的事件：表示事件队列完结的<code>onCompleted()</code>和表示事件队列异常的<code>onError()</code>，正确运行的事件队列中，他们有且仅有一个（不是各有一个），且是事件序列中的最后一个。</p>
 <h2 id="基本实现"><a href="#基本实现" class="headerlink" title="基本实现"></a>基本实现</h2><p><a href="https://github.com/tgmerge/rx-java-playground/blob/8f8f79766f7ad731529fe2bb15348b76250a4632/app/src/main/java/me/tgmerge/rxjavaplayground/part1_rx/RxTest1Activity.java#L30">Code 1 - 创建 Observer（观察者）</a></p>
 <p><a href="https://github.com/tgmerge/rx-java-playground/blob/8f8f79766f7ad731529fe2bb15348b76250a4632/app/src/main/java/me/tgmerge/rxjavaplayground/part1_rx/RxTest1Activity.java#L49">Code 2 - 创建 Subscriber</a></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/0222-rxjava-note-and-demo-1/" rel="contents">
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/11/0222-rxjava-note-and-demo-1/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
+          <!--/noindex-->
         
+      
+    </div>
+
+    <div>
       
     </div>
 
@@ -333,6 +379,8 @@
       
 
       
+
+      
       
         <div class="post-eof"></div>
       
@@ -344,20 +392,30 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tgmerge.me/2016/11/0221-my-very-own-tips-on-android/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tgmerge">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tgmerge's such blog">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -367,39 +425,43 @@
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-17T00:23:00+08:00" content="2016-11-17">
-              2016-11-17
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-17T00:23:00+08:00">
+                2016-11-17
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/0221-my-very-own-tips-on-android/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/0221-my-very-own-tips-on-android/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -417,12 +479,18 @@
 <p>合理的组织方式应该是按功能（login, mail, search, etc.）组织 package。<a href="https://github.com/sockeqwe/mosby/tree/d1d83bc58c7bc7786e69f41ce88f7ed936103884/sample-mail/src/main/java/com/hannesdorfmann/mosby/sample/mail">Mosby demo 这种形式</a>就很不错。</p>
 <h3 id="组织一个-backbone或者类似的包"><a href="#组织一个-backbone或者类似的包" class="headerlink" title="组织一个_backbone或者类似的包"></a>组织一个<code>_backbone</code>或者类似的包</h3><p>在项目中把个人编写、和业务无关的“框架”独立成一个 Java package 或者 module。</p>
 <p>虽然在前面加下划线这种风格并不为 Java 所推荐，但个人还是使用了这些：</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/0221-my-very-own-tips-on-android/" rel="contents">
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/11/0221-my-very-own-tips-on-android/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
+          <!--/noindex-->
         
+      
+    </div>
+
+    <div>
       
     </div>
 
@@ -440,6 +508,8 @@
       
 
       
+
+      
       
         <div class="post-eof"></div>
       
@@ -451,20 +521,30 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tgmerge.me/2016/10/0220-android-get-complete-screenshot-of-recycler-view/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tgmerge">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tgmerge's such blog">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -474,39 +554,43 @@
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-23T14:53:00+08:00" content="2016-10-23">
-              2016-10-23
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-23T14:53:00+08:00">
+                2016-10-23
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/0220-android-get-complete-screenshot-of-recycler-view/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/0220-android-get-complete-screenshot-of-recycler-view/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -522,21 +606,27 @@
           <p>写 Android 应用的时候，偶尔会遇到“需要对某个 view 截图”的问题。对一个单独的简单 view ，常见的实现方法有以下两种：</p>
 <ol>
 <li><p>使用<code>view.getDrawingCache()</code>方法。如：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">TextView textView = findViewById(R.id.some_activity_some_article_text);</span><br><span class="line">textView.setDrawingCacheEnabled(<span class="keyword">true</span>);</span><br><span class="line">Bitmap drawingCache = textView.getDrawingCache();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line">TextView textView = findViewById(R.id.some_activity_some_article_text);</div><div class="line">textView.setDrawingCacheEnabled(<span class="keyword">true</span>);</div><div class="line">Bitmap drawingCache = textView.getDrawingCache();</div></pre></td></tr></table></figure>
 <p>所得到的<code>drawingCache</code>即为<code>textView</code>显示在屏幕上的图像。这种方法比较简单，但对于比较高的 view ，经常会由于 drawing cache 不够大而出现 <a href="http://stackoverflow.com/questions/16500379/view-too-large-to-fit-into-drawing-cache-when-calling-getdrawingcache">View too large to fit into drawing cache</a> 的问题。</p>
 </li>
 <li><p>使用<code>view.draw(canvas)</code>方法。如：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">TextView textView = findViewById(R.id.some_activity_some_article_text);</span><br><span class="line">Bitmap viewBitmap = Bitmap.createBitmap(textView.getMeasuredWidth(), textView.getMeasuredHeight(), Bitmap.Config.RGBA_8888);</span><br><span class="line">Canvas canvas = <span class="keyword">new</span> Canvas(viewBitmap);</span><br><span class="line">textView.draw(canvas);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><div class="line">TextView textView = findViewById(R.id.some_activity_some_article_text);</div><div class="line">Bitmap viewBitmap = Bitmap.createBitmap(textView.getMeasuredWidth(), textView.getMeasuredHeight(), Bitmap.Config.RGBA_8888);</div><div class="line">Canvas canvas = <span class="keyword">new</span> Canvas(viewBitmap);</div><div class="line">textView.draw(canvas);</div></pre></td></tr></table></figure>
 <p>这之后<code>viewBitmap</code>这个 Bitmap 即为<code>textView</code>的图像。这对普通的 view 基本已经够用了，除非 view 的高度太大，可能还是会内存不足。</p>
 </li>
 </ol>
 <p>然而实际需求中，这种截图常常用于“分享”之类的功能，需要截图的部分一般都是比较复杂的 ViewGroup 。而其中 RecyclerView 的截图尤其麻烦，由于它回收复用 view 和 ViewHolder 的特性，难以用普通的方法截到完整的图片。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/0220-android-get-complete-screenshot-of-recycler-view/" rel="contents">
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/10/0220-android-get-complete-screenshot-of-recycler-view/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
+          <!--/noindex-->
         
+      
+    </div>
+
+    <div>
       
     </div>
 
@@ -554,6 +644,8 @@
       
 
       
+
+      
       
         <div class="post-eof"></div>
       
@@ -565,20 +657,30 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tgmerge.me/2016/04/0219-sqlalchemy-document-learning-note-2-5-orm-tutorial/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tgmerge">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tgmerge's such blog">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -588,39 +690,43 @@
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-30T23:01:00+08:00" content="2016-04-30">
-              2016-04-30
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-30T23:01:00+08:00">
+                2016-04-30
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/0219-sqlalchemy-document-learning-note-2-5-orm-tutorial/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/0219-sqlalchemy-document-learning-note-2-5-orm-tutorial/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -639,12 +745,18 @@
 <p>接下来从Building a Many To Many Relationship一节开始。Object Relational Tutorial到本篇就算是大致翻译完了。</p>
 <h3 id="Building-a-Many-To-Many-Relationship-建立多对多关系"><a href="#Building-a-Many-To-Many-Relationship-建立多对多关系" class="headerlink" title="Building a Many To Many Relationship / 建立多对多关系"></a>Building a Many To Many Relationship / 建立多对多关系</h3><p>最后来看看多对多关系，顺便稍微展示一些SQLAlchemy的其他功能。比如说我们要做一个blog应用，用户可以添加<code>BlogPost</code>项目，而每个<code>BlogPost</code>都有一些相关联的<code>Keyword</code>项目。</p>
 <p>对于这种多对多的关系，我们需要创建一个未映射的<code>Table</code>作为关系表：</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/0219-sqlalchemy-document-learning-note-2-5-orm-tutorial/" rel="contents">
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/04/0219-sqlalchemy-document-learning-note-2-5-orm-tutorial/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
+          <!--/noindex-->
         
+      
+    </div>
+
+    <div>
       
     </div>
 
@@ -662,6 +774,8 @@
       
 
       
+
+      
       
         <div class="post-eof"></div>
       
@@ -673,20 +787,30 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tgmerge.me/2016/04/0218-sqlalchemy-document-learning-note-2-4-orm-tutorial/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tgmerge">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tgmerge's such blog">
+    </span>
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
             
             
               
@@ -696,39 +820,43 @@
                 </a>
               
             
-          </h1>
+          </h2>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-30T16:55:00+08:00" content="2016-04-30">
-              2016-04-30
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-30T16:55:00+08:00">
+                2016-04-30
+              </time>
+            
+
+            
+
+            
           </span>
 
           
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/0218-sqlalchemy-document-learning-note-2-4-orm-tutorial/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/0218-sqlalchemy-document-learning-note-2-4-orm-tutorial/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
           
 
           
           
 
           
+
+          
+
+          
+
         </div>
       </header>
     
@@ -747,11 +875,13 @@
 <hr>
 <p>上一部分讲的是关系的建立和使用关系进行查询。在映射类中使用<code>relationship()</code>建立关系，查询时使用<code>Query.join()</code>进行连接查询，用<code>aliased()</code>创建映射类的别名在连接中多次使用同一张表，使用<code>func.count()</code>和<code>statement</code>进行子查询计数之类的等等。</p>
 <p>接着从Eager Loading一节开始。要在REPL中还原之前的数据，可以：</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/0218-sqlalchemy-document-learning-note-2-4-orm-tutorial/" rel="contents">
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/04/0218-sqlalchemy-document-learning-note-2-4-orm-tutorial/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
+          <!--/noindex-->
         
       
     </div>
@@ -764,7 +894,13 @@
       
     </div>
 
+    <div>
+      
+    </div>
+
     <footer class="post-footer">
+      
+
       
 
       
@@ -812,27 +948,34 @@
 
       
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/assets/avatar.png"
                alt="tgmerge" />
           <p class="site-author-name" itemprop="name">tgmerge</p>
-          <p class="site-description motion-element" itemprop="description"></p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
         </div>
         <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">103</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
 
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">103</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
           
 
           
+
+          
+            
+            
             <div class="site-state-item site-state-tags">
-              <a href="/tags">
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">标签</span>
               </a>
@@ -897,7 +1040,12 @@
         
         
 
+        
+
+
       </section>
+
+      
 
       
 
@@ -921,6 +1069,7 @@
   <span class="author" itemprop="copyrightHolder">tgmerge</span>
 </div>
 
+
 <div class="powered-by">
   由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
@@ -932,15 +1081,20 @@
   </a>
 </div>
 
+
         
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
   </div>
 
   
@@ -963,84 +1117,95 @@
 
 
 
-  
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
 
 
 
   
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
   
 
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
 
 
-
-  
 
   
+  
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
 
 
 
   
 
   
-    
-  
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"tgmerge"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
 
   
-    
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
+
+
   
 
+
+
+
+	
 
 
 
 
 
   
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
   
 
   
