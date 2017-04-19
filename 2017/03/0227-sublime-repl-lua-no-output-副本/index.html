@@ -83,7 +83,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="tgmerge, personal, blog, memo, coding, diary, android" />
+  <meta name="keywords" content="SublimeText,Lua," />
 
 
 
@@ -99,12 +99,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="tgmerge's such blog">
-<meta property="og:url" content="https://tgmerge.me/archives/2013/page/13/index.html">
+<meta name="description" content="SublimeText 非常有名的插件 SublimeREPL 在运行 Lua 脚本的时候，可能会出现io.read()之前的输出不在 REPL 标签页中显示的问题。比如，用 SublimeREPL 结合 Load file to REPL 插件，运行这样的脚本（Command: SublimeREPL - Load current file）： print(&quot;Hello, Lua&quot;)a = io">
+<meta name="keywords" content="SublimeText,Lua">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SublimeREPL 中，Lua 脚本缺少输出的问题">
+<meta property="og:url" content="https://tgmerge.me/2017/03/0227-sublime-repl-lua-no-output-副本/index.html">
 <meta property="og:site_name" content="tgmerge's such blog">
+<meta property="og:description" content="SublimeText 非常有名的插件 SublimeREPL 在运行 Lua 脚本的时候，可能会出现io.read()之前的输出不在 REPL 标签页中显示的问题。比如，用 SublimeREPL 结合 Load file to REPL 插件，运行这样的脚本（Command: SublimeREPL - Load current file）： print(&quot;Hello, Lua&quot;)a = io">
+<meta property="og:updated_time" content="2017-03-31T12:55:52.776Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tgmerge's such blog">
+<meta name="twitter:title" content="SublimeREPL 中，Lua 脚本缺少输出的问题">
+<meta name="twitter:description" content="SublimeText 非常有名的插件 SublimeREPL 在运行 Lua 脚本的时候，可能会出现io.read()之前的输出不在 REPL 标签页中显示的问题。比如，用 SublimeREPL 结合 Load file to REPL 插件，运行这样的脚本（Command: SublimeREPL - Load current file）： print(&quot;Hello, Lua&quot;)a = io">
 
 
 
@@ -132,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="https://tgmerge.me/archives/2013/page/13/"/>
+  <link rel="canonical" href="https://tgmerge.me/2017/03/0227-sublime-repl-lua-no-output-副本/"/>
 
 
 
 
 
-  <title> 归档 | tgmerge's such blog </title>
+  <title> SublimeREPL 中，Lua 脚本缺少输出的问题 | tgmerge's such blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -163,7 +168,7 @@
     
   
 
-  <div class="container sidebar-position-left  page-archive  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -247,106 +252,164 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-    <span class="archive-page-counter">
-      
-      
-       
-        
-      很好! 目前共计 103 篇日志。 继续努力。
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tgmerge.me/2017/03/0227-sublime-repl-lua-no-output-副本/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tgmerge">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tgmerge's such blog">
     </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                SublimeREPL 中，Lua 脚本缺少输出的问题
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-31T20:39:00+08:00">
+                2017-03-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
 
       
       
-      
 
+      
+        <p>SublimeText 非常有名的插件 <a href="https://packagecontrol.io/packages/SublimeREPL" target="_blank" rel="external">SublimeREPL</a> 在运行 Lua 脚本的时候，可能会出现<code>io.read()</code>之前的输出不在 REPL 标签页中显示的问题。比如，用 SublimeREPL 结合 <a href="https://packagecontrol.io/packages/Load%20file%20to%20REPL" target="_blank" rel="external">Load file to REPL</a> 插件，运行这样的脚本（Command: <code>SublimeREPL - Load current file</code>）：</p>
+<figure class="highlight lua"><table><tr><td class="code"><pre><div class="line"><span class="built_in">print</span>(<span class="string">"Hello, Lua"</span>)</div><div class="line">a = io.<span class="built_in">read</span>(<span class="string">"*n"</span>)</div><div class="line"><span class="built_in">print</span>(a)</div></pre></td></tr></table></figure>
+<p>那么 <code>Hello, Lua</code> 并不会一开始就显示出来，而是在输入字符并按 <kbd>Enter</kbd> 之后才会和 <code>print(a)</code> 的输出一同显示在 REPL 中。</p>
+<p>这是因为 Lua 使用了输出缓冲区，阻碍了 REPL 的 <code>subprocess()</code> 读取最新的输出。解决方法是，在 REPL 运行文件之前先执行一下 <code>io.output():setvbuf(&#39;no&#39;)</code>，禁用输出缓冲区。</p>
+<p>如果用 Load file to REPL 插件的话，在它的配置文件（Command: <code>Preferences: LoadFileToRepl Settings</code>）中，将 Lua 的运行命令修改成这样</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">... ...</div><div class="line">    , <span class="string">"python_load_command"</span>       : <span class="string">"exec(open(\"%s\").read())"</span></div><div class="line">    , <span class="string">"lua_load_command"</span>          : <span class="string">"io.output():setvbuf('no');dofile(\"%s\")"</span></div><div class="line">    , <span class="string">"powershell_load_command"</span>   : <span class="string">". %s"</span></div><div class="line">... ...</div></pre></td></tr></table></figure>
+<p>就可以了。</p>
+
+      
+    </div>
+
+    <div>
       
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2013">2013</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SublimeText/" rel="tag"># SublimeText</a>
+          
+            <a href="/tags/Lua/" rel="tag"># Lua</a>
+          
         </div>
       
+
+      
+        
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          <span class="post-nav-divider"></span>
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2013/06/0005-tumblr-list-of-recent-posts/" itemprop="url">
-              
-                <span itemprop="name">tumblr里的最近文章列表</span>
-              
-            </a>
-        
-      </h2>
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/0226-jetbrains-ide-strict-drag-n-drop/" rel="prev" title="For 板子党：关闭 Jetbrains IDE 中的拖动操作">
+                For 板子党：关闭 Jetbrains IDE 中的拖动操作 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2013-06-05T08:00:00+08:00"
-              content="2013-06-05" >
-          06-05
-        </time>
-      </div>
-
-    </header>
+      
+      
+    </footer>
   </article>
 
 
 
-    
-
+    <div class="post-spread">
       
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2013/06/0001-initial-post/" itemprop="url">
-              
-                <span itemprop="name">initial post</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2013-06-03T08:00:00+08:00"
-              content="2013-06-03" >
-          06-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2013/page/12/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/2013/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2013/page/12/">12</a><span class="page-number current">13</span>
-  </nav>
-
-
+    </div>
+  </div>
 
 
           </div>
@@ -354,6 +417,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -585,7 +652,9 @@
 
 
   
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
 
 
   
