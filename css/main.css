@@ -185,9 +185,9 @@ th {
 }
 body {
   position: relative;
-  font-family: -apple-system, BlinkMacSystemFont, PingFang-SC-Regular, "Hiragino Sans GB", "Microsoft Yahei", serif;
+  font-family: 'Crimson Text', "SimSun", "PingFang SC", serif;
   font-size: 18px;
-  line-height: 30px;
+  line-height: 32px;
   color: #000;
   background: #fff;
 }
@@ -216,7 +216,7 @@ h6 {
   padding: 0;
   font-weight: bold;
   line-height: 1.5;
-  font-family: -apple-system, BlinkMacSystemFont, PingFang-SC-Regular, "Hiragino Sans GB", "Microsoft Yahei", serif;
+  font-family: 'Crimson Text', "SimSun", "PingFang SC", serif;
 }
 h2,
 h3,
@@ -475,14 +475,14 @@ pre,
   overflow: auto;
   margin: 20px 0;
   padding: 0;
-  font-size: 15px;
+  font-size: 15.75px;
   color: #4d4d4c;
   background: #f7f7f7;
   line-height: 1.5;
 }
 pre,
 code {
-  font-family: 'Menlo', consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace;
+  font-family: 'Inconsolata', consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace;
 }
 code {
   padding: 2px 4px;
@@ -490,7 +490,7 @@ code {
   color: #000;
   background: none;
   border-radius: 3px;
-  font-size: 15px;
+  font-size: 15.75px;
 }
 pre code {
   padding: 0;
@@ -998,7 +998,7 @@ pre .javascript .function {
   line-height: 36px;
   font-size: 20px;
   font-weight: normal;
-  font-family: 'Satisfy', -apple-system, BlinkMacSystemFont, PingFang-SC-Regular, "Hiragino Sans GB", "Microsoft Yahei", serif;
+  font-family: 'Satisfy', 'Crimson Text', "SimSun", "PingFang SC", serif;
 }
 .site-subtitle {
   margin-top: 10px;
@@ -1087,7 +1087,7 @@ pre .javascript .function {
   opacity: 0;
 }
 .post-body {
-  font-family: -apple-system, BlinkMacSystemFont, PingFang-SC-Regular, "Hiragino Sans GB", "Microsoft Yahei", serif;
+  font-family: 'Crimson Text', "SimSun", "PingFang SC", serif;
 }
 @media (max-width: 767px) {
   .post-body {
@@ -1352,7 +1352,7 @@ pre .javascript .function {
 .posts-expand .post-meta {
   margin: 3px 0 60px 0;
   color: #999;
-  font-family: -apple-system, BlinkMacSystemFont, PingFang-SC-Regular, "Hiragino Sans GB", "Microsoft Yahei", serif;
+  font-family: 'Crimson Text', "SimSun", "PingFang SC", serif;
   font-size: 12px;
   text-align: center;
 }
@@ -1685,7 +1685,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffc373;
+  background: #998755;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -1787,8 +1787,8 @@ pre .javascript .function {
   display: block;
 }
 .post-toc .nav .active > a {
-  color: #000;
-  border-bottom-color: #000;
+  color: #ff2a2a;
+  border-bottom-color: #ff2a2a;
 }
 .post-toc .nav .active-current > a {
   color: #ff2a2a;
@@ -2861,7 +2861,6 @@ article code {
 }
 body {
   text-rendering: geometricPrecision;
-  -webkit-font-smoothing: antialiased;
 }
 @media (min-width: 1600px) {
   body {
@@ -2870,9 +2869,10 @@ body {
 }
 .posts-expand .post-title-link {
   color: #000;
+  border-bottom: 1px solid #fff;
 }
 .posts-expand .post-title-link:hover {
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #ff2a2a;
 }
 .posts-expand .post-title-link::before {
   display: none;
@@ -2902,4 +2902,17 @@ body {
 }
 .menu-item-active a:after {
   background-color: #000;
+}
+.highlight::-webkit-scrollbar {
+  width: 4px;
+  background-color: none;
+}
+.highlight::-webkit-scrollbar-track {
+  background-color: none;
+}
+.highlight::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+}
+.highlight .line {
+  height: 28px;
 }
