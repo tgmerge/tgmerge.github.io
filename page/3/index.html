@@ -100,11 +100,12 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="tgmerge's such blog">
+<meta property="og:title" content="tgmerge&#39;s such blog">
 <meta property="og:url" content="https://tgmerge.me/page/3/index.html">
-<meta property="og:site_name" content="tgmerge's such blog">
+<meta property="og:site_name" content="tgmerge&#39;s such blog">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tgmerge's such blog">
+<meta name="twitter:title" content="tgmerge&#39;s such blog">
 
 
 
@@ -335,9 +336,9 @@
 
       
         
-          <p>本篇是 <del>胡乱</del> 翻译自<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/tutorial.html">SQLAlchemy 1.0官方文档 Object Relational Tutorial一章</a>的第三篇笔记。</p>
+          <p>本篇是 <del>胡乱</del> 翻译自<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/tutorial.html" target="_blank" rel="external">SQLAlchemy 1.0官方文档 Object Relational Tutorial一章</a>的第三篇笔记。</p>
 <p><del>抱着“反正正事不管时间多少都能干完”的态度果然可以干蛮多其他事情的……</del></p>
-<p>各种保留了原文的术语可以参考<a href="http://docs.sqlalchemy.org/en/rel_1_0/glossary.html">SQLAlchemy术语表</a>。</p>
+<p>各种保留了原文的术语可以参考<a href="http://docs.sqlalchemy.org/en/rel_1_0/glossary.html" target="_blank" rel="external">SQLAlchemy术语表</a>。</p>
 <hr>
 <p>上一部分讲的是<code>Query</code>，以及在<code>Query</code>中可以使用的各种查询限定方法。包括分页（<code>offset()</code>和<code>limit()</code>）、筛选（<code>filter()</code>）和其中的多种操作符、获取Scalar（<code>all()</code>和<code>one()</code>等）、计数（<code>count()</code>）之类。</p>
 <p>下面从Building a Relationship一节开始。如果在新的REPL中测试之后的python语句，需要还原之前插入的数据，可以使用这个：</p>
@@ -465,8 +466,8 @@
 
       
         
-          <p>本篇 <del>胡乱</del> 翻译自<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/tutorial.html">SQLAlchemy 1.0官方文档 Object Relational Tutorial一章</a>。</p>
-<p>各种保留了原文的术语可以参考<a href="http://docs.sqlalchemy.org/en/rel_1_0/glossary.html">SQLAlchemy术语表</a>。</p>
+          <p>本篇 <del>胡乱</del> 翻译自<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/tutorial.html" target="_blank" rel="external">SQLAlchemy 1.0官方文档 Object Relational Tutorial一章</a>。</p>
+<p>各种保留了原文的术语可以参考<a href="http://docs.sqlalchemy.org/en/rel_1_0/glossary.html" target="_blank" rel="external">SQLAlchemy术语表</a>。</p>
 <hr>
 <p>这章的上一部分讲的基本是<code>Engine</code>，<code>Declarative Base</code>，<code>Mapping Class</code>和<code>Mapping Class</code>的实例，以及<code>Session</code>。</p>
 <p>下面的部分从Querying一节开始。</p>
@@ -596,11 +597,11 @@
 
       
         
-          <p>本篇 <del>胡乱</del> 翻译自<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/tutorial.html">SQLAlchemy 1.0官方文档 Object Relational Tutorial一章</a>。</p>
-<p>术语各种拿不定……可以参考<a href="http://docs.sqlalchemy.org/en/rel_1_0/glossary.html">SQLAlchemy术语表</a>。</p>
+          <p>本篇 <del>胡乱</del> 翻译自<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/tutorial.html" target="_blank" rel="external">SQLAlchemy 1.0官方文档 Object Relational Tutorial一章</a>。</p>
+<p>术语各种拿不定……可以参考<a href="http://docs.sqlalchemy.org/en/rel_1_0/glossary.html" target="_blank" rel="external">SQLAlchemy术语表</a>。</p>
 <hr>
 <h2 id="Object-Relational-Tutorial-对象-关系映射指南"><a href="#Object-Relational-Tutorial-对象-关系映射指南" class="headerlink" title="Object Relational Tutorial / 对象-关系映射指南"></a>Object Relational Tutorial / 对象-关系映射指南</h2><p>这一章作为文档中ORM部分的第一章，整体介绍ORM的基本概念和使用方法。倒不如说懒省事的话直接看这一章就行？</p>
-<p>SQLAlchemy ORM提供了一种关联用户定义的Python类和数据库表、以及这些类的实例和表中的行的方法。ORM包含在对象和它们关联的数据库表行中透明地同步变更的机制，称作<a href="http://docs.sqlalchemy.org/en/rel_1_0/glossary.html#term-unit-of-work">unit of work</a>。ORM还包含在用户定义的类和他们代表的数据库表之间的关系中转换查询的方法。</p>
+<p>SQLAlchemy ORM提供了一种关联用户定义的Python类和数据库表、以及这些类的实例和表中的行的方法。ORM包含在对象和它们关联的数据库表行中透明地同步变更的机制，称作<a href="http://docs.sqlalchemy.org/en/rel_1_0/glossary.html#term-unit-of-work" target="_blank" rel="external">unit of work</a>。ORM还包含在用户定义的类和他们代表的数据库表之间的关系中转换查询的方法。</p>
 <p>和SQLAlchemy Expression Language相比，ORM的抽象层级较高。然而在使用ORM的应用中，偶尔也可以通过直接使用Expression Language的方法来进行某些和数据库的直接交互操作。</p>
 <h3 id="Connecting-连接到数据库"><a href="#Connecting-连接到数据库" class="headerlink" title="Connecting / 连接到数据库"></a>Connecting / 连接到数据库</h3><p>在这里暂时使用内存中的SQLite数据库。用<code>create_engine()</code>建立连接：</p>
           <!--noindex-->
@@ -728,9 +729,9 @@
       
         
           <p>以前在Python写数据库的时候都是尽可能小打小闹_(:3 SQLAlchemy尝试玩了几次然而并没有坚持多久，这次起码要在哪里用上一下？</p>
-<p>以一边学学 <del>摸鱼</del> 一边简单 <del>胡乱</del> 翻译<a href="http://docs.sqlalchemy.org/en/rel_1_0/index.html">SQLAlchemy官方文档</a>为主，中间会随便试试然后把memo也加进去。</p>
+<p>以一边学学 <del>摸鱼</del> 一边简单 <del>胡乱</del> 翻译<a href="http://docs.sqlalchemy.org/en/rel_1_0/index.html" target="_blank" rel="external">SQLAlchemy官方文档</a>为主，中间会随便试试然后把memo也加进去。</p>
 <p>实际上后面的部分只翻译了Object Relational Tutorial一章，其他详细说明的部分决定之后用到了再说。</p>
-<p>本篇翻译自<a href="http://docs.sqlalchemy.org/en/rel_1_0/intro.html">SQLAlchemy 1.0官方文档 Overview一章</a>。</p>
+<p>本篇翻译自<a href="http://docs.sqlalchemy.org/en/rel_1_0/intro.html" target="_blank" rel="external">SQLAlchemy 1.0官方文档 Overview一章</a>。</p>
 <hr>
 <h2 id="Overview-总览"><a href="#Overview-总览" class="headerlink" title="Overview / 总览"></a>Overview / 总览</h2><p>SQLAlchemy分为Core和ORM两个独立的组件：</p>
 <ul>

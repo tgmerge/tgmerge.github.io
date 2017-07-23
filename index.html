@@ -100,11 +100,12 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="tgmerge's such blog">
+<meta property="og:title" content="tgmerge&#39;s such blog">
 <meta property="og:url" content="https://tgmerge.me/index.html">
-<meta property="og:site_name" content="tgmerge's such blog">
+<meta property="og:site_name" content="tgmerge&#39;s such blog">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tgmerge's such blog">
+<meta name="twitter:title" content="tgmerge&#39;s such blog">
 
 
 
@@ -259,7 +260,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://tgmerge.me/2017/03/0227-sublime-repl-lua-no-output-副本/">
+    <link itemprop="mainEntityOfPage" href="https://tgmerge.me/2017/03/0227-sublime-repl-lua-no-output/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="tgmerge">
@@ -281,7 +282,7 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/0227-sublime-repl-lua-no-output-副本/" itemprop="url">
+                <a class="post-title-link" href="/2017/03/0227-sublime-repl-lua-no-output/" itemprop="url">
                   SublimeREPL 中，Lua 脚本缺少输出的问题
                 </a>
               
@@ -723,7 +724,7 @@
 
       
         
-          <p><a href="https://sites.google.com/a/android.com/tools/recent/androidstudio23beta1isnowavailable">Android Studio 2.3 两个星期以前发布到了 beta 版本</a>，从这些新特性上又给<del>无脑</del>写代码提供了大量便利：</p>
+          <p><a href="https://sites.google.com/a/android.com/tools/recent/androidstudio23beta1isnowavailable" target="_blank" rel="external">Android Studio 2.3 两个星期以前发布到了 beta 版本</a>，从这些新特性上又给<del>无脑</del>写代码提供了大量便利：</p>
 <h2 id="Instant-Run-的改进"><a href="#Instant-Run-的改进" class="headerlink" title="Instant Run 的改进"></a>Instant Run 的改进</h2><p>Android Studio 2.2 的 Instant Run 按钮很不方便使用：在 Instant Run 出问题的时候，很难快速来一次传统的 “Run” 来重装应用。现在，Android 2.3 把 Instant Run 按钮和 Run 按钮分开了：</p>
 <p><img src="/assets/0224-01.png" alt="Instant Run 和 Run 的按钮分开了"></p>
 <p>“Run” 按钮将尝试重启应用并完整替换(“cold swap”)应用，但并不是重装 APK；”Instant Run” 则会尝试热替换资源和代码，让更改立即生效。</p>
@@ -854,16 +855,16 @@
 
       
         
-          <h2 id="RxJava-的适用场景"><a href="#RxJava-的适用场景" class="headerlink" title="RxJava 的适用场景"></a>RxJava 的适用场景</h2><h3 id="与-Retrofit-的结合"><a href="#与-Retrofit-的结合" class="headerlink" title="与 Retrofit 的结合"></a>与 Retrofit 的结合</h3><p><a href="https://github.com/tgmerge/rx-java-playground/blob/8f8f79766f7ad731529fe2bb15348b76250a4632/app/src/main/java/me/tgmerge/rxjavaplayground/part2_retrofit/RxRetro1Activity.java#L31">Code 17 - RxJava + Retrofit 进行网络请求</a></p>
+          <h2 id="RxJava-的适用场景"><a href="#RxJava-的适用场景" class="headerlink" title="RxJava 的适用场景"></a>RxJava 的适用场景</h2><h3 id="与-Retrofit-的结合"><a href="#与-Retrofit-的结合" class="headerlink" title="与 Retrofit 的结合"></a>与 Retrofit 的结合</h3><p><a href="https://github.com/tgmerge/rx-java-playground/blob/8f8f79766f7ad731529fe2bb15348b76250a4632/app/src/main/java/me/tgmerge/rxjavaplayground/part2_retrofit/RxRetro1Activity.java#L31" target="_blank" rel="external">Code 17 - RxJava + Retrofit 进行网络请求</a></p>
 <p>这个示例模拟了“在网络请求发起时更新 UI -&gt; 处理请求结果 -&gt; 根据请求结果再次更新 UI”的过程。</p>
-<p>使用了 <a href="https://jsonplaceholder.typicode.com">JSONPlaceholder</a> API。</p>
+<p>使用了 <a href="https://jsonplaceholder.typicode.com" target="_blank" rel="external">JSONPlaceholder</a> API。</p>
 <ul>
 <li><strong>在发起请求时更新UI</strong> 在<code>subscribeOn()</code>中完成；</li>
 <li><strong>处理请求结果</strong> 在<code>map()</code>中完成；</li>
 <li><strong>根据处理后的结果更新UI</strong> 在<code>subscribe()</code>中完成。</li>
 </ul>
 <p>期间根据需求调度线程。</p>
-<p><a href="https://github.com/tgmerge/rx-java-playground/blob/8f8f79766f7ad731529fe2bb15348b76250a4632/app/src/main/java/me/tgmerge/rxjavaplayground/part2_retrofit/RxRetro2Activity.java#L36">Code 18 - RxJava + Retrofit 按顺序依次发起两个请求</a></p>
+<p><a href="https://github.com/tgmerge/rx-java-playground/blob/8f8f79766f7ad731529fe2bb15348b76250a4632/app/src/main/java/me/tgmerge/rxjavaplayground/part2_retrofit/RxRetro2Activity.java#L36" target="_blank" rel="external">Code 18 - RxJava + Retrofit 按顺序依次发起两个请求</a></p>
 <p>这个示例模拟了“更新 UI -&gt; 发起请求 A -&gt; 利用请求 A 的结果发起请求 B -&gt; 处理请求 B 的结果 -&gt; 根据请求 B 的结果再次更新 UI”的过程。</p>
           <!--noindex-->
           <div class="post-button text-center">
