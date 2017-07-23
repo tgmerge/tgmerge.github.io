@@ -43,9 +43,6 @@
   
 
   
-    
-    
-  
 
   
 
@@ -53,15 +50,11 @@
 
   
     
-      
-    
 
     
   
 
   
-    
-      
     
 
     
@@ -70,7 +63,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Crimson Text:300,300italic,400,400italic,700,700italic|Satisfy:300,300italic,400,400italic,700,700italic|Inconsolata:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Satisfy:300,300italic,400,400italic,700,700italicMenlo:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -182,7 +175,7 @@
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description">It's dangerous to go<br>along! Take this.</h1>
+        <p class="site-subtitle">It's dangerous to go<br>along! Take this.</p>
       
   </div>
 
@@ -277,7 +270,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">
+          <h1 class="post-title" itemprop="name headline">
             
             
               
@@ -287,7 +280,7 @@
                 </a>
               
             
-          </h2>
+          </h1>
         
 
         <div class="post-meta">
@@ -338,7 +331,7 @@
         
           
             <p>SublimeText 非常有名的插件 <a href="https://packagecontrol.io/packages/SublimeREPL" target="_blank" rel="external">SublimeREPL</a> 在运行 Lua 脚本的时候，可能会出现<code>io.read()</code>之前的输出不在 REPL 标签页中显示的问题。比如，用 SublimeREPL 结合 <a href="https://packagecontrol.io/packages/Load%20file%20to%20REPL" target="_blank" rel="external">Load file to REPL</a> 插件，运行这样的脚本（Command: <code>SublimeREPL - Load current file</code>）：</p>
-<figure class="highlight lua"><table><tr><td class="code"><pre><div class="line"><span class="built_in">print</span>(<span class="string">"Hello, Lua"</span>)</div><div class="line">a = io.<span class="built_in">read</span>(<span class="string">"*n"</span>)</div><div class="line"><span class="built_in">print</span>(a)</div></pre></td></tr></table></figure>
+<figure class="highlight lua"><table><tr><td class="code"><pre><div class="line"><span class="built_in">print</span>(<span class="string">"Hello, Lua"</span>)</div><div class="line">a = <span class="built_in">io</span>.<span class="built_in">read</span>(<span class="string">"*n"</span>)</div><div class="line"><span class="built_in">print</span>(a)</div></pre></td></tr></table></figure>
 <p>那么 <code>Hello, Lua</code> 并不会一开始就显示出来，而是在输入字符并按 <kbd>Enter</kbd> 之后才会和 <code>print(a)</code> 的输出一同显示在 REPL 中。</p>
 <p>这是因为 Lua 使用了输出缓冲区，阻碍了 REPL 的 <code>subprocess()</code> 读取最新的输出。解决方法是，在 REPL 运行文件之前先执行一下 <code>io.output():setvbuf(&#39;no&#39;)</code>，禁用输出缓冲区。</p>
 <p>如果用 Load file to REPL 插件的话，在它的配置文件（Command: <code>Preferences: LoadFileToRepl Settings</code>）中，将 Lua 的运行命令修改成这样</p>
@@ -404,7 +397,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">
+          <h1 class="post-title" itemprop="name headline">
             
             
               
@@ -414,7 +407,7 @@
                 </a>
               
             
-          </h2>
+          </h1>
         
 
         <div class="post-meta">
@@ -467,10 +460,10 @@
             <p>包括 Android Studio 在内的 Jetbrains 系 IDE 都有拖动代码或文件来移动文件或 refactor 的功能，然而对习惯用数位板代替鼠标的人 <del>以及手不稳的普通鼠标用户</del> 来说，一不小心就误拖动代码或文件还是蛮麻烦的。于是需要设置这两个选项：</p>
 <p><img src="/assets/0226-01.png" alt=""></p>
 <ul>
-<li><code>Enable Drag&#39;n&#39;Drop functionality in editor</code> → Disabled</li>
-<li><code>Drag-n-Drop with ALT pressed only</code> → Enabled</li>
+<li>Enable Drag’n’Drop functionality in editor → Disabled</li>
+<li>Drag-n-Drop with ALT pressed only → Enabled</li>
 </ul>
-<p>讲真这两个的默认值根本就不人性吧hhh</p>
+<p>这两个的默认值大概很不人性？</p>
 
           
         
@@ -531,7 +524,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">
+          <h1 class="post-title" itemprop="name headline">
             
             
               
@@ -541,7 +534,7 @@
                 </a>
               
             
-          </h2>
+          </h1>
         
 
         <div class="post-meta">
@@ -665,7 +658,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">
+          <h1 class="post-title" itemprop="name headline">
             
             
               
@@ -675,7 +668,7 @@
                 </a>
               
             
-          </h2>
+          </h1>
         
 
         <div class="post-meta">
@@ -796,7 +789,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">
+          <h1 class="post-title" itemprop="name headline">
             
             
               
@@ -806,7 +799,7 @@
                 </a>
               
             
-          </h2>
+          </h1>
         
 
         <div class="post-meta">
@@ -947,7 +940,7 @@
           <p class="site-author-name" itemprop="name">tgmerge</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
-           
+          
         </div>
         <nav class="site-state motion-element">
 
