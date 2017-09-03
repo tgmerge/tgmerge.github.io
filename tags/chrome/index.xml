@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Chrome on tgmerge&#39;s blog</title>
+    <link>https://tgmerge.me/tags/chrome/</link>
+    <description>Recent content in Chrome on tgmerge&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>CC BY-NC-SA 4.0 / tgmerge</copyright>
+    <lastBuildDate>Tue, 15 Sep 2015 12:43:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tgmerge.me/tags/chrome/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Chrome&#43;MacType丢失文字的问题 Part2</title>
+      <link>https://tgmerge.me/blog/0213-chrome-mactype-missing-characters-part-2/</link>
+      <pubDate>Tue, 15 Sep 2015 12:43:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0213-chrome-mactype-missing-characters-part-2/</guid>
+      <description>Chrome 45之后，使用MacType的情况下，某些文字丢失的问题使用之前这篇文章说的方法已经无法解决了。 新的解决方法是，在chrome://fla</description>
+    </item>
+    
+    <item>
+      <title>Chrome&#43;MacType丢失文字的问题</title>
+      <link>https://tgmerge.me/blog/0203-chrome-mactype-missing-characters/</link>
+      <pubDate>Thu, 16 Apr 2015 13:34:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0203-chrome-mactype-missing-characters/</guid>
+      <description>Chrome升级到41以后，在使用MacType的情况下偶尔会出现丢失文字的情况。准确地说，丢失的是字体中的某些字符？比如，页面里所有Tah</description>
+    </item>
+    
+    <item>
+      <title>调试Android上的Chrome</title>
+      <link>https://tgmerge.me/blog/0074-debug-chrome-on-android/</link>
+      <pubDate>Tue, 06 Jan 2015 04:27:35 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0074-debug-chrome-on-android/</guid>
+      <description>设备usb驱动 adb start-server chrome://inspect/#devices OK &amp;lsquo;w&amp;rsquo;</description>
+    </item>
+    
+  </channel>
+</rss>

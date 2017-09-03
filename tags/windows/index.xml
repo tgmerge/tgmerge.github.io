@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Windows on tgmerge&#39;s blog</title>
+    <link>https://tgmerge.me/tags/windows/</link>
+    <description>Recent content in Windows on tgmerge&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>CC BY-NC-SA 4.0 / tgmerge</copyright>
+    <lastBuildDate>Tue, 15 Sep 2015 12:43:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tgmerge.me/tags/windows/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Chrome&#43;MacType丢失文字的问题 Part2</title>
+      <link>https://tgmerge.me/blog/0213-chrome-mactype-missing-characters-part-2/</link>
+      <pubDate>Tue, 15 Sep 2015 12:43:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0213-chrome-mactype-missing-characters-part-2/</guid>
+      <description>Chrome 45之后，使用MacType的情况下，某些文字丢失的问题使用之前这篇文章说的方法已经无法解决了。 新的解决方法是，在chrome://fla</description>
+    </item>
+    
+    <item>
+      <title>Chrome&#43;MacType丢失文字的问题</title>
+      <link>https://tgmerge.me/blog/0203-chrome-mactype-missing-characters/</link>
+      <pubDate>Thu, 16 Apr 2015 13:34:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0203-chrome-mactype-missing-characters/</guid>
+      <description>Chrome升级到41以后，在使用MacType的情况下偶尔会出现丢失文字的情况。准确地说，丢失的是字体中的某些字符？比如，页面里所有Tah</description>
+    </item>
+    
+    <item>
+      <title>Windows, python, cmd, encoding, _(:3 / L)_</title>
+      <link>https://tgmerge.me/blog/0073-python-encoding-on-windows/</link>
+      <pubDate>Tue, 02 Dec 2014 22:42:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0073-python-encoding-on-windows/</guid>
+      <description>就不说windows和python编码的那一大坨问题了，只大概记一下怎么科学地鸟枪法码代码。 sys.getfilesystemencodin</description>
+    </item>
+    
+    <item>
+      <title>Thinkpad Edge，Win8，AMD显卡，屏幕亮度调节问题</title>
+      <link>https://tgmerge.me/blog/0058-thinkpad-edge-amd-win8-brightness/</link>
+      <pubDate>Thu, 12 Dec 2013 22:35:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0058-thinkpad-edge-amd-win8-brightness/</guid>
+      <description>联想从将近一年前就没有再更新E系列比较老机型的显卡驱动了。尤其是联想的AMD显卡驱动在Win8下兼容性一直不好，各种亮度无法调节无法手动切换</description>
+    </item>
+    
+    <item>
+      <title>Thinkpad E420 HD6630M显卡在Win8下的正确驱动配置</title>
+      <link>https://tgmerge.me/blog/0019-thinkpad-e420-hd6630-win8-driver/</link>
+      <pubDate>Sun, 04 Aug 2013 01:41:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0019-thinkpad-e420-hd6630-win8-driver/</guid>
+      <description>HD6630M显卡无论单独使用联想官方的驱动还是AMD网站上下载的测试版驱动（正式版驱动因为是订制显卡的缘故无法安装），都会出现或多或少的问</description>
+    </item>
+    
+  </channel>
+</rss>

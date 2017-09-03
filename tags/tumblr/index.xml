@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tumblr on tgmerge&#39;s blog</title>
+    <link>https://tgmerge.me/tags/tumblr/</link>
+    <description>Recent content in Tumblr on tgmerge&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>CC BY-NC-SA 4.0 / tgmerge</copyright>
+    <lastBuildDate>Tue, 10 Dec 2013 13:20:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tgmerge.me/tags/tumblr/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>tumblr的文章摘要和Read More...</title>
+      <link>https://tgmerge.me/blog/0057-tumblr-post-read-more-tag/</link>
+      <pubDate>Tue, 10 Dec 2013 13:20:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0057-tumblr-post-read-more-tag/</guid>
+      <description>在Text post中间插入[[MORE]]的话，这篇post在首页上就会显示为带有“Read More&amp;hellip;”标记的摘要，不会因为太</description>
+    </item>
+    
+    <item>
+      <title>在tumblr上传文件供主题使用的方法</title>
+      <link>https://tgmerge.me/blog/0006-upload-static-file-to-tumblr/</link>
+      <pubDate>Sat, 08 Jun 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0006-upload-static-file-to-tumblr/</guid>
+      <description>只要到http://www.tumblr.com/themes/upload_static_file上传文件，就能得到一个固定的URL。 之后</description>
+    </item>
+    
+    <item>
+      <title>tumblr里的最近文章列表</title>
+      <link>https://tgmerge.me/blog/0005-tumblr-list-of-recent-posts/</link>
+      <pubDate>Wed, 05 Jun 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0005-tumblr-list-of-recent-posts/</guid>
+      <description>tumblr是有多喜欢dashboard……很不喜欢在侧边栏显示个关注列表搞得跟SNS一样，结果发现居然没有最近文章列表这个widget，只</description>
+    </item>
+    
+  </channel>
+</rss>

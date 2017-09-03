@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Troubleshooting on tgmerge&#39;s blog</title>
+    <link>https://tgmerge.me/tags/troubleshooting/</link>
+    <description>Recent content in Troubleshooting on tgmerge&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>CC BY-NC-SA 4.0 / tgmerge</copyright>
+    <lastBuildDate>Fri, 13 Jan 2017 15:50:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tgmerge.me/tags/troubleshooting/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>WRAP_CONTENT 的 RecyclerView 在 ScrollView 中无法显示完整内容</title>
+      <link>https://tgmerge.me/blog/0225-wrap-content-recycler-view-in-scroll-view/</link>
+      <pubDate>Fri, 13 Jan 2017 15:50:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0225-wrap-content-recycler-view-in-scroll-view/</guid>
+      <description>问题 形如下面这样的布局中： &amp;lt;ScrollView&amp;gt; &amp;lt;LinearLayout ... android:oriention=&amp;quot;vertical&amp;quot;&amp;gt; &amp;lt;SomeView /&amp;gt; &amp;lt;RecyclerView ... android:layout_height=&amp;quot;wrap_content&amp;quot; /&amp;gt; &amp;lt;SomeView /&amp;gt; &amp;lt;/LinearLayout&amp;gt; &amp;lt;/ScrollView&amp;gt; RecyclerView 在项目较多时将无法按 WRAP_CONTENT 的预期显示完整内容，只会显示一部分项目。 失败的解决方法 recy</description>
+    </item>
+    
+  </channel>
+</rss>

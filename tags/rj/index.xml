@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>RJ on tgmerge&#39;s blog</title>
+    <link>https://tgmerge.me/tags/rj/</link>
+    <description>Recent content in RJ on tgmerge&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>CC BY-NC-SA 4.0 / tgmerge</copyright>
+    <lastBuildDate>Mon, 25 May 2015 17:24:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tgmerge.me/tags/rj/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ingress, Lv11</title>
+      <link>https://tgmerge.me/blog/0209-ingress-lv11/</link>
+      <pubDate>Mon, 25 May 2015 17:24:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0209-ingress-lv11/</guid>
+      <description>怎么说——现实真是超厉害的——</description>
+    </item>
+    
+  </channel>
+</rss>

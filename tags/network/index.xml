@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Network on tgmerge&#39;s blog</title>
+    <link>https://tgmerge.me/tags/network/</link>
+    <description>Recent content in Network on tgmerge&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>CC BY-NC-SA 4.0 / tgmerge</copyright>
+    <lastBuildDate>Thu, 21 May 2015 20:33:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tgmerge.me/tags/network/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>用浙大的VPN上网，还需要一点玄学(?)</title>
+      <link>https://tgmerge.me/blog/0206-zju-l2tp-not-stable/</link>
+      <pubDate>Thu, 21 May 2015 20:33:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0206-zju-l2tp-not-stable/</guid>
+      <description>目指世界一流大学的母校浙大，似乎并不觉得网速和它的目标有什么关系……如果在浙大的寝室之类，用学校的L2TP VPN上网——尤其是用自己的路由器</description>
+    </item>
+    
+  </channel>
+</rss>

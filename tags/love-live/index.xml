@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Love Live on tgmerge&#39;s blog</title>
+    <link>https://tgmerge.me/tags/love-live/</link>
+    <description>Recent content in Love Live on tgmerge&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>CC BY-NC-SA 4.0 / tgmerge</copyright>
+    <lastBuildDate>Wed, 05 Nov 2014 04:44:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tgmerge.me/tags/love-live/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Lovelive日服的第一次启动黄屏问题&amp;解决</title>
+      <link>https://tgmerge.me/blog/0070-lovelive-jp-yellow-screen-solved/</link>
+      <pubDate>Wed, 05 Nov 2014 04:44:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0070-lovelive-jp-yellow-screen-solved/</guid>
+      <description>唔发问题解决帖可抽UR Lovelive安卓版日服会检测root权限，有root则无法启动。用rootcloak之类的xposed插件对应用隐</description>
+    </item>
+    
+  </channel>
+</rss>

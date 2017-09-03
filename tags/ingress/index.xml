@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ingress on tgmerge&#39;s blog</title>
+    <link>https://tgmerge.me/tags/ingress/</link>
+    <description>Recent content in Ingress on tgmerge&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>CC BY-NC-SA 4.0 / tgmerge</copyright>
+    <lastBuildDate>Mon, 25 May 2015 17:24:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tgmerge.me/tags/ingress/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ingress, Lv11</title>
+      <link>https://tgmerge.me/blog/0209-ingress-lv11/</link>
+      <pubDate>Mon, 25 May 2015 17:24:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0209-ingress-lv11/</guid>
+      <description>怎么说——现实真是超厉害的——</description>
+    </item>
+    
+    <item>
+      <title>成就之类……图啥呢</title>
+      <link>https://tgmerge.me/blog/0208-achievements/</link>
+      <pubDate>Sun, 24 May 2015 04:50:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0208-achievements/</guid>
+      <description>看到评价变好就会愉悦，看到虚拟财产变多就会愉悦，看到图鉴集齐就会愉悦，看到完成度升高就会愉悦，看到进度条填满就会愉悦，看到数字增长就会愉悦。</description>
+    </item>
+    
+    <item>
+      <title>Ingress全成就解锁，After Story第一篇完结</title>
+      <link>https://tgmerge.me/blog/0035-ingress-all-medal-unlocked/</link>
+      <pubDate>Sun, 13 Oct 2013 14:14:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0035-ingress-all-medal-unlocked/</guid>
+      <description>虽然从玩Ingress到现在没去过多少地方…… Unique Portals Visited，感觉这个记录了“你到过多少地方”的数值才是重点。虽然Google最后大概还</description>
+    </item>
+    
+    <item>
+      <title>2013/09/04</title>
+      <link>https://tgmerge.me/blog/0022-daily-2013-09-04/</link>
+      <pubDate>Wed, 04 Sep 2013 17:57:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0022-daily-2013-09-04/</guid>
+      <description>过来两年还没去过西湖几次……北面和东面的中山公园和湖滨一带从各种角度来说都还不错，骑车去绝对正确。 西湖北面倒也没说得那么玄乎……感想就是两秒</description>
+    </item>
+    
+    <item>
+      <title>2013/09/03</title>
+      <link>https://tgmerge.me/blog/0021-daily-2013-09-03/</link>
+      <pubDate>Tue, 03 Sep 2013 17:46:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0021-daily-2013-09-03/</guid>
+      <description>看到信义坊和小河直街这两个地方似乎是附近小有名气的farm。 信义坊其实没什么特别赞的……学校很多，熊孩子成群，下次可以在minecraft里</description>
+    </item>
+    
+  </channel>
+</rss>

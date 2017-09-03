@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JavaScript on tgmerge&#39;s blog</title>
+    <link>https://tgmerge.me/tags/javascript/</link>
+    <description>Recent content in JavaScript on tgmerge&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>CC BY-NC-SA 4.0 / tgmerge</copyright>
+    <lastBuildDate>Wed, 06 May 2015 04:10:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tgmerge.me/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>杂项</title>
+      <link>https://tgmerge.me/blog/0204-misc-note/</link>
+      <pubDate>Wed, 06 May 2015 04:10:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0204-misc-note/</guid>
+      <description>昨天吃坏了今天空肚子休息，躺床上看了会书再加上最近寝室时区不太对的结果就是完·全·失·眠，感觉现在可以单刷鸡盒。 又看了一圈，还是觉得cc98</description>
+    </item>
+    
+    <item>
+      <title>哪些符合要求的osu beatmap没有下过？</title>
+      <link>https://tgmerge.me/blog/0071-find-osu-beatmaps-not-downloaded-yet/</link>
+      <pubDate>Fri, 14 Nov 2014 00:58:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0071-find-osu-beatmaps-not-downloaded-yet/</guid>
+      <description>在beatmap搜索结果页的javascript console： document.body.innerHTML.match(/[0-9]+(?=&amp;quot;.class=&amp;quot;title&amp;quot;)/g); 之后python： ids = # [&amp;quot;63609&amp;quot;, ..., ] import os s = &amp;quot;&amp;quot;.join([dirname for dirname, dirnames, filenames in os.walk(&amp;quot;e:/path/to/osu/songs&amp;quot;)]) [((oneid in s), oneid) for oneid in ids if (oneid not</description>
+    </item>
+    
+    <item>
+      <title>2048 HD&#43;FL mod</title>
+      <link>https://tgmerge.me/blog/0067-2048-hd-fl-mod/</link>
+      <pubDate>Fri, 21 Mar 2014 13:02:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0067-2048-hd-fl-mod/</guid>
+      <description>https://tgmerge.github.io/playground/2048hidden osu!大法好系列</description>
+    </item>
+    
+  </channel>
+</rss>

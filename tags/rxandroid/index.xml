@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>RxAndroid on tgmerge&#39;s blog</title>
+    <link>https://tgmerge.me/tags/rxandroid/</link>
+    <description>Recent content in RxAndroid on tgmerge&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>CC BY-NC-SA 4.0 / tgmerge</copyright>
+    <lastBuildDate>Sat, 19 Nov 2016 23:57:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tgmerge.me/tags/rxandroid/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>RxJava 笔记和 Demo (2) - 适用场景</title>
+      <link>https://tgmerge.me/blog/0223-rxjava-note-and-demo-2/</link>
+      <pubDate>Sat, 19 Nov 2016 23:57:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0223-rxjava-note-and-demo-2/</guid>
+      <description>RxJava 的适用场景 与 Retrofit 的结合 Code 17 - RxJava + Retrofit 进行网络请求 这个示例模拟了“在网络请求发起时更新 UI -&amp;gt; 处理请求结果 -&amp;gt; 根据请求结果再次更新 UI”的过程。 使用了</description>
+    </item>
+    
+    <item>
+      <title>RxJava 笔记和 Demo (1) - 介绍和原理</title>
+      <link>https://tgmerge.me/blog/0222-rxjava-note-and-demo-1/</link>
+      <pubDate>Fri, 18 Nov 2016 14:05:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0222-rxjava-note-and-demo-1/</guid>
+      <description>用了蛮久 Rx 结果还没有正儿八经学一下感觉不太科学（笑 所以一边读给 Android 开发者的 RxJava 详解这篇文章，一边写了个 playground 式的小应用。 笔记是给自己看的所以写得很乱</description>
+    </item>
+    
+  </channel>
+</rss>

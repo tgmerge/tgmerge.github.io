@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sublime Text on tgmerge&#39;s blog</title>
+    <link>https://tgmerge.me/tags/sublime-text/</link>
+    <description>Recent content in Sublime Text on tgmerge&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>CC BY-NC-SA 4.0 / tgmerge</copyright>
+    <lastBuildDate>Fri, 21 Feb 2014 17:03:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tgmerge.me/tags/sublime-text/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>未命名</title>
+      <link>https://tgmerge.me/blog/0065-sublime-ime-support-plugin/</link>
+      <pubDate>Fri, 21 Feb 2014 17:03:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0065-sublime-ime-support-plugin/</guid>
+      <description>Sublime text早就有了修复输入法支持的插件IMESupport，为啥国内都没消息……是日本那边做的，对中文输入法也一样支持。效果不是很完美不过已</description>
+    </item>
+    
+  </channel>
+</rss>

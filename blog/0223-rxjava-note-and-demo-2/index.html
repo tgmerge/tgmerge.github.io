@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang='zh-cn'>
+
+<head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='RxJava 的适用场景 与 Retrofit 的结合 Code 17 - RxJava &#43; Retrofit 进行网络请求 这个示例模拟了“在网络请求发起时更新 UI -&gt; 处理请求结果 -&gt; 根据请求结果再次更新 UI”的过程。 使用了'>
+
+<meta property='og:title' content='RxJava 笔记和 Demo (2) - 适用场景 • tgmerge'>
+<meta property='og:description' content='RxJava 的适用场景 与 Retrofit 的结合 Code 17 - RxJava &#43; Retrofit 进行网络请求 这个示例模拟了“在网络请求发起时更新 UI -&gt; 处理请求结果 -&gt; 根据请求结果再次更新 UI”的过程。 使用了'>
+<meta property='og:url' content='https://tgmerge.me/blog/0223-rxjava-note-and-demo-2/'>
+<meta property='og:site_name' content='tgmerge&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog'><meta property='article:tag' content='Android'><meta property='article:tag' content='Java'><meta property='article:tag' content='RxJava'><meta property='article:tag' content='ReactiveX'><meta property='article:tag' content='RxAndroid'><meta property='article:tag' content='Retrofit'><meta property='article:published_time' content='2016-11-19T23:57:00Z'/><meta property='article:modified_time' content='2016-11-19T23:57:00Z'/>
+
+<meta name="generator" content="Hugo 0.26" />
+
+  <title>RxJava 笔记和 Demo (2) - 适用场景 • tgmerge</title>
+  <link rel='canonical' href='https://tgmerge.me/blog/0223-rxjava-note-and-demo-2/'>
+  <link rel='icon' href='/favicon.png'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Ubuntu:400,400i,700&subset=latin'>
+<link rel='stylesheet' href='/css/main.67a788c9.css'>
+
+  <link rel='stylesheet' href='/css/custom.css'>
+
+
+
+</head>
+
+
+<body class='page'>
+  <div class='site'>
+    <header id='header' class='header-container'>
+      <div class='site-header'>
+        <nav id='navmenu' aria-label='主菜单'>
+  <ul class='main-menu'>
+    
+    <li>
+      <a href='/' 
+        
+      >首页</a>
+    </li>
+    
+    <li>
+      <a href='/blog/' 
+        
+      >文章</a>
+    </li>
+    
+    <li>
+      <a href='/snap/' 
+        
+      >图片</a>
+    </li>
+    
+    <li>
+      <a href='/about/' 
+        
+      >关于</a>
+    </li>
+    
+    <li>
+      <a href='' 
+        
+      ></a>
+    </li>
+    
+  </ul>
+</nav>
+
+        <div class='site-info'>
+          
+          <p class='site-title title'>tgmerge&#39;s blog</p>
+          
+          <p class='site-description'></p>
+        </div>
+      </div>
+    </header>
+
+
+<main class='main'>
+  <article lang='en' class='entry'>
+    <header class='entry-header'>
+  <div class='entry-info'>
+    <h1 class='entry-title title'>RxJava 笔记和 Demo (2) - 适用场景</h1>
+    
+  </div>
+  
+<div class='meta'>
+  <span class='posted-on'>
+    <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+  
+</svg>
+
+    <span class='screen-reader'>发表于 </span>
+    <time class='date' datetime='2016-11-19T23:57:00Z'>2016-11-19</time>
+  </span>
+  
+  <span class='byline'>
+    <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M21,21V20c0-2.76-4-5-9-5s-9,2.24-9,5v1"/>
+  <path d="M16,6.37A4,4,0,1,1,12.63,3,4,4,0,0,1,16,6.37Z"/>
+  
+</svg>
+
+    <span class='screen-reader'> by </span>
+    tgmerge
+  </span>
+  
+  
+  <span class='reading-time'>
+    <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <circle cx="12" cy="12" r="10"/>
+  <polyline points="12 6 12 12 15 15"/> 
+  
+</svg>
+
+    大概需要阅读 4 分钟
+  </span>
+  
+</div>
+
+
+</header>
+
+    <div class='entry-content'>
+  
+
+<h2 id="rxjava-的适用场景">RxJava 的适用场景</h2>
+
+<h3 id="与-retrofit-的结合">与 Retrofit 的结合</h3>
+
+<p><a href="https://github.com/tgmerge/rx-java-playground/blob/8f8f79766f7ad731529fe2bb15348b76250a4632/app/src/main/java/me/tgmerge/rxjavaplayground/part2_retrofit/RxRetro1Activity.java#L31">Code 17 - RxJava + Retrofit 进行网络请求</a></p>
+
+<p>这个示例模拟了“在网络请求发起时更新 UI -&gt; 处理请求结果 -&gt; 根据请求结果再次更新 UI”的过程。</p>
+
+<p>使用了 <a href="https://jsonplaceholder.typicode.com">JSONPlaceholder</a> API。</p>
+
+<ul>
+<li><strong>在发起请求时更新UI</strong> 在<code>subscribeOn()</code>中完成；</li>
+<li><strong>处理请求结果</strong> 在<code>map()</code>中完成；</li>
+<li><strong>根据处理后的结果更新UI</strong> 在<code>subscribe()</code>中完成。</li>
+</ul>
+
+<p>期间根据需求调度线程。</p>
+
+<p><a href="https://github.com/tgmerge/rx-java-playground/blob/8f8f79766f7ad731529fe2bb15348b76250a4632/app/src/main/java/me/tgmerge/rxjavaplayground/part2_retrofit/RxRetro2Activity.java#L36">Code 18 - RxJava + Retrofit 按顺序依次发起两个请求</a></p>
+
+<p>这个示例模拟了“更新 UI -&gt; 发起请求 A -&gt; 利用请求 A 的结果发起请求 B -&gt; 处理请求 B 的结果 -&gt; 根据请求 B 的结果再次更新 UI”的过程。</p>
+
+<!-- more -->
+
+<p>具体来说，它会发起一个 JSONPlaceholder 的 <code>/posts</code> 请求，用这个请求 <strong>返回字符串的长度 % 10 + 1</strong> 作为 <code>id</code> ，发起 <code>/post/{id}</code> 请求。</p>
+
+<p><img src="/assets/0222-06.png" alt="" /></p>
+
+<p>实际应用中类似的情景是，先发起一个请求获取 token，然后使用这个 token 发起其他请求。</p>
+
+<p>RxJava 有一点好，就是在链式声明的任意位置抛出的异常都会被 Subscriber 的 <code>onError()</code> 接到，可以统一处理。</p>
+
+<h3 id="rxbus-作为事件总线">RxBus 作为事件总线</h3>
+
+<p><a href="https://github.com/tgmerge/rx-java-playground/blob/fcaa9496c926a10eb5f8fcfbf9b8b2fe3e719552/app/src/main/java/me/tgmerge/rxjavaplayground/part3_rxbus/RxBus.java#L15">Code 19 - RxJava 作为事件总线</a></p>
+
+<p>RxJava 可以作为事件总线使用。</p>
+
+<p>最基本的用法是，将一个单例的 Observable 作为总线，让其发送和处理事件。然而这么做会造成两个很麻烦的问题：</p>
+
+<ol>
+<li>无法实现 sticky 的事件（订阅某事件的 subscriber 会在订阅时马上收到订阅之前最后一次触发的该事件，而不需要等到下次事件触发）；</li>
+<li>订阅者处理事件的过程中一旦出现错误，将触发 <code>onError()</code> 导致订阅中断。</li>
+</ol>
+
+<p>解决这些问题，并将 RxBus 整合进 MVP 结构中，参考：</p>
+
+<ul>
+<li><a href="http://www.jianshu.com/p/ca090f6e2fe2">用 RxJava 实现事件总线 (Event Bus)</a></li>
+<li><a href="http://www.jianshu.com/p/0493cc28a811">深入 RxBus：［异常处理］</a></li>
+<li><a href="https://github.com/googlesamples/android-architecture">Google 的 android-architecture</a></li>
+</ul>
+
+<h4 id="oftype-操作符">ofType 操作符</h4>
+
+<p><a href="http://reactivex.io/documentation/operators/filter.html#collapseRxJava 1․x">Rx 文档对 ofType 操作符的解释</a>是：</p>
+
+<p><img src="http://reactivex.io/documentation/operators/images/ofClass.png" alt="" /></p>
+
+<p>该操作符仅在 observable 发射的事件对象和指定的类型一致时，才继续传递该对象。</p>
+
+<p>这个操作符天生适合进行对总线上不同类型事件的过滤，只要在作为总线的 observable 上叠一层 <code>ofType(EventType.class)</code>，我们的事件订阅者就只会收到 <code>EventType</code> 类型的事件了。</p>
+
+<h4 id="sticky-事件的处理">sticky 事件的处理</h4>
+
+<p><a href="https://github.com/tgmerge/rx-java-playground/blob/fcaa9496c926a10eb5f8fcfbf9b8b2fe3e719552/app/src/main/java/me/tgmerge/rxjavaplayground/part3_rxbus/RxBus.java#L67">Code 20 - RxBus 对 sticky 事件的处理</a></p>
+
+<p><a href="http://www.jianshu.com/p/71ab00a2677b">深入 RxBus：［支持 Sticky 事件］</a>这篇文章中使用了 <code>ConcurrentHashMap&lt;EventType, Event&gt;</code> 来保存每种事件最近一次触发的事件对象，在每次 sticky 事件触发的时候更新之，并在新的 sticky 事件订阅者订阅事件的时候，取出相应类型的事件对象并发送。</p>
+
+<p><strong>Note</strong> 这种方法和 EventBus 比较像，由于事件对象被保存在了单例的 RxBus 中，可能造成内存泄漏。文章作者推荐在不需要使用某种事件的时候，通过 <code>removeStickyEvent(EventType)</code> 的方法从 HashMap 移除它；另外在应用退出时，用 <code>removeAllStickyEvents()</code> 清理所有的 sticky 事件对象。</p>
+
+<h4 id="错误处理">错误处理</h4>
+
+<p><a href="https://github.com/tgmerge/rx-java-playground/blob/fcaa9496c926a10eb5f8fcfbf9b8b2fe3e719552/app/src/main/java/me/tgmerge/rxjavaplayground/part3_rxbus/SubscriberFragment.java#L75">Code 21 - RxBus 异常时重新订阅</a></p>
+
+<p>RxBus 事件监听时的异常可能发生在 Subscriber 处理事件的过程中（各种 <code>lift()</code>），也可能发生在最终事件到达的 <code>onNext()</code> 里。</p>
+
+<p>如果是在处理事件的过程中抛出了异常，会直接调用 <code>Subscriber.onError()</code>，继而终止整个订阅，事件监听就断掉了。</p>
+
+<p>在 <code>Subscriber.onError()</code> 中重新订阅事件是一种可行的方法，但只适用于非 sticky 事件。如果 sticky 事件监听处 <code>onError()</code> 中重新订阅事件，将反复接收到引起异常的那个事件，导致死循环。</p>
+
+<h4 id="compositesubscription-以及-rxbus-和-mvp-的整合">CompositeSubscription，以及 RxBus 和 MVP 的整合</h4>
+
+<p>参考 <a href="https://github.com/googlesamples/android-architecture/blob/todo-mvp-rxjava/todoapp/app/src/main/java/com/example/android/architecture/blueprints/todoapp/tasks/TasksPresenter.java">Google android-architecture 进行 RxJava 和 MVP 整合的做法</a>，Presenter 有责任发送和监听事件，并在接收到事件的时候通知 View 更新内容。</p>
+
+<p>于是 Presenter 需要在生命周期内管理它内部的 <code>Subscription</code> ，即 <code>订阅</code>。</p>
+
+<p>RxJava 提供了 <a href="http://reactivex.io/RxJava/javadoc/rx/subscriptions/CompositeSubscription.html"><code>CompositeSubscription</code></a> 用于统一 unsubscribe 多个 <code>Subscription</code>。主要的方法只有两个：</p>
+
+<ul>
+<li><code>clear()</code>：解除订阅 <code>CompositeSubscription</code> 中已有的 Subscription，之后可以重新添加其他的 Subscription；</li>
+<li><code>unsubscribe()</code>：解除订阅自身和其中所有的 Subscription，之后再添加的 Subscription 也会直接被解除订阅。</li>
+</ul>
+
+<p>Presenter 可以在和 View 解除关联的时候使用 <code>unsubscribe()</code> 解除所有订阅。</p>
+
+<p>参考 <a href="http://www.paul-woitaschek.de/blog/when-to-use-composite-subscription-unsubscribe/">When to use CompositeSubscription.unsubscribe</a></p>
+
+<p>归结起来，和 RxBus 结合的 Presenter 需要做这些事情：</p>
+
+<ol>
+<li>持有一个 <code>CompositeSubscription</code>；</li>
+<li>在 Presenter 和 View 建立关系时，初始化 <code>CompositeSubscription</code>；</li>
+<li>在 Presenter 和 View 解除关系时，使用 <code>CompositeSubscription.unsubscribe()</code> 解除订阅。</li>
+</ol>
+
+<p>另外，Presenter 的每个 Subscription（包括 Retrofit 网络请求、RxBus 监听和其他自定义的 Subscriber）都需要被添加到 <code>CompositeSubscription</code> 中：</p>
+
+<pre><code class="language-java">Subscription subs = RxBus.getDefault().toObservable(Event.class)
+        .map(... ...);
+        .subscribe(... ...);
+mCompositeSubscription.add(subs);
+</code></pre>
+
+<p>如果需要单独控制某个 Subscription 的订阅/解除订阅，也需要将它添加到 CompositeSubscription 中。</p>
+
+<p>例如某个刷新内容的网络请求，如果发起请求时前一次请求的结果还没有返回，需要先解除这个请求的订阅：</p>
+
+<pre><code class="language-java">Subscription refreshSubs;
+
+public void refresh() {
+    if (refreshSubs != null &amp;&amp; !refreshSubs.isUnsubscribed()) {
+        refreshSubs.unsubscribe();
+    }
+    refreshSubs = SomeAPI.getSomething().subscribe(... ...);
+    mCompositeSubscription.add(refreshSubs);
+}
+</code></pre>
+
+</div>
+
+    
+<footer class='entry-footer'>
+  
+    
+  
+    
+      
+      <div class='tags'>
+  <span class='tag-icon'>
+    <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  </span>
+  <span class='screen-reader'>Tags: </span><a class='tag' href='/tags/android'>Android</a>, <a class='tag' href='/tags/java'>Java</a>, <a class='tag' href='/tags/rxjava'>RxJava</a>, <a class='tag' href='/tags/reactivex'>ReactiveX</a>, <a class='tag' href='/tags/rxandroid'>RxAndroid</a>, <a class='tag' href='/tags/retrofit'>Retrofit</a></div>
+
+    
+  
+</footer>
+
+
+  </article>
+
+  
+    
+<nav class='entry-nav'>
+  <div class='entry-nav-links'><div class='prev-entry'>
+      <a href='https://tgmerge.me/blog/0222-rxjava-note-and-demo-1/'>
+        <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="20" y1="12" x2="4" y2="12"/>
+  <polyline points="10 18 4 12 10 6"/>
+  
+</svg>
+ 上一篇</span>
+        <span class='screen-reader'>上一篇: </span>RxJava 笔记和 Demo (1) - 介绍和原理</a>
+    </div><div class='next-entry'>
+      <a href='https://tgmerge.me/blog/0224-android-studio-new-version-2.3/'>
+        <span class='screen-reader'>下一篇: </span>Android Studio 2.3 - 值得注意的新特性<span aria-hidden='true'>下一篇 <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="4" y1="12" x2="20" y2="12"/>
+  <polyline points="14 6 20 12 14 18"/>
+  
+</svg>
+</span>
+      </a>
+    </div></div>
+</nav>
+
+
+  
+
+  
+    <div class='comments-container'>
+  
+</div>
+
+  
+</main>
+
+    <footer id='footer' class='footer-container'>
+      <div class='footer'>
+        <div class='social'>
+  <nav aria-label='找我吗？'>
+    <ul class='social-menu'><li>
+        <a href='https://github.com/tgmerge' target='_blank' rel='noopener'>
+          <span class='screen-reader'>在新标签页中打开 Github account</span>
+          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  
+</svg>
+
+        </a>
+      </li><li>
+        <a href='https://plus.google.com/&#43;tgmergeSipan' target='_blank' rel='noopener'>
+          <span class='screen-reader'>在新标签页中打开 Googleplus account</span>
+          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="m12.233419,10.443874l0,3.734704l6.224506,0c-0.311225,1.556127 -1.867352,4.66838 -6.224506,4.66838c-3.734704,0 -6.691344,-3.112253 -6.691344,-6.846957c0,-3.734704 2.95664,-6.846957 6.691344,-6.846957c2.178577,0 3.579091,0.933676 4.357154,1.711739l2.95664,-2.801028c-1.867352,-1.867352 -4.357154,-2.95664 -7.313795,-2.95664c-6.068894,0 -10.892886,4.823992 -10.892886,10.892886c0,6.068894 4.823992,10.892886 10.892886,10.892886c6.224506,0 10.426048,-4.357154 10.426048,-10.581661c0,-0.778063 0,-1.244901 -0.155613,-1.867352l-10.270435,0z"/>
+  
+</svg>
+
+        </a>
+      </li><li>
+        <a href='http://xiefan.me/' target='_blank' rel='noopener'>
+          <span class='screen-reader'>在新标签页中打开 Love account</span>
+          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="m16.98649,1.83311c-1.92811,0 -3.77865,0.89757 -4.98649,2.30486c-1.20784,-1.4073 -3.05838,-2.30486 -4.98649,-2.30486c-3.41297,0 -6.09459,2.67054 -6.09459,6.09459c0,4.17757 3.76757,7.60162 9.47432,12.77649l1.60676,1.4627l1.60676,-1.4627c5.70676,-5.17486 9.47432,-8.59892 9.47432,-12.77649c0,-3.42405 -2.68162,-6.09459 -6.09459,-6.09459z"/>
+  
+</svg>
+
+        </a>
+      </li><li>
+        <a href='https://twitter.com/tgmerge' target='_blank' rel='noopener'>
+          <span class='screen-reader'>在新标签页中打开 Twitter account</span>
+          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+  
+</svg>
+
+        </a>
+      </li><li>
+        <a href='http://weibo.com/tgmerge' target='_blank' rel='noopener'>
+          <span class='screen-reader'>在新标签页中打开 Weibo account</span>
+          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="m20.79684,15.88687c-0.07481,0.61015 -0.44417,1.42549 -0.81622,1.94626c-2.65119,3.71126 -10.64754,5.27117 -15.64104,2.4504c-1.67472,-0.94661 -3.40772,-2.33073 -3.14023,-5.08873c0.2301,-2.37344 1.82605,-4.21198 3.39216,-5.77809c1.4941,-1.49498 3.06954,-2.66459 5.21335,-3.20352c2.32587,-0.58479 3.01344,1.35428 2.38683,3.26628c1.34717,-0.09036 4.20219,-1.59426 5.46484,-0.12551c0.55629,0.6471 0.34311,1.80599 0,2.70099c1.56836,0.85803 3.45267,1.2853 3.14031,3.83192l0,0z"/>
+  <path d="m6.8656,17.27851c-0.85722,-2.33548 1.20109,-4.19298 3.34475,-4.41747c1.83017,-0.19181 3.19449,0.74143 3.59737,1.95635c1.34459,4.06376 -5.66104,5.9534 -6.94212,2.46112z"/>
+  <path d="m22.8634,10.89993c0.61627,-2.3711 0.32216,-4.27798 -0.8825,-5.72073c-1.20457,-1.44274 -3.10291,-1.98196 -5.69493,-1.61781"/>
+  <path d="m20.31177,9.60458c0.29682,-1.14182 0.15521,-2.0601 -0.42493,-2.75485c-0.58002,-0.69477 -1.49417,-0.95444 -2.74244,-0.7791"/>
+  
+</svg>
+
+        </a>
+      </li></ul>
+  </nav>
+</div>
+
+        <div class='copyright'>
+          <p>CC BY-NC-SA 4.0 / tgmerge</p>
+
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src='/js/main.af838dd5.js'></script>
+  
+    <script src='/js/custom.js'></script>
+  
+
+</body>
+
+</html>
+

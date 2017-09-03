@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kindle on tgmerge&#39;s blog</title>
+    <link>https://tgmerge.me/tags/kindle/</link>
+    <description>Recent content in Kindle on tgmerge&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>CC BY-NC-SA 4.0 / tgmerge</copyright>
+    <lastBuildDate>Tue, 14 Apr 2015 22:29:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tgmerge.me/tags/kindle/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>kindle和其他</title>
+      <link>https://tgmerge.me/blog/0201-kindle-cn/</link>
+      <pubDate>Tue, 14 Apr 2015 22:29:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0201-kindle-cn/</guid>
+      <description>大概算了下，kindle用到现在两年时间，除去教材和文档，也只是靠盗版物回了个本。最常见的使用方式则是当相框，就像这样…… 一年时间没看亚马逊</description>
+    </item>
+    
+    <item>
+      <title>未命名</title>
+      <link>https://tgmerge.me/blog/0066-kindle-3rd-part-application-install/</link>
+      <pubDate>Tue, 25 Feb 2014 23:34:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0066-kindle-3rd-part-application-install/</guid>
+      <description>kindle越狱后的装第三方应用需要的那些merged developer keystore被整合成了一个叫Mobileread Kindlet Kit的合集。 也就是说那串流程</description>
+    </item>
+    
+    <item>
+      <title>kindle 5.3.5 以上版本保留jailbreak最省事的方法</title>
+      <link>https://tgmerge.me/blog/0029-kindle-keep-jailbreak/</link>
+      <pubDate>Thu, 03 Oct 2013 02:15:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0029-kindle-keep-jailbreak/</guid>
+      <description>kindle paperwhite越狱的安装包只支持到5.3.5。 升级到以上版本的话，虽然越狱会保留但开发者证书会丢失，没有办法使用第三方组件…… 不过按</description>
+    </item>
+    
+  </channel>
+</rss>

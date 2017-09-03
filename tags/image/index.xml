@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Image on tgmerge&#39;s blog</title>
+    <link>https://tgmerge.me/tags/image/</link>
+    <description>Recent content in Image on tgmerge&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>CC BY-NC-SA 4.0 / tgmerge</copyright>
+    <lastBuildDate>Sat, 11 Jan 2014 13:08:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tgmerge.me/tags/image/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>未命名</title>
+      <link>https://tgmerge.me/blog/0063-sakura-trick-gif/</link>
+      <pubDate>Sat, 11 Jan 2014 13:08:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0063-sakura-trick-gif/</guid>
+      <description>已经笑瘫了……</description>
+    </item>
+    
+    <item>
+      <title>未命名</title>
+      <link>https://tgmerge.me/blog/0060-koimonogatari-gif/</link>
+      <pubDate>Tue, 24 Dec 2013 01:19:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0060-koimonogatari-gif/</guid>
+      <description>恋物語OP「木枯らしセンティメント」 想稍微处理一下视频的话就用VirtualDub。 QGifer是专门转换视频到GIF的。也有一点优化功能。</description>
+    </item>
+    
+  </channel>
+</rss>

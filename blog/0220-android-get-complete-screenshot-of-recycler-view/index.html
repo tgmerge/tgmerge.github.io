@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang='zh-cn'>
+
+<head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='写 Android 应用的时候，偶尔会遇到“需要对某个 view 截图”的问题。对一个单独的简单 view ，常见的实现方法有以下两种： 使用view.getDrawingCac'>
+
+<meta property='og:title' content='Android: 获取RecyclerView的完整截图 • tgmerge'>
+<meta property='og:description' content='写 Android 应用的时候，偶尔会遇到“需要对某个 view 截图”的问题。对一个单独的简单 view ，常见的实现方法有以下两种： 使用view.getDrawingCac'>
+<meta property='og:url' content='https://tgmerge.me/blog/0220-android-get-complete-screenshot-of-recycler-view/'>
+<meta property='og:site_name' content='tgmerge&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog'><meta property='article:tag' content='Android'><meta property='article:tag' content='Java'><meta property='article:published_time' content='2016-10-23T14:53:00Z'/><meta property='article:modified_time' content='2016-10-23T14:53:00Z'/>
+
+<meta name="generator" content="Hugo 0.26" />
+
+  <title>Android: 获取RecyclerView的完整截图 • tgmerge</title>
+  <link rel='canonical' href='https://tgmerge.me/blog/0220-android-get-complete-screenshot-of-recycler-view/'>
+  <link rel='icon' href='/favicon.png'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Ubuntu:400,400i,700&subset=latin'>
+<link rel='stylesheet' href='/css/main.67a788c9.css'>
+
+  <link rel='stylesheet' href='/css/custom.css'>
+
+
+
+</head>
+
+
+<body class='page'>
+  <div class='site'>
+    <header id='header' class='header-container'>
+      <div class='site-header'>
+        <nav id='navmenu' aria-label='主菜单'>
+  <ul class='main-menu'>
+    
+    <li>
+      <a href='/' 
+        
+      >首页</a>
+    </li>
+    
+    <li>
+      <a href='/blog/' 
+        
+      >文章</a>
+    </li>
+    
+    <li>
+      <a href='/snap/' 
+        
+      >图片</a>
+    </li>
+    
+    <li>
+      <a href='/about/' 
+        
+      >关于</a>
+    </li>
+    
+    <li>
+      <a href='' 
+        
+      ></a>
+    </li>
+    
+  </ul>
+</nav>
+
+        <div class='site-info'>
+          
+          <p class='site-title title'>tgmerge&#39;s blog</p>
+          
+          <p class='site-description'></p>
+        </div>
+      </div>
+    </header>
+
+
+<main class='main'>
+  <article lang='en' class='entry'>
+    <header class='entry-header'>
+  <div class='entry-info'>
+    <h1 class='entry-title title'>Android: 获取RecyclerView的完整截图</h1>
+    
+  </div>
+  
+<div class='meta'>
+  <span class='posted-on'>
+    <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+  
+</svg>
+
+    <span class='screen-reader'>发表于 </span>
+    <time class='date' datetime='2016-10-23T14:53:00Z'>2016-10-23</time>
+  </span>
+  
+  <span class='byline'>
+    <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M21,21V20c0-2.76-4-5-9-5s-9,2.24-9,5v1"/>
+  <path d="M16,6.37A4,4,0,1,1,12.63,3,4,4,0,0,1,16,6.37Z"/>
+  
+</svg>
+
+    <span class='screen-reader'> by </span>
+    tgmerge
+  </span>
+  
+  
+  <span class='reading-time'>
+    <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <circle cx="12" cy="12" r="10"/>
+  <polyline points="12 6 12 12 15 15"/> 
+  
+</svg>
+
+    大概需要阅读 6 分钟
+  </span>
+  
+</div>
+
+
+</header>
+
+    <div class='entry-content'>
+  <p>写 Android 应用的时候，偶尔会遇到“需要对某个 view 截图”的问题。对一个单独的简单 view ，常见的实现方法有以下两种：</p>
+
+<ol>
+<li><p>使用<code>view.getDrawingCache()</code>方法。如：</p>
+
+<pre><code class="language-java">TextView textView = findViewById(R.id.some_activity_some_article_text);
+textView.setDrawingCacheEnabled(true);
+Bitmap drawingCache = textView.getDrawingCache();
+</code></pre>
+
+<p>所得到的<code>drawingCache</code>即为<code>textView</code>显示在屏幕上的图像。这种方法比较简单，但对于比较高的 view ，经常会由于 drawing cache 不够大而出现 <a href="http://stackoverflow.com/questions/16500379/view-too-large-to-fit-into-drawing-cache-when-calling-getdrawingcache">View too large to fit into drawing cache</a> 的问题。</p></li>
+
+<li><p>使用<code>view.draw(canvas)</code>方法。如：</p>
+
+<pre><code class="language-java">TextView textView = findViewById(R.id.some_activity_some_article_text);
+Bitmap viewBitmap = Bitmap.createBitmap(textView.getMeasuredWidth(), textView.getMeasuredHeight(), Bitmap.Config.RGBA_8888);
+Canvas canvas = new Canvas(viewBitmap);
+textView.draw(canvas);
+</code></pre>
+
+<p>这之后<code>viewBitmap</code>这个 Bitmap 即为<code>textView</code>的图像。这对普通的 view 基本已经够用了，除非 view 的高度太大，可能还是会内存不足。</p></li>
+</ol>
+
+<p>然而实际需求中，这种截图常常用于“分享”之类的功能，需要截图的部分一般都是比较复杂的 ViewGroup 。而其中 RecyclerView 的截图尤其麻烦，由于它回收复用 view 和 ViewHolder 的特性，难以用普通的方法截到完整的图片。</p>
+
+<!-- more -->
+
+<p>StackOverflow 上有人给出了一个<a href="http://stackoverflow.com/a/30124162/2996355">对 RecyclerView 截图的方案</a>：</p>
+
+<pre><code class="language-java">public static Bitmap getRecyclerViewScreenshot(RecyclerView view) {
+        int size = view.getAdapter().getItemCount();
+        RecyclerView.ViewHolder holder = view.getAdapter().createViewHolder(view, 0);
+        view.getAdapter().onBindViewHolder(holder, 0);
+        holder.itemView.measure(View.MeasureSpec.makeMeasureSpec(view.getWidth(), View.MeasureSpec.EXACTLY),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        holder.itemView.layout(0, 0, holder.itemView.getMeasuredWidth(), holder.itemView.getMeasuredHeight());
+        Bitmap bigBitmap = Bitmap.createBitmap(view.getMeasuredWidth(), holder.itemView.getMeasuredHeight() * size,
+                Bitmap.Config.ARGB_8888);
+        Canvas bigCanvas = new Canvas(bigBitmap);
+        bigCanvas.drawColor(Color.WHITE);
+        Paint paint = new Paint();
+        int iHeight = 0;
+        holder.itemView.setDrawingCacheEnabled(true);
+        holder.itemView.buildDrawingCache();
+        bigCanvas.drawBitmap(holder.itemView.getDrawingCache(), 0f, iHeight, paint);
+        holder.itemView.setDrawingCacheEnabled(false);
+        holder.itemView.destroyDrawingCache();
+        iHeight += holder.itemView.getMeasuredHeight();
+        for (int i = 1; i &lt; size; i++) {
+            view.getAdapter().onBindViewHolder(holder, i);
+            holder.itemView.setDrawingCacheEnabled(true);
+            holder.itemView.buildDrawingCache();
+            bigCanvas.drawBitmap(holder.itemView.getDrawingCache(), 0f, iHeight, paint);
+            iHeight += holder.itemView.getMeasuredHeight();
+            holder.itemView.setDrawingCacheEnabled(false);
+            holder.itemView.destroyDrawingCache();
+        }
+        return bigBitmap;
+    }
+</code></pre>
+
+<p>思路是，对 RecyclerView 的每个 item 依次创建对应的 ViewHolder ，<code>onBindViewHolder()</code>并<code>measure()</code>它们，分别获取每个 ViewHolder 的图像，最后拼接成一个大号的整体截图(<code>bitBitmap</code>)。</p>
+
+<p>这种方法已经可以完整地截取一些 RecyclerView 的图像了。<del>然而谁都知道从 StackOverflow 直接抄代码的坑有多深……</del>在截取包含图像的 RecyclerView 时，这样截取的图片经常会出现 ImageView 区域空白的问题。究其原因，含有图片的 ViewHolder 是在<code>onBindViewHolde()</code>的时候，从URL加载图片显示在 ImageView 上的，而加载图片往往是异步过程。调用<code>onBindViewHolder()</code>之后立即获取它的 drawing cache 、或者把它画在 Canvas 上，此时可能还没有下载到图片，显然只能得到空白的 ImageView 。</p>
+
+<hr />
+
+<p>简单折腾一下之后解决了这个问题，不过也需要对 RecyclerView 的 adapter 进行一点修改。</p>
+
+<p>思路其实蛮简单的，让 adapter 实现一个阻塞的<code>onBindViewHolder()</code>，特殊处理含有图片的 ViewHolder 就可以了。</p>
+
+<p>当然，为了做到这一点，含有图片的 ViewHolder 也需要实现一个阻塞地更新内容的方法。将问题从下到上解决，是这样的：</p>
+
+<ol>
+<li><p>提供一个阻塞地从 URL 加载图片到 ImageView 的方法</p>
+
+<p>这里使用的是 Universal Image Loader 的<code>loadImageSync()</code>， Glide 和 Picasso 也有类似的方法。</p>
+
+<pre><code class="language-java">import com.nostra13.universalimageloader.core.ImageLoader;
+    
+class ImageUtil {
+        
+    // ... 普通的图片显示工具方法 ...
+        
+    /**
+     * 阻塞地在ImageView上显示图片
+    * timeoutInSecond: 最大超时
+     * failResId: 如果经过了timeoutInSecond秒仍没有完成加载，则显示这个resId作为图片内容
+    *
+     * 网络请求不能在UIThread上执行，需要加载新的线程操作UIL的loadImageSync。
+    */
+    public static void displayImageSync(final String uri, final ImageView imageView, int timeoutInSecond, final int failResId) {
+        imageView.setImageResource(failResId);
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Bitmap bitmap = ImageLoader.getInstance().loadImageSync(uri);
+                imageView.setImageBitmap(bitmap);
+            }
+        });
+        t.start();
+        try {
+            t.join(timeoutInSecond * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+}
+</code></pre>
+
+<p>其实这里蛮蠢的……由于后面其他部分的实现方式已经放在其他线程中了，这里其实可以不需要单独开线程使用<code>loadImageSync()</code>。单独开线程的好处只有可以控制等待加载的时间……</p></li>
+
+<li><p>让含有图片的 ViewHolder 提供阻塞的更新方法</p>
+
+<p>我倾向于让 ViewHolder 提供一个<code>update()</code>方法来更新 ViewHolder 内的 UI 元件，于是增加一个<code>updateSync()</code>方法：</p>
+
+<pre><code class="language-java">final class ImageViewHolder extends RecyclerView.ViewHolder {
+    private ImageView imageView;
+    private TextView titleView;
+
+    ImageViewHolder(View itemView, ViewGroup parent) {
+        super(itemView);
+        imageView = (ImageView) itemView.findViewById(R.id.image);
+        titleView = (TextView) itemView.findViewById(R.id.title);
+    }
+
+    void update(String imageUrl, String title) {
+        url = imageUrl;
+        // 普通的非阻塞图片加载方法
+        ImageUtil.displayImage(imageUrl, imageView, ImageUtil.optionWithCacheWithLoading);
+        titleView.setText(title);
+        imageView.setOnClickListener(this);
+    }
+
+    void updateSync(String imageUrl, String title) {
+        url = imageUrl;
+        // 阻塞的图片加载方法
+        ImageUtil.displayImageSync(imageUrl, imageView, 5, R.drawable.ic_load_failed);
+        titleView.setText(title);
+    }
+}
+</code></pre></li>
+
+<li><p>让 RecyclerView 的 adapter 提供阻塞的<code>onBindViewHolder()</code>方法</p>
+
+<p>创建一个提供阻塞版<code>onBindViewHolder()</code>方法的接口：</p>
+
+<pre><code class="language-java">public interface CapturableAdapter{
+    void onBindViewHolderSync(RecyclerView.ViewHolder holder, int position);
+}
+</code></pre>
+
+<p>让需要截图的 RecyclerView 的 adapter 实现它：</p>
+
+<pre><code class="language-java">
+final public class DetailAdapter extends RecyclerView.Adapter&lt;RecyclerView.ViewHolder&gt; implements CapturableAdapter {
+
+    // ... ...
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof HeaderViewHolder) {
+            // ... 更新不含图片的ViewHolder
+        } else if (holder instanceof TextViewHolder) {
+            // ... 更新不含图片的ViewHolder
+        } else if (holder instanceof ImageViewHolder) {
+            imageViewHolder.update(/* 更新含图片的ViewHolder */);
+        }
+    }
+
+    @Override
+    public void onBindViewHolderSync(RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof ImageViewHolder) {
+            imageViewHolder.updateSync(/* 更新含有图片的ViewHolder */);
+        } else {
+            // 不含图片的ViewHolder仍然用普通的onBindViewHolder方法更新
+            onBindViewHolder(holder, position);
+        }
+    }
+}
+</code></pre></li>
+
+<li><p>最后，对 RecyclerView 截图的工具方法：</p>
+
+<p>使用之前的思路，分别对每个 ViewHolder 截图，最后拼接成一个大号的 Bitmap 就可以了。可以在内存占用方面考虑得多一点，截取按比例缩小的图片、使用<code>RGB_565</code>而不是<code>RGBA_8888</code>，牺牲一点图像质量，换取更少的内存消耗。</p>
+
+<p>```java</p>
+
+<p>/**</p>
+
+<ul>
+<li>截取一个RecyclerView的图片（用于分享之类）</li>
+<li>@param scale  图片的缩放比例（e.g. 0.5 - 图片是原来的0.5倍尺寸）</li>
+
+<li><p>@return       截取到的图片
+*/
+static private Bitmap getScreenshotFromRecyclerView(RecyclerView view, float scale) {</p>
+
+<p>// 1. 获取RecyclerView的Adapter，生成一个Bitmap用于绘制
+RecyclerView.Adapter adapter = view.getAdapter();
+Bitmap bigBitmap = null;
+if (adapter == null) {
+    return bigBitmap;
+}</p>
+
+<p>int itemCount = adapter.getItemCount();
+int bigHeight = 0;  // bigBitmap的高度，随着ViewHolder的绘制逐渐增高</p>
+
+<p>// 2. 估计一下能用的内存数量 放一个LruCache作每个ViewHolder的图像存储
+final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024 / 1024);
+final int cacheSize = maxMemory / 4;
+LruCache<Integer, Bitmap> bitmapCache = new LruCache&lt;&gt;(cacheSize);</p>
+
+<p>for (int i = 0; i &lt; itemCount; i++) {
+    // 3. 创建每一个ViewHolder&hellip;
+    RecyclerView.ViewHolder holder = adapter.createViewHolder(view, adapter.getItemViewType(i));</p>
+
+<pre><code>// 4. 如果Adapter实现了“阻塞地onBindViewHolder”，则调用阻塞的onBindViewHolderSync方法
+if (adapter instanceof CapturableAdapter) {
+    ((CapturableAdapter) adapter).onBindViewHolderSync(holder, i);
+} else {
+    adapter.onBindViewHolder(holder, i);
+}
+
+holder.itemView.measure(View.MeasureSpec.makeMeasureSpec(view.getWidth(), View.MeasureSpec.EXACTLY),
+        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+holder.itemView.layout(0, 0, holder.itemView.getMeasuredWidth(), holder.itemView.getMeasuredHeight());
+
+// 5. 按缩放比例创建Bitmap和Canvas，把ViewHolder的View画上去
+//    并把得到的Bitmap放进LruCache
+//    这里使用RGB_565而不是ARGB_8888，大概节约一半内存
+Bitmap itemBitmap = Bitmap.createBitmap(
+        (int) (holder.itemView.getMeasuredWidth() * scale),
+        (int) (holder.itemView.getMeasuredHeight() * scale), Bitmap.Config.RGB_565);
+Canvas itemCanvas = new Canvas(itemBitmap);
+itemCanvas.scale(scale, scale);
+itemBitmap.eraseColor(Color.WHITE);
+holder.itemView.draw(itemCanvas);
+if (itemBitmap != null) {
+    bitmapCache.put(i, itemBitmap);
+}
+
+// 6. 增加总高度
+bigHeight += holder.itemView.getMeasuredHeight() * scale;
+</code></pre>
+
+<p>}</p>
+
+<p>// 7. 弄一个大号的Bitmap出来放置所有内容，尺寸当然也是缩放过的
+bigBitmap = Bitmap.createBitmap((int) (view.getMeasuredWidth() * scale), bigHeight, Bitmap.Config.RGB_565);
+Canvas bigCanvas = new Canvas(bigBitmap);
+bigCanvas.drawColor(Color.WHITE);</p>
+
+<p>// 8. 依次把LruCache里的Bitmap画到相应位置
+Paint paint = new Paint();
+int height = 0;
+for (int i = 0; i &lt; itemCount; i++) {
+    Bitmap bitmap = bitmapCache.get(i);
+    if (bitmap != null) {
+        bigCanvas.drawBitmap(bitmap, 0f, height, paint);
+        height += bitmap.getHeight();
+        bitmap.recycle();
+    }
+}</p>
+
+<p>return bigBitmap;
+}
+```</p></li>
+</ul>
+
+<p>又要加载图片又要截图，这种耗时间的操作当然需要异步完成，可以包在一个 Thread 里或者包装成 AsyncTask 。这里简单地包了一个新线程：</p>
+
+<pre><code>public interface AfterScreenshotHandler {
+    void done(Bitmap bmp);
+}
+
+static public void getScreenshotFromRecyclerViewAsync(final RecyclerView view, final float scale, final AfterScreenshotHandler onDone) {
+    Thread t = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            final Bitmap bmp = getScreenshotFromRecyclerView(view, scale);
+            view.post(new Runnable() {
+                @Override
+                public void run() {
+                    onDone.done(bmp);
+                }
+            });
+        }
+    });
+    t.start();
+}
+</code></pre>
+
+<p>由于之前的<code>loadImageSync()</code>方法设置了最大超时，截图不会无限卡死。可以在截图过程中放一个 ProgressBar 之类的防止用户误操作，在<code>onDone.done()</code>中完成后续操作就可以了。</p></li>
+
+<li><p>一个使用的例子：</p>
+
+<pre><code class="language-java">// ... 在某个Activity中
+public void screenshotAndShare() {
+    showToast(&quot;准备分享图片……&quot;);
+    showLoadingView();  // 显示ProgressBar
+    ScreenshotUtil.getScreenshotFromRecyclerViewAsync(recyclerView, 0.5f, new ScreenshotUtil.AfterScreenshotHandler() {
+        @Override
+        public void done(Bitmap bmp) {
+            stopLoadingView();  // 关闭ProgressBar
+            ShareUtil.shareBmp(SectionDetailActivity.this, bmp);  // 分享得到的截图
+        }
+    });
+}
+</code></pre></li>
+</ol>
+
+<p>经过测试，这种方法可以比较完美地截取较长的 RecyclerView 图片（数个到十几个屏幕的尺寸）。</p>
+
+<p>感觉可以通过 RecyclerView 中 item 的数量，动态设置<code>scale</code>的缩放比例；或者把每个 ViewHolder 的图像先写到文件里这种方式来进一步避免内存问题……不过暂时已经足够了，就先这样。</p>
+
+</div>
+
+    
+<footer class='entry-footer'>
+  
+    
+  
+    
+      
+      <div class='tags'>
+  <span class='tag-icon'>
+    <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  </span>
+  <span class='screen-reader'>Tags: </span><a class='tag' href='/tags/android'>Android</a>, <a class='tag' href='/tags/java'>Java</a></div>
+
+    
+  
+</footer>
+
+
+  </article>
+
+  
+    
+<nav class='entry-nav'>
+  <div class='entry-nav-links'><div class='prev-entry'>
+      <a href='https://tgmerge.me/blog/0219-sqlalchemy-document-learning-note-2-5-orm-tutorial/'>
+        <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="20" y1="12" x2="4" y2="12"/>
+  <polyline points="10 18 4 12 10 6"/>
+  
+</svg>
+ 上一篇</span>
+        <span class='screen-reader'>上一篇: </span>SQLAlchemy文档和笔记 (2.5) - ORM指南 (5)</a>
+    </div><div class='next-entry'>
+      <a href='https://tgmerge.me/blog/0221-my-very-own-tips-on-android/'>
+        <span class='screen-reader'>下一篇: </span>Android: My Very Own Tips (1)<span aria-hidden='true'>下一篇 <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="4" y1="12" x2="20" y2="12"/>
+  <polyline points="14 6 20 12 14 18"/>
+  
+</svg>
+</span>
+      </a>
+    </div></div>
+</nav>
+
+
+  
+
+  
+    <div class='comments-container'>
+  
+</div>
+
+  
+</main>
+
+    <footer id='footer' class='footer-container'>
+      <div class='footer'>
+        <div class='social'>
+  <nav aria-label='找我吗？'>
+    <ul class='social-menu'><li>
+        <a href='https://github.com/tgmerge' target='_blank' rel='noopener'>
+          <span class='screen-reader'>在新标签页中打开 Github account</span>
+          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  
+</svg>
+
+        </a>
+      </li><li>
+        <a href='https://plus.google.com/&#43;tgmergeSipan' target='_blank' rel='noopener'>
+          <span class='screen-reader'>在新标签页中打开 Googleplus account</span>
+          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="m12.233419,10.443874l0,3.734704l6.224506,0c-0.311225,1.556127 -1.867352,4.66838 -6.224506,4.66838c-3.734704,0 -6.691344,-3.112253 -6.691344,-6.846957c0,-3.734704 2.95664,-6.846957 6.691344,-6.846957c2.178577,0 3.579091,0.933676 4.357154,1.711739l2.95664,-2.801028c-1.867352,-1.867352 -4.357154,-2.95664 -7.313795,-2.95664c-6.068894,0 -10.892886,4.823992 -10.892886,10.892886c0,6.068894 4.823992,10.892886 10.892886,10.892886c6.224506,0 10.426048,-4.357154 10.426048,-10.581661c0,-0.778063 0,-1.244901 -0.155613,-1.867352l-10.270435,0z"/>
+  
+</svg>
+
+        </a>
+      </li><li>
+        <a href='http://xiefan.me/' target='_blank' rel='noopener'>
+          <span class='screen-reader'>在新标签页中打开 Love account</span>
+          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="m16.98649,1.83311c-1.92811,0 -3.77865,0.89757 -4.98649,2.30486c-1.20784,-1.4073 -3.05838,-2.30486 -4.98649,-2.30486c-3.41297,0 -6.09459,2.67054 -6.09459,6.09459c0,4.17757 3.76757,7.60162 9.47432,12.77649l1.60676,1.4627l1.60676,-1.4627c5.70676,-5.17486 9.47432,-8.59892 9.47432,-12.77649c0,-3.42405 -2.68162,-6.09459 -6.09459,-6.09459z"/>
+  
+</svg>
+
+        </a>
+      </li><li>
+        <a href='https://twitter.com/tgmerge' target='_blank' rel='noopener'>
+          <span class='screen-reader'>在新标签页中打开 Twitter account</span>
+          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+  
+</svg>
+
+        </a>
+      </li><li>
+        <a href='http://weibo.com/tgmerge' target='_blank' rel='noopener'>
+          <span class='screen-reader'>在新标签页中打开 Weibo account</span>
+          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="m20.79684,15.88687c-0.07481,0.61015 -0.44417,1.42549 -0.81622,1.94626c-2.65119,3.71126 -10.64754,5.27117 -15.64104,2.4504c-1.67472,-0.94661 -3.40772,-2.33073 -3.14023,-5.08873c0.2301,-2.37344 1.82605,-4.21198 3.39216,-5.77809c1.4941,-1.49498 3.06954,-2.66459 5.21335,-3.20352c2.32587,-0.58479 3.01344,1.35428 2.38683,3.26628c1.34717,-0.09036 4.20219,-1.59426 5.46484,-0.12551c0.55629,0.6471 0.34311,1.80599 0,2.70099c1.56836,0.85803 3.45267,1.2853 3.14031,3.83192l0,0z"/>
+  <path d="m6.8656,17.27851c-0.85722,-2.33548 1.20109,-4.19298 3.34475,-4.41747c1.83017,-0.19181 3.19449,0.74143 3.59737,1.95635c1.34459,4.06376 -5.66104,5.9534 -6.94212,2.46112z"/>
+  <path d="m22.8634,10.89993c0.61627,-2.3711 0.32216,-4.27798 -0.8825,-5.72073c-1.20457,-1.44274 -3.10291,-1.98196 -5.69493,-1.61781"/>
+  <path d="m20.31177,9.60458c0.29682,-1.14182 0.15521,-2.0601 -0.42493,-2.75485c-0.58002,-0.69477 -1.49417,-0.95444 -2.74244,-0.7791"/>
+  
+</svg>
+
+        </a>
+      </li></ul>
+  </nav>
+</div>
+
+        <div class='copyright'>
+          <p>CC BY-NC-SA 4.0 / tgmerge</p>
+
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src='/js/main.af838dd5.js'></script>
+  
+    <script src='/js/custom.js'></script>
+  
+
+</body>
+
+</html>
+

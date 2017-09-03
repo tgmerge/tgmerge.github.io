@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang='zh-cn'>
+
+<head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='本篇是 胡乱 翻译自SQLAlchemy 1.0官方文档 Object Relational Tutorial一章的第四篇笔记。 各种保留了原文的术语可以参考SQLAlchemy术语'>
+
+<meta property='og:title' content='SQLAlchemy文档和笔记 (2.4) - ORM指南 (4) • tgmerge'>
+<meta property='og:description' content='本篇是 胡乱 翻译自SQLAlchemy 1.0官方文档 Object Relational Tutorial一章的第四篇笔记。 各种保留了原文的术语可以参考SQLAlchemy术语'>
+<meta property='og:url' content='https://tgmerge.me/blog/0218-sqlalchemy-document-learning-note-2-4-orm-tutorial/'>
+<meta property='og:site_name' content='tgmerge&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog'><meta property='article:tag' content='Python'><meta property='article:tag' content='SQLAlchemy'><meta property='article:tag' content='文档'><meta property='article:tag' content='翻译'><meta property='article:published_time' content='2016-04-30T16:55:00Z'/><meta property='article:modified_time' content='2016-04-30T16:55:00Z'/>
+
+<meta name="generator" content="Hugo 0.26" />
+
+  <title>SQLAlchemy文档和笔记 (2.4) - ORM指南 (4) • tgmerge</title>
+  <link rel='canonical' href='https://tgmerge.me/blog/0218-sqlalchemy-document-learning-note-2-4-orm-tutorial/'>
+  <link rel='icon' href='/favicon.png'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Ubuntu:400,400i,700&subset=latin'>
+<link rel='stylesheet' href='/css/main.67a788c9.css'>
+
+  <link rel='stylesheet' href='/css/custom.css'>
+
+
+
+</head>
+
+
+<body class='page'>
+  <div class='site'>
+    <header id='header' class='header-container'>
+      <div class='site-header'>
+        <nav id='navmenu' aria-label='主菜单'>
+  <ul class='main-menu'>
+    
+    <li>
+      <a href='/' 
+        
+      >首页</a>
+    </li>
+    
+    <li>
+      <a href='/blog/' 
+        
+      >文章</a>
+    </li>
+    
+    <li>
+      <a href='/snap/' 
+        
+      >图片</a>
+    </li>
+    
+    <li>
+      <a href='/about/' 
+        
+      >关于</a>
+    </li>
+    
+    <li>
+      <a href='' 
+        
+      ></a>
+    </li>
+    
+  </ul>
+</nav>
+
+        <div class='site-info'>
+          
+          <p class='site-title title'>tgmerge&#39;s blog</p>
+          
+          <p class='site-description'></p>
+        </div>
+      </div>
+    </header>
+
+
+<main class='main'>
+  <article lang='en' class='entry'>
+    <header class='entry-header'>
+  <div class='entry-info'>
+    <h1 class='entry-title title'>SQLAlchemy文档和笔记 (2.4) - ORM指南 (4)</h1>
+    
+  </div>
+  
+<div class='meta'>
+  <span class='posted-on'>
+    <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+  
+</svg>
+
+    <span class='screen-reader'>发表于 </span>
+    <time class='date' datetime='2016-04-30T16:55:00Z'>2016-04-30</time>
+  </span>
+  
+  <span class='byline'>
+    <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M21,21V20c0-2.76-4-5-9-5s-9,2.24-9,5v1"/>
+  <path d="M16,6.37A4,4,0,1,1,12.63,3,4,4,0,0,1,16,6.37Z"/>
+  
+</svg>
+
+    <span class='screen-reader'> by </span>
+    tgmerge
+  </span>
+  
+  
+  <span class='reading-time'>
+    <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <circle cx="12" cy="12" r="10"/>
+  <polyline points="12 6 12 12 15 15"/> 
+  
+</svg>
+
+    大概需要阅读 6 分钟
+  </span>
+  
+</div>
+
+
+</header>
+
+    <div class='entry-content'>
+  
+
+<p>本篇是 <del>胡乱</del> 翻译自<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/tutorial.html">SQLAlchemy 1.0官方文档 Object Relational Tutorial一章</a>的第四篇笔记。</p>
+
+<p>各种保留了原文的术语可以参考<a href="http://docs.sqlalchemy.org/en/rel_1_0/glossary.html">SQLAlchemy术语表</a>。</p>
+
+<p><del>摸鱼根本停不下来</del></p>
+
+<hr />
+
+<p>上一部分讲的是关系的建立和使用关系进行查询。在映射类中使用<code>relationship()</code>建立关系，查询时使用<code>Query.join()</code>进行连接查询，用<code>aliased()</code>创建映射类的别名在连接中多次使用同一张表，使用<code>func.count()</code>和<code>statement</code>进行子查询计数之类的等等。</p>
+
+<p>接着从Eager Loading一节开始。要在REPL中还原之前的数据，可以：</p>
+
+<!-- more -->
+
+<pre><code class="language-python"># In REPL: run this file with
+# exec(open('path/to/this.py').read())
+
+import sqlalchemy
+from sqlalchemy import create_engine, Column, Integer, String, func, ForeignKey
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker, relationship
+
+engine = create_engine('sqlite:///:memory:', echo=True)
+Base = declarative_base()
+
+class User(Base):
+    __tablename__ = 'users'
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    fullname = Column(String)
+    password = Column(String)
+    def __repr__(self):
+       return &quot;&lt;User(name='%s', fullname='%s', password='%s')&gt;&quot; % (self.name, self.fullname, self.password)
+
+class Address(Base):
+    __tablename__ = 'addresses'
+    id = Column(Integer, primary_key=True)
+    email_address = Column(String, nullable=False)
+    user_id = Column(Integer, ForeignKey('users.id'))
+    user = relationship(&quot;User&quot;, back_populates=&quot;addresses&quot;)
+    def __repr__(self):
+        return &quot;&lt;Address(email_address='%s')&gt;&quot; % self.email_address
+
+User.addresses = relationship('Address', order_by=Address.id, back_populates='user')
+
+Base.metadata.create_all(engine)
+
+Session = sessionmaker(bind=engine)
+session = Session()
+session.add_all([
+    User(name='ed', fullname='Ed Jones', password='f8s7ccs'),
+    User(name='wendy', fullname='Wendy Williams', password='foobar'),
+    User(name='mary', fullname='Mary Contrary', password='xxg527'),
+    User(name='fred', fullname='Fred Flinstone', password='blah')])
+jack = User(name='jack', fullname='Jack Bean', password='gjffdd')
+jack.addresses = [
+    Address(email_address='jack@google.com'),
+    Address(email_address='j25@yahoo.com')]
+session.add(jack)
+session.commit()
+</code></pre>
+
+<hr />
+
+<h3 id="eager-loading-尽早加载-贪婪加载">Eager Loading / 尽早加载/贪婪加载</h3>
+
+<p>记得之前我们使用过<strong>惰性加载</strong>的例子吧：当访问<code>User.addresses</code>的时候，立即执行了一条SQL语句。而很多时候需要减少SQL查询的次数，这就需要使用<strong>贪婪加载</strong>机制了。SQLAlchemy提供了三种贪婪加载方式，其中两种是自动执行的，另一种由自定义的条件触发。这三种方式都由写在<code>Query.options()</code>方法中的配置来调用。<code>Query.options()</code>提供给<code>Query</code>一些额外信息，主要是我们希望一些属性被如何从数据库加载进来。</p>
+
+<h4 id="subquery-load-子查询加载">Subquery Load / 子查询加载</h4>
+
+<p>如果希望在加载一系列对象的同时，让这些对象相关联的其他对象集合也被加载，最好使用<code>orm.subqueryload()</code>配置。它将在载入结果对象之后立即执行另一条SELECT语句，完整地载入和结果对象相关联的对象集合。这种配置的名字&rdquo;subquery&rdquo;来源于，它将在SELECT关联对象（第二条SQL）的时候将第一条SQL作为子查询嵌入进去。</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; from sqlalchemy.orm import subqueryload
+&gt;&gt;&gt; jack = session.query(User).options(subqueryload(User.addresses)).filter_by(name='jack').one()
+&gt;&gt;&gt; jack
+&lt;User(name='jack', fullname='Jack Bean', password='gjffdd')&gt;
+
+&gt;&gt;&gt; jack.addresses
+[&lt;Address(email_address='jack@google.com')&gt;, &lt;Address(email_address='j25@yahoo.com')&gt;]
+</code></pre>
+
+<p>注意：当使用<code>Query.first()</code>、<code>Query.limit()</code>、<code>Query.offset()</code>的时候，应该和<code>Query.order_by()</code>连用，保证结果顺序的一致性。</p>
+
+<h4 id="joined-load-连接加载">Joined Load / 连接加载</h4>
+
+<p>另一种自动加载的方法更常见一些，称为<code>orm.joinedload()</code>。这种方法会执行一条JOIN（默认是LEFT OUTER JOIN），让主要的结果对象和他们的关联对象在一步查询内全部返回。下面将用这种方法执行和上面的例子一样的操作：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; from sqlalchemy.orm import joinedload
+
+&gt;&gt;&gt; jack = session.query(User).options(joinedload(User.addresses)).filter_by(name='jack').one()
+&gt;&gt;&gt; jack
+&lt;User(name='jack', fullname='Jack Bean', password='gjffdd')&gt;
+
+&gt;&gt;&gt; jack.addresses
+[&lt;Address(email_address='jack@google.com')&gt;, &lt;Address(email_address='j25@yahoo.com')&gt;]
+</code></pre>
+
+<p>即便LEFT OUTER JOIN返回了多余的jack行（由于jack有两个邮箱地址），结果中我们仍然只得到了一个jack。<code>Query</code>在这种情况下会使用&rdquo;uniquing&rdquo;策略排除相同的对象，让尽早加载的查询结果不会影响到主查询。</p>
+
+<p>和<code>joinedload()</code>相比，<code>subqueryload()</code>出现得比较晚。<code>subqueryload()</code>更适合于加载“某些对象相关联的对象集合”即一对多关系；而<code>joinedload()</code>更适合加载多对一关系，毕竟只有在多对一中LEFT OUTER JOIN不会在左侧出现重复的行。</p>
+
+<p>另外，<code>joinedload()</code>的结果中多出来的表列对你来说是“匿名的”，你不能在查询的其他部分使用到这些列做任何操作，所以不能用它替代<code>join()</code>。<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/loading_relationships.html#zen-of-eager-loading">The Zen of Eager Loading</a>详细描述了其中的原理。</p>
+
+<h4 id="explicit-join-eagerload-显式join-尽早加载">Explicit Join + Eagerload / 显式JOIN+尽早加载</h4>
+
+<p>第三种尽早加载的方式是，显式创建一个JOIN来获取主要查询的对象，并连结另外的表到主要查询的对象上，来将他们一并载入。使用这种方式需要用到<code>orm.contains_eager()</code>。这种方式适用于尽早加载需要对“一”的那一边过滤的多对一关系。</p>
+
+<hr />
+
+<p>Note: 这个蛋疼的说法……就是说，现在有一个多对一关系（比如Address-User），我们需要获取某个/某些User的Address（即主要查询对象是Address），于是需要用name之类的条件来过滤关系的“一”也就是User那一边。</p>
+
+<p>但是同时我们在获取这些Address之后，如果要访问它们的User，又要进行一次SQL查询。contains_eager可以用一个INNER JOIN来把过滤得到的User直接加载进来，省掉了一次查询。</p>
+
+<p>下面的例子，就是我们要获取jack的所有Address，同时加载jack对象本身。之后在访问两个结果中的任意一个Address的user（也就是jack）的时候，就不用再查询一次jack了。</p>
+
+<hr />
+
+<pre><code class="language-python">&gt;&gt;&gt; from sqlalchemy.orm import contains_eager
+&gt;&gt;&gt; jacks_addresses = session.query(Address).\
+...                     join(Address.user).filter(User.name=='jack').\
+...                     options(contains_eager(Address.user)).all()
+&gt;&gt;&gt; jacks_addresses
+[&lt;Address(email_address='jack@google.com')&gt;, &lt;Address(email_address='j25@yahoo.com')&gt;]
+
+&gt;&gt;&gt; jacks_addresses[0].user
+&lt;User(name='jack', fullname='Jack Bean', password='gjffdd')&gt;
+</code></pre>
+
+<p>更多关于尽早加载的细节可以参看<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/loading_relationships.html">Relationship Loading Techniques</a>。</p>
+
+<h3 id="deleting-删除">Deleting / 删除</h3>
+
+<p>现在来试试删除<code>jack</code>。在session中添加一个删除操作，然后查询一下：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; session.delete(jack)
+&gt;&gt;&gt; session.query(User).filter_by(name='jack').count()
+0
+</code></pre>
+
+<pre><code class="language-sql">UPDATE addresses SET user_id=? WHERE addresses.id = ?
+((None, 1), (None, 2))
+DELETE FROM users WHERE users.id = ?
+(5,)
+SELECT count(*) AS count_1
+FROM (SELECT users.id AS users_id,
+        users.name AS users_name,
+        users.fullname AS users_fullname,
+        users.password AS users_password
+FROM users
+WHERE users.name = ?) AS anon_1
+('jack',)
+</code></pre>
+
+<p>但Jack的<code>Address</code>对象仍然存在：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; session.query(Address).filter(Address.email_address.in_(['jack@google.com', 'j25@yahoo.com'])).count()
+2
+</code></pre>
+
+<p>这看上去不太巧妙？实际上这几个地址的<code>user_id</code>已经被设置为NULL了，但数据行本身没有被删除掉。SQLAlchemy默认不会进行级联删除操作，除非你明确指定。</p>
+
+<h4 id="configuring-delete-delete-orphan-cascade-删除或级联删除孤立对象">Configuring delete/delete-orphan Cascade / 删除或级联删除孤立对象</h4>
+
+<p>我们需要配置<code>User.addresses</code>的<strong>级联/cascade</strong>属性来改变上面提到的这种行为。我们现在需要完全解除映射并重新开始，也就是关闭<code>Session</code>然后使用一个新的<code>declarative_base()</code>：</p>
+
+<p>Note: SQLalchemy允许你在任何时候给映射类添加新的属性和关系，但更改似乎不行。</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; session.close()
+ROLLBACK
+&gt;&gt;&gt; Base = declarative_base()
+</code></pre>
+
+<p>现在定义<code>User</code>映射类，添加含有级联配置项的<code>addresses</code>关系：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; class User(Base):
+...     __tablename__ = 'users'
+...     
+...     id = Column(Integer, primary_key=True)
+...     name = Column(String)
+...     fullname = Column(String)
+...     password = Column(String)
+...
+...     addresses = relationship(&quot;Address&quot;, back_populates='user',
+...                     cascade=&quot;all, delete, delete-orphan&quot;)
+...     def __repr__(self):
+...         return &quot;&lt;User(name='%s', fullname='%s', password='%s')&gt;&quot; % (
+...                                 self.name, self.fullname, self.password)
+</code></pre>
+
+<p>然后重新创建<code>Address</code>，和以前完全一样：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; class Address(Base):
+...     __tablename__ = 'addresses'
+...     id = Column(Integer, primary_key=True)
+...     email_address = Column(String, nullable=False)
+...     user_id = Column(Integer, ForeignKey('users.id'))
+...     user = relationship(&quot;User&quot;, back_populates=&quot;addresses&quot;)
+...
+...     def __repr__(self):
+...         return &quot;&lt;Address(email_address='%s')&gt;&quot; % self.email_address
+</code></pre>
+
+<p>现在载入<code>jack</code>（下面使用<code>get()</code>方法，直接用主键载入对象），从它的<code>addresses</code>中删除一个邮箱地址，这将导致<code>Address</code>被直接删除：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; jack = session.query(User).get(5)
+
+&gt;&gt;&gt; del jack.addresses[1]
+
+&gt;&gt;&gt; session.query(Address).filter(Address.email_address.in_(['jack@google.com', 'j25@yahoo.com'])).count()
+1
+</code></pre>
+
+<p>其中第二步导致第三步的开头执行了下面的SQL：</p>
+
+<pre><code class="language-sql">DELETE FROM addresses WHERE addresses.id = ?
+(2,)
+</code></pre>
+
+<p>然后，删除Jack的话，将会一并删除Jack和他剩下的<code>Address</code>：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; session.delete(jack)
+&gt;&gt;&gt; session.query(User).filter_by(name='jack').count()
+0
+&gt;&gt;&gt; session.query(Address).filter(Address.email_address.in_(['jack@google.com', 'j25@yahoo.com'])).count()
+0
+</code></pre>
+
+<p>在<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/cascades.html#unitofwork-cascades">Cascades</a>中将详细解释关于级联的细节。级联操作也可以用关系数据库的<code>ON DELETE CASCADE</code>功能实现，参看<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/collections.html#passive-deletes">Using Passive Deletes</a></p>
+
+<hr />
+
+<blockquote>
+<p>就快完啦233 下一节：Building a Many To Many Relationship</p>
+</blockquote>
+
+</div>
+
+    
+<footer class='entry-footer'>
+  
+    
+  
+    
+      
+      <div class='tags'>
+  <span class='tag-icon'>
+    <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+
+  </span>
+  <span class='screen-reader'>Tags: </span><a class='tag' href='/tags/python'>Python</a>, <a class='tag' href='/tags/sqlalchemy'>SQLAlchemy</a>, <a class='tag' href='/tags/%E6%96%87%E6%A1%A3'>文档</a>, <a class='tag' href='/tags/%E7%BF%BB%E8%AF%91'>翻译</a></div>
+
+    
+  
+</footer>
+
+
+  </article>
+
+  
+    
+<nav class='entry-nav'>
+  <div class='entry-nav-links'><div class='prev-entry'>
+      <a href='https://tgmerge.me/blog/0217-sqlalchemy-document-learning-note-2-3-orm-tutorial/'>
+        <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="20" y1="12" x2="4" y2="12"/>
+  <polyline points="10 18 4 12 10 6"/>
+  
+</svg>
+ 上一篇</span>
+        <span class='screen-reader'>上一篇: </span>SQLAlchemy文档和笔记 (2.3) - ORM指南 (3)</a>
+    </div><div class='next-entry'>
+      <a href='https://tgmerge.me/blog/0219-sqlalchemy-document-learning-note-2-5-orm-tutorial/'>
+        <span class='screen-reader'>下一篇: </span>SQLAlchemy文档和笔记 (2.5) - ORM指南 (5)<span aria-hidden='true'>下一篇 <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="4" y1="12" x2="20" y2="12"/>
+  <polyline points="14 6 20 12 14 18"/>
+  
+</svg>
+</span>
+      </a>
+    </div></div>
+</nav>
+
+
+  
+
+  
+    <div class='comments-container'>
+  
+</div>
+
+  
+</main>
+
+    <footer id='footer' class='footer-container'>
+      <div class='footer'>
+        <div class='social'>
+  <nav aria-label='找我吗？'>
+    <ul class='social-menu'><li>
+        <a href='https://github.com/tgmerge' target='_blank' rel='noopener'>
+          <span class='screen-reader'>在新标签页中打开 Github account</span>
+          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  
+</svg>
+
+        </a>
+      </li><li>
+        <a href='https://plus.google.com/&#43;tgmergeSipan' target='_blank' rel='noopener'>
+          <span class='screen-reader'>在新标签页中打开 Googleplus account</span>
+          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="m12.233419,10.443874l0,3.734704l6.224506,0c-0.311225,1.556127 -1.867352,4.66838 -6.224506,4.66838c-3.734704,0 -6.691344,-3.112253 -6.691344,-6.846957c0,-3.734704 2.95664,-6.846957 6.691344,-6.846957c2.178577,0 3.579091,0.933676 4.357154,1.711739l2.95664,-2.801028c-1.867352,-1.867352 -4.357154,-2.95664 -7.313795,-2.95664c-6.068894,0 -10.892886,4.823992 -10.892886,10.892886c0,6.068894 4.823992,10.892886 10.892886,10.892886c6.224506,0 10.426048,-4.357154 10.426048,-10.581661c0,-0.778063 0,-1.244901 -0.155613,-1.867352l-10.270435,0z"/>
+  
+</svg>
+
+        </a>
+      </li><li>
+        <a href='http://xiefan.me/' target='_blank' rel='noopener'>
+          <span class='screen-reader'>在新标签页中打开 Love account</span>
+          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="m16.98649,1.83311c-1.92811,0 -3.77865,0.89757 -4.98649,2.30486c-1.20784,-1.4073 -3.05838,-2.30486 -4.98649,-2.30486c-3.41297,0 -6.09459,2.67054 -6.09459,6.09459c0,4.17757 3.76757,7.60162 9.47432,12.77649l1.60676,1.4627l1.60676,-1.4627c5.70676,-5.17486 9.47432,-8.59892 9.47432,-12.77649c0,-3.42405 -2.68162,-6.09459 -6.09459,-6.09459z"/>
+  
+</svg>
+
+        </a>
+      </li><li>
+        <a href='https://twitter.com/tgmerge' target='_blank' rel='noopener'>
+          <span class='screen-reader'>在新标签页中打开 Twitter account</span>
+          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+  
+</svg>
+
+        </a>
+      </li><li>
+        <a href='http://weibo.com/tgmerge' target='_blank' rel='noopener'>
+          <span class='screen-reader'>在新标签页中打开 Weibo account</span>
+          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="m20.79684,15.88687c-0.07481,0.61015 -0.44417,1.42549 -0.81622,1.94626c-2.65119,3.71126 -10.64754,5.27117 -15.64104,2.4504c-1.67472,-0.94661 -3.40772,-2.33073 -3.14023,-5.08873c0.2301,-2.37344 1.82605,-4.21198 3.39216,-5.77809c1.4941,-1.49498 3.06954,-2.66459 5.21335,-3.20352c2.32587,-0.58479 3.01344,1.35428 2.38683,3.26628c1.34717,-0.09036 4.20219,-1.59426 5.46484,-0.12551c0.55629,0.6471 0.34311,1.80599 0,2.70099c1.56836,0.85803 3.45267,1.2853 3.14031,3.83192l0,0z"/>
+  <path d="m6.8656,17.27851c-0.85722,-2.33548 1.20109,-4.19298 3.34475,-4.41747c1.83017,-0.19181 3.19449,0.74143 3.59737,1.95635c1.34459,4.06376 -5.66104,5.9534 -6.94212,2.46112z"/>
+  <path d="m22.8634,10.89993c0.61627,-2.3711 0.32216,-4.27798 -0.8825,-5.72073c-1.20457,-1.44274 -3.10291,-1.98196 -5.69493,-1.61781"/>
+  <path d="m20.31177,9.60458c0.29682,-1.14182 0.15521,-2.0601 -0.42493,-2.75485c-0.58002,-0.69477 -1.49417,-0.95444 -2.74244,-0.7791"/>
+  
+</svg>
+
+        </a>
+      </li></ul>
+  </nav>
+</div>
+
+        <div class='copyright'>
+          <p>CC BY-NC-SA 4.0 / tgmerge</p>
+
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src='/js/main.af838dd5.js'></script>
+  
+    <script src='/js/custom.js'></script>
+  
+
+</body>
+
+</html>
+

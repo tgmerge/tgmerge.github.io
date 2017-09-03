@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GAE on tgmerge&#39;s blog</title>
+    <link>https://tgmerge.me/tags/gae/</link>
+    <description>Recent content in GAE on tgmerge&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>CC BY-NC-SA 4.0 / tgmerge</copyright>
+    <lastBuildDate>Fri, 06 Dec 2013 11:45:57 +0000</lastBuildDate>
+    
+	<atom:link href="https://tgmerge.me/tags/gae/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Google App Engine等一堆网站的403问题</title>
+      <link>https://tgmerge.me/blog/0053-gae-http-403/</link>
+      <pubDate>Fri, 06 Dec 2013 11:45:57 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0053-gae-http-403/</guid>
+      <description>最近发现很多站点就算改了hosts开了gogent还是会403 Permission Denied……结果是因为很多hosts源最近没有更新，或者hosts偷懒把</description>
+    </item>
+    
+    <item>
+      <title>gae, python :: Part I</title>
+      <link>https://tgmerge.me/blog/0052-gae-python/</link>
+      <pubDate>Thu, 05 Dec 2013 17:31:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0052-gae-python/</guid>
+      <description>稍微整理下gae相关的东西。 关于scaling 根据Google在这篇Python App的运行模式的描述，Google非常厚道地给了autom</description>
+    </item>
+    
+    <item>
+      <title>上传到GAE</title>
+      <link>https://tgmerge.me/blog/0051-upload-to-gae/</link>
+      <pubDate>Tue, 03 Dec 2013 18:08:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0051-upload-to-gae/</guid>
+      <description>试用Google App Engine……先把Deploy的时候遇到的问题记下来。 上传使用的appcfg.py命令行参考和英文版本（有oauth等更</description>
+    </item>
+    
+  </channel>
+</rss>

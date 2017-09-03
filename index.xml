@@ -1,0 +1,951 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>首页 on tgmerge&#39;s blog</title>
+    <link>https://tgmerge.me/</link>
+    <description>Recent content in 首页 on tgmerge&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>CC BY-NC-SA 4.0 / tgmerge</copyright>
+    <lastBuildDate>Fri, 31 Mar 2017 20:39:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tgmerge.me/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>关于</title>
+      <link>https://tgmerge.me/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/about/</guid>
+      <description>写写代码 吸吸猫 :) 可以用页面下方的联系方式找到我。 这个网站使用 Hugo 和修改过的 Minimo 主题 :D</description>
+    </item>
+    
+    <item>
+      <title>SublimeREPL 中，Lua 脚本缺少输出的问题</title>
+      <link>https://tgmerge.me/blog/0227-sublime-repl-lua-no-output/</link>
+      <pubDate>Fri, 31 Mar 2017 20:39:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0227-sublime-repl-lua-no-output/</guid>
+      <description>SublimeText 非常有名的插件 SublimeREPL 在运行 Lua 脚本的时候，可能会出现io.read()之前的输出不在 REPL 标签页中显示的问题。比如，用 SublimeREPL 结合 Load file to REPL 插件，运行这样的</description>
+    </item>
+    
+    <item>
+      <title>For 板子党：关闭 Jetbrains IDE 中的拖动操作</title>
+      <link>https://tgmerge.me/blog/0226-jetbrains-ide-strict-drag-n-drop/</link>
+      <pubDate>Sun, 15 Jan 2017 22:45:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0226-jetbrains-ide-strict-drag-n-drop/</guid>
+      <description>包括 Android Studio 在内的 Jetbrains 系 IDE 都有拖动代码或文件来移动文件或 refactor 的功能，然而对习惯用数位板代替鼠标的人 以及手不稳的普通鼠标用户 来说，一不小心就误拖动代码</description>
+    </item>
+    
+    <item>
+      <title>WRAP_CONTENT 的 RecyclerView 在 ScrollView 中无法显示完整内容</title>
+      <link>https://tgmerge.me/blog/0225-wrap-content-recycler-view-in-scroll-view/</link>
+      <pubDate>Fri, 13 Jan 2017 15:50:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0225-wrap-content-recycler-view-in-scroll-view/</guid>
+      <description>问题 形如下面这样的布局中： &amp;lt;ScrollView&amp;gt; &amp;lt;LinearLayout ... android:oriention=&amp;quot;vertical&amp;quot;&amp;gt; &amp;lt;SomeView /&amp;gt; &amp;lt;RecyclerView ... android:layout_height=&amp;quot;wrap_content&amp;quot; /&amp;gt; &amp;lt;SomeView /&amp;gt; &amp;lt;/LinearLayout&amp;gt; &amp;lt;/ScrollView&amp;gt; RecyclerView 在项目较多时将无法按 WRAP_CONTENT 的预期显示完整内容，只会显示一部分项目。 失败的解决方法 recy</description>
+    </item>
+    
+    <item>
+      <title>Android Studio 2.3 - 值得注意的新特性</title>
+      <link>https://tgmerge.me/blog/0224-android-studio-new-version-2.3/</link>
+      <pubDate>Sun, 01 Jan 2017 17:57:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0224-android-studio-new-version-2.3/</guid>
+      <description>Android Studio 2.3 两个星期以前发布到了 beta 版本，从这些新特性上又给无脑写代码提供了大量便利： Instant Run 的改进 Android Studio 2.2 的 Instant Run 按钮很不方便使用：在 Instant Run 出问题的时候，很</description>
+    </item>
+    
+    <item>
+      <title>RxJava 笔记和 Demo (2) - 适用场景</title>
+      <link>https://tgmerge.me/blog/0223-rxjava-note-and-demo-2/</link>
+      <pubDate>Sat, 19 Nov 2016 23:57:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0223-rxjava-note-and-demo-2/</guid>
+      <description>RxJava 的适用场景 与 Retrofit 的结合 Code 17 - RxJava + Retrofit 进行网络请求 这个示例模拟了“在网络请求发起时更新 UI -&amp;gt; 处理请求结果 -&amp;gt; 根据请求结果再次更新 UI”的过程。 使用了</description>
+    </item>
+    
+    <item>
+      <title>RxJava 笔记和 Demo (1) - 介绍和原理</title>
+      <link>https://tgmerge.me/blog/0222-rxjava-note-and-demo-1/</link>
+      <pubDate>Fri, 18 Nov 2016 14:05:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0222-rxjava-note-and-demo-1/</guid>
+      <description>用了蛮久 Rx 结果还没有正儿八经学一下感觉不太科学（笑 所以一边读给 Android 开发者的 RxJava 详解这篇文章，一边写了个 playground 式的小应用。 笔记是给自己看的所以写得很乱</description>
+    </item>
+    
+    <item>
+      <title>Android: My Very Own Tips (1)</title>
+      <link>https://tgmerge.me/blog/0221-my-very-own-tips-on-android/</link>
+      <pubDate>Thu, 17 Nov 2016 00:23:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0221-my-very-own-tips-on-android/</guid>
+      <description>感觉大部分都已经是常识了，但说不定以后遇到这样的事情能用得上呢…… 项目结构相关 按功能组织 Java package 按类（activity, fragment, presenter, adapter, etc.）组织 package 会</description>
+    </item>
+    
+    <item>
+      <title>Android: 获取RecyclerView的完整截图</title>
+      <link>https://tgmerge.me/blog/0220-android-get-complete-screenshot-of-recycler-view/</link>
+      <pubDate>Sun, 23 Oct 2016 14:53:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0220-android-get-complete-screenshot-of-recycler-view/</guid>
+      <description>写 Android 应用的时候，偶尔会遇到“需要对某个 view 截图”的问题。对一个单独的简单 view ，常见的实现方法有以下两种： 使用view.getDrawingCac</description>
+    </item>
+    
+    <item>
+      <title>SQLAlchemy文档和笔记 (2.5) - ORM指南 (5)</title>
+      <link>https://tgmerge.me/blog/0219-sqlalchemy-document-learning-note-2-5-orm-tutorial/</link>
+      <pubDate>Sat, 30 Apr 2016 23:01:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0219-sqlalchemy-document-learning-note-2-5-orm-tutorial/</guid>
+      <description>本篇是 胡乱 翻译自SQLAlchemy 1.0官方文档 Object Relational Tutorial一章的第五篇/最后一篇笔记。 上一部分主要讲Eager Loading、删</description>
+    </item>
+    
+    <item>
+      <title>SQLAlchemy文档和笔记 (2.4) - ORM指南 (4)</title>
+      <link>https://tgmerge.me/blog/0218-sqlalchemy-document-learning-note-2-4-orm-tutorial/</link>
+      <pubDate>Sat, 30 Apr 2016 16:55:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0218-sqlalchemy-document-learning-note-2-4-orm-tutorial/</guid>
+      <description>本篇是 胡乱 翻译自SQLAlchemy 1.0官方文档 Object Relational Tutorial一章的第四篇笔记。 各种保留了原文的术语可以参考SQLAlchemy术语</description>
+    </item>
+    
+    <item>
+      <title>SQLAlchemy文档和笔记 (2.3) - ORM指南 (3)</title>
+      <link>https://tgmerge.me/blog/0217-sqlalchemy-document-learning-note-2-3-orm-tutorial/</link>
+      <pubDate>Sat, 30 Apr 2016 13:46:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0217-sqlalchemy-document-learning-note-2-3-orm-tutorial/</guid>
+      <description>本篇是 胡乱 翻译自SQLAlchemy 1.0官方文档 Object Relational Tutorial一章的第三篇笔记。 抱着“反正正事不管时间多少都能干完”的态度果然可以干</description>
+    </item>
+    
+    <item>
+      <title>SQLAlchemy文档和笔记 (2.2) - ORM指南 (2)</title>
+      <link>https://tgmerge.me/blog/0216-sqlalchemy-document-learning-note-2-2-orm-tutorial/</link>
+      <pubDate>Thu, 28 Apr 2016 02:00:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0216-sqlalchemy-document-learning-note-2-2-orm-tutorial/</guid>
+      <description>本篇 胡乱 翻译自SQLAlchemy 1.0官方文档 Object Relational Tutorial一章。 各种保留了原文的术语可以参考SQLAlchemy术语表。 这章的上一</description>
+    </item>
+    
+    <item>
+      <title>SQLAlchemy文档和笔记 (2.1) - ORM指南 (1)</title>
+      <link>https://tgmerge.me/blog/0215-sqlalchemy-document-learning-note-2-1-orm-tutorial/</link>
+      <pubDate>Wed, 27 Apr 2016 00:51:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0215-sqlalchemy-document-learning-note-2-1-orm-tutorial/</guid>
+      <description>本篇 胡乱 翻译自SQLAlchemy 1.0官方文档 Object Relational Tutorial一章。 术语各种拿不定……可以参考SQLAlchemy术语表。 Object Relational Tutorial / 对象</description>
+    </item>
+    
+    <item>
+      <title>SQLAlchemy文档和笔记 (1.1) - 总览</title>
+      <link>https://tgmerge.me/blog/0214-sqlalchemy-document-learning-note-1-1-overview/</link>
+      <pubDate>Tue, 26 Apr 2016 23:45:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0214-sqlalchemy-document-learning-note-1-1-overview/</guid>
+      <description>以前在Python写数据库的时候都是尽可能小打小闹_(:3 SQLAlchemy尝试玩了几次然而并没有坚持多久，这次起码要在哪里用上一下？ 以一</description>
+    </item>
+    
+    <item>
+      <title>Chrome&#43;MacType丢失文字的问题 Part2</title>
+      <link>https://tgmerge.me/blog/0213-chrome-mactype-missing-characters-part-2/</link>
+      <pubDate>Tue, 15 Sep 2015 12:43:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0213-chrome-mactype-missing-characters-part-2/</guid>
+      <description>Chrome 45之后，使用MacType的情况下，某些文字丢失的问题使用之前这篇文章说的方法已经无法解决了。 新的解决方法是，在chrome://fla</description>
+    </item>
+    
+    <item>
+      <title>ねこあつめ 3</title>
+      <link>https://tgmerge.me/snap/0212-nekoatsume-3/</link>
+      <pubDate>Thu, 25 Jun 2015 14:20:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/snap/0212-nekoatsume-3/</guid>
+      <description>新桥门花店的肥猫w/</description>
+    </item>
+    
+    <item>
+      <title>ねこあつめ 2</title>
+      <link>https://tgmerge.me/snap/0211-nekoatsume-2/</link>
+      <pubDate>Fri, 05 Jun 2015 21:43:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/snap/0211-nekoatsume-2/</guid>
+      <description>玉泉猫图鉴？</description>
+    </item>
+    
+    <item>
+      <title>ねこあつめ</title>
+      <link>https://tgmerge.me/snap/0210-nekoatsume/</link>
+      <pubDate>Thu, 28 May 2015 01:20:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/snap/0210-nekoatsume/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ingress, Lv11</title>
+      <link>https://tgmerge.me/blog/0209-ingress-lv11/</link>
+      <pubDate>Mon, 25 May 2015 17:24:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0209-ingress-lv11/</guid>
+      <description>怎么说——现实真是超厉害的——</description>
+    </item>
+    
+    <item>
+      <title>成就之类……图啥呢</title>
+      <link>https://tgmerge.me/blog/0208-achievements/</link>
+      <pubDate>Sun, 24 May 2015 04:50:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0208-achievements/</guid>
+      <description>看到评价变好就会愉悦，看到虚拟财产变多就会愉悦，看到图鉴集齐就会愉悦，看到完成度升高就会愉悦，看到进度条填满就会愉悦，看到数字增长就会愉悦。</description>
+    </item>
+    
+    <item>
+      <title>名字</title>
+      <link>https://tgmerge.me/blog/0207-nice-names/</link>
+      <pubDate>Fri, 22 May 2015 01:54:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0207-nice-names/</guid>
+      <description>有个Sublime主题叫Moka，已经停止维护了。大概风格就是平坦+简洁，用标签页和侧边的一点紫色，产生暗灰色的界面是暗咖啡色的幻觉。名字真</description>
+    </item>
+    
+    <item>
+      <title>用浙大的VPN上网，还需要一点玄学(?)</title>
+      <link>https://tgmerge.me/blog/0206-zju-l2tp-not-stable/</link>
+      <pubDate>Thu, 21 May 2015 20:33:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0206-zju-l2tp-not-stable/</guid>
+      <description>目指世界一流大学的母校浙大，似乎并不觉得网速和它的目标有什么关系……如果在浙大的寝室之类，用学校的L2TP VPN上网——尤其是用自己的路由器</description>
+    </item>
+    
+    <item>
+      <title>未命名</title>
+      <link>https://tgmerge.me/snap/0205-hamster-wanna-play/</link>
+      <pubDate>Wed, 06 May 2015 22:30:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/snap/0205-hamster-wanna-play/</guid>
+      <description>不想写毕设，想出去玩 不过好像也没什么好玩的…… 感谢友情出演，室友的未命名仓鼠</description>
+    </item>
+    
+    <item>
+      <title>杂项</title>
+      <link>https://tgmerge.me/blog/0204-misc-note/</link>
+      <pubDate>Wed, 06 May 2015 04:10:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0204-misc-note/</guid>
+      <description>昨天吃坏了今天空肚子休息，躺床上看了会书再加上最近寝室时区不太对的结果就是完·全·失·眠，感觉现在可以单刷鸡盒。 又看了一圈，还是觉得cc98</description>
+    </item>
+    
+    <item>
+      <title>Chrome&#43;MacType丢失文字的问题</title>
+      <link>https://tgmerge.me/blog/0203-chrome-mactype-missing-characters/</link>
+      <pubDate>Thu, 16 Apr 2015 13:34:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0203-chrome-mactype-missing-characters/</guid>
+      <description>Chrome升级到41以后，在使用MacType的情况下偶尔会出现丢失文字的情况。准确地说，丢失的是字体中的某些字符？比如，页面里所有Tah</description>
+    </item>
+    
+    <item>
+      <title>Android Wi-Fi图标的感叹号</title>
+      <link>https://tgmerge.me/blog/0202-android-captive-portal-wifi-warning-icon/</link>
+      <pubDate>Thu, 16 Apr 2015 12:56:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0202-android-captive-portal-wifi-warning-icon/</guid>
+      <description>Android 4以上的版本在连接到Wi-Fi网络之后，会先尝试访问clients3.google.com/generate_204这个地址来判断这个Wi</description>
+    </item>
+    
+    <item>
+      <title>kindle和其他</title>
+      <link>https://tgmerge.me/blog/0201-kindle-cn/</link>
+      <pubDate>Tue, 14 Apr 2015 22:29:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0201-kindle-cn/</guid>
+      <description>大概算了下，kindle用到现在两年时间，除去教材和文档，也只是靠盗版物回了个本。最常见的使用方式则是当相框，就像这样…… 一年时间没看亚马逊</description>
+    </item>
+    
+    <item>
+      <title>Github Pages&#43;Hexo</title>
+      <link>https://tgmerge.me/blog/0200-move-to-hexo/</link>
+      <pubDate>Thu, 09 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0200-move-to-hexo/</guid>
+      <description>Blog=几年以后翻出来看时的羞耻感 明明知道这个，但人类就是这种会再次往火坑里跳的生物啊。 现在换到了GitHub Pages+Hexo这样的组</description>
+    </item>
+    
+    <item>
+      <title>iOS 8.1.2 &#43; Flex 2 beta &#43; jubeat / reflecbeat</title>
+      <link>https://tgmerge.me/blog/0075-ios8-flex2-jubeat-reflecbeat/</link>
+      <pubDate>Tue, 20 Jan 2015 01:16:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0075-ios8-flex2-jubeat-reflecbeat/</guid>
+      <description>破解方法。 iOS升级至8.1.2 Cydia添加源：http://getdelta.co/ 上述源内安装：Flex 2 Beta(当前版本1.952</description>
+    </item>
+    
+    <item>
+      <title>调试Android上的Chrome</title>
+      <link>https://tgmerge.me/blog/0074-debug-chrome-on-android/</link>
+      <pubDate>Tue, 06 Jan 2015 04:27:35 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0074-debug-chrome-on-android/</guid>
+      <description>设备usb驱动 adb start-server chrome://inspect/#devices OK &amp;lsquo;w&amp;rsquo;</description>
+    </item>
+    
+    <item>
+      <title>Windows, python, cmd, encoding, _(:3 / L)_</title>
+      <link>https://tgmerge.me/blog/0073-python-encoding-on-windows/</link>
+      <pubDate>Tue, 02 Dec 2014 22:42:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0073-python-encoding-on-windows/</guid>
+      <description>就不说windows和python编码的那一大坨问题了，只大概记一下怎么科学地鸟枪法码代码。 sys.getfilesystemencodin</description>
+    </item>
+    
+    <item>
+      <title>啥你说键盘轴？</title>
+      <link>https://tgmerge.me/blog/0072-types-of-machinical-keyboards/</link>
+      <pubDate>Tue, 25 Nov 2014 03:30:46 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0072-types-of-machinical-keyboards/</guid>
+      <description>唔折腾几块键盘下来的感想就是，如果带钢板，怎么折腾还是会回到红轴的……试过别人的黑轴和青轴，青轴的感觉就是卧槽吵死人，打字机手感到底好在哪？</description>
+    </item>
+    
+    <item>
+      <title>哪些符合要求的osu beatmap没有下过？</title>
+      <link>https://tgmerge.me/blog/0071-find-osu-beatmaps-not-downloaded-yet/</link>
+      <pubDate>Fri, 14 Nov 2014 00:58:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0071-find-osu-beatmaps-not-downloaded-yet/</guid>
+      <description>在beatmap搜索结果页的javascript console： document.body.innerHTML.match(/[0-9]+(?=&amp;quot;.class=&amp;quot;title&amp;quot;)/g); 之后python： ids = # [&amp;quot;63609&amp;quot;, ..., ] import os s = &amp;quot;&amp;quot;.join([dirname for dirname, dirnames, filenames in os.walk(&amp;quot;e:/path/to/osu/songs&amp;quot;)]) [((oneid in s), oneid) for oneid in ids if (oneid not</description>
+    </item>
+    
+    <item>
+      <title>Lovelive日服的第一次启动黄屏问题&amp;解决</title>
+      <link>https://tgmerge.me/blog/0070-lovelive-jp-yellow-screen-solved/</link>
+      <pubDate>Wed, 05 Nov 2014 04:44:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0070-lovelive-jp-yellow-screen-solved/</guid>
+      <description>唔发问题解决帖可抽UR Lovelive安卓版日服会检测root权限，有root则无法启动。用rootcloak之类的xposed插件对应用隐</description>
+    </item>
+    
+    <item>
+      <title>放弃世界选猫娘吧 :: oneshot</title>
+      <link>https://tgmerge.me/blog/0069-game-oneshot/</link>
+      <pubDate>Tue, 29 Jul 2014 01:39:14 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0069-game-oneshot/</guid>
+      <description>培养玩家和角色的好感度，然后让他们直接交流……多数时候选项只有一个这点真是满满的charon风。 既然“让玩家代入主角”太泛滥又很麻烦，那就直</description>
+    </item>
+    
+    <item>
+      <title>未命名</title>
+      <link>https://tgmerge.me/snap/0068-android-camera-focus-blur/</link>
+      <pubDate>Thu, 24 Apr 2014 01:23:03 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/snap/0068-android-camera-focus-blur/</guid>
+      <description>Android 4.4 Google Camera，镜头模糊效果，类似于光场相机的“拍照后聚焦”……</description>
+    </item>
+    
+    <item>
+      <title>2048 HD&#43;FL mod</title>
+      <link>https://tgmerge.me/blog/0067-2048-hd-fl-mod/</link>
+      <pubDate>Fri, 21 Mar 2014 13:02:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0067-2048-hd-fl-mod/</guid>
+      <description>https://tgmerge.github.io/playground/2048hidden osu!大法好系列</description>
+    </item>
+    
+    <item>
+      <title>未命名</title>
+      <link>https://tgmerge.me/blog/0066-kindle-3rd-part-application-install/</link>
+      <pubDate>Tue, 25 Feb 2014 23:34:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0066-kindle-3rd-part-application-install/</guid>
+      <description>kindle越狱后的装第三方应用需要的那些merged developer keystore被整合成了一个叫Mobileread Kindlet Kit的合集。 也就是说那串流程</description>
+    </item>
+    
+    <item>
+      <title>未命名</title>
+      <link>https://tgmerge.me/blog/0065-sublime-ime-support-plugin/</link>
+      <pubDate>Fri, 21 Feb 2014 17:03:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0065-sublime-ime-support-plugin/</guid>
+      <description>Sublime text早就有了修复输入法支持的插件IMESupport，为啥国内都没消息……是日本那边做的，对中文输入法也一样支持。效果不是很完美不过已</description>
+    </item>
+    
+    <item>
+      <title>Evernote Clearly中文、英文和日文混排时的字体设置</title>
+      <link>https://tgmerge.me/blog/0064-evernote-clearly-chinese-latin-japanese-mixed-fonts/</link>
+      <pubDate>Sun, 12 Jan 2014 17:49:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0064-evernote-clearly-chinese-latin-japanese-mixed-fonts/</guid>
+      <description>Clearly相当方便，但多种语言混排的时候，只用PT Serif, Hiragino Sans GB W3这样的字体设置会让日文假名显示得一坨…… 所以只好用@font-face按U</description>
+    </item>
+    
+    <item>
+      <title>未命名</title>
+      <link>https://tgmerge.me/blog/0063-sakura-trick-gif/</link>
+      <pubDate>Sat, 11 Jan 2014 13:08:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0063-sakura-trick-gif/</guid>
+      <description>已经笑瘫了……</description>
+    </item>
+    
+    <item>
+      <title>勇者战败的世界的故事 :: Espresso</title>
+      <link>https://tgmerge.me/blog/0062-game-espresso/</link>
+      <pubDate>Sat, 28 Dec 2013 19:21:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0062-game-espresso/</guid>
+      <description>Espresso 勇者战败后的故事。 魔王打败了勇者，征服了整个国家。 勇者残留的同伴们，以及还活着的国民， 到底要怎么做才好呢…… 这是史书不会记载的，勇者失败之</description>
+    </item>
+    
+    <item>
+      <title>圣诞节的现充妄想(误) :: Merry</title>
+      <link>https://tgmerge.me/blog/0061-game-merry/</link>
+      <pubDate>Sat, 28 Dec 2013 11:42:38 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0061-game-merry/</guid>
+      <description>Merry 圣诞节题材的恐怖逃脱游戏 主角大和并没有恋人什么的共度圣诞节。 但就在圣诞节当天，他在回家的路上捡到了一个玩偶？ 游戏作者是DeepWhite，</description>
+    </item>
+    
+    <item>
+      <title>未命名</title>
+      <link>https://tgmerge.me/blog/0060-koimonogatari-gif/</link>
+      <pubDate>Tue, 24 Dec 2013 01:19:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0060-koimonogatari-gif/</guid>
+      <description>恋物語OP「木枯らしセンティメント」 想稍微处理一下视频的话就用VirtualDub。 QGifer是专门转换视频到GIF的。也有一点优化功能。</description>
+    </item>
+    
+    <item>
+      <title>最近的Google HTTP 403</title>
+      <link>https://tgmerge.me/blog/0059-google-http-403/</link>
+      <pubDate>Wed, 18 Dec 2013 15:06:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0059-google-http-403/</guid>
+      <description>在hosts里配置使用Google北京的服务器的话，某些https站点会403（google drive和ingress intel之类）。只要</description>
+    </item>
+    
+    <item>
+      <title>Thinkpad Edge，Win8，AMD显卡，屏幕亮度调节问题</title>
+      <link>https://tgmerge.me/blog/0058-thinkpad-edge-amd-win8-brightness/</link>
+      <pubDate>Thu, 12 Dec 2013 22:35:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0058-thinkpad-edge-amd-win8-brightness/</guid>
+      <description>联想从将近一年前就没有再更新E系列比较老机型的显卡驱动了。尤其是联想的AMD显卡驱动在Win8下兼容性一直不好，各种亮度无法调节无法手动切换</description>
+    </item>
+    
+    <item>
+      <title>tumblr的文章摘要和Read More...</title>
+      <link>https://tgmerge.me/blog/0057-tumblr-post-read-more-tag/</link>
+      <pubDate>Tue, 10 Dec 2013 13:20:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0057-tumblr-post-read-more-tag/</guid>
+      <description>在Text post中间插入[[MORE]]的话，这篇post在首页上就会显示为带有“Read More&amp;hellip;”标记的摘要，不会因为太</description>
+    </item>
+    
+    <item>
+      <title>普通的灵异故事 :: 雨</title>
+      <link>https://tgmerge.me/blog/0056-game-ame/</link>
+      <pubDate>Tue, 10 Dec 2013 12:11:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0056-game-ame/</guid>
+      <description>雨 ——雨和少女 在雨夜和不可思议的少女相遇了。 15分钟长度的短剧，没有分歧。 大概是恋爱故事。 freem上的介绍页在这里。 没什么特别的，普通的灵</description>
+    </item>
+    
+    <item>
+      <title>轻松愉快惊悚ADV :: 後輩と先輩と時々殺人鬼</title>
+      <link>https://tgmerge.me/blog/0055-game-satsujinki/</link>
+      <pubDate>Tue, 10 Dec 2013 11:02:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0055-game-satsujinki/</guid>
+      <description>後輩と先輩と時々殺人鬼 轻松愉快惊悚风格ADV 关系微妙的前辈和后辈被卷入了杀人事件 能够无事生还然后lovelove的话不是很好嘛 freem上的</description>
+    </item>
+    
+    <item>
+      <title>弹幕&#43;动作&#43;养成的良心作 :: ありふれたホシの終末期NextPhase</title>
+      <link>https://tgmerge.me/blog/0054-game-arifureta-hoshi-nextphase/</link>
+      <pubDate>Sat, 07 Dec 2013 16:41:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0054-game-arifureta-hoshi-nextphase/</guid>
+      <description>ありふれたホシの終末期NextPhase 脚本分歧弹幕射击动作游戏（定语真多） 制作方网站是Crazy I Scream，上面也有下载。 制作相当精良</description>
+    </item>
+    
+    <item>
+      <title>Google App Engine等一堆网站的403问题</title>
+      <link>https://tgmerge.me/blog/0053-gae-http-403/</link>
+      <pubDate>Fri, 06 Dec 2013 11:45:57 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0053-gae-http-403/</guid>
+      <description>最近发现很多站点就算改了hosts开了gogent还是会403 Permission Denied……结果是因为很多hosts源最近没有更新，或者hosts偷懒把</description>
+    </item>
+    
+    <item>
+      <title>gae, python :: Part I</title>
+      <link>https://tgmerge.me/blog/0052-gae-python/</link>
+      <pubDate>Thu, 05 Dec 2013 17:31:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0052-gae-python/</guid>
+      <description>稍微整理下gae相关的东西。 关于scaling 根据Google在这篇Python App的运行模式的描述，Google非常厚道地给了autom</description>
+    </item>
+    
+    <item>
+      <title>上传到GAE</title>
+      <link>https://tgmerge.me/blog/0051-upload-to-gae/</link>
+      <pubDate>Tue, 03 Dec 2013 18:08:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0051-upload-to-gae/</guid>
+      <description>试用Google App Engine……先把Deploy的时候遇到的问题记下来。 上传使用的appcfg.py命令行参考和英文版本（有oauth等更</description>
+    </item>
+    
+    <item>
+      <title>醒醒吧你没有妹子 :: 彼女</title>
+      <link>https://tgmerge.me/blog/0050-game-kanojo/</link>
+      <pubDate>Sun, 01 Dec 2013 17:04:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0050-game-kanojo/</guid>
+      <description>彼女 短篇恐怖ADV 寻找深爱的她的行踪吧。 宿醉醒来的主角发现身边的她/女朋友不见了。 她到底跑去哪里了……？ 游戏制作影～ombre～，freem</description>
+    </item>
+    
+    <item>
+      <title>未命名</title>
+      <link>https://tgmerge.me/snap/0049-untitled-photo/</link>
+      <pubDate>Fri, 29 Nov 2013 09:54:07 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/snap/0049-untitled-photo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>没有选项但结局有三个 :: カワリモノ</title>
+      <link>https://tgmerge.me/blog/0048-game-kawarimono/</link>
+      <pubDate>Sun, 24 Nov 2013 14:57:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0048-game-kawarimono/</guid>
+      <description>カワリモノ 稍微有点精神猎奇和SF向的短篇故事。 虽然没有选项，但结局有三个。 并不会因为游戏回数、点击特定地点、存档读档等造成路线分歧。 大概是根</description>
+    </item>
+    
+    <item>
+      <title>未命名</title>
+      <link>https://tgmerge.me/snap/0047-unititled-photo/</link>
+      <pubDate>Sun, 24 Nov 2013 00:54:06 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/snap/0047-unititled-photo/</guid>
+      <description>在 浙江大学 Zhejiang University</description>
+    </item>
+    
+    <item>
+      <title>要不要再虐原主角一点 :: みるひおれ :: Part I</title>
+      <link>https://tgmerge.me/blog/0046-miruhiore/</link>
+      <pubDate>Tue, 19 Nov 2013 00:41:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0046-miruhiore/</guid>
+      <description>手贱去百度贴吧转了一圈发现有写这游戏的帖子，写的剧情完全是错的，不要乱猜误导人好吗…… 先放一张True End的图 TRUE END 世の中、金 至于发生了什么</description>
+    </item>
+    
+    <item>
+      <title>『みっくすおれ』番外·腹黑妹妹的剧情展开 :: みるひおれ :: Part 0</title>
+      <link>https://tgmerge.me/blog/0045-game-miruhiore/</link>
+      <pubDate>Mon, 18 Nov 2013 13:38:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0045-game-miruhiore/</guid>
+      <description>《混合牛奶》这种不明不白的标题翻译是啥，梗全没了……オレ硬要翻译成饮料的话也是“欧蕾”吧？总觉得汉化了的话就少了点什么？ 那么是这次的事情。前</description>
+    </item>
+    
+    <item>
+      <title>反正结局什么的早就猜到了但是 :: 自殺少女。 :: Part II</title>
+      <link>https://tgmerge.me/blog/0044-game-jisatsu-shoujo/</link>
+      <pubDate>Mon, 18 Nov 2013 03:26:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0044-game-jisatsu-shoujo/</guid>
+      <description>那么接下来是END？ 因为看到游戏名和简介就大概知道end的分布是个什么尿性了 BE 无限循环 NE 逃出顺利死掉 GE 复活撒花 BE，BE，BE BAD END 1 Game Over 经历</description>
+    </item>
+    
+    <item>
+      <title>明明这么萌 :: 自殺少女。 :: Part I</title>
+      <link>https://tgmerge.me/blog/0043-game-jisatsu-shoujo/</link>
+      <pubDate>Sat, 16 Nov 2013 05:26:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0043-game-jisatsu-shoujo/</guid>
+      <description>自殺少女。 已经死去的少女的故事 早狩京子自杀了。 但不知为什么在自己的房间醒了过来。 这里似乎是「另外的世界」的样子。 收集「残留思念」，从这个世界</description>
+    </item>
+    
+    <item>
+      <title>2013/11/11</title>
+      <link>https://tgmerge.me/blog/0042-2013-11-09/</link>
+      <pubDate>Sat, 09 Nov 2013 03:27:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0042-2013-11-09/</guid>
+      <description>放置play两个半星期后kindle居然只跑了8%电量惊异中，想刷奇怪的网站的时候可以用。有种作死感不过总之先那样吧&amp;rsquo;_&amp;gt;</description>
+    </item>
+    
+    <item>
+      <title>未命名</title>
+      <link>https://tgmerge.me/blog/0041-untitled/</link>
+      <pubDate>Wed, 30 Oct 2013 02:45:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0041-untitled/</guid>
+      <description>居然才知道margin设置负值就能不留白移位，和position:relative相对……</description>
+    </item>
+    
+    <item>
+      <title>Google Photo Sphere</title>
+      <link>https://tgmerge.me/snap/0040-google-photo-sphere/</link>
+      <pubDate>Fri, 25 Oct 2013 16:49:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/snap/0040-google-photo-sphere/</guid>
+      <description>QSC办公室的360°球形全景。事实证明就算距离很近Photo Sphere还能用…… 使用Android 4.2.2 自带相机。脑残转圈/无处理/满地接缝</description>
+    </item>
+    
+    <item>
+      <title>Google Photo Sphere</title>
+      <link>https://tgmerge.me/snap/0039-google-photo-sphere/</link>
+      <pubDate>Fri, 25 Oct 2013 10:48:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/snap/0039-google-photo-sphere/</guid>
+      <description>在tumblr dashboard中并不能正常显示，请直接访问本文。 玉泉永谦广场 var photoSphere1 = document.getElementById(&#39;photoSphere1&#39;); photoSphere1.innerHTML = &#34;&#34;; gapi.panoembed.go(); 紫金港阳明桥前 var photoSphere2 = document.getElementById(&#39;photoSphere2&#39;); photoSphere2.innerHTML = &#34;&#34;; gapi.panoembed.go(); 紫金港小剧场后 var</description>
+    </item>
+    
+    <item>
+      <title>H本，读书，NTR</title>
+      <link>https://tgmerge.me/blog/0038-h-book-ntr/</link>
+      <pubDate>Fri, 18 Oct 2013 02:07:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0038-h-book-ntr/</guid>
+      <description>一般来说能随心所欲地下载到H本之后就不太想特地去下H本了，能随手下到AV以后也不怎么想去看AV了吧？不是说读书的话不要买书而要借书吗？也就是</description>
+    </item>
+    
+    <item>
+      <title>未命名</title>
+      <link>https://tgmerge.me/snap/0037-untitled-photosphere/</link>
+      <pubDate>Wed, 16 Oct 2013 16:20:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/snap/0037-untitled-photosphere/</guid>
+      <description>Android 4.2.2 球形全景功能终于好用一点了……</description>
+    </item>
+    
+    <item>
+      <title>未命名</title>
+      <link>https://tgmerge.me/snap/0036-untitled-photo/</link>
+      <pubDate>Sun, 13 Oct 2013 21:31:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/snap/0036-untitled-photo/</guid>
+      <description>啊真无聊= = 你们的活动取的名字也真无聊……难怪被盖被子233</description>
+    </item>
+    
+    <item>
+      <title>Ingress全成就解锁，After Story第一篇完结</title>
+      <link>https://tgmerge.me/blog/0035-ingress-all-medal-unlocked/</link>
+      <pubDate>Sun, 13 Oct 2013 14:14:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0035-ingress-all-medal-unlocked/</guid>
+      <description>虽然从玩Ingress到现在没去过多少地方…… Unique Portals Visited，感觉这个记录了“你到过多少地方”的数值才是重点。虽然Google最后大概还</description>
+    </item>
+    
+    <item>
+      <title>因为懒所以SNS _(:з」∠)_</title>
+      <link>https://tgmerge.me/blog/0034-lazy-sns/</link>
+      <pubDate>Fri, 11 Oct 2013 01:44:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0034-lazy-sns/</guid>
+      <description>SNS的氛围是从什么时候开始变成这样的……所谓社交网络该有的样子，twitter的“Now”这个词可以解释得蛮简单易懂的，比如说 山田ダイヤと</description>
+    </item>
+    
+    <item>
+      <title>得不到点</title>
+      <link>https://tgmerge.me/blog/0033-pointless-image/</link>
+      <pubDate>Thu, 10 Oct 2013 22:25:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0033-pointless-image/</guid>
+      <description>乱弄的请原谅&amp;rsquo;_&amp;gt;&amp;rsquo; 啊这人是Ezra Miller</description>
+    </item>
+    
+    <item>
+      <title>未命名</title>
+      <link>https://tgmerge.me/snap/0032-rain-photo/</link>
+      <pubDate>Tue, 08 Oct 2013 11:50:14 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/snap/0032-rain-photo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>这猫还挺乖的w</title>
+      <link>https://tgmerge.me/snap/0031-cat-photo/</link>
+      <pubDate>Mon, 07 Oct 2013 17:42:21 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/snap/0031-cat-photo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>日常侵蚀恐怖ADV :: つぐのひ　第三話</title>
+      <link>https://tgmerge.me/blog/0030-game-tsugunohi-3/</link>
+      <pubDate>Mon, 07 Oct 2013 12:57:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0030-game-tsugunohi-3/</guid>
+      <description>つぐのひ 第三話 日常侵蚀真实系恐怖游戏短篇 以展现日常的一幕为理念制作的小游戏。 从学校回来的小学女生つぐみ（亞美？）的妈妈买东西失踪了。 预想游戏</description>
+    </item>
+    
+    <item>
+      <title>kindle 5.3.5 以上版本保留jailbreak最省事的方法</title>
+      <link>https://tgmerge.me/blog/0029-kindle-keep-jailbreak/</link>
+      <pubDate>Thu, 03 Oct 2013 02:15:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0029-kindle-keep-jailbreak/</guid>
+      <description>kindle paperwhite越狱的安装包只支持到5.3.5。 升级到以上版本的话，虽然越狱会保留但开发者证书会丢失，没有办法使用第三方组件…… 不过按</description>
+    </item>
+    
+    <item>
+      <title>未命名</title>
+      <link>https://tgmerge.me/blog/0028-google-apps-script/</link>
+      <pubDate>Sun, 29 Sep 2013 02:55:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0028-google-apps-script/</guid>
+      <description>在试Google Apps Script，感觉可以有很多不科学的用途……</description>
+    </item>
+    
+    <item>
+      <title>未命名</title>
+      <link>https://tgmerge.me/blog/0027-university-than-affection/</link>
+      <pubDate>Sat, 28 Sep 2013 17:35:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0027-university-than-affection/</guid>
+      <description>“世上存在一种恶质的偏见，认为上了大学就会交到女（男）朋友。但是事情其实是相反的。是笨学生受到“上了大学就会交到女（男）朋友”这偏见鼓动，盲</description>
+    </item>
+    
+    <item>
+      <title>2013/09/26 :: 什么也没发现的节奏</title>
+      <link>https://tgmerge.me/blog/0026-2013-09-26-untitled/</link>
+      <pubDate>Thu, 26 Sep 2013 23:01:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0026-2013-09-26-untitled/</guid>
+      <description>偶然看见前面的人用一脸马上就能Rank SS的表情依次给联系人列表里的每个人发短信……超级自然地一直在发（给名字似乎是男生的人）「在做什么呢？</description>
+    </item>
+    
+    <item>
+      <title>未命名</title>
+      <link>https://tgmerge.me/blog/0025-undone-to-wont-finish/</link>
+      <pubDate>Tue, 24 Sep 2013 22:38:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0025-undone-to-wont-finish/</guid>
+      <description>“如果想做的事情不立刻完成，过一会就会那么不了了之了不是吗” —心连·情结 EP7</description>
+    </item>
+    
+    <item>
+      <title>2013/09/10 :: 蠕动 or death</title>
+      <link>https://tgmerge.me/blog/0024-2013-09-10-wriggle-or-death/</link>
+      <pubDate>Tue, 10 Sep 2013 13:45:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0024-2013-09-10-wriggle-or-death/</guid>
+      <description>怡膳堂感觉像是在minecraft里搭了一个6×6的木亭子然后用地狱岩栅栏装饰起来，之后放上红色和黄色羊毛，在中间是Mod里的桌椅，最后在顶</description>
+    </item>
+    
+    <item>
+      <title>新版Google Maps离线预缓存地图的隐藏方法</title>
+      <link>https://tgmerge.me/blog/0023-google-maps-offline-cache/</link>
+      <pubDate>Sat, 07 Sep 2013 01:17:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0023-google-maps-offline-cache/</guid>
+      <description>以前的Google maps是有“预缓存地图区域”这个功能的，多多少少可以减小GPRS用户的流量负担……但前几个月升级到7.0后，这个功能被硬</description>
+    </item>
+    
+    <item>
+      <title>2013/09/04</title>
+      <link>https://tgmerge.me/blog/0022-daily-2013-09-04/</link>
+      <pubDate>Wed, 04 Sep 2013 17:57:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0022-daily-2013-09-04/</guid>
+      <description>过来两年还没去过西湖几次……北面和东面的中山公园和湖滨一带从各种角度来说都还不错，骑车去绝对正确。 西湖北面倒也没说得那么玄乎……感想就是两秒</description>
+    </item>
+    
+    <item>
+      <title>2013/09/03</title>
+      <link>https://tgmerge.me/blog/0021-daily-2013-09-03/</link>
+      <pubDate>Tue, 03 Sep 2013 17:46:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0021-daily-2013-09-03/</guid>
+      <description>看到信义坊和小河直街这两个地方似乎是附近小有名气的farm。 信义坊其实没什么特别赞的……学校很多，熊孩子成群，下次可以在minecraft里</description>
+    </item>
+    
+    <item>
+      <title>百合和人生赢家……都不要 :: まことメビウス</title>
+      <link>https://tgmerge.me/blog/0020-game-makoto-mebius/</link>
+      <pubDate>Fri, 30 Aug 2013 14:05:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0020-game-makoto-mebius/</guid>
+      <description>真琴Mebius 无限循环恐怖ADV 主角「和太郎」同桌的女生「真琴」。 只是不怎么说话的同学而已。 那天，她突然死掉了。 向莫比乌斯先生求助的话，就</description>
+    </item>
+    
+    <item>
+      <title>Thinkpad E420 HD6630M显卡在Win8下的正确驱动配置</title>
+      <link>https://tgmerge.me/blog/0019-thinkpad-e420-hd6630-win8-driver/</link>
+      <pubDate>Sun, 04 Aug 2013 01:41:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0019-thinkpad-e420-hd6630-win8-driver/</guid>
+      <description>HD6630M显卡无论单独使用联想官方的驱动还是AMD网站上下载的测试版驱动（正式版驱动因为是订制显卡的缘故无法安装），都会出现或多或少的问</description>
+    </item>
+    
+    <item>
+      <title>「つゆり」→「栗花落」→「五月七日」</title>
+      <link>https://tgmerge.me/blog/0018-about-tsuyuri/</link>
+      <pubDate>Wed, 17 Jul 2013 11:31:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0018-about-tsuyuri/</guid>
+      <description>关于中二病里学姐的名字「五月七日 くみん」里的「五月七日」这个奇怪的姓氏还是有来历的。以下出自日本人姓名——日期篇。 昔あるところに、水無瀬殿（</description>
+    </item>
+    
+    <item>
+      <title>从A到D的励志故事(误) :: 『料理』续作 :: 奥さんは惨殺少女</title>
+      <link>https://tgmerge.me/blog/0017-game-okusan-zansatsu/</link>
+      <pubDate>Fri, 12 Jul 2013 14:52:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0017-game-okusan-zansatsu/</guid>
+      <description>良作赞！贫乳赞！废话超多赞！ 要说玩完这游戏最大的感想，那就是「自带狂气指示进度条的妹子真方便啊」和「病娇妹子的正确处置方式很重要呢」。</description>
+    </item>
+    
+    <item>
+      <title>妹子做的料理 :: 料理</title>
+      <link>https://tgmerge.me/blog/0016-game-ryouri/</link>
+      <pubDate>Fri, 12 Jul 2013 11:16:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0016-game-ryouri/</guid>
+      <description>料理 在白色的房间里吃妻子做的料理的又恐怖又恶心的故事 超短篇绘本式的小游戏。2004年的……妹子做的料理好吃吗？ 就算知道有情人总要分手这一点，</description>
+    </item>
+    
+    <item>
+      <title>嗯……果然还是没有好结局 :: みっくすおれ :: Part III</title>
+      <link>https://tgmerge.me/blog/0015-game-mix-aulait/</link>
+      <pubDate>Wed, 10 Jul 2013 13:54:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0015-game-mix-aulait/</guid>
+      <description>Galgame风格的恐怖冒险游戏 主人公是丧失了记忆的男生。 醒来的时候，身边有个似乎认识主角的女孩子…… Part III :: カフェオーレ :: あやの 选择“桌上放</description>
+    </item>
+    
+    <item>
+      <title>未命名</title>
+      <link>https://tgmerge.me/blog/0014-finish-those-report-and-coding/</link>
+      <pubDate>Thu, 27 Jun 2013 09:01:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0014-finish-those-report-and-coding/</guid>
+      <description>待我撸完这堆报告和代码……</description>
+    </item>
+    
+    <item>
+      <title>未命名</title>
+      <link>https://tgmerge.me/blog/0013-sabishinnbou-untitled-song/</link>
+      <pubDate>Sat, 15 Jun 2013 15:44:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0013-sabishinnbou-untitled-song/</guid>
+      <description>今天也好好地被致郁了……「さびしんぼう」的未命名曲真是= =</description>
+    </item>
+    
+    <item>
+      <title>不会有好结局的 :: みっくすおれ :: Part II</title>
+      <link>https://tgmerge.me/blog/0012-game-mix-aulait/</link>
+      <pubDate>Sat, 15 Jun 2013 13:28:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0012-game-mix-aulait/</guid>
+      <description>Galgame风格的恐怖冒险游戏 主人公是丧失了记忆的男生。 醒来的时候，身边有个似乎认识主角的女孩子…… Part II :: ミルヒオーレ:: りなか 选择“桌上</description>
+    </item>
+    
+    <item>
+      <title>未命名</title>
+      <link>https://tgmerge.me/blog/0011-even-if-i-having-gf/</link>
+      <pubDate>Thu, 13 Jun 2013 18:08:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0011-even-if-i-having-gf/</guid>
+      <description>就算有了我找了妹子这种悲伤的事情，你只要高兴地当小三去面对就好了。 ——似乎是化物语</description>
+    </item>
+    
+    <item>
+      <title>我也想要这么萌的猫…… :: ベルベットロープの前で</title>
+      <link>https://tgmerge.me/blog/0010-game-velvet-rope/</link>
+      <pubDate>Tue, 11 Jun 2013 15:05:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0010-game-velvet-rope/</guid>
+      <description>ベルベットロープの前で 在迷雾一般不可思议的世界中探索的游戏。 介绍只有上面这句，不过看作者的blog上写的，算是个精神向的剧情，相当中二…… 这</description>
+    </item>
+    
+    <item>
+      <title>2ch上的梗，这位被妹子以这种方式拒绝了</title>
+      <link>https://tgmerge.me/blog/0009-2ch-break-in-strange-way/</link>
+      <pubDate>Mon, 10 Jun 2013 16:03:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0009-2ch-break-in-strange-way/</guid>
+      <description>俺: お昼食べた？ 女: いや、まだだよ 俺: 俺もまだだから一緒に食べに行かない？ 女: ごめん、今スマホ充電中だから無理…… 俺: そ、そうかい……じゃあ</description>
+    </item>
+    
+    <item>
+      <title>不会有好结局(?)的吧 :: みっくすおれ :: Part I</title>
+      <link>https://tgmerge.me/blog/0008-game-mix-aulait/</link>
+      <pubDate>Sun, 09 Jun 2013 13:02:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0008-game-mix-aulait/</guid>
+      <description>Galgame风格的恐怖冒险游戏 主人公是丧失了记忆的男生。 醒来的时候，身边有个似乎认识主角的女孩子…… 幸福什么的，从一开始就都是错觉吧。 算是</description>
+    </item>
+    
+    <item>
+      <title>日记探索恐怖ADV :: みことにっき</title>
+      <link>https://tgmerge.me/blog/0007-game-mikoto-nikki/</link>
+      <pubDate>Sun, 09 Jun 2013 10:16:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0007-game-mikoto-nikki/</guid>
+      <description>剧情不错的恐怖小游戏 主角是普通的高中生（♂）。 普通地和憧憬的みこと前辈交往了。 但不知为什么前辈有向大家隐瞒的事情…… 到底是什么呢。 其实这个是</description>
+    </item>
+    
+    <item>
+      <title>在tumblr上传文件供主题使用的方法</title>
+      <link>https://tgmerge.me/blog/0006-upload-static-file-to-tumblr/</link>
+      <pubDate>Sat, 08 Jun 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0006-upload-static-file-to-tumblr/</guid>
+      <description>只要到http://www.tumblr.com/themes/upload_static_file上传文件，就能得到一个固定的URL。 之后</description>
+    </item>
+    
+    <item>
+      <title>送小萝莉回家的温馨向(?)解谜(?)游戏 :: ボロ</title>
+      <link>https://tgmerge.me/blog/0004-game-boro/</link>
+      <pubDate>Sat, 08 Jun 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0004-game-boro/</guid>
+      <description>ボロ ——平淡感觉的探索类游戏 机器人ボロ像以前一样在垃圾山里转悠的时候 遇到了迷路的女孩子…… 游戏时间30~40分钟。 画面风格很有特色呢，要说的</description>
+    </item>
+    
+    <item>
+      <title>短篇视觉小说 :: 終わった世界</title>
+      <link>https://tgmerge.me/blog/0003-game-owatta-sekai/</link>
+      <pubDate>Fri, 07 Jun 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0003-game-owatta-sekai/</guid>
+      <description>終わった世界 ——简单到不能再简单的恋爱ADV 少女在做梦。 反反复复相同的梦境。 当真正梦醒的时候，等待着她的是…… 已经简单到连立绘都没有了好吗。</description>
+    </item>
+    
+    <item>
+      <title>tumblr里的最近文章列表</title>
+      <link>https://tgmerge.me/blog/0005-tumblr-list-of-recent-posts/</link>
+      <pubDate>Wed, 05 Jun 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0005-tumblr-list-of-recent-posts/</guid>
+      <description>tumblr是有多喜欢dashboard……很不喜欢在侧边栏显示个关注列表搞得跟SNS一样，结果发现居然没有最近文章列表这个widget，只</description>
+    </item>
+    
+    <item>
+      <title>日常侵蚀恐怖游戏 :: つぐのひ</title>
+      <link>https://tgmerge.me/blog/0002-game-tsugunohi/</link>
+      <pubDate>Wed, 05 Jun 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0002-game-tsugunohi/</guid>
+      <description>つぐのひ 第一話 日常侵蚀真实系恐怖游戏短篇 以展现日常的一幕为理念制作的小游戏。 故事性什么的完全没有。 游戏时间5分钟。 我们的日常其实也是这样的吧</description>
+    </item>
+    
+    <item>
+      <title>initial post</title>
+      <link>https://tgmerge.me/blog/0001-initial-post/</link>
+      <pubDate>Mon, 03 Jun 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0001-initial-post/</guid>
+      <description>于是多了一个养触手的地方，请多关照。</description>
+    </item>
+    
+  </channel>
+</rss>

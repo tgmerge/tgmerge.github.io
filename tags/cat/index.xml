@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cat on tgmerge&#39;s blog</title>
+    <link>https://tgmerge.me/tags/cat/</link>
+    <description>Recent content in Cat on tgmerge&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>CC BY-NC-SA 4.0 / tgmerge</copyright>
+    <lastBuildDate>Thu, 25 Jun 2015 14:20:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tgmerge.me/tags/cat/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ねこあつめ 3</title>
+      <link>https://tgmerge.me/snap/0212-nekoatsume-3/</link>
+      <pubDate>Thu, 25 Jun 2015 14:20:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/snap/0212-nekoatsume-3/</guid>
+      <description>新桥门花店的肥猫w/</description>
+    </item>
+    
+    <item>
+      <title>ねこあつめ 2</title>
+      <link>https://tgmerge.me/snap/0211-nekoatsume-2/</link>
+      <pubDate>Fri, 05 Jun 2015 21:43:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/snap/0211-nekoatsume-2/</guid>
+      <description>玉泉猫图鉴？</description>
+    </item>
+    
+    <item>
+      <title>ねこあつめ</title>
+      <link>https://tgmerge.me/snap/0210-nekoatsume/</link>
+      <pubDate>Thu, 28 May 2015 01:20:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/snap/0210-nekoatsume/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

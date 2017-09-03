@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>文档 on tgmerge&#39;s blog</title>
+    <link>https://tgmerge.me/tags/%E6%96%87%E6%A1%A3/</link>
+    <description>Recent content in 文档 on tgmerge&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>CC BY-NC-SA 4.0 / tgmerge</copyright>
+    <lastBuildDate>Sat, 30 Apr 2016 23:01:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tgmerge.me/tags/%E6%96%87%E6%A1%A3/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SQLAlchemy文档和笔记 (2.5) - ORM指南 (5)</title>
+      <link>https://tgmerge.me/blog/0219-sqlalchemy-document-learning-note-2-5-orm-tutorial/</link>
+      <pubDate>Sat, 30 Apr 2016 23:01:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0219-sqlalchemy-document-learning-note-2-5-orm-tutorial/</guid>
+      <description>本篇是 胡乱 翻译自SQLAlchemy 1.0官方文档 Object Relational Tutorial一章的第五篇/最后一篇笔记。 上一部分主要讲Eager Loading、删</description>
+    </item>
+    
+    <item>
+      <title>SQLAlchemy文档和笔记 (2.4) - ORM指南 (4)</title>
+      <link>https://tgmerge.me/blog/0218-sqlalchemy-document-learning-note-2-4-orm-tutorial/</link>
+      <pubDate>Sat, 30 Apr 2016 16:55:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0218-sqlalchemy-document-learning-note-2-4-orm-tutorial/</guid>
+      <description>本篇是 胡乱 翻译自SQLAlchemy 1.0官方文档 Object Relational Tutorial一章的第四篇笔记。 各种保留了原文的术语可以参考SQLAlchemy术语</description>
+    </item>
+    
+    <item>
+      <title>SQLAlchemy文档和笔记 (2.3) - ORM指南 (3)</title>
+      <link>https://tgmerge.me/blog/0217-sqlalchemy-document-learning-note-2-3-orm-tutorial/</link>
+      <pubDate>Sat, 30 Apr 2016 13:46:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0217-sqlalchemy-document-learning-note-2-3-orm-tutorial/</guid>
+      <description>本篇是 胡乱 翻译自SQLAlchemy 1.0官方文档 Object Relational Tutorial一章的第三篇笔记。 抱着“反正正事不管时间多少都能干完”的态度果然可以干</description>
+    </item>
+    
+    <item>
+      <title>SQLAlchemy文档和笔记 (2.2) - ORM指南 (2)</title>
+      <link>https://tgmerge.me/blog/0216-sqlalchemy-document-learning-note-2-2-orm-tutorial/</link>
+      <pubDate>Thu, 28 Apr 2016 02:00:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0216-sqlalchemy-document-learning-note-2-2-orm-tutorial/</guid>
+      <description>本篇 胡乱 翻译自SQLAlchemy 1.0官方文档 Object Relational Tutorial一章。 各种保留了原文的术语可以参考SQLAlchemy术语表。 这章的上一</description>
+    </item>
+    
+    <item>
+      <title>SQLAlchemy文档和笔记 (2.1) - ORM指南 (1)</title>
+      <link>https://tgmerge.me/blog/0215-sqlalchemy-document-learning-note-2-1-orm-tutorial/</link>
+      <pubDate>Wed, 27 Apr 2016 00:51:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0215-sqlalchemy-document-learning-note-2-1-orm-tutorial/</guid>
+      <description>本篇 胡乱 翻译自SQLAlchemy 1.0官方文档 Object Relational Tutorial一章。 术语各种拿不定……可以参考SQLAlchemy术语表。 Object Relational Tutorial / 对象</description>
+    </item>
+    
+    <item>
+      <title>SQLAlchemy文档和笔记 (1.1) - 总览</title>
+      <link>https://tgmerge.me/blog/0214-sqlalchemy-document-learning-note-1-1-overview/</link>
+      <pubDate>Tue, 26 Apr 2016 23:45:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0214-sqlalchemy-document-learning-note-1-1-overview/</guid>
+      <description>以前在Python写数据库的时候都是尽可能小打小闹_(:3 SQLAlchemy尝试玩了几次然而并没有坚持多久，这次起码要在哪里用上一下？ 以一</description>
+    </item>
+    
+  </channel>
+</rss>

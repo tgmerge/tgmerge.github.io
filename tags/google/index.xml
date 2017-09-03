@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Google on tgmerge&#39;s blog</title>
+    <link>https://tgmerge.me/tags/google/</link>
+    <description>Recent content in Google on tgmerge&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>CC BY-NC-SA 4.0 / tgmerge</copyright>
+    <lastBuildDate>Wed, 18 Dec 2013 15:06:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tgmerge.me/tags/google/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>最近的Google HTTP 403</title>
+      <link>https://tgmerge.me/blog/0059-google-http-403/</link>
+      <pubDate>Wed, 18 Dec 2013 15:06:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0059-google-http-403/</guid>
+      <description>在hosts里配置使用Google北京的服务器的话，某些https站点会403（google drive和ingress intel之类）。只要</description>
+    </item>
+    
+  </channel>
+</rss>

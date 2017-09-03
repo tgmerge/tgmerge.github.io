@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jubeat on tgmerge&#39;s blog</title>
+    <link>https://tgmerge.me/tags/jubeat/</link>
+    <description>Recent content in Jubeat on tgmerge&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>CC BY-NC-SA 4.0 / tgmerge</copyright>
+    <lastBuildDate>Tue, 20 Jan 2015 01:16:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tgmerge.me/tags/jubeat/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>iOS 8.1.2 &#43; Flex 2 beta &#43; jubeat / reflecbeat</title>
+      <link>https://tgmerge.me/blog/0075-ios8-flex2-jubeat-reflecbeat/</link>
+      <pubDate>Tue, 20 Jan 2015 01:16:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0075-ios8-flex2-jubeat-reflecbeat/</guid>
+      <description>破解方法。 iOS升级至8.1.2 Cydia添加源：http://getdelta.co/ 上述源内安装：Flex 2 Beta(当前版本1.952</description>
+    </item>
+    
+  </channel>
+</rss>

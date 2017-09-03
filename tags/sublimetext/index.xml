@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SublimeText on tgmerge&#39;s blog</title>
+    <link>https://tgmerge.me/tags/sublimetext/</link>
+    <description>Recent content in SublimeText on tgmerge&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>CC BY-NC-SA 4.0 / tgmerge</copyright>
+    <lastBuildDate>Fri, 31 Mar 2017 20:39:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tgmerge.me/tags/sublimetext/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SublimeREPL 中，Lua 脚本缺少输出的问题</title>
+      <link>https://tgmerge.me/blog/0227-sublime-repl-lua-no-output/</link>
+      <pubDate>Fri, 31 Mar 2017 20:39:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0227-sublime-repl-lua-no-output/</guid>
+      <description>SublimeText 非常有名的插件 SublimeREPL 在运行 Lua 脚本的时候，可能会出现io.read()之前的输出不在 REPL 标签页中显示的问题。比如，用 SublimeREPL 结合 Load file to REPL 插件，运行这样的</description>
+    </item>
+    
+  </channel>
+</rss>

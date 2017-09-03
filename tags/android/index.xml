@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Android on tgmerge&#39;s blog</title>
+    <link>https://tgmerge.me/tags/android/</link>
+    <description>Recent content in Android on tgmerge&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>CC BY-NC-SA 4.0 / tgmerge</copyright>
+    <lastBuildDate>Sun, 15 Jan 2017 22:45:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tgmerge.me/tags/android/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>For 板子党：关闭 Jetbrains IDE 中的拖动操作</title>
+      <link>https://tgmerge.me/blog/0226-jetbrains-ide-strict-drag-n-drop/</link>
+      <pubDate>Sun, 15 Jan 2017 22:45:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0226-jetbrains-ide-strict-drag-n-drop/</guid>
+      <description>包括 Android Studio 在内的 Jetbrains 系 IDE 都有拖动代码或文件来移动文件或 refactor 的功能，然而对习惯用数位板代替鼠标的人 以及手不稳的普通鼠标用户 来说，一不小心就误拖动代码</description>
+    </item>
+    
+    <item>
+      <title>WRAP_CONTENT 的 RecyclerView 在 ScrollView 中无法显示完整内容</title>
+      <link>https://tgmerge.me/blog/0225-wrap-content-recycler-view-in-scroll-view/</link>
+      <pubDate>Fri, 13 Jan 2017 15:50:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0225-wrap-content-recycler-view-in-scroll-view/</guid>
+      <description>问题 形如下面这样的布局中： &amp;lt;ScrollView&amp;gt; &amp;lt;LinearLayout ... android:oriention=&amp;quot;vertical&amp;quot;&amp;gt; &amp;lt;SomeView /&amp;gt; &amp;lt;RecyclerView ... android:layout_height=&amp;quot;wrap_content&amp;quot; /&amp;gt; &amp;lt;SomeView /&amp;gt; &amp;lt;/LinearLayout&amp;gt; &amp;lt;/ScrollView&amp;gt; RecyclerView 在项目较多时将无法按 WRAP_CONTENT 的预期显示完整内容，只会显示一部分项目。 失败的解决方法 recy</description>
+    </item>
+    
+    <item>
+      <title>Android Studio 2.3 - 值得注意的新特性</title>
+      <link>https://tgmerge.me/blog/0224-android-studio-new-version-2.3/</link>
+      <pubDate>Sun, 01 Jan 2017 17:57:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0224-android-studio-new-version-2.3/</guid>
+      <description>Android Studio 2.3 两个星期以前发布到了 beta 版本，从这些新特性上又给无脑写代码提供了大量便利： Instant Run 的改进 Android Studio 2.2 的 Instant Run 按钮很不方便使用：在 Instant Run 出问题的时候，很</description>
+    </item>
+    
+    <item>
+      <title>RxJava 笔记和 Demo (2) - 适用场景</title>
+      <link>https://tgmerge.me/blog/0223-rxjava-note-and-demo-2/</link>
+      <pubDate>Sat, 19 Nov 2016 23:57:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0223-rxjava-note-and-demo-2/</guid>
+      <description>RxJava 的适用场景 与 Retrofit 的结合 Code 17 - RxJava + Retrofit 进行网络请求 这个示例模拟了“在网络请求发起时更新 UI -&amp;gt; 处理请求结果 -&amp;gt; 根据请求结果再次更新 UI”的过程。 使用了</description>
+    </item>
+    
+    <item>
+      <title>RxJava 笔记和 Demo (1) - 介绍和原理</title>
+      <link>https://tgmerge.me/blog/0222-rxjava-note-and-demo-1/</link>
+      <pubDate>Fri, 18 Nov 2016 14:05:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0222-rxjava-note-and-demo-1/</guid>
+      <description>用了蛮久 Rx 结果还没有正儿八经学一下感觉不太科学（笑 所以一边读给 Android 开发者的 RxJava 详解这篇文章，一边写了个 playground 式的小应用。 笔记是给自己看的所以写得很乱</description>
+    </item>
+    
+    <item>
+      <title>Android: My Very Own Tips (1)</title>
+      <link>https://tgmerge.me/blog/0221-my-very-own-tips-on-android/</link>
+      <pubDate>Thu, 17 Nov 2016 00:23:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0221-my-very-own-tips-on-android/</guid>
+      <description>感觉大部分都已经是常识了，但说不定以后遇到这样的事情能用得上呢…… 项目结构相关 按功能组织 Java package 按类（activity, fragment, presenter, adapter, etc.）组织 package 会</description>
+    </item>
+    
+    <item>
+      <title>Android: 获取RecyclerView的完整截图</title>
+      <link>https://tgmerge.me/blog/0220-android-get-complete-screenshot-of-recycler-view/</link>
+      <pubDate>Sun, 23 Oct 2016 14:53:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0220-android-get-complete-screenshot-of-recycler-view/</guid>
+      <description>写 Android 应用的时候，偶尔会遇到“需要对某个 view 截图”的问题。对一个单独的简单 view ，常见的实现方法有以下两种： 使用view.getDrawingCac</description>
+    </item>
+    
+    <item>
+      <title>Android Wi-Fi图标的感叹号</title>
+      <link>https://tgmerge.me/blog/0202-android-captive-portal-wifi-warning-icon/</link>
+      <pubDate>Thu, 16 Apr 2015 12:56:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0202-android-captive-portal-wifi-warning-icon/</guid>
+      <description>Android 4以上的版本在连接到Wi-Fi网络之后，会先尝试访问clients3.google.com/generate_204这个地址来判断这个Wi</description>
+    </item>
+    
+    <item>
+      <title>调试Android上的Chrome</title>
+      <link>https://tgmerge.me/blog/0074-debug-chrome-on-android/</link>
+      <pubDate>Tue, 06 Jan 2015 04:27:35 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0074-debug-chrome-on-android/</guid>
+      <description>设备usb驱动 adb start-server chrome://inspect/#devices OK &amp;lsquo;w&amp;rsquo;</description>
+    </item>
+    
+    <item>
+      <title>Lovelive日服的第一次启动黄屏问题&amp;解决</title>
+      <link>https://tgmerge.me/blog/0070-lovelive-jp-yellow-screen-solved/</link>
+      <pubDate>Wed, 05 Nov 2014 04:44:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0070-lovelive-jp-yellow-screen-solved/</guid>
+      <description>唔发问题解决帖可抽UR Lovelive安卓版日服会检测root权限，有root则无法启动。用rootcloak之类的xposed插件对应用隐</description>
+    </item>
+    
+    <item>
+      <title>新版Google Maps离线预缓存地图的隐藏方法</title>
+      <link>https://tgmerge.me/blog/0023-google-maps-offline-cache/</link>
+      <pubDate>Sat, 07 Sep 2013 01:17:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0023-google-maps-offline-cache/</guid>
+      <description>以前的Google maps是有“预缓存地图区域”这个功能的，多多少少可以减小GPRS用户的流量负担……但前几个月升级到7.0后，这个功能被硬</description>
+    </item>
+    
+  </channel>
+</rss>

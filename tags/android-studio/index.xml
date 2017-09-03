@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Android Studio on tgmerge&#39;s blog</title>
+    <link>https://tgmerge.me/tags/android-studio/</link>
+    <description>Recent content in Android Studio on tgmerge&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>CC BY-NC-SA 4.0 / tgmerge</copyright>
+    <lastBuildDate>Sun, 01 Jan 2017 17:57:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tgmerge.me/tags/android-studio/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Android Studio 2.3 - 值得注意的新特性</title>
+      <link>https://tgmerge.me/blog/0224-android-studio-new-version-2.3/</link>
+      <pubDate>Sun, 01 Jan 2017 17:57:00 +0000</pubDate>
+      
+      <guid>https://tgmerge.me/blog/0224-android-studio-new-version-2.3/</guid>
+      <description>Android Studio 2.3 两个星期以前发布到了 beta 版本，从这些新特性上又给无脑写代码提供了大量便利： Instant Run 的改进 Android Studio 2.2 的 Instant Run 按钮很不方便使用：在 Instant Run 出问题的时候，很</description>
+    </item>
+    
+  </channel>
+</rss>
