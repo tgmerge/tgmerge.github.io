@@ -5,7 +5,6 @@
     <link>https://tgmerge.me/page/</link>
     <description>Recent content in Pages on tgmerge&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <copyright>CC BY-NC-SA 4.0 / tgmerge</copyright>
     
 	<atom:link href="https://tgmerge.me/page/index.xml" rel="self" type="application/rss+xml" />
     
@@ -16,7 +15,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://tgmerge.me/about/</guid>
-      <description>写写代码 吸吸猫 :) 可以用页面下方的联系方式找到我。 这个网站使用 Hugo 和修改过的 Minimo 主题 :D</description>
+      <description>写写代码 吸吸猫 (・∀・) 这个网站使用 Hugo 和修改过的 Minimo 主题。</description>
     </item>
     
   </channel>

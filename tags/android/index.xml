@@ -5,7 +5,6 @@
     <link>https://tgmerge.me/tags/android/</link>
     <description>Recent content in Android on tgmerge&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <copyright>CC BY-NC-SA 4.0 / tgmerge</copyright>
     <lastBuildDate>Sun, 15 Jan 2017 22:45:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tgmerge.me/tags/android/index.xml" rel="self" type="application/rss+xml" />
@@ -26,7 +25,7 @@
       <pubDate>Fri, 13 Jan 2017 15:50:00 +0000</pubDate>
       
       <guid>https://tgmerge.me/blog/0225-wrap-content-recycler-view-in-scroll-view/</guid>
-      <description>问题 形如下面这样的布局中： &amp;lt;ScrollView&amp;gt; &amp;lt;LinearLayout ... android:oriention=&amp;quot;vertical&amp;quot;&amp;gt; &amp;lt;SomeView /&amp;gt; &amp;lt;RecyclerView ... android:layout_height=&amp;quot;wrap_content&amp;quot; /&amp;gt; &amp;lt;SomeView /&amp;gt; &amp;lt;/LinearLayout&amp;gt; &amp;lt;/ScrollView&amp;gt; RecyclerView 在项目较多时将无法按 WRAP_CONTENT 的预期显示完整内容，只会显示一部分项目。 失败的解决方法 recy</description>
+      <description>问题 形如下面这样的布局中： &amp;lt;ScrollView&amp;gt; &amp;lt;LinearLayout ... android:oriention=&amp;#34;vertical&amp;#34;&amp;gt; &amp;lt;SomeView /&amp;gt; &amp;lt;RecyclerView ... android:layout_height=&amp;#34;wrap_content&amp;#34; /&amp;gt; &amp;lt;SomeView /&amp;gt; &amp;lt;/LinearLayout&amp;gt; &amp;lt;/ScrollView&amp;gt; RecyclerView 在项目较多时将无法按 WRAP_CONTENT 的预期显示完整内容，只会显示一部分项目。 失败的解决方法 recy</description>
     </item>
     
     <item>

@@ -5,7 +5,6 @@
     <link>https://tgmerge.me/blog/</link>
     <description>Recent content in 文章 on tgmerge&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <copyright>CC BY-NC-SA 4.0 / tgmerge</copyright>
     <lastBuildDate>Fri, 31 Mar 2017 20:39:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tgmerge.me/blog/index.xml" rel="self" type="application/rss+xml" />
@@ -35,7 +34,7 @@
       <pubDate>Fri, 13 Jan 2017 15:50:00 +0000</pubDate>
       
       <guid>https://tgmerge.me/blog/0225-wrap-content-recycler-view-in-scroll-view/</guid>
-      <description>问题 形如下面这样的布局中： &amp;lt;ScrollView&amp;gt; &amp;lt;LinearLayout ... android:oriention=&amp;quot;vertical&amp;quot;&amp;gt; &amp;lt;SomeView /&amp;gt; &amp;lt;RecyclerView ... android:layout_height=&amp;quot;wrap_content&amp;quot; /&amp;gt; &amp;lt;SomeView /&amp;gt; &amp;lt;/LinearLayout&amp;gt; &amp;lt;/ScrollView&amp;gt; RecyclerView 在项目较多时将无法按 WRAP_CONTENT 的预期显示完整内容，只会显示一部分项目。 失败的解决方法 recy</description>
+      <description>问题 形如下面这样的布局中： &amp;lt;ScrollView&amp;gt; &amp;lt;LinearLayout ... android:oriention=&amp;#34;vertical&amp;#34;&amp;gt; &amp;lt;SomeView /&amp;gt; &amp;lt;RecyclerView ... android:layout_height=&amp;#34;wrap_content&amp;#34; /&amp;gt; &amp;lt;SomeView /&amp;gt; &amp;lt;/LinearLayout&amp;gt; &amp;lt;/ScrollView&amp;gt; RecyclerView 在项目较多时将无法按 WRAP_CONTENT 的预期显示完整内容，只会显示一部分项目。 失败的解决方法 recy</description>
     </item>
     
     <item>
@@ -269,7 +268,7 @@
       <pubDate>Fri, 14 Nov 2014 00:58:00 +0000</pubDate>
       
       <guid>https://tgmerge.me/blog/0071-find-osu-beatmaps-not-downloaded-yet/</guid>
-      <description>在beatmap搜索结果页的javascript console： document.body.innerHTML.match(/[0-9]+(?=&amp;quot;.class=&amp;quot;title&amp;quot;)/g); 之后python： ids = # [&amp;quot;63609&amp;quot;, ..., ] import os s = &amp;quot;&amp;quot;.join([dirname for dirname, dirnames, filenames in os.walk(&amp;quot;e:/path/to/osu/songs&amp;quot;)]) [((oneid in s), oneid) for oneid in ids if (oneid not</description>
+      <description>在beatmap搜索结果页的javascript console： document.body.innerHTML.match(/[0-9]+(?=&amp;#34;.class=&amp;#34;title&amp;#34;)/g); 之后python： ids = # [&amp;#34;63609&amp;#34;, ..., ] import os s = &amp;#34;&amp;#34;.join([dirname for dirname, dirnames, filenames in os.walk(&amp;#34;e:/path/to/osu/songs&amp;#34;)]) [((oneid in s), oneid) for oneid in ids if (oneid not</description>
     </item>
     
     <item>

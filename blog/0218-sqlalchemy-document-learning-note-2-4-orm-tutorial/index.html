@@ -6,88 +6,74 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <meta name='description' content='本篇是 胡乱 翻译自SQLAlchemy 1.0官方文档 Object Relational Tutorial一章的第四篇笔记。 各种保留了原文的术语可以参考SQLAlchemy术语'>
 
-<meta property='og:title' content='SQLAlchemy文档和笔记 (2.4) - ORM指南 (4) • tgmerge'>
+<meta property='og:title' content='SQLAlchemy文档和笔记 (2.4) - ORM指南 (4) • tgmerge&#39;s blog'>
 <meta property='og:description' content='本篇是 胡乱 翻译自SQLAlchemy 1.0官方文档 Object Relational Tutorial一章的第四篇笔记。 各种保留了原文的术语可以参考SQLAlchemy术语'>
 <meta property='og:url' content='https://tgmerge.me/blog/0218-sqlalchemy-document-learning-note-2-4-orm-tutorial/'>
 <meta property='og:site_name' content='tgmerge&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Blog'><meta property='article:tag' content='Python'><meta property='article:tag' content='SQLAlchemy'><meta property='article:tag' content='文档'><meta property='article:tag' content='翻译'><meta property='article:published_time' content='2016-04-30T16:55:00Z'/><meta property='article:modified_time' content='2016-04-30T16:55:00Z'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog'><meta property='article:tag' content='Python'><meta property='article:tag' content='SQLAlchemy'><meta property='article:tag' content='文档'><meta property='article:tag' content='翻译'><meta property='article:published_time' content='2016-04-30T16:55:00Z'/><meta property='article:modified_time' content='2016-04-30T16:55:00Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@tgmerge'>
 
-<meta name="generator" content="Hugo 0.26" />
+<meta name="generator" content="Hugo 0.31.1" />
 
-  <title>SQLAlchemy文档和笔记 (2.4) - ORM指南 (4) • tgmerge</title>
+  <title>SQLAlchemy文档和笔记 (2.4) - ORM指南 (4) • tgmerge&#39;s blog</title>
   <link rel='canonical' href='https://tgmerge.me/blog/0218-sqlalchemy-document-learning-note-2-4-orm-tutorial/'>
+  
+  
   <link rel='icon' href='/favicon.png'>
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Ubuntu:400,400i,700&subset=latin'>
-<link rel='stylesheet' href='/css/main.67a788c9.css'>
-
-  <link rel='stylesheet' href='/css/custom.css'>
-
-
-
+<link rel='stylesheet' href='/assets/css/main.77da63e1.css'><link rel='stylesheet' href='/css/custom.css'>
 </head>
 
 
-<body class='page'>
+<body class='page type-blog'>
   <div class='site'>
+
+    <a class='screen-reader' href='#main'></a>
+
     <header id='header' class='header-container'>
-      <div class='site-header'>
-        <nav id='navmenu' aria-label='主菜单'>
+      <div class='header site-header'>
+        <nav id='main-menu' class='main-menu-container' aria-label='主菜单'>
   <ul class='main-menu'>
-    
-    <li>
-      <a href='/' 
-        
-      >首页</a>
+  <li>
+      <a href='/'>首页</a>
     </li>
-    
-    <li>
-      <a href='/blog/' 
-        
-      >文章</a>
+  <li>
+      <a href='/blog/'>文章</a>
     </li>
-    
-    <li>
-      <a href='/snap/' 
-        
-      >图片</a>
+  <li>
+      <a href='/snap/'>图片</a>
     </li>
-    
-    <li>
-      <a href='/about/' 
-        
-      >关于</a>
+  <li>
+      <a href='/about/'>关于</a>
     </li>
-    
-    <li>
-      <a href='' 
-        
-      ></a>
+  <li>
+      <a href=''></a>
     </li>
-    
+  
   </ul>
 </nav>
 
-        <div class='site-info'>
+        <div class='header-info'>
           
           <p class='site-title title'>tgmerge&#39;s blog</p>
           
-          <p class='site-description'></p>
+          <p class='site-description subtitle'></p>
         </div>
       </div>
     </header>
 
 
-<main class='main'>
-  <article lang='en' class='entry'>
-    <header class='entry-header'>
-  <div class='entry-info'>
-    <h1 class='entry-title title'>SQLAlchemy文档和笔记 (2.4) - ORM指南 (4)</h1>
+<main id='main' class='main'>
+  <article lang='zh-cn' class='entry'>
+    <header class='header-container'>
+  <div class='header entry-header'>
+    <div class='header-info'>
+      <h1 class='title'>SQLAlchemy文档和笔记 (2.4) - ORM指南 (4)</h1>
+      
+
+    </div>
     
-  </div>
-  
 <div class='meta'>
-  <span class='posted-on'>
-    <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  <span class='posted-on'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
   
   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
   <line x1="16" y1="2" x2="16" y2="6"/>
@@ -95,39 +81,30 @@
   <line x1="3" y1="10" x2="21" y2="10"/>
   
 </svg>
+<span class='screen-reader'>发表于 </span>
+  <time class='date' datetime='2016-04-30T16:55:00Z'>2016-04-30</time>
+</span>
 
-    <span class='screen-reader'>发表于 </span>
-    <time class='date' datetime='2016-04-30T16:55:00Z'>2016-04-30</time>
-  </span>
-  
-  <span class='byline'>
-    <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  
-  <path d="M21,21V20c0-2.76-4-5-9-5s-9,2.24-9,5v1"/>
-  <path d="M16,6.37A4,4,0,1,1,12.63,3,4,4,0,0,1,16,6.37Z"/>
-  
-</svg>
-
-    <span class='screen-reader'> by </span>
-    tgmerge
-  </span>
   
   
-  <span class='reading-time'>
-    <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+<span class='reading-time'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
   
   <circle cx="12" cy="12" r="10"/>
   <polyline points="12 6 12 12 15 15"/> 
   
 </svg>
+大概需要阅读 6 分钟
+</span>
 
-    大概需要阅读 6 分钟
-  </span>
-  
+
 </div>
 
 
+  </div>
 </header>
+
+    
+    
 
     <div class='entry-content'>
   
@@ -145,55 +122,52 @@
 <p>接着从Eager Loading一节开始。要在REPL中还原之前的数据，可以：</p>
 
 <!-- more -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># In REPL: run this file with</span>
+<span style="color:#75715e"># exec(open(&#39;path/to/this.py&#39;).read())</span>
 
-<pre><code class="language-python"># In REPL: run this file with
-# exec(open('path/to/this.py').read())
+<span style="color:#f92672">import</span> sqlalchemy
+<span style="color:#f92672">from</span> sqlalchemy <span style="color:#f92672">import</span> create_engine, Column, Integer, String, func, ForeignKey
+<span style="color:#f92672">from</span> sqlalchemy.ext.declarative <span style="color:#f92672">import</span> declarative_base
+<span style="color:#f92672">from</span> sqlalchemy.orm <span style="color:#f92672">import</span> sessionmaker, relationship
 
-import sqlalchemy
-from sqlalchemy import create_engine, Column, Integer, String, func, ForeignKey
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, relationship
+engine <span style="color:#f92672">=</span> create_engine(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;sqlite:///:memory:&#39;</span>, echo<span style="color:#f92672">=</span>True)
+Base <span style="color:#f92672">=</span> declarative_base()
 
-engine = create_engine('sqlite:///:memory:', echo=True)
-Base = declarative_base()
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span>(Base):
+    __tablename__ <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;users&#39;</span>
+    id <span style="color:#f92672">=</span> Column(Integer, primary_key<span style="color:#f92672">=</span>True)
+    name <span style="color:#f92672">=</span> Column(String)
+    fullname <span style="color:#f92672">=</span> Column(String)
+    password <span style="color:#f92672">=</span> Column(String)
+    <span style="color:#66d9ef">def</span> __repr__(self):
+       <span style="color:#66d9ef">return</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&lt;User(name=&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#39;, fullname=&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#39;, password=&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#39;)&gt;&#34;</span> <span style="color:#f92672">%</span> (self<span style="color:#f92672">.</span>name, self<span style="color:#f92672">.</span>fullname, self<span style="color:#f92672">.</span>password)
 
-class User(Base):
-    __tablename__ = 'users'
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-    fullname = Column(String)
-    password = Column(String)
-    def __repr__(self):
-       return &quot;&lt;User(name='%s', fullname='%s', password='%s')&gt;&quot; % (self.name, self.fullname, self.password)
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Address</span>(Base):
+    __tablename__ <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;addresses&#39;</span>
+    id <span style="color:#f92672">=</span> Column(Integer, primary_key<span style="color:#f92672">=</span>True)
+    email_address <span style="color:#f92672">=</span> Column(String, nullable<span style="color:#f92672">=</span>False)
+    user_id <span style="color:#f92672">=</span> Column(Integer, ForeignKey(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;users.id&#39;</span>))
+    user <span style="color:#f92672">=</span> relationship(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;User&#34;</span>, back_populates<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;addresses&#34;</span>)
+    <span style="color:#66d9ef">def</span> __repr__(self):
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&lt;Address(email_address=&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#39;)&gt;&#34;</span> <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>email_address
 
-class Address(Base):
-    __tablename__ = 'addresses'
-    id = Column(Integer, primary_key=True)
-    email_address = Column(String, nullable=False)
-    user_id = Column(Integer, ForeignKey('users.id'))
-    user = relationship(&quot;User&quot;, back_populates=&quot;addresses&quot;)
-    def __repr__(self):
-        return &quot;&lt;Address(email_address='%s')&gt;&quot; % self.email_address
+User<span style="color:#f92672">.</span>addresses <span style="color:#f92672">=</span> relationship(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Address&#39;</span>, order_by<span style="color:#f92672">=</span>Address<span style="color:#f92672">.</span>id, back_populates<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;user&#39;</span>)
 
-User.addresses = relationship('Address', order_by=Address.id, back_populates='user')
+Base<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>create_all(engine)
 
-Base.metadata.create_all(engine)
-
-Session = sessionmaker(bind=engine)
-session = Session()
-session.add_all([
-    User(name='ed', fullname='Ed Jones', password='f8s7ccs'),
-    User(name='wendy', fullname='Wendy Williams', password='foobar'),
-    User(name='mary', fullname='Mary Contrary', password='xxg527'),
-    User(name='fred', fullname='Fred Flinstone', password='blah')])
-jack = User(name='jack', fullname='Jack Bean', password='gjffdd')
-jack.addresses = [
-    Address(email_address='jack@google.com'),
-    Address(email_address='j25@yahoo.com')]
-session.add(jack)
-session.commit()
-</code></pre>
-
+Session <span style="color:#f92672">=</span> sessionmaker(bind<span style="color:#f92672">=</span>engine)
+session <span style="color:#f92672">=</span> Session()
+session<span style="color:#f92672">.</span>add_all([
+    User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;ed&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Ed Jones&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;f8s7ccs&#39;</span>),
+    User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;wendy&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Wendy Williams&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;foobar&#39;</span>),
+    User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;mary&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Mary Contrary&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;xxg527&#39;</span>),
+    User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;fred&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Fred Flinstone&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;blah&#39;</span>)])
+jack <span style="color:#f92672">=</span> User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Jack Bean&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;gjffdd&#39;</span>)
+jack<span style="color:#f92672">.</span>addresses <span style="color:#f92672">=</span> [
+    Address(email_address<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack@google.com&#39;</span>),
+    Address(email_address<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;j25@yahoo.com&#39;</span>)]
+session<span style="color:#f92672">.</span>add(jack)
+session<span style="color:#f92672">.</span>commit()</code></pre></div>
 <hr />
 
 <h3 id="eager-loading-尽早加载-贪婪加载">Eager Loading / 尽早加载/贪婪加载</h3>
@@ -203,32 +177,26 @@ session.commit()
 <h4 id="subquery-load-子查询加载">Subquery Load / 子查询加载</h4>
 
 <p>如果希望在加载一系列对象的同时，让这些对象相关联的其他对象集合也被加载，最好使用<code>orm.subqueryload()</code>配置。它将在载入结果对象之后立即执行另一条SELECT语句，完整地载入和结果对象相关联的对象集合。这种配置的名字&rdquo;subquery&rdquo;来源于，它将在SELECT关联对象（第二条SQL）的时候将第一条SQL作为子查询嵌入进去。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#f92672">from</span> sqlalchemy.orm <span style="color:#f92672">import</span> subqueryload
+<span style="color:#f92672">&gt;&gt;&gt;</span> jack <span style="color:#f92672">=</span> session<span style="color:#f92672">.</span>query(User)<span style="color:#f92672">.</span>options(subqueryload(User<span style="color:#f92672">.</span>addresses))<span style="color:#f92672">.</span>filter_by(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack&#39;</span>)<span style="color:#f92672">.</span>one()
+<span style="color:#f92672">&gt;&gt;&gt;</span> jack
+<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Jack Bean&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;gjffdd&#39;</span>)<span style="color:#f92672">&gt;</span>
 
-<pre><code class="language-python">&gt;&gt;&gt; from sqlalchemy.orm import subqueryload
-&gt;&gt;&gt; jack = session.query(User).options(subqueryload(User.addresses)).filter_by(name='jack').one()
-&gt;&gt;&gt; jack
-&lt;User(name='jack', fullname='Jack Bean', password='gjffdd')&gt;
-
-&gt;&gt;&gt; jack.addresses
-[&lt;Address(email_address='jack@google.com')&gt;, &lt;Address(email_address='j25@yahoo.com')&gt;]
-</code></pre>
-
+<span style="color:#f92672">&gt;&gt;&gt;</span> jack<span style="color:#f92672">.</span>addresses
+[<span style="color:#f92672">&lt;</span>Address(email_address<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack@google.com&#39;</span>)<span style="color:#f92672">&gt;</span>, <span style="color:#f92672">&lt;</span>Address(email_address<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;j25@yahoo.com&#39;</span>)<span style="color:#f92672">&gt;</span>]</code></pre></div>
 <p>注意：当使用<code>Query.first()</code>、<code>Query.limit()</code>、<code>Query.offset()</code>的时候，应该和<code>Query.order_by()</code>连用，保证结果顺序的一致性。</p>
 
 <h4 id="joined-load-连接加载">Joined Load / 连接加载</h4>
 
 <p>另一种自动加载的方法更常见一些，称为<code>orm.joinedload()</code>。这种方法会执行一条JOIN（默认是LEFT OUTER JOIN），让主要的结果对象和他们的关联对象在一步查询内全部返回。下面将用这种方法执行和上面的例子一样的操作：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#f92672">from</span> sqlalchemy.orm <span style="color:#f92672">import</span> joinedload
 
-<pre><code class="language-python">&gt;&gt;&gt; from sqlalchemy.orm import joinedload
+<span style="color:#f92672">&gt;&gt;&gt;</span> jack <span style="color:#f92672">=</span> session<span style="color:#f92672">.</span>query(User)<span style="color:#f92672">.</span>options(joinedload(User<span style="color:#f92672">.</span>addresses))<span style="color:#f92672">.</span>filter_by(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack&#39;</span>)<span style="color:#f92672">.</span>one()
+<span style="color:#f92672">&gt;&gt;&gt;</span> jack
+<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Jack Bean&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;gjffdd&#39;</span>)<span style="color:#f92672">&gt;</span>
 
-&gt;&gt;&gt; jack = session.query(User).options(joinedload(User.addresses)).filter_by(name='jack').one()
-&gt;&gt;&gt; jack
-&lt;User(name='jack', fullname='Jack Bean', password='gjffdd')&gt;
-
-&gt;&gt;&gt; jack.addresses
-[&lt;Address(email_address='jack@google.com')&gt;, &lt;Address(email_address='j25@yahoo.com')&gt;]
-</code></pre>
-
+<span style="color:#f92672">&gt;&gt;&gt;</span> jack<span style="color:#f92672">.</span>addresses
+[<span style="color:#f92672">&lt;</span>Address(email_address<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack@google.com&#39;</span>)<span style="color:#f92672">&gt;</span>, <span style="color:#f92672">&lt;</span>Address(email_address<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;j25@yahoo.com&#39;</span>)<span style="color:#f92672">&gt;</span>]</code></pre></div>
 <p>即便LEFT OUTER JOIN返回了多余的jack行（由于jack有两个邮箱地址），结果中我们仍然只得到了一个jack。<code>Query</code>在这种情况下会使用&rdquo;uniquing&rdquo;策略排除相同的对象，让尽早加载的查询结果不会影响到主查询。</p>
 
 <p>和<code>joinedload()</code>相比，<code>subqueryload()</code>出现得比较晚。<code>subqueryload()</code>更适合于加载“某些对象相关联的对象集合”即一对多关系；而<code>joinedload()</code>更适合加载多对一关系，毕竟只有在多对一中LEFT OUTER JOIN不会在左侧出现重复的行。</p>
@@ -248,49 +216,37 @@ session.commit()
 <p>下面的例子，就是我们要获取jack的所有Address，同时加载jack对象本身。之后在访问两个结果中的任意一个Address的user（也就是jack）的时候，就不用再查询一次jack了。</p>
 
 <hr />
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#f92672">from</span> sqlalchemy.orm <span style="color:#f92672">import</span> contains_eager
+<span style="color:#f92672">&gt;&gt;&gt;</span> jacks_addresses <span style="color:#f92672">=</span> session<span style="color:#f92672">.</span>query(Address)<span style="color:#f92672">.</span>\
+<span style="color:#f92672">...</span>                     join(Address<span style="color:#f92672">.</span>user)<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>name<span style="color:#f92672">==</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack&#39;</span>)<span style="color:#f92672">.</span>\
+<span style="color:#f92672">...</span>                     options(contains_eager(Address<span style="color:#f92672">.</span>user))<span style="color:#f92672">.</span>all()
+<span style="color:#f92672">&gt;&gt;&gt;</span> jacks_addresses
+[<span style="color:#f92672">&lt;</span>Address(email_address<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack@google.com&#39;</span>)<span style="color:#f92672">&gt;</span>, <span style="color:#f92672">&lt;</span>Address(email_address<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;j25@yahoo.com&#39;</span>)<span style="color:#f92672">&gt;</span>]
 
-<pre><code class="language-python">&gt;&gt;&gt; from sqlalchemy.orm import contains_eager
-&gt;&gt;&gt; jacks_addresses = session.query(Address).\
-...                     join(Address.user).filter(User.name=='jack').\
-...                     options(contains_eager(Address.user)).all()
-&gt;&gt;&gt; jacks_addresses
-[&lt;Address(email_address='jack@google.com')&gt;, &lt;Address(email_address='j25@yahoo.com')&gt;]
-
-&gt;&gt;&gt; jacks_addresses[0].user
-&lt;User(name='jack', fullname='Jack Bean', password='gjffdd')&gt;
-</code></pre>
-
+<span style="color:#f92672">&gt;&gt;&gt;</span> jacks_addresses[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>user
+<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Jack Bean&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;gjffdd&#39;</span>)<span style="color:#f92672">&gt;</span></code></pre></div>
 <p>更多关于尽早加载的细节可以参看<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/loading_relationships.html">Relationship Loading Techniques</a>。</p>
 
 <h3 id="deleting-删除">Deleting / 删除</h3>
 
 <p>现在来试试删除<code>jack</code>。在session中添加一个删除操作，然后查询一下：</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; session.delete(jack)
-&gt;&gt;&gt; session.query(User).filter_by(name='jack').count()
-0
-</code></pre>
-
-<pre><code class="language-sql">UPDATE addresses SET user_id=? WHERE addresses.id = ?
-((None, 1), (None, 2))
-DELETE FROM users WHERE users.id = ?
-(5,)
-SELECT count(*) AS count_1
-FROM (SELECT users.id AS users_id,
-        users.name AS users_name,
-        users.fullname AS users_fullname,
-        users.password AS users_password
-FROM users
-WHERE users.name = ?) AS anon_1
-('jack',)
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> session<span style="color:#f92672">.</span>delete(jack)
+<span style="color:#f92672">&gt;&gt;&gt;</span> session<span style="color:#f92672">.</span>query(User)<span style="color:#f92672">.</span>filter_by(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack&#39;</span>)<span style="color:#f92672">.</span>count()
+<span style="color:#ae81ff">0</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">UPDATE</span> addresses <span style="color:#66d9ef">SET</span> user_id<span style="color:#f92672">=?</span> <span style="color:#66d9ef">WHERE</span> addresses.id <span style="color:#f92672">=</span> <span style="color:#f92672">?</span>
+((<span style="color:#66d9ef">None</span>, <span style="color:#ae81ff">1</span>), (<span style="color:#66d9ef">None</span>, <span style="color:#ae81ff">2</span>))
+<span style="color:#66d9ef">DELETE</span> <span style="color:#66d9ef">FROM</span> users <span style="color:#66d9ef">WHERE</span> users.id <span style="color:#f92672">=</span> <span style="color:#f92672">?</span>
+(<span style="color:#ae81ff">5</span>,)
+<span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">count</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">AS</span> count_1
+<span style="color:#66d9ef">FROM</span> (<span style="color:#66d9ef">SELECT</span> users.id <span style="color:#66d9ef">AS</span> users_id,
+        users.name <span style="color:#66d9ef">AS</span> users_name,
+        users.fullname <span style="color:#66d9ef">AS</span> users_fullname,
+        users.password <span style="color:#66d9ef">AS</span> users_password
+<span style="color:#66d9ef">FROM</span> users
+<span style="color:#66d9ef">WHERE</span> users.name <span style="color:#f92672">=</span> <span style="color:#f92672">?</span>) <span style="color:#66d9ef">AS</span> anon_1
+(<span style="color:#e6db74">&#39;jack&#39;</span>,)</code></pre></div>
 <p>但Jack的<code>Address</code>对象仍然存在：</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; session.query(Address).filter(Address.email_address.in_(['jack@google.com', 'j25@yahoo.com'])).count()
-2
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> session<span style="color:#f92672">.</span>query(Address)<span style="color:#f92672">.</span>filter(Address<span style="color:#f92672">.</span>email_address<span style="color:#f92672">.</span>in_([<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack@google.com&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;j25@yahoo.com&#39;</span>]))<span style="color:#f92672">.</span>count()
+<span style="color:#ae81ff">2</span></code></pre></div>
 <p>这看上去不太巧妙？实际上这几个地址的<code>user_id</code>已经被设置为NULL了，但数据行本身没有被删除掉。SQLAlchemy默认不会进行级联删除操作，除非你明确指定。</p>
 
 <h4 id="configuring-delete-delete-orphan-cascade-删除或级联删除孤立对象">Configuring delete/delete-orphan Cascade / 删除或级联删除孤立对象</h4>
@@ -298,67 +254,49 @@ WHERE users.name = ?) AS anon_1
 <p>我们需要配置<code>User.addresses</code>的<strong>级联/cascade</strong>属性来改变上面提到的这种行为。我们现在需要完全解除映射并重新开始，也就是关闭<code>Session</code>然后使用一个新的<code>declarative_base()</code>：</p>
 
 <p>Note: SQLalchemy允许你在任何时候给映射类添加新的属性和关系，但更改似乎不行。</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; session.close()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> session<span style="color:#f92672">.</span>close()
 ROLLBACK
-&gt;&gt;&gt; Base = declarative_base()
-</code></pre>
-
+<span style="color:#f92672">&gt;&gt;&gt;</span> Base <span style="color:#f92672">=</span> declarative_base()</code></pre></div>
 <p>现在定义<code>User</code>映射类，添加含有级联配置项的<code>addresses</code>关系：</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; class User(Base):
-...     __tablename__ = 'users'
-...     
-...     id = Column(Integer, primary_key=True)
-...     name = Column(String)
-...     fullname = Column(String)
-...     password = Column(String)
-...
-...     addresses = relationship(&quot;Address&quot;, back_populates='user',
-...                     cascade=&quot;all, delete, delete-orphan&quot;)
-...     def __repr__(self):
-...         return &quot;&lt;User(name='%s', fullname='%s', password='%s')&gt;&quot; % (
-...                                 self.name, self.fullname, self.password)
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span>(Base):
+<span style="color:#f92672">...</span>     __tablename__ <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;users&#39;</span>
+<span style="color:#f92672">...</span>     
+<span style="color:#f92672">...</span>     id <span style="color:#f92672">=</span> Column(Integer, primary_key<span style="color:#f92672">=</span>True)
+<span style="color:#f92672">...</span>     name <span style="color:#f92672">=</span> Column(String)
+<span style="color:#f92672">...</span>     fullname <span style="color:#f92672">=</span> Column(String)
+<span style="color:#f92672">...</span>     password <span style="color:#f92672">=</span> Column(String)
+<span style="color:#f92672">...</span>
+<span style="color:#f92672">...</span>     addresses <span style="color:#f92672">=</span> relationship(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;Address&#34;</span>, back_populates<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;user&#39;</span>,
+<span style="color:#f92672">...</span>                     cascade<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;all, delete, delete-orphan&#34;</span>)
+<span style="color:#f92672">...</span>     <span style="color:#66d9ef">def</span> __repr__(self):
+<span style="color:#f92672">...</span>         <span style="color:#66d9ef">return</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&lt;User(name=&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#39;, fullname=&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#39;, password=&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#39;)&gt;&#34;</span> <span style="color:#f92672">%</span> (
+<span style="color:#f92672">...</span>                                 self<span style="color:#f92672">.</span>name, self<span style="color:#f92672">.</span>fullname, self<span style="color:#f92672">.</span>password)</code></pre></div>
 <p>然后重新创建<code>Address</code>，和以前完全一样：</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; class Address(Base):
-...     __tablename__ = 'addresses'
-...     id = Column(Integer, primary_key=True)
-...     email_address = Column(String, nullable=False)
-...     user_id = Column(Integer, ForeignKey('users.id'))
-...     user = relationship(&quot;User&quot;, back_populates=&quot;addresses&quot;)
-...
-...     def __repr__(self):
-...         return &quot;&lt;Address(email_address='%s')&gt;&quot; % self.email_address
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Address</span>(Base):
+<span style="color:#f92672">...</span>     __tablename__ <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;addresses&#39;</span>
+<span style="color:#f92672">...</span>     id <span style="color:#f92672">=</span> Column(Integer, primary_key<span style="color:#f92672">=</span>True)
+<span style="color:#f92672">...</span>     email_address <span style="color:#f92672">=</span> Column(String, nullable<span style="color:#f92672">=</span>False)
+<span style="color:#f92672">...</span>     user_id <span style="color:#f92672">=</span> Column(Integer, ForeignKey(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;users.id&#39;</span>))
+<span style="color:#f92672">...</span>     user <span style="color:#f92672">=</span> relationship(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;User&#34;</span>, back_populates<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;addresses&#34;</span>)
+<span style="color:#f92672">...</span>
+<span style="color:#f92672">...</span>     <span style="color:#66d9ef">def</span> __repr__(self):
+<span style="color:#f92672">...</span>         <span style="color:#66d9ef">return</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&lt;Address(email_address=&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#39;)&gt;&#34;</span> <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>email_address</code></pre></div>
 <p>现在载入<code>jack</code>（下面使用<code>get()</code>方法，直接用主键载入对象），从它的<code>addresses</code>中删除一个邮箱地址，这将导致<code>Address</code>被直接删除：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> jack <span style="color:#f92672">=</span> session<span style="color:#f92672">.</span>query(User)<span style="color:#f92672">.</span>get(<span style="color:#ae81ff">5</span>)
 
-<pre><code class="language-python">&gt;&gt;&gt; jack = session.query(User).get(5)
+<span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#66d9ef">del</span> jack<span style="color:#f92672">.</span>addresses[<span style="color:#ae81ff">1</span>]
 
-&gt;&gt;&gt; del jack.addresses[1]
-
-&gt;&gt;&gt; session.query(Address).filter(Address.email_address.in_(['jack@google.com', 'j25@yahoo.com'])).count()
-1
-</code></pre>
-
+<span style="color:#f92672">&gt;&gt;&gt;</span> session<span style="color:#f92672">.</span>query(Address)<span style="color:#f92672">.</span>filter(Address<span style="color:#f92672">.</span>email_address<span style="color:#f92672">.</span>in_([<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack@google.com&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;j25@yahoo.com&#39;</span>]))<span style="color:#f92672">.</span>count()
+<span style="color:#ae81ff">1</span></code></pre></div>
 <p>其中第二步导致第三步的开头执行了下面的SQL：</p>
-
-<pre><code class="language-sql">DELETE FROM addresses WHERE addresses.id = ?
-(2,)
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">DELETE</span> <span style="color:#66d9ef">FROM</span> addresses <span style="color:#66d9ef">WHERE</span> addresses.id <span style="color:#f92672">=</span> <span style="color:#f92672">?</span>
+(<span style="color:#ae81ff">2</span>,)</code></pre></div>
 <p>然后，删除Jack的话，将会一并删除Jack和他剩下的<code>Address</code>：</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; session.delete(jack)
-&gt;&gt;&gt; session.query(User).filter_by(name='jack').count()
-0
-&gt;&gt;&gt; session.query(Address).filter(Address.email_address.in_(['jack@google.com', 'j25@yahoo.com'])).count()
-0
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> session<span style="color:#f92672">.</span>delete(jack)
+<span style="color:#f92672">&gt;&gt;&gt;</span> session<span style="color:#f92672">.</span>query(User)<span style="color:#f92672">.</span>filter_by(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack&#39;</span>)<span style="color:#f92672">.</span>count()
+<span style="color:#ae81ff">0</span>
+<span style="color:#f92672">&gt;&gt;&gt;</span> session<span style="color:#f92672">.</span>query(Address)<span style="color:#f92672">.</span>filter(Address<span style="color:#f92672">.</span>email_address<span style="color:#f92672">.</span>in_([<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack@google.com&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;j25@yahoo.com&#39;</span>]))<span style="color:#f92672">.</span>count()
+<span style="color:#ae81ff">0</span></code></pre></div>
 <p>在<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/cascades.html#unitofwork-cascades">Cascades</a>中将详细解释关于级联的细节。级联操作也可以用关系数据库的<code>ON DELETE CASCADE</code>功能实现，参看<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/collections.html#passive-deletes">Using Passive Deletes</a></p>
 
 <hr />
@@ -370,36 +308,27 @@ ROLLBACK
 </div>
 
     
-<footer class='entry-footer'>
-  
-    
-  
-    
-      
-      <div class='tags'>
-  <span class='tag-icon'>
-    <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+<footer class='entry-footer-container'>
+  <div class='entry-footer'>
+  <div class='tags'>
+  <span class='taxonomyTerm-icon'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
   
   <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
   <line x1="7" y1="7" x2="7" y2="7"/>
   
 </svg>
+</span>
+  <span class='screen-reader'>标签: </span><a class='tag' href='/tags/python'>Python</a>, <a class='tag' href='/tags/sqlalchemy'>SQLAlchemy</a>, <a class='tag' href='/tags/%E6%96%87%E6%A1%A3'>文档</a>, <a class='tag' href='/tags/%E7%BF%BB%E8%AF%91'>翻译</a></div>
 
-  </span>
-  <span class='screen-reader'>Tags: </span><a class='tag' href='/tags/python'>Python</a>, <a class='tag' href='/tags/sqlalchemy'>SQLAlchemy</a>, <a class='tag' href='/tags/%E6%96%87%E6%A1%A3'>文档</a>, <a class='tag' href='/tags/%E7%BF%BB%E8%AF%91'>翻译</a></div>
-
-    
-  
+  </div>
 </footer>
 
 
   </article>
-
   
-    
-<nav class='entry-nav'>
-  <div class='entry-nav-links'><div class='prev-entry'>
-      <a href='https://tgmerge.me/blog/0217-sqlalchemy-document-learning-note-2-3-orm-tutorial/'>
+<nav class='entry-nav-container'>
+  <div class='entry-nav'><div class='prev-entry'>
+      <a href='/blog/0217-sqlalchemy-document-learning-note-2-3-orm-tutorial/'>
         <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
   
   <line x1="20" y1="12" x2="4" y2="12"/>
@@ -409,7 +338,7 @@ ROLLBACK
  上一篇</span>
         <span class='screen-reader'>上一篇: </span>SQLAlchemy文档和笔记 (2.3) - ORM指南 (3)</a>
     </div><div class='next-entry'>
-      <a href='https://tgmerge.me/blog/0219-sqlalchemy-document-learning-note-2-5-orm-tutorial/'>
+      <a href='/blog/0219-sqlalchemy-document-learning-note-2-5-orm-tutorial/'>
         <span class='screen-reader'>下一篇: </span>SQLAlchemy文档和笔记 (2.5) - ORM指南 (5)<span aria-hidden='true'>下一篇 <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
   
   <line x1="4" y1="12" x2="20" y2="12"/>
@@ -421,65 +350,32 @@ ROLLBACK
     </div></div>
 </nav>
 
-
-  
-
-  
-    <div class='comments-container'>
-  
-</div>
-
   
 </main>
 
     <footer id='footer' class='footer-container'>
       <div class='footer'>
-        <div class='social'>
+        <div class='social-menu-container'>
   <nav aria-label='找我吗？'>
     <ul class='social-menu'><li>
         <a href='https://github.com/tgmerge' target='_blank' rel='noopener'>
-          <span class='screen-reader'>在新标签页中打开 Github account</span>
-          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+          <span class='screen-reader'></span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
   
   <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
   
 </svg>
-
-        </a>
-      </li><li>
-        <a href='https://plus.google.com/&#43;tgmergeSipan' target='_blank' rel='noopener'>
-          <span class='screen-reader'>在新标签页中打开 Googleplus account</span>
-          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  
-  <path d="m12.233419,10.443874l0,3.734704l6.224506,0c-0.311225,1.556127 -1.867352,4.66838 -6.224506,4.66838c-3.734704,0 -6.691344,-3.112253 -6.691344,-6.846957c0,-3.734704 2.95664,-6.846957 6.691344,-6.846957c2.178577,0 3.579091,0.933676 4.357154,1.711739l2.95664,-2.801028c-1.867352,-1.867352 -4.357154,-2.95664 -7.313795,-2.95664c-6.068894,0 -10.892886,4.823992 -10.892886,10.892886c0,6.068894 4.823992,10.892886 10.892886,10.892886c6.224506,0 10.426048,-4.357154 10.426048,-10.581661c0,-0.778063 0,-1.244901 -0.155613,-1.867352l-10.270435,0z"/>
-  
-</svg>
-
-        </a>
-      </li><li>
-        <a href='http://xiefan.me/' target='_blank' rel='noopener'>
-          <span class='screen-reader'>在新标签页中打开 Love account</span>
-          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  
-  <path d="m16.98649,1.83311c-1.92811,0 -3.77865,0.89757 -4.98649,2.30486c-1.20784,-1.4073 -3.05838,-2.30486 -4.98649,-2.30486c-3.41297,0 -6.09459,2.67054 -6.09459,6.09459c0,4.17757 3.76757,7.60162 9.47432,12.77649l1.60676,1.4627l1.60676,-1.4627c5.70676,-5.17486 9.47432,-8.59892 9.47432,-12.77649c0,-3.42405 -2.68162,-6.09459 -6.09459,-6.09459z"/>
-  
-</svg>
-
-        </a>
+</a>
       </li><li>
         <a href='https://twitter.com/tgmerge' target='_blank' rel='noopener'>
-          <span class='screen-reader'>在新标签页中打开 Twitter account</span>
-          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+          <span class='screen-reader'></span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
   
   <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
   
 </svg>
-
-        </a>
+</a>
       </li><li>
-        <a href='http://weibo.com/tgmerge' target='_blank' rel='noopener'>
-          <span class='screen-reader'>在新标签页中打开 Weibo account</span>
-          <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+        <a href='%3cnil%3etgmerge' target='_blank' rel='noopener'>
+          <span class='screen-reader'></span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
   
   <path d="m20.79684,15.88687c-0.07481,0.61015 -0.44417,1.42549 -0.81622,1.94626c-2.65119,3.71126 -10.64754,5.27117 -15.64104,2.4504c-1.67472,-0.94661 -3.40772,-2.33073 -3.14023,-5.08873c0.2301,-2.37344 1.82605,-4.21198 3.39216,-5.77809c1.4941,-1.49498 3.06954,-2.66459 5.21335,-3.20352c2.32587,-0.58479 3.01344,1.35428 2.38683,3.26628c1.34717,-0.09036 4.20219,-1.59426 5.46484,-0.12551c0.55629,0.6471 0.34311,1.80599 0,2.70099c1.56836,0.85803 3.45267,1.2853 3.14031,3.83192l0,0z"/>
   <path d="m6.8656,17.27851c-0.85722,-2.33548 1.20109,-4.19298 3.34475,-4.41747c1.83017,-0.19181 3.19449,0.74143 3.59737,1.95635c1.34459,4.06376 -5.66104,5.9534 -6.94212,2.46112z"/>
@@ -487,27 +383,41 @@ ROLLBACK
   <path d="m20.31177,9.60458c0.29682,-1.14182 0.15521,-2.0601 -0.42493,-2.75485c-0.58002,-0.69477 -1.49417,-0.95444 -2.74244,-0.7791"/>
   
 </svg>
-
-        </a>
+</a>
+      </li><li>
+        <a href='%3cnil%3etgmergeSipan' target='_blank' rel='noopener'>
+          <span class='screen-reader'></span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="m12.233419,10.443874l0,3.734704l6.224506,0c-0.311225,1.556127 -1.867352,4.66838 -6.224506,4.66838c-3.734704,0 -6.691344,-3.112253 -6.691344,-6.846957c0,-3.734704 2.95664,-6.846957 6.691344,-6.846957c2.178577,0 3.579091,0.933676 4.357154,1.711739l2.95664,-2.801028c-1.867352,-1.867352 -4.357154,-2.95664 -7.313795,-2.95664c-6.068894,0 -10.892886,4.823992 -10.892886,10.892886c0,6.068894 4.823992,10.892886 10.892886,10.892886c6.224506,0 10.426048,-4.357154 10.426048,-10.581661c0,-0.778063 0,-1.244901 -0.155613,-1.867352l-10.270435,0z"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='#ZgotmplZ' target='_blank' rel='noopener'>
+          <span class='screen-reader'></span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="m16.98649,1.83311c-1.92811,0 -3.77865,0.89757 -4.98649,2.30486c-1.20784,-1.4073 -3.05838,-2.30486 -4.98649,-2.30486c-3.41297,0 -6.09459,2.67054 -6.09459,6.09459c0,4.17757 3.76757,7.60162 9.47432,12.77649l1.60676,1.4627l1.60676,-1.4627c5.70676,-5.17486 9.47432,-8.59892 9.47432,-12.77649c0,-3.42405 -2.68162,-6.09459 -6.09459,-6.09459z"/>
+  
+</svg>
+</a>
       </li></ul>
   </nav>
 </div>
-
         <div class='copyright'>
-          <p>CC BY-NC-SA 4.0 / tgmerge</p>
+  <p>
+        
+          
+        
+      
 
-        </div>
+       &copy; 2013-2017 tgmerge 
+  </p>
+</div>
+
       </div>
     </footer>
 
-  </div>
-
-  <script src='/js/main.af838dd5.js'></script>
-  
-    <script src='/js/custom.js'></script>
-  
-
-</body>
+  </div><script src='/assets/js/main.5871befd.js'></script><script src='/js/custom.js'></script></body>
 
 </html>
 
