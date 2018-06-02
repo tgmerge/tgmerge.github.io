@@ -5,6 +5,7 @@
   <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <meta name='description' content='本篇 胡乱 翻译自SQLAlchemy 1.0官方文档 Object Relational Tutorial一章。 各种保留了原文的术语可以参考SQLAlchemy术语表。 这章的上一'>
+<meta name='theme-color' content='#ffcd00'>
 
 <meta property='og:title' content='SQLAlchemy文档和笔记 (2.2) - ORM指南 (2) • tgmerge&#39;s blog'>
 <meta property='og:description' content='本篇 胡乱 翻译自SQLAlchemy 1.0官方文档 Object Relational Tutorial一章。 各种保留了原文的术语可以参考SQLAlchemy术语表。 这章的上一'>
@@ -12,67 +13,67 @@
 <meta property='og:site_name' content='tgmerge&#39;s blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Blog'><meta property='article:tag' content='Python'><meta property='article:tag' content='SQLAlchemy'><meta property='article:tag' content='文档'><meta property='article:tag' content='翻译'><meta property='article:published_time' content='2016-04-28T02:00:00Z'/><meta property='article:modified_time' content='2016-04-28T02:00:00Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@tgmerge'>
 
-<meta name="generator" content="Hugo 0.31.1" />
+<meta name="generator" content="Hugo 0.40.3" />
 
   <title>SQLAlchemy文档和笔记 (2.2) - ORM指南 (2) • tgmerge&#39;s blog</title>
   <link rel='canonical' href='https://tgmerge.me/blog/0216-sqlalchemy-document-learning-note-2-2-orm-tutorial/'>
   
   
   <link rel='icon' href='/favicon.png'>
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Ubuntu:400,400i,700&subset=latin'>
-<link rel='stylesheet' href='/assets/css/main.77da63e1.css'><link rel='stylesheet' href='/css/custom.css'>
+<link rel='stylesheet' href='/assets/css/main.cb99c271.css'><link rel='stylesheet' href='/css/custom.css'><style>
+:root{--color-accent:#ffcd00;}
+</style>
+
 </head>
 
 
 <body class='page type-blog'>
+
   <div class='site'>
 
-    <a class='screen-reader' href='#main'></a>
+    <a class='screen-reader-text' href='#content'></a>
 
-    <header id='header' class='header-container'>
-      <div class='header site-header'>
-        <nav id='main-menu' class='main-menu-container' aria-label='主菜单'>
-  <ul class='main-menu'>
-  <li>
-      <a href='/'>首页</a>
-    </li>
-  <li>
-      <a href='/blog/'>文章</a>
-    </li>
-  <li>
-      <a href='/snap/'>图片</a>
-    </li>
-  <li>
-      <a href='/about/'>关于</a>
-    </li>
-  <li>
-      <a href=''></a>
-    </li>
-  
-  </ul>
+    <div class='main'>
+
+      <nav id='main-menu' class='menu main-menu' aria-label='主菜单'>
+  <div class='container'>
+    
+    <ul><li class='item'>
+        <a href='/'>首页</a>
+      </li><li class='item'>
+        <a href='/blog/'>文章</a>
+      </li><li class='item'>
+        <a href='/snap/'>图片</a>
+      </li><li class='item'>
+        <a href='/meow/'>今日彩球</a>
+      </li><li class='item'>
+        <a href='/about/'>关于</a>
+      </li><li class='item'>
+        <a href=''></a>
+      </li></ul>
+  </div>
 </nav>
 
-        <div class='header-info'>
-          
-          <p class='site-title title'>tgmerge&#39;s blog</p>
-          
-          <p class='site-description subtitle'></p>
+      <header id='header' class='header site-header'>
+        <div class='container sep-after'>
+          <div class='header-info'><p class='site-title title'>tgmerge&#39;s blog</p><p class='desc site-desc'></p>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      <main id='content'>
 
 
-<main id='main' class='main'>
-  <article lang='zh-cn' class='entry'>
-    <header class='header-container'>
-  <div class='header entry-header'>
+<article lang='zh-cn' class='entry'>
+  <header class='header entry-header'>
+  <div class='container sep-after'>
     <div class='header-info'>
       <h1 class='title'>SQLAlchemy文档和笔记 (2.2) - ORM指南 (2)</h1>
       
 
     </div>
     
-<div class='meta'>
+<div class='entry-meta'>
   <span class='posted-on'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
   
   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
@@ -81,21 +82,12 @@
   <line x1="3" y1="10" x2="21" y2="10"/>
   
 </svg>
-<span class='screen-reader'>发表于 </span>
-  <time class='date' datetime='2016-04-28T02:00:00Z'>2016-04-28</time>
+<span class='screen-reader-text'>发表于 </span>
+  <time class='entry-date' datetime='2016-04-28T02:00:00Z'>2016-04-28</time>
 </span>
 
   
   
-<span class='reading-time'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  
-  <circle cx="12" cy="12" r="10"/>
-  <polyline points="12 6 12 12 15 15"/> 
-  
-</svg>
-大概需要阅读 6 分钟
-</span>
-
 
 </div>
 
@@ -103,10 +95,10 @@
   </div>
 </header>
 
-    
-    
+  
+  
 
-    <div class='entry-content'>
+  <div class='container entry-content'>
   
 
 <p>本篇 <del>胡乱</del> 翻译自<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/tutorial.html">SQLAlchemy 1.0官方文档 Object Relational Tutorial一章</a>。</p>
@@ -141,12 +133,12 @@ fred Fred Flinstone</code></pre></div>
 <p><code>Query</code>返回的是命名元组(named tuples)，由<code>KeyedTuple</code>类提供。其各个列属性可以用属性名访问，整个数据类则可以用类名访问：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#66d9ef">for</span> row <span style="color:#f92672">in</span> session<span style="color:#f92672">.</span>query(User, User<span style="color:#f92672">.</span>name)<span style="color:#f92672">.</span>all():
 <span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(row<span style="color:#f92672">.</span>User, row<span style="color:#f92672">.</span>name)
-<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;ed&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Ed Jones&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;f8s7ccs&#39;</span>)<span style="color:#f92672">&gt;</span> ed
-<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;wendy&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Wendy Williams&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;foobar&#39;</span>)<span style="color:#f92672">&gt;</span> wendy
-<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;mary&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Mary Contrary&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;xxg527&#39;</span>)<span style="color:#f92672">&gt;</span> mary
-<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;fred&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Fred Flinstone&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;blah&#39;</span>)<span style="color:#f92672">&gt;</span> fred</code></pre></div>
+<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;ed&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Ed Jones&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;f8s7ccs&#39;</span>)<span style="color:#f92672">&gt;</span> ed
+<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;wendy&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Wendy Williams&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;foobar&#39;</span>)<span style="color:#f92672">&gt;</span> wendy
+<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;mary&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Mary Contrary&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;xxg527&#39;</span>)<span style="color:#f92672">&gt;</span> mary
+<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;fred&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Fred Flinstone&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;blah&#39;</span>)<span style="color:#f92672">&gt;</span> fred</code></pre></div>
 <p>你可以用<code>label()</code>方法控制某个表列的访问名，在任何<code>ColumnElement</code>上调用即可。注意，这样一来原先映射的名称就会无效（如下面的例子，只能用<code>row.name_label</code>访问结果的name列了）：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#66d9ef">for</span> row <span style="color:#f92672">in</span> session<span style="color:#f92672">.</span>query(User<span style="color:#f92672">.</span>name<span style="color:#f92672">.</span>label(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;name_label&#39;</span>))<span style="color:#f92672">.</span>all():
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#66d9ef">for</span> row <span style="color:#f92672">in</span> session<span style="color:#f92672">.</span>query(User<span style="color:#f92672">.</span>name<span style="color:#f92672">.</span>label(<span style="color:#e6db74">&#39;name_label&#39;</span>))<span style="color:#f92672">.</span>all():
 <span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(row<span style="color:#f92672">.</span>name_label)
 ed
 wendy
@@ -154,56 +146,56 @@ mary
 fred</code></pre></div>
 <p>可以用<code>aliased()</code>控制赋予整个映射对象的别名：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#f92672">from</span> sqlalchemy.orm <span style="color:#f92672">import</span> aliased
-<span style="color:#f92672">&gt;&gt;&gt;</span> user_alias <span style="color:#f92672">=</span> aliased(User, name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;user_alias&#39;</span>)
+<span style="color:#f92672">&gt;&gt;&gt;</span> user_alias <span style="color:#f92672">=</span> aliased(User, name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;user_alias&#39;</span>)
 <span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#66d9ef">for</span> row <span style="color:#f92672">in</span> session<span style="color:#f92672">.</span>query(user_alias, user_alias<span style="color:#f92672">.</span>name)<span style="color:#f92672">.</span>all():
 <span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(row<span style="color:#f92672">.</span>user_alias)
-<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;ed&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Ed Jones&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;f8s7ccs&#39;</span>)<span style="color:#f92672">&gt;</span>
-<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;wendy&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Wendy Williams&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;foobar&#39;</span>)<span style="color:#f92672">&gt;</span>
-<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;mary&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Mary Contrary&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;xxg527&#39;</span>)<span style="color:#f92672">&gt;</span>
-<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;fred&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Fred Flinstone&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;blah&#39;</span>)<span style="color:#f92672">&gt;</span></code></pre></div>
+<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;ed&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Ed Jones&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;f8s7ccs&#39;</span>)<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;wendy&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Wendy Williams&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;foobar&#39;</span>)<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;mary&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Mary Contrary&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;xxg527&#39;</span>)<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;fred&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Fred Flinstone&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;blah&#39;</span>)<span style="color:#f92672">&gt;</span></code></pre></div>
 <p>别名在这种时候非常有用：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> my_alias <span style="color:#f92672">=</span> aliased(MyClass)
 <span style="color:#f92672">&gt;&gt;&gt;</span> session<span style="color:#f92672">.</span>query(MyClass, my_alias)<span style="color:#f92672">.</span>filter(MyClass<span style="color:#f92672">.</span>id <span style="color:#f92672">&gt;</span> my_alias<span style="color:#f92672">.</span>id)</code></pre></div>
 <p><code>Query</code>中可以进行一些基本操作，比如LIMIT和OFFSET，最简单的用法是使用Python的数组切片表示。一般来说会和ORDER BY一起使用：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#66d9ef">for</span> u <span style="color:#f92672">in</span> session<span style="color:#f92672">.</span>query(User)<span style="color:#f92672">.</span>order_by(User<span style="color:#f92672">.</span>id)[<span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">3</span>]:
 <span style="color:#f92672">&gt;&gt;&gt;</span>     <span style="color:#66d9ef">print</span>(u)
-<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;wendy&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Wendy Williams&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;foobar&#39;</span>)<span style="color:#f92672">&gt;</span>
-<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;mary&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Mary Contrary&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;xxg527&#39;</span>)<span style="color:#f92672">&gt;</span></code></pre></div>
+<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;wendy&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Wendy Williams&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;foobar&#39;</span>)<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;mary&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Mary Contrary&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;xxg527&#39;</span>)<span style="color:#f92672">&gt;</span></code></pre></div>
 <p>也可以使用<code>offset()</code>和<code>limit()</code>进行分页。例如：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span> u <span style="color:#f92672">in</span> session<span style="color:#f92672">.</span>query(User)<span style="color:#f92672">.</span>order_by(User<span style="color:#f92672">.</span>id)<span style="color:#f92672">.</span>offset(<span style="color:#ae81ff">10</span>)<span style="color:#f92672">.</span>limit(<span style="color:#ae81ff">5</span>):
     <span style="color:#66d9ef">print</span>(u)</code></pre></div>
 <p>基本操作还有<code>filter()</code>，它使用更多灵活的SQL expression language结构，你可以在映射类的属性上使用常见的Python操作符进行过滤：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#66d9ef">for</span> name, <span style="color:#f92672">in</span> session<span style="color:#f92672">.</span>query(User<span style="color:#f92672">.</span>name)<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>fullname<span style="color:#f92672">==</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Ed Jones&#39;</span>):
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#66d9ef">for</span> name, <span style="color:#f92672">in</span> session<span style="color:#f92672">.</span>query(User<span style="color:#f92672">.</span>name)<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>fullname<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;Ed Jones&#39;</span>):
 <span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(name)
 ed</code></pre></div>
 <p><code>Query</code>对象是完全 generative/构造型 的，也就是说，大多数<code>Query</code>上的方法调用将返回一个添加了更多规则的新<code>Query</code>对象。比如说你可以添加两次<code>filter()</code>来进行过滤：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#66d9ef">for</span> user <span style="color:#f92672">in</span> session<span style="color:#f92672">.</span>query(User)<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>name<span style="color:#f92672">==</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;ed&#39;</span>)<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>fullname<span style="color:#f92672">==</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Ed Jones&#39;</span>):
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#66d9ef">for</span> user <span style="color:#f92672">in</span> session<span style="color:#f92672">.</span>query(User)<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>name<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;ed&#39;</span>)<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>fullname<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;Ed Jones&#39;</span>):
 <span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(user)
-<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;ed&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Ed Jones&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;f8s7ccs&#39;</span>)<span style="color:#f92672">&gt;</span></code></pre></div>
+<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;ed&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Ed Jones&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;f8s7ccs&#39;</span>)<span style="color:#f92672">&gt;</span></code></pre></div>
 <h4 id="common-filter-operators-常用的过滤操作符">Common Filter Operators / 常用的过滤操作符</h4>
 
 <p><code>filter()</code>中常用的操作符如下：</p>
 
 <ul>
 <li><p><code>equals</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">query<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;ed&#39;</span>)</code></pre></div></li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">query<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;ed&#39;</span>)</code></pre></div></li>
 
 <li><p><code>not equals</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">query<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>name <span style="color:#f92672">!=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;ed&#39;</span>)</code></pre></div></li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">query<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>name <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#39;ed&#39;</span>)</code></pre></div></li>
 
 <li><p><code>LIKE</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">query<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>name<span style="color:#f92672">.</span>like(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%e</span><span style="color:#e6db74">d%&#39;</span>))</code></pre></div></li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">query<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>name<span style="color:#f92672">.</span>like(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%e</span><span style="color:#e6db74">d%&#39;</span>))</code></pre></div></li>
 
 <li><p><code>IN</code> ← 由于和in关键字冲突所以叫<code>in_()</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">query<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>name<span style="color:#f92672">.</span>in_([<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;ed&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;wendy&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack&#39;</span>]))
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">query<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>name<span style="color:#f92672">.</span>in_([<span style="color:#e6db74">&#39;ed&#39;</span>, <span style="color:#e6db74">&#39;wendy&#39;</span>, <span style="color:#e6db74">&#39;jack&#39;</span>]))
     
 <span style="color:#75715e"># 可以结合Query对象嵌套使用:</span>
 query<span style="color:#f92672">.</span>filter(Users<span style="color:#f92672">.</span>name<span style="color:#f92672">.</span>in_(
-    session<span style="color:#f92672">.</span>query(User<span style="color:#f92672">.</span>name)<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>name<span style="color:#f92672">.</span>like(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%e</span><span style="color:#e6db74">d&#39;</span>))
+    session<span style="color:#f92672">.</span>query(User<span style="color:#f92672">.</span>name)<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>name<span style="color:#f92672">.</span>like(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%e</span><span style="color:#e6db74">d&#39;</span>))
 ))</code></pre></div></li>
 
 <li><p><code>NOT IN</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">query<span style="color:#f92672">.</span>filter(<span style="color:#f92672">~</span>User<span style="color:#f92672">.</span>name<span style="color:#f92672">.</span>in_([<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;ed&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;wendy&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack&#39;</span>]))</code></pre></div></li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">query<span style="color:#f92672">.</span>filter(<span style="color:#f92672">~</span>User<span style="color:#f92672">.</span>name<span style="color:#f92672">.</span>in_([<span style="color:#e6db74">&#39;ed&#39;</span>, <span style="color:#e6db74">&#39;wendy&#39;</span>, <span style="color:#e6db74">&#39;jack&#39;</span>]))</code></pre></div></li>
 
 <li><p><code>IS NULL</code>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">query<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> None)
@@ -220,22 +212,22 @@ query<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">
 <li><p><code>AND</code></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#75715e"># 1. 可以使用and_()</span>
 <span style="color:#f92672">from</span> sqlalchemy <span style="color:#f92672">import</span> and_
-query<span style="color:#f92672">.</span>filter(and_(User<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;ed&#39;</span>, User<span style="color:#f92672">.</span>fullname <span style="color:#f92672">==</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Ed Jones&#39;</span>))
+query<span style="color:#f92672">.</span>filter(and_(User<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;ed&#39;</span>, User<span style="color:#f92672">.</span>fullname <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Ed Jones&#39;</span>))
     
 <span style="color:#75715e"># 2. 可以给filter()发送多个表达式</span>
-query<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;ed&#39;</span>, User<span style="color:#f92672">.</span>fullname <span style="color:#f92672">==</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Ed Jones&#39;</span>)
+query<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;ed&#39;</span>, User<span style="color:#f92672">.</span>fullname <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Ed Jones&#39;</span>)
     
 <span style="color:#75715e"># 3. 也可以链式连接多个filter()或filter_by()</span>
-query<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;ed&#39;</span>)<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>fullname <span style="color:#f92672">==</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Ed Jones&#39;</span>)</code></pre></div>
+query<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;ed&#39;</span>)<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>fullname <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Ed Jones&#39;</span>)</code></pre></div>
 <p><strong>注意：使用<code>and_()</code>，不要错误地使用了Python的<code>and</code>操作符！</strong>也就是说第一种写法基本就是废的</p></li>
 
 <li><p><code>OR</code>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">from</span> sqlalchemy <span style="color:#f92672">import</span> or_
-query<span style="color:#f92672">.</span>filter(or_(User<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;ed&#39;</span>, User<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;wendy&#39;</span>))</code></pre></div>
+query<span style="color:#f92672">.</span>filter(or_(User<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;ed&#39;</span>, User<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;wendy&#39;</span>))</code></pre></div>
 <p><strong>注意：使用<code>or_()</code>，不要使用Python的<code>or</code>操作符！</strong></p></li>
 
 <li><p><code>MATCH</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">query<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>name<span style="color:#f92672">.</span>match(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;wendy&#39;</span>))</code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">query<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>name<span style="color:#f92672">.</span>match(<span style="color:#e6db74">&#39;wendy&#39;</span>))</code></pre></div>
 <p><strong>注意：<code>match</code>使用特定于数据库系统的<code>MATCH</code>或者<code>CONTAINS</code>函数，行为在不同数据库上可能会有所不同。SQLite等不支持<code>match</code>。</strong></p></li>
 </ul>
 
@@ -253,14 +245,14 @@ query<span style="color:#f92672">.</span>filter(or_(User<span style="color:#f926
 
 <ul>
 <li><p><code>all()</code>将返回一个list：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">&gt;&gt;&gt;</span> query <span style="color:#f92672">=</span> session<span style="color:#f92672">.</span>query(User)<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>name<span style="color:#f92672">.</span>like(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%e</span><span style="color:#e6db74">d&#39;</span>))<span style="color:#f92672">.</span>order_by(User<span style="color:#f92672">.</span>id)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">&gt;&gt;&gt;</span> query <span style="color:#f92672">=</span> session<span style="color:#f92672">.</span>query(User)<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>name<span style="color:#f92672">.</span>like(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%e</span><span style="color:#e6db74">d&#39;</span>))<span style="color:#f92672">.</span>order_by(User<span style="color:#f92672">.</span>id)
 <span style="color:#f92672">&gt;&gt;&gt;</span> query<span style="color:#f92672">.</span>all()
-[<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;ed&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Ed Jones&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;f8s7ccs&#39;</span>)<span style="color:#f92672">&gt;</span>,
-  <span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;fred&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Fred Flinstone&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;blah&#39;</span>)<span style="color:#f92672">&gt;</span>]</code></pre></div></li>
+[<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;ed&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Ed Jones&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;f8s7ccs&#39;</span>)<span style="color:#f92672">&gt;</span>,
+  <span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;fred&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Fred Flinstone&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;blah&#39;</span>)<span style="color:#f92672">&gt;</span>]</code></pre></div></li>
 
 <li><p><code>first()</code>将设置一个值为1的limit，然后返回第一个结果行作为scalar：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">&gt;&gt;&gt;</span> query<span style="color:#f92672">.</span>first()
-<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;ed&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Ed Jones&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;f8s7ccs&#39;</span>)<span style="color:#f92672">&gt;</span></code></pre></div></li>
+<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;ed&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Ed Jones&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;f8s7ccs&#39;</span>)<span style="color:#f92672">&gt;</span></code></pre></div></li>
 
 <li><p><code>one()</code>将获取所有结果行。但若并非有且仅有一个结果，或者结果中出现了复合行(composite row)，将会抛出异常。当结果是多行时：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">&gt;&gt;&gt;</span> user <span style="color:#f92672">=</span> query<span style="color:#f92672">.</span>one()
@@ -276,41 +268,41 @@ NoResultFound: No row was found <span style="color:#66d9ef">for</span> one()</co
 <li><p><code>one_or_none()</code>和<code>one()</code>类似，但当结果为空时并不抛出异常，只是返回<code>None</code>。结果含有多行时仍然会抛出异常。</p></li>
 
 <li><p><code>scalar()</code>将会调用<code>one()</code>方法，然后返回结果的第一个元素作为Scalar：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">&gt;&gt;&gt;</span> query <span style="color:#f92672">=</span> session<span style="color:#f92672">.</span>query(User<span style="color:#f92672">.</span>id)<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;ed&#39;</span>)<span style="color:#f92672">.</span>\
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">&gt;&gt;&gt;</span> query <span style="color:#f92672">=</span> session<span style="color:#f92672">.</span>query(User<span style="color:#f92672">.</span>id)<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;ed&#39;</span>)<span style="color:#f92672">.</span>\
 <span style="color:#f92672">...</span>    order_by(User<span style="color:#f92672">.</span>id)
 <span style="color:#f92672">&gt;&gt;&gt;</span> query<span style="color:#f92672">.</span>scalar()
 <span style="color:#ae81ff">1</span></code></pre></div>
 <p><code>scalar()</code>和<code>one()</code>是有区别的。比如：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">&gt;&gt;&gt;</span> query <span style="color:#f92672">=</span> session<span style="color:#f92672">.</span>query(User<span style="color:#f92672">.</span>name, User<span style="color:#f92672">.</span>id)<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;ed&#39;</span>)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">&gt;&gt;&gt;</span> query <span style="color:#f92672">=</span> session<span style="color:#f92672">.</span>query(User<span style="color:#f92672">.</span>name, User<span style="color:#f92672">.</span>id)<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>name <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;ed&#39;</span>)
 <span style="color:#f92672">&gt;&gt;&gt;</span> query<span style="color:#f92672">.</span>one()
-(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;ed&#39;</span>, <span style="color:#ae81ff">1</span>)
+(<span style="color:#e6db74">&#39;ed&#39;</span>, <span style="color:#ae81ff">1</span>)
 <span style="color:#f92672">&gt;&gt;&gt;</span> query<span style="color:#f92672">.</span>scalar()
-<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;ed&#39;</span></code></pre></div></li>
+<span style="color:#e6db74">&#39;ed&#39;</span></code></pre></div></li>
 </ul>
 
 <h4 id="using-textual-sql-直接使用sql语句">Using Textual SQL / 直接使用SQL语句</h4>
 
 <p>在<code>Query</code>中，可以使用<code>text()</code>方法声明需要直接使用在SQL中的字符串。多数的方法都支持<code>text()</code>的这种用法。比如说，<code>filter()</code>和<code>order_by()</code>：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#f92672">from</span> sqlalchemy <span style="color:#f92672">import</span> text
-<span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#66d9ef">for</span> user <span style="color:#f92672">in</span> session<span style="color:#f92672">.</span>query(User)<span style="color:#f92672">.</span>filter(text(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;id&lt;224&#34;</span>))<span style="color:#f92672">.</span>order_by(text(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;id&#34;</span>))<span style="color:#f92672">.</span>all():
+<span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#66d9ef">for</span> user <span style="color:#f92672">in</span> session<span style="color:#f92672">.</span>query(User)<span style="color:#f92672">.</span>filter(text(<span style="color:#e6db74">&#34;id&lt;224&#34;</span>))<span style="color:#f92672">.</span>order_by(text(<span style="color:#e6db74">&#34;id&#34;</span>))<span style="color:#f92672">.</span>all():
 <span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(user<span style="color:#f92672">.</span>name)
 ed
 wendy
 mary
 fred</code></pre></div>
 <p>你可以在这些SQL字符串中使用冒号标明SQL参数（bind parameters），使用<code>params()</code>方法来给它们赋值：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> session<span style="color:#f92672">.</span>query(User)<span style="color:#f92672">.</span>finter(text(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;id&lt;:value and name=:name&#34;</span>))<span style="color:#f92672">.</span>\
-<span style="color:#f92672">...</span>     params(value<span style="color:#f92672">=</span><span style="color:#ae81ff">224</span>, name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;fred&#39;</span>)<span style="color:#f92672">.</span>order_by(User<span style="color:#f92672">.</span>id)<span style="color:#f92672">.</span>one()
-<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;fred&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Fred Flinstone&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;blah&#39;</span>)<span style="color:#f92672">&gt;</span></code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> session<span style="color:#f92672">.</span>query(User)<span style="color:#f92672">.</span>finter(text(<span style="color:#e6db74">&#34;id&lt;:value and name=:name&#34;</span>))<span style="color:#f92672">.</span>\
+<span style="color:#f92672">...</span>     params(value<span style="color:#f92672">=</span><span style="color:#ae81ff">224</span>, name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;fred&#39;</span>)<span style="color:#f92672">.</span>order_by(User<span style="color:#f92672">.</span>id)<span style="color:#f92672">.</span>one()
+<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;fred&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Fred Flinstone&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;blah&#39;</span>)<span style="color:#f92672">&gt;</span></code></pre></div>
 <p>如果要直接执行SQL字符串，可以使用<code>from_statement()</code>方法。你需要自行保证你的SQL语句返回的表列名在映射类中出现过。比如：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> session<span style="color:#f92672">.</span>query(User)<span style="color:#f92672">.</span>from_statement(
-<span style="color:#f92672">...</span>                     text(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;SELECT * from users where name=:name&#34;</span>))<span style="color:#f92672">.</span>\
-<span style="color:#f92672">...</span>                     params(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;ed&#39;</span>)<span style="color:#f92672">.</span>all()
-[<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;ed&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Ed Jones&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;f8s7ccs&#39;</span>)<span style="color:#f92672">&gt;</span>]</code></pre></div>
+<span style="color:#f92672">...</span>                     text(<span style="color:#e6db74">&#34;SELECT * from users where name=:name&#34;</span>))<span style="color:#f92672">.</span>\
+<span style="color:#f92672">...</span>                     params(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;ed&#39;</span>)<span style="color:#f92672">.</span>all()
+[<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;ed&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Ed Jones&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;f8s7ccs&#39;</span>)<span style="color:#f92672">&gt;</span>]</code></pre></div>
 <h4 id="counting-计数">Counting / 计数</h4>
 
 <p><code>Query</code>提供了叫做<code>count()</code>的方法，用于计数：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> session<span style="color:#f92672">.</span>query(User)<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>name<span style="color:#f92672">.</span>like(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%e</span><span style="color:#e6db74">d&#39;</span>))<span style="color:#f92672">.</span>count()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> session<span style="color:#f92672">.</span>query(User)<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>name<span style="color:#f92672">.</span>like(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%e</span><span style="color:#e6db74">d&#39;</span>))<span style="color:#f92672">.</span>count()
 <span style="color:#ae81ff">2</span></code></pre></div>
 <p><code>count()</code>方法用来获取SQL语句执行后得到的结果行数。它生成的SQL语句中，将用子查询加上一个<code>count</code>函数的方法来获取行数。</p>
 
@@ -319,7 +311,7 @@ fred</code></pre></div>
 <span style="color:#f92672">&gt;&gt;&gt;</span> session<span style="color:#f92672">.</span>query(func<span style="color:#f92672">.</span>count(User<span style="color:#f92672">.</span>name), User<span style="color:#f92672">.</span>name)<span style="color:#f92672">.</span>group_by(User<span style="color:#f92672">.</span>name)<span style="color:#f92672">.</span>all()
 [(<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;ed&#39;</span>), (<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;fred&#39;</span>), (<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;mary&#39;</span>), (<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;wendy&#39;</span>)]</code></pre></div>
 <p>注意：<code>Query.count</code>将会无条件地使用子查询加上<code>count</code>来获取计数。如果必须不使用子查询，你可以用<code>func.count()</code>。比如说，如果要产生<code>SELECT count(*) FROM table</code>，可以：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> session<span style="color:#f92672">.</span>query(func<span style="color:#f92672">.</span>count(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;*&#39;</span>))<span style="color:#f92672">.</span>select_from(User)<span style="color:#f92672">.</span>scalar()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> session<span style="color:#f92672">.</span>query(func<span style="color:#f92672">.</span>count(<span style="color:#e6db74">&#39;*&#39;</span>))<span style="color:#f92672">.</span>select_from(User)<span style="color:#f92672">.</span>scalar()
 <span style="color:#ae81ff">4</span></code></pre></div>
 <p>如果在<code>count</code>中声明使用<code>User</code>的主键，<code>select_from()</code>也可以省略：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> session<span style="color:#f92672">.</span>query(func<span style="color:#f92672">.</span>count(User<span style="color:#f92672">.</span>id))<span style="color:#f92672">.</span>scalar()
@@ -332,27 +324,27 @@ fred</code></pre></div>
 
 </div>
 
-    
-<footer class='entry-footer-container'>
-  <div class='entry-footer'>
+  
+<footer class='entry-footer'>
+  <div class='container sep-before'>
   <div class='tags'>
-  <span class='taxonomyTerm-icon'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  <span class='taxonomy-icon'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
   
   <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
   <line x1="7" y1="7" x2="7" y2="7"/>
   
 </svg>
 </span>
-  <span class='screen-reader'>标签: </span><a class='tag' href='/tags/python'>Python</a>, <a class='tag' href='/tags/sqlalchemy'>SQLAlchemy</a>, <a class='tag' href='/tags/%E6%96%87%E6%A1%A3'>文档</a>, <a class='tag' href='/tags/%E7%BF%BB%E8%AF%91'>翻译</a></div>
+  <span class='screen-reader-text'>标签: </span><a class='tag' href='/tags/python'>Python</a>, <a class='tag' href='/tags/sqlalchemy'>SQLAlchemy</a>, <a class='tag' href='/tags/%E6%96%87%E6%A1%A3'>文档</a>, <a class='tag' href='/tags/%E7%BF%BB%E8%AF%91'>翻译</a></div>
 
   </div>
 </footer>
 
 
-  </article>
-  
-<nav class='entry-nav-container'>
-  <div class='entry-nav'><div class='prev-entry'>
+</article>
+
+<nav class='entry-nav'>
+  <div class='container'><div class='prev-entry sep-before'>
       <a href='/blog/0215-sqlalchemy-document-learning-note-2-1-orm-tutorial/'>
         <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
   
@@ -361,10 +353,10 @@ fred</code></pre></div>
   
 </svg>
  上一篇</span>
-        <span class='screen-reader'>上一篇: </span>SQLAlchemy文档和笔记 (2.1) - ORM指南 (1)</a>
-    </div><div class='next-entry'>
+        <span class='screen-reader-text'>上一篇: </span>SQLAlchemy文档和笔记 (2.1) - ORM指南 (1)</a>
+    </div><div class='next-entry sep-before'>
       <a href='/blog/0217-sqlalchemy-document-learning-note-2-3-orm-tutorial/'>
-        <span class='screen-reader'>下一篇: </span>SQLAlchemy文档和笔记 (2.3) - ORM指南 (3)<span aria-hidden='true'>下一篇 <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+        <span class='screen-reader-text'>下一篇: </span>SQLAlchemy文档和笔记 (2.3) - ORM指南 (3)<span aria-hidden='true'>下一篇 <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
   
   <line x1="4" y1="12" x2="20" y2="12"/>
   <polyline points="14 6 20 12 14 18"/>
@@ -375,74 +367,24 @@ fred</code></pre></div>
     </div></div>
 </nav>
 
-  
-</main>
 
-    <footer id='footer' class='footer-container'>
-      <div class='footer'>
-        <div class='social-menu-container'>
-  <nav aria-label='找我吗？'>
-    <ul class='social-menu'><li>
-        <a href='https://github.com/tgmerge' target='_blank' rel='noopener'>
-          <span class='screen-reader'></span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  
-  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-  
-</svg>
-</a>
-      </li><li>
-        <a href='https://twitter.com/tgmerge' target='_blank' rel='noopener'>
-          <span class='screen-reader'></span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  
-  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
-  
-</svg>
-</a>
-      </li><li>
-        <a href='%3cnil%3etgmerge' target='_blank' rel='noopener'>
-          <span class='screen-reader'></span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  
-  <path d="m20.79684,15.88687c-0.07481,0.61015 -0.44417,1.42549 -0.81622,1.94626c-2.65119,3.71126 -10.64754,5.27117 -15.64104,2.4504c-1.67472,-0.94661 -3.40772,-2.33073 -3.14023,-5.08873c0.2301,-2.37344 1.82605,-4.21198 3.39216,-5.77809c1.4941,-1.49498 3.06954,-2.66459 5.21335,-3.20352c2.32587,-0.58479 3.01344,1.35428 2.38683,3.26628c1.34717,-0.09036 4.20219,-1.59426 5.46484,-0.12551c0.55629,0.6471 0.34311,1.80599 0,2.70099c1.56836,0.85803 3.45267,1.2853 3.14031,3.83192l0,0z"/>
-  <path d="m6.8656,17.27851c-0.85722,-2.33548 1.20109,-4.19298 3.34475,-4.41747c1.83017,-0.19181 3.19449,0.74143 3.59737,1.95635c1.34459,4.06376 -5.66104,5.9534 -6.94212,2.46112z"/>
-  <path d="m22.8634,10.89993c0.61627,-2.3711 0.32216,-4.27798 -0.8825,-5.72073c-1.20457,-1.44274 -3.10291,-1.98196 -5.69493,-1.61781"/>
-  <path d="m20.31177,9.60458c0.29682,-1.14182 0.15521,-2.0601 -0.42493,-2.75485c-0.58002,-0.69477 -1.49417,-0.95444 -2.74244,-0.7791"/>
-  
-</svg>
-</a>
-      </li><li>
-        <a href='%3cnil%3etgmergeSipan' target='_blank' rel='noopener'>
-          <span class='screen-reader'></span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  
-  <path d="m12.233419,10.443874l0,3.734704l6.224506,0c-0.311225,1.556127 -1.867352,4.66838 -6.224506,4.66838c-3.734704,0 -6.691344,-3.112253 -6.691344,-6.846957c0,-3.734704 2.95664,-6.846957 6.691344,-6.846957c2.178577,0 3.579091,0.933676 4.357154,1.711739l2.95664,-2.801028c-1.867352,-1.867352 -4.357154,-2.95664 -7.313795,-2.95664c-6.068894,0 -10.892886,4.823992 -10.892886,10.892886c0,6.068894 4.823992,10.892886 10.892886,10.892886c6.224506,0 10.426048,-4.357154 10.426048,-10.581661c0,-0.778063 0,-1.244901 -0.155613,-1.867352l-10.270435,0z"/>
-  
-</svg>
-</a>
-      </li><li>
-        <a href='#ZgotmplZ' target='_blank' rel='noopener'>
-          <span class='screen-reader'></span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  
-  <path d="m16.98649,1.83311c-1.92811,0 -3.77865,0.89757 -4.98649,2.30486c-1.20784,-1.4073 -3.05838,-2.30486 -4.98649,-2.30486c-3.41297,0 -6.09459,2.67054 -6.09459,6.09459c0,4.17757 3.76757,7.60162 9.47432,12.77649l1.60676,1.4627l1.60676,-1.4627c5.70676,-5.17486 9.47432,-8.59892 9.47432,-12.77649c0,-3.42405 -2.68162,-6.09459 -6.09459,-6.09459z"/>
-  
-</svg>
-</a>
-      </li></ul>
-  </nav>
-</div>
-        <div class='copyright'>
-  <p>
-        
-          
-        
-      
 
-       &copy; 2013-2017 tgmerge 
-  </p>
+
+      </main>
+
+      <footer id='footer' class='footer'>
+        <div class='container sep-before'><div class='copyright'>
+  <p> &copy; 2013-2018 tgmerge </p>
 </div>
 
-      </div>
-    </footer>
+        </div>
+      </footer>
 
-  </div><script src='/assets/js/main.5871befd.js'></script><script src='/js/custom.js'></script></body>
+    </div>
+  </div><script>window.__public_path__='\/assets\/js\/'</script>
+
+<script src='/assets/js/main.9daad1e6.js'></script><script src='/js/custom.js'></script>
+</body>
 
 </html>
 

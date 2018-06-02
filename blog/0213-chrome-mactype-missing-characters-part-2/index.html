@@ -5,6 +5,7 @@
   <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <meta name='description' content='Chrome 45之后，使用MacType的情况下，某些文字丢失的问题使用之前这篇文章说的方法已经无法解决了。 新的解决方法是，在chrome://fla'>
+<meta name='theme-color' content='#ffcd00'>
 
 <meta property='og:title' content='Chrome&#43;MacType丢失文字的问题 Part2 • tgmerge&#39;s blog'>
 <meta property='og:description' content='Chrome 45之后，使用MacType的情况下，某些文字丢失的问题使用之前这篇文章说的方法已经无法解决了。 新的解决方法是，在chrome://fla'>
@@ -12,67 +13,67 @@
 <meta property='og:site_name' content='tgmerge&#39;s blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Blog'><meta property='article:tag' content='Chrome'><meta property='article:tag' content='Windows'><meta property='article:tag' content='MacType'><meta property='article:published_time' content='2015-09-15T12:43:00Z'/><meta property='article:modified_time' content='2015-09-15T12:43:00Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@tgmerge'>
 
-<meta name="generator" content="Hugo 0.31.1" />
+<meta name="generator" content="Hugo 0.40.3" />
 
   <title>Chrome&#43;MacType丢失文字的问题 Part2 • tgmerge&#39;s blog</title>
   <link rel='canonical' href='https://tgmerge.me/blog/0213-chrome-mactype-missing-characters-part-2/'>
   
   
   <link rel='icon' href='/favicon.png'>
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Ubuntu:400,400i,700&subset=latin'>
-<link rel='stylesheet' href='/assets/css/main.77da63e1.css'><link rel='stylesheet' href='/css/custom.css'>
+<link rel='stylesheet' href='/assets/css/main.cb99c271.css'><link rel='stylesheet' href='/css/custom.css'><style>
+:root{--color-accent:#ffcd00;}
+</style>
+
 </head>
 
 
 <body class='page type-blog'>
+
   <div class='site'>
 
-    <a class='screen-reader' href='#main'></a>
+    <a class='screen-reader-text' href='#content'></a>
 
-    <header id='header' class='header-container'>
-      <div class='header site-header'>
-        <nav id='main-menu' class='main-menu-container' aria-label='主菜单'>
-  <ul class='main-menu'>
-  <li>
-      <a href='/'>首页</a>
-    </li>
-  <li>
-      <a href='/blog/'>文章</a>
-    </li>
-  <li>
-      <a href='/snap/'>图片</a>
-    </li>
-  <li>
-      <a href='/about/'>关于</a>
-    </li>
-  <li>
-      <a href=''></a>
-    </li>
-  
-  </ul>
+    <div class='main'>
+
+      <nav id='main-menu' class='menu main-menu' aria-label='主菜单'>
+  <div class='container'>
+    
+    <ul><li class='item'>
+        <a href='/'>首页</a>
+      </li><li class='item'>
+        <a href='/blog/'>文章</a>
+      </li><li class='item'>
+        <a href='/snap/'>图片</a>
+      </li><li class='item'>
+        <a href='/meow/'>今日彩球</a>
+      </li><li class='item'>
+        <a href='/about/'>关于</a>
+      </li><li class='item'>
+        <a href=''></a>
+      </li></ul>
+  </div>
 </nav>
 
-        <div class='header-info'>
-          
-          <p class='site-title title'>tgmerge&#39;s blog</p>
-          
-          <p class='site-description subtitle'></p>
+      <header id='header' class='header site-header'>
+        <div class='container sep-after'>
+          <div class='header-info'><p class='site-title title'>tgmerge&#39;s blog</p><p class='desc site-desc'></p>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      <main id='content'>
 
 
-<main id='main' class='main'>
-  <article lang='zh-cn' class='entry'>
-    <header class='header-container'>
-  <div class='header entry-header'>
+<article lang='zh-cn' class='entry'>
+  <header class='header entry-header'>
+  <div class='container sep-after'>
     <div class='header-info'>
       <h1 class='title'>Chrome&#43;MacType丢失文字的问题 Part2</h1>
       
 
     </div>
     
-<div class='meta'>
+<div class='entry-meta'>
   <span class='posted-on'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
   
   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
@@ -81,21 +82,12 @@
   <line x1="3" y1="10" x2="21" y2="10"/>
   
 </svg>
-<span class='screen-reader'>发表于 </span>
-  <time class='date' datetime='2015-09-15T12:43:00Z'>2015-09-15</time>
+<span class='screen-reader-text'>发表于 </span>
+  <time class='entry-date' datetime='2015-09-15T12:43:00Z'>2015-09-15</time>
 </span>
 
   
   
-<span class='reading-time'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  
-  <circle cx="12" cy="12" r="10"/>
-  <polyline points="12 6 12 12 15 15"/> 
-  
-</svg>
-大概需要阅读 1 分钟
-</span>
-
 
 </div>
 
@@ -103,37 +95,37 @@
   </div>
 </header>
 
-    
-    
+  
+  
 
-    <div class='entry-content'>
+  <div class='container entry-content'>
   <p>Chrome 45之后，使用MacType的情况下，某些文字丢失的问题使用<a href="/2015/04/0203-chrome-mactype-missing-characters/">之前这篇文章</a>说的方法已经无法解决了。</p>
 
 <p>新的解决方法是，在<code>chrome://flags</code>里，找到<code>#num-raster-threads</code>这个配置项。更改其值为<code>1</code>。用了一段时间没出问题。</p>
 
 </div>
 
-    
-<footer class='entry-footer-container'>
-  <div class='entry-footer'>
+  
+<footer class='entry-footer'>
+  <div class='container sep-before'>
   <div class='tags'>
-  <span class='taxonomyTerm-icon'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  <span class='taxonomy-icon'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
   
   <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
   <line x1="7" y1="7" x2="7" y2="7"/>
   
 </svg>
 </span>
-  <span class='screen-reader'>标签: </span><a class='tag' href='/tags/chrome'>Chrome</a>, <a class='tag' href='/tags/windows'>Windows</a>, <a class='tag' href='/tags/mactype'>MacType</a></div>
+  <span class='screen-reader-text'>标签: </span><a class='tag' href='/tags/chrome'>Chrome</a>, <a class='tag' href='/tags/windows'>Windows</a>, <a class='tag' href='/tags/mactype'>MacType</a></div>
 
   </div>
 </footer>
 
 
-  </article>
-  
-<nav class='entry-nav-container'>
-  <div class='entry-nav'><div class='prev-entry'>
+</article>
+
+<nav class='entry-nav'>
+  <div class='container'><div class='prev-entry sep-before'>
       <a href='/blog/0209-ingress-lv11/'>
         <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
   
@@ -142,10 +134,10 @@
   
 </svg>
  上一篇</span>
-        <span class='screen-reader'>上一篇: </span>Ingress, Lv11</a>
-    </div><div class='next-entry'>
+        <span class='screen-reader-text'>上一篇: </span>Ingress, Lv11</a>
+    </div><div class='next-entry sep-before'>
       <a href='/blog/0214-sqlalchemy-document-learning-note-1-1-overview/'>
-        <span class='screen-reader'>下一篇: </span>SQLAlchemy文档和笔记 (1.1) - 总览<span aria-hidden='true'>下一篇 <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+        <span class='screen-reader-text'>下一篇: </span>SQLAlchemy文档和笔记 (1.1) - 总览<span aria-hidden='true'>下一篇 <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
   
   <line x1="4" y1="12" x2="20" y2="12"/>
   <polyline points="14 6 20 12 14 18"/>
@@ -156,74 +148,24 @@
     </div></div>
 </nav>
 
-  
-</main>
 
-    <footer id='footer' class='footer-container'>
-      <div class='footer'>
-        <div class='social-menu-container'>
-  <nav aria-label='找我吗？'>
-    <ul class='social-menu'><li>
-        <a href='https://github.com/tgmerge' target='_blank' rel='noopener'>
-          <span class='screen-reader'></span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  
-  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-  
-</svg>
-</a>
-      </li><li>
-        <a href='https://twitter.com/tgmerge' target='_blank' rel='noopener'>
-          <span class='screen-reader'></span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  
-  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
-  
-</svg>
-</a>
-      </li><li>
-        <a href='%3cnil%3etgmerge' target='_blank' rel='noopener'>
-          <span class='screen-reader'></span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  
-  <path d="m20.79684,15.88687c-0.07481,0.61015 -0.44417,1.42549 -0.81622,1.94626c-2.65119,3.71126 -10.64754,5.27117 -15.64104,2.4504c-1.67472,-0.94661 -3.40772,-2.33073 -3.14023,-5.08873c0.2301,-2.37344 1.82605,-4.21198 3.39216,-5.77809c1.4941,-1.49498 3.06954,-2.66459 5.21335,-3.20352c2.32587,-0.58479 3.01344,1.35428 2.38683,3.26628c1.34717,-0.09036 4.20219,-1.59426 5.46484,-0.12551c0.55629,0.6471 0.34311,1.80599 0,2.70099c1.56836,0.85803 3.45267,1.2853 3.14031,3.83192l0,0z"/>
-  <path d="m6.8656,17.27851c-0.85722,-2.33548 1.20109,-4.19298 3.34475,-4.41747c1.83017,-0.19181 3.19449,0.74143 3.59737,1.95635c1.34459,4.06376 -5.66104,5.9534 -6.94212,2.46112z"/>
-  <path d="m22.8634,10.89993c0.61627,-2.3711 0.32216,-4.27798 -0.8825,-5.72073c-1.20457,-1.44274 -3.10291,-1.98196 -5.69493,-1.61781"/>
-  <path d="m20.31177,9.60458c0.29682,-1.14182 0.15521,-2.0601 -0.42493,-2.75485c-0.58002,-0.69477 -1.49417,-0.95444 -2.74244,-0.7791"/>
-  
-</svg>
-</a>
-      </li><li>
-        <a href='%3cnil%3etgmergeSipan' target='_blank' rel='noopener'>
-          <span class='screen-reader'></span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  
-  <path d="m12.233419,10.443874l0,3.734704l6.224506,0c-0.311225,1.556127 -1.867352,4.66838 -6.224506,4.66838c-3.734704,0 -6.691344,-3.112253 -6.691344,-6.846957c0,-3.734704 2.95664,-6.846957 6.691344,-6.846957c2.178577,0 3.579091,0.933676 4.357154,1.711739l2.95664,-2.801028c-1.867352,-1.867352 -4.357154,-2.95664 -7.313795,-2.95664c-6.068894,0 -10.892886,4.823992 -10.892886,10.892886c0,6.068894 4.823992,10.892886 10.892886,10.892886c6.224506,0 10.426048,-4.357154 10.426048,-10.581661c0,-0.778063 0,-1.244901 -0.155613,-1.867352l-10.270435,0z"/>
-  
-</svg>
-</a>
-      </li><li>
-        <a href='#ZgotmplZ' target='_blank' rel='noopener'>
-          <span class='screen-reader'></span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  
-  <path d="m16.98649,1.83311c-1.92811,0 -3.77865,0.89757 -4.98649,2.30486c-1.20784,-1.4073 -3.05838,-2.30486 -4.98649,-2.30486c-3.41297,0 -6.09459,2.67054 -6.09459,6.09459c0,4.17757 3.76757,7.60162 9.47432,12.77649l1.60676,1.4627l1.60676,-1.4627c5.70676,-5.17486 9.47432,-8.59892 9.47432,-12.77649c0,-3.42405 -2.68162,-6.09459 -6.09459,-6.09459z"/>
-  
-</svg>
-</a>
-      </li></ul>
-  </nav>
-</div>
-        <div class='copyright'>
-  <p>
-        
-          
-        
-      
 
-       &copy; 2013-2017 tgmerge 
-  </p>
+
+      </main>
+
+      <footer id='footer' class='footer'>
+        <div class='container sep-before'><div class='copyright'>
+  <p> &copy; 2013-2018 tgmerge </p>
 </div>
 
-      </div>
-    </footer>
+        </div>
+      </footer>
 
-  </div><script src='/assets/js/main.5871befd.js'></script><script src='/js/custom.js'></script></body>
+    </div>
+  </div><script>window.__public_path__='\/assets\/js\/'</script>
+
+<script src='/assets/js/main.9daad1e6.js'></script><script src='/js/custom.js'></script>
+</body>
 
 </html>
 

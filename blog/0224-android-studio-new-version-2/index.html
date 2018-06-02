@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang='zh-cn'>
+
+<head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='Android Studio 2.3 两个星期以前发布到了 beta 版本，从这些新特性上又给无脑写代码提供了大量便利： Instant Run 的改进 Android Studio 2.2 的 Instant Run 按钮很不方便使用：在 Instant Run 出问题的时候，很'>
+<meta name='theme-color' content='#ffcd00'>
+
+<meta property='og:title' content='Android Studio 2.3 - 值得注意的新特性 • tgmerge&#39;s blog'>
+<meta property='og:description' content='Android Studio 2.3 两个星期以前发布到了 beta 版本，从这些新特性上又给无脑写代码提供了大量便利： Instant Run 的改进 Android Studio 2.2 的 Instant Run 按钮很不方便使用：在 Instant Run 出问题的时候，很'>
+<meta property='og:url' content='https://tgmerge.me/blog/0224-android-studio-new-version-2/'>
+<meta property='og:site_name' content='tgmerge&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Blog'><meta property='article:tag' content='Android'><meta property='article:tag' content='Android Studio'><meta property='article:tag' content='Java'><meta property='article:published_time' content='2017-01-01T17:57:00Z'/><meta property='article:modified_time' content='2017-01-01T17:57:00Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@tgmerge'>
+
+<meta name="generator" content="Hugo 0.38.1" />
+
+  <title>Android Studio 2.3 - 值得注意的新特性 • tgmerge&#39;s blog</title>
+  <link rel='canonical' href='https://tgmerge.me/blog/0224-android-studio-new-version-2/'>
+  
+  
+  <link rel='icon' href='/favicon.png'>
+<link rel='stylesheet' href='/assets/css/main.b8f9eb89.css'><link rel='stylesheet' href='/css/custom.css'><style>
+:root{--color-accent:#ffcd00;}
+</style>
+
+</head>
+
+
+<body class='page type-blog'>
+
+  <div class='site'>
+
+    <a class='screen-reader-text' href='#content'></a>
+
+    <div class='main'>
+
+      <nav id='main-menu' class='main-menu' aria-label='主菜单'>
+  <div class='container'>
+    
+    <ul><li class='item'>
+        <a href='/'>首页</a>
+      </li><li class='item'>
+        <a href='/blog/'>文章</a>
+      </li><li class='item'>
+        <a href='/snap/'>图片</a>
+      </li><li class='item'>
+        <a href='/about/'>关于</a>
+      </li><li class='item'>
+        <a href=''></a>
+      </li></ul>
+  </div>
+</nav>
+
+
+      <header id='header' class='header site-header'>
+        <div class='container sep-after'>
+          <div class='header-info'><p class='site-title title'>tgmerge&#39;s blog</p><p class='desc site-desc'></p>
+          </div>
+        </div>
+      </header>
+
+      <main id='content'>
+
+
+<article lang='zh-cn' class='entry'>
+  <header class='header entry-header'>
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>Android Studio 2.3 - 值得注意的新特性</h1>
+      
+
+    </div>
+    
+<div class='entry-meta'>
+  <span class='posted-on'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+  
+</svg>
+<span class='screen-reader-text'>发表于 </span>
+  <time class='entry-date' datetime='2017-01-01T17:57:00Z'>2017-01-01</time>
+</span>
+
+  
+  
+
+</div>
+
+
+  </div>
+</header>
+
+  
+  
+
+  <div class='container entry-content'>
+  
+
+<p><a href="https://sites.google.com/a/android.com/tools/recent/androidstudio23beta1isnowavailable">Android Studio 2.3 两个星期以前发布到了 beta 版本</a>，从这些新特性上又给<del>无脑</del>写代码提供了大量便利：</p>
+
+<h2 id="instant-run-的改进">Instant Run 的改进</h2>
+
+<p>Android Studio 2.2 的 Instant Run 按钮很不方便使用：在 Instant Run 出问题的时候，很难快速来一次传统的 &ldquo;Run&rdquo; 来重装应用。现在，Android 2.3 把 Instant Run 按钮和 Run 按钮分开了：</p>
+
+<p><img src="/assets/0224-01.png" alt="Instant Run 和 Run 的按钮分开了" /></p>
+
+<p>&ldquo;Run&rdquo; 按钮将尝试重启应用并完整替换(&ldquo;cold swap&rdquo;)应用，但并不是重装 APK；&rdquo;Instant Run&rdquo; 则会尝试热替换资源和代码，让更改立即生效。</p>
+
+<blockquote>
+<p>终于不需要经常 Disable instant run 了 _(:3</p>
+</blockquote>
+
+<!-- more -->
+
+<h2 id="编译缓存">编译缓存</h2>
+
+<p>Android Studio 2.3 将使用跨 Project 的编译缓存来加速项目编译。他们说的。</p>
+
+<p>然而仍然有<a href="https://code.google.com/p/android/issues/detail?id=229171">一些已知问题</a>存在。</p>
+
+<h2 id="layout-编辑器">Layout 编辑器</h2>
+
+<p>新版 Layout 编辑器的 View Palette 似乎更好用了：</p>
+
+<p><img src="/assets/0224-02.png" alt="新的 Layout 编辑器的 Palette 界面" /></p>
+
+<p>Android Studio 2.3 支持更多 ConstraintLayout 的特性：<a href="https://developer.android.com/reference/android/support/constraint/ConstraintLayout.html">视图链(chains)和比例约束(ratios)</a>。</p>
+
+<p><strong>Chain 约束</strong>允许创建平均分布的多个视图组合，嵌套 <code>LinearLayout</code> 有望成为历史：</p>
+
+<p><img src="/assets/0224-03.png" alt="多种 Chain 类型" /></p>
+
+<p><strong>Ratio 约束</strong>允许以多种形式约束 View 的长宽比，各种 RatioImageView 大概也要成为历史了：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;!-- 约束长宽比 --&gt;</span>
+<span style="color:#f92672">&lt;Button</span> <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;0dp&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintDimensionRatio=</span><span style="color:#e6db74">&#34;1:1&#34;</span> <span style="color:#f92672">/&gt;</span>
+
+<span style="color:#75715e">&lt;!-- 约束仅作用于高度：
+</span><span style="color:#75715e">     Button 的宽度将和 parent 一致，高度将自动调整，使按钮的长宽比是 16:9 --&gt;</span>
+<span style="color:#f92672">&lt;Button</span> <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;0dp&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;0dp&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintDimensionRatio=</span><span style="color:#e6db74">&#34;H,16:9&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintBottom_toBottomOf=</span><span style="color:#e6db74">&#34;parent&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintTop_toTopOf=</span><span style="color:#e6db74">&#34;parent&#34;</span><span style="color:#f92672">/&gt;</span>             </code></pre></div>
+<blockquote>
+<p>I love it!</p>
+
+<p><img src="/assets/0224-04.jpg" alt="I love it!" /></p>
+</blockquote>
+
+<h2 id="app-links-支持">App Links 支持</h2>
+
+<p>App Links 可以让搜索引擎直接搜索原生应用页面和结果 - <a href="https://developer.android.com/training/app-links/index.html">这里有介绍</a>。</p>
+
+<h2 id="lint-的改进">Lint 的改进</h2>
+
+<p>Lint 结果终于有了 Material design 的样子，这样大概关掉 lint 的人也会少一点吧（讲真为什么要关？嫌慢的话换电脑啊</p>
+
+<h2 id="data-binding">Data binding</h2>
+
+<p>Android Studio 2.3 改进了对 <a href="https://developer.android.com/topic/libraries/data-binding/index.html">Data Binding Library</a> 的支持。</p>
+
+<p><a href="https://realm.io/news/data-binding-android-boyar-mount/">Layout 中 Data binding 的支持</a>简直好顶赞，语法一看就让人想起 AngularJS：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;layout</span> <span style="color:#a6e22e">xmlns:android=</span><span style="color:#e6db74">&#34;http://schemas.android.com/apk/res/android&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;data&gt;</span>
+        <span style="color:#f92672">&lt;variable</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;user&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;com.android.example.User&#34;</span><span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;/data&gt;</span>
+   <span style="color:#f92672">&lt;RelativeLayout</span>
+            <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+            <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;match_parent&#34;</span><span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&lt;TextView</span> <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;@{user.name}&#34;</span>
+                  <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+                  <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;TextView</span> <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;@{user.lastname}&#34;</span>
+                  <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+                  <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span><span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;/RelativeLayout&gt;</span>
+<span style="color:#f92672">&lt;/layout&gt;</span></code></pre></div>
+<p>Data Binding Library 还支持更多绑定属性、通过 <code>ViewHolder</code> 使用多种 View type 的 layout 等复杂特性。</p>
+
+<p>以及大家都喜欢的自动 <code>null</code> 检查！再也没有 <code>NullPointerException</code> 辣！取而代之的是空白 Item（笑</p>
+
+<blockquote>
+<p>虽然可以减少很多 boilerplate code，但感觉性价比也没有比手写 <code>Adapter.onBindView()</code> 高多少……会观望一阵子再用。</p>
+</blockquote>
+
+<h2 id="很多的-bug-fix">很多的 Bug fix</h2>
+
+<p>其中一个值得注意的 bug fix: <a href="https://code.google.com/p/android/issues/detail?id=215172"><code>tools:listitem</code> 属性不会生效</a></p>
+
+<p>在 Android Studio 2.3 中，在 layout XML 中为 <code>ListView</code> 和 <code>RecyclerView</code> 等设置的 <code>tools:listitem</code> 属性终于能在预览界面中显示出来辣！</p>
+
+<blockquote>
+<p>写 layout 不用 tools namespace 写预览内容的人，养的猫都会很丑，而且会在 30 岁的时候不得已和不喜欢的人结婚</p>
+</blockquote>
+
+<h2 id="顺便说一个关于快捷键的事情">顺便说一个关于快捷键的事情</h2>
+
+<p>Android Studio 的 &ldquo;Class Name Completion&rdquo; 这个自动补全操作可以提示 XML 中可选的属性值，Windows 下默认 Keymap <code>Ctrl+Alt+Space</code></p>
+
+<p><img src="/assets/0224-05.png" alt="自动补全 Layout XML 中的属性值" /></p>
+
+<p>没发现这个操作名字和快捷键的时候都是重新敲一遍属性名称触发它的哈哈哈</p>
+
+</div>
+
+  
+<footer class='entry-footer'>
+  <div class='container sep-before'>
+  <div class='tags'>
+  <span class='taxonomy-icon'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+</span>
+  <span class='screen-reader-text'>标签: </span><a class='tag' href='/tags/android'>Android</a>, <a class='tag' href='/tags/android-studio'>Android Studio</a>, <a class='tag' href='/tags/java'>Java</a></div>
+
+  </div>
+</footer>
+
+
+</article>
+
+<nav class='entry-nav'>
+  <div class='container'><div class='prev-entry sep-before'>
+      <a href='/blog/0223-rxjava-note-and-demo-2/'>
+        <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="20" y1="12" x2="4" y2="12"/>
+  <polyline points="10 18 4 12 10 6"/>
+  
+</svg>
+ 上一篇</span>
+        <span class='screen-reader-text'>上一篇: </span>RxJava 笔记和 Demo (2) - 适用场景</a>
+    </div><div class='next-entry sep-before'>
+      <a href='/blog/0225-wrap-content-recycler-view-in-scroll-view/'>
+        <span class='screen-reader-text'>下一篇: </span>WRAP_CONTENT 的 RecyclerView 在 ScrollView 中无法显示完整内容<span aria-hidden='true'>下一篇 <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="4" y1="12" x2="20" y2="12"/>
+  <polyline points="14 6 20 12 14 18"/>
+  
+</svg>
+</span>
+      </a>
+    </div></div>
+</nav>
+
+
+
+
+      </main>
+
+      <footer id='footer' class='footer'>
+        <div class='container sep-before'>
+          <section class='widget widget-social_menu sep-after'><nav aria-label='找我吗？'>
+    <ul><li>
+        <a href='https://github.com/tgmerge' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'></span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://twitter.com/tgmerge' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'></span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+  
+</svg>
+</a>
+      </li></ul>
+  </nav>
+</section>
+          <div class='copyright'>
+  <p> &copy; 2013-2018 tgmerge </p>
+</div>
+
+        </div>
+      </footer>
+
+    </div>
+  </div><script>window.__public_path__='\/assets\/js\/'</script>
+
+<script src='/assets/js/main.4d3afaaf.js'></script><script src='/js/custom.js'></script>
+</body>
+
+</html>
+

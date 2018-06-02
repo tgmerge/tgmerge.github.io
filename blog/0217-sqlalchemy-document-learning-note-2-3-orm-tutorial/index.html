@@ -5,6 +5,7 @@
   <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <meta name='description' content='本篇是 胡乱 翻译自SQLAlchemy 1.0官方文档 Object Relational Tutorial一章的第三篇笔记。 抱着“反正正事不管时间多少都能干完”的态度果然可以干'>
+<meta name='theme-color' content='#ffcd00'>
 
 <meta property='og:title' content='SQLAlchemy文档和笔记 (2.3) - ORM指南 (3) • tgmerge&#39;s blog'>
 <meta property='og:description' content='本篇是 胡乱 翻译自SQLAlchemy 1.0官方文档 Object Relational Tutorial一章的第三篇笔记。 抱着“反正正事不管时间多少都能干完”的态度果然可以干'>
@@ -12,67 +13,67 @@
 <meta property='og:site_name' content='tgmerge&#39;s blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Blog'><meta property='article:tag' content='Python'><meta property='article:tag' content='SQLAlchemy'><meta property='article:tag' content='文档'><meta property='article:tag' content='翻译'><meta property='article:published_time' content='2016-04-30T13:46:00Z'/><meta property='article:modified_time' content='2016-04-30T13:46:00Z'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@tgmerge'>
 
-<meta name="generator" content="Hugo 0.31.1" />
+<meta name="generator" content="Hugo 0.40.3" />
 
   <title>SQLAlchemy文档和笔记 (2.3) - ORM指南 (3) • tgmerge&#39;s blog</title>
   <link rel='canonical' href='https://tgmerge.me/blog/0217-sqlalchemy-document-learning-note-2-3-orm-tutorial/'>
   
   
   <link rel='icon' href='/favicon.png'>
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Ubuntu:400,400i,700&subset=latin'>
-<link rel='stylesheet' href='/assets/css/main.77da63e1.css'><link rel='stylesheet' href='/css/custom.css'>
+<link rel='stylesheet' href='/assets/css/main.cb99c271.css'><link rel='stylesheet' href='/css/custom.css'><style>
+:root{--color-accent:#ffcd00;}
+</style>
+
 </head>
 
 
 <body class='page type-blog'>
+
   <div class='site'>
 
-    <a class='screen-reader' href='#main'></a>
+    <a class='screen-reader-text' href='#content'></a>
 
-    <header id='header' class='header-container'>
-      <div class='header site-header'>
-        <nav id='main-menu' class='main-menu-container' aria-label='主菜单'>
-  <ul class='main-menu'>
-  <li>
-      <a href='/'>首页</a>
-    </li>
-  <li>
-      <a href='/blog/'>文章</a>
-    </li>
-  <li>
-      <a href='/snap/'>图片</a>
-    </li>
-  <li>
-      <a href='/about/'>关于</a>
-    </li>
-  <li>
-      <a href=''></a>
-    </li>
-  
-  </ul>
+    <div class='main'>
+
+      <nav id='main-menu' class='menu main-menu' aria-label='主菜单'>
+  <div class='container'>
+    
+    <ul><li class='item'>
+        <a href='/'>首页</a>
+      </li><li class='item'>
+        <a href='/blog/'>文章</a>
+      </li><li class='item'>
+        <a href='/snap/'>图片</a>
+      </li><li class='item'>
+        <a href='/meow/'>今日彩球</a>
+      </li><li class='item'>
+        <a href='/about/'>关于</a>
+      </li><li class='item'>
+        <a href=''></a>
+      </li></ul>
+  </div>
 </nav>
 
-        <div class='header-info'>
-          
-          <p class='site-title title'>tgmerge&#39;s blog</p>
-          
-          <p class='site-description subtitle'></p>
+      <header id='header' class='header site-header'>
+        <div class='container sep-after'>
+          <div class='header-info'><p class='site-title title'>tgmerge&#39;s blog</p><p class='desc site-desc'></p>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      <main id='content'>
 
 
-<main id='main' class='main'>
-  <article lang='zh-cn' class='entry'>
-    <header class='header-container'>
-  <div class='header entry-header'>
+<article lang='zh-cn' class='entry'>
+  <header class='header entry-header'>
+  <div class='container sep-after'>
     <div class='header-info'>
       <h1 class='title'>SQLAlchemy文档和笔记 (2.3) - ORM指南 (3)</h1>
       
 
     </div>
     
-<div class='meta'>
+<div class='entry-meta'>
   <span class='posted-on'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
   
   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
@@ -81,21 +82,12 @@
   <line x1="3" y1="10" x2="21" y2="10"/>
   
 </svg>
-<span class='screen-reader'>发表于 </span>
-  <time class='date' datetime='2016-04-30T13:46:00Z'>2016-04-30</time>
+<span class='screen-reader-text'>发表于 </span>
+  <time class='entry-date' datetime='2016-04-30T13:46:00Z'>2016-04-30</time>
 </span>
 
   
   
-<span class='reading-time'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  
-  <circle cx="12" cy="12" r="10"/>
-  <polyline points="12 6 12 12 15 15"/> 
-  
-</svg>
-大概需要阅读 10 分钟
-</span>
-
 
 </div>
 
@@ -103,10 +95,10 @@
   </div>
 </header>
 
-    
-    
+  
+  
 
-    <div class='entry-content'>
+  <div class='container entry-content'>
   
 
 <p>本篇是 <del>胡乱</del> 翻译自<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/tutorial.html">SQLAlchemy 1.0官方文档 Object Relational Tutorial一章</a>的第三篇笔记。</p>
@@ -130,27 +122,27 @@
 <span style="color:#f92672">from</span> sqlalchemy.ext.declarative <span style="color:#f92672">import</span> declarative_base
 <span style="color:#f92672">from</span> sqlalchemy.orm <span style="color:#f92672">import</span> sessionmaker
 
-engine <span style="color:#f92672">=</span> create_engine(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;sqlite:///:memory:&#39;</span>, echo<span style="color:#f92672">=</span>True)
+engine <span style="color:#f92672">=</span> create_engine(<span style="color:#e6db74">&#39;sqlite:///:memory:&#39;</span>, echo<span style="color:#f92672">=</span>True)
 Base <span style="color:#f92672">=</span> declarative_base()
 
 <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span>(Base):
-    __tablename__ <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;users&#39;</span>
+    __tablename__ <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;users&#39;</span>
     id <span style="color:#f92672">=</span> Column(Integer, primary_key<span style="color:#f92672">=</span>True)
     name <span style="color:#f92672">=</span> Column(String)
     fullname <span style="color:#f92672">=</span> Column(String)
     password <span style="color:#f92672">=</span> Column(String)
     <span style="color:#66d9ef">def</span> __repr__(self):
-       <span style="color:#66d9ef">return</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&lt;User(name=&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#39;, fullname=&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#39;, password=&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#39;)&gt;&#34;</span> <span style="color:#f92672">%</span> (self<span style="color:#f92672">.</span>name, self<span style="color:#f92672">.</span>fullname, self<span style="color:#f92672">.</span>password)
+       <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&lt;User(name=&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#39;, fullname=&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#39;, password=&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#39;)&gt;&#34;</span> <span style="color:#f92672">%</span> (self<span style="color:#f92672">.</span>name, self<span style="color:#f92672">.</span>fullname, self<span style="color:#f92672">.</span>password)
 
 Base<span style="color:#f92672">.</span>metadata<span style="color:#f92672">.</span>create_all(engine)
 
 Session <span style="color:#f92672">=</span> sessionmaker(bind<span style="color:#f92672">=</span>engine)
 session <span style="color:#f92672">=</span> Session()
 session<span style="color:#f92672">.</span>add_all([
-    User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;ed&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Ed Jones&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;f8s7ccs&#39;</span>),
-    User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;wendy&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Wendy Williams&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;foobar&#39;</span>),
-    User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;mary&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Mary Contrary&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;xxg527&#39;</span>),
-    User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;fred&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Fred Flinstone&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;blah&#39;</span>)])
+    User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;ed&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Ed Jones&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;f8s7ccs&#39;</span>),
+    User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;wendy&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Wendy Williams&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;foobar&#39;</span>),
+    User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;mary&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Mary Contrary&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;xxg527&#39;</span>),
+    User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;fred&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Fred Flinstone&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;blah&#39;</span>)])
 session<span style="color:#f92672">.</span>commit()</code></pre></div>
 <h3 id="building-a-relationship-建立关系">Building a Relationship / 建立关系</h3>
 
@@ -163,18 +155,18 @@ session<span style="color:#f92672">.</span>commit()</code></pre></div>
 <span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#f92672">from</span> sqlalchemy.orm <span style="color:#f92672">import</span> relationship
 
 <span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Address</span>(Base):
-<span style="color:#f92672">...</span>     __tablename__ <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;addresses&#39;</span>
+<span style="color:#f92672">...</span>     __tablename__ <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;addresses&#39;</span>
 <span style="color:#f92672">...</span>     id <span style="color:#f92672">=</span> Column(Integer, primary_key<span style="color:#f92672">=</span>True)
 <span style="color:#f92672">...</span>     email_address <span style="color:#f92672">=</span> Column(String, nullable<span style="color:#f92672">=</span>False)
-<span style="color:#f92672">...</span>     user_id <span style="color:#f92672">=</span> Column(Integer, ForeignKey(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;users.id&#39;</span>))
+<span style="color:#f92672">...</span>     user_id <span style="color:#f92672">=</span> Column(Integer, ForeignKey(<span style="color:#e6db74">&#39;users.id&#39;</span>))
 <span style="color:#f92672">...</span>
-<span style="color:#f92672">...</span>     user <span style="color:#f92672">=</span> relationship(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;User&#34;</span>, back_populates<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;addresses&#34;</span>)
+<span style="color:#f92672">...</span>     user <span style="color:#f92672">=</span> relationship(<span style="color:#e6db74">&#34;User&#34;</span>, back_populates<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;addresses&#34;</span>)
 <span style="color:#f92672">...</span>
 <span style="color:#f92672">...</span>     <span style="color:#66d9ef">def</span> __repr__(self):
-<span style="color:#f92672">...</span>         <span style="color:#66d9ef">return</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&lt;Address(email_address=&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#39;)&gt;&#34;</span> <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>email_address
+<span style="color:#f92672">...</span>         <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&lt;Address(email_address=&#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#39;)&gt;&#34;</span> <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>email_address
 <span style="color:#f92672">...</span>
 
-<span style="color:#f92672">&gt;&gt;&gt;</span> User<span style="color:#f92672">.</span>addresses <span style="color:#f92672">=</span> relationship(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;Address&#34;</span>, order_by<span style="color:#f92672">=</span>Address<span style="color:#f92672">.</span>id, back_populates<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;user&#34;</span>)</code></pre></div>
+<span style="color:#f92672">&gt;&gt;&gt;</span> User<span style="color:#f92672">.</span>addresses <span style="color:#f92672">=</span> relationship(<span style="color:#e6db74">&#34;Address&#34;</span>, order_by<span style="color:#f92672">=</span>Address<span style="color:#f92672">.</span>id, back_populates<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;user&#34;</span>)</code></pre></div>
 <p>上面这个映射类中出现的<code>ForeignKey</code>，是<code>Column</code>中可以使用的一个描述符(directive)。它声明这个列的值应该被约束于另一列的数据值之中。这是关系数据库的核心功能之一，用于“粘结”两个数据表。上面的<code>ForeignKey</code>表示，<code>address.user_id</code>这一列的值应该被约束于<code>users.id</code>一列。</p>
 
 <p>而描述符<code>relationship()</code>告诉ORM，<code>Address</code>这个类本身应该被连接到<code>User</code>类。连接使用<code>Address.user</code>这个属性。<code>relationship()</code>使用两个表中的外键关联来识别连接的类型，在这里它识别出<code>Address.user</code>应该是一个<strong>多对一</strong>关系。另外一边，<code>User</code>映射类里面也放置了一个<code>relationship()</code>，位于<code>User.addresses</code>属性中。在这两个<code>relationship()</code>描述符中，参数<code>relationship.back_populates</code>被设为“对面”的那个属性，这样一来<code>relationship()</code>就能知道，<code>Address.user</code>是另一边的一个<code>User</code>实例，而<code>User.addresses</code>是另一边的<code>Address</code>实例的列表。</p>
@@ -194,26 +186,26 @@ session<span style="color:#f92672">.</span>commit()</code></pre></div>
 <h3 id="working-with-related-objects-使用包含关系的对象">Working with Related Objects / 使用包含关系的对象</h3>
 
 <p>现在，当我们创建一个<code>User</code>对象的时候，将会包含一个空的<code>addresses</code>集合。默认来说这个集合的数据类型会是list，但也可以用<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/collections.html#custom-collections">Customizing Collection Access</a>中的方式自定义为其他的集合类型，比如set和dictionary。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> jack <span style="color:#f92672">=</span> User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Jack Bean&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;gjffdd&#39;</span>)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> jack <span style="color:#f92672">=</span> User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;jack&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Jack Bean&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;gjffdd&#39;</span>)
 <span style="color:#f92672">&gt;&gt;&gt;</span> jack<span style="color:#f92672">.</span>addresses
 []</code></pre></div>
 <p>你可以任意向<code>User</code>对象中添加<code>Address</code>对象。这里我们直接赋予其一个列表：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> jack<span style="color:#f92672">.</span>addresses <span style="color:#f92672">=</span> [
-<span style="color:#f92672">...</span>                 Address(email_address<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack@google.com&#39;</span>),
-<span style="color:#f92672">...</span>                 Address(email_address<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;j25@yahoo.com&#39;</span>)]</code></pre></div>
+<span style="color:#f92672">...</span>                 Address(email_address<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;jack@google.com&#39;</span>),
+<span style="color:#f92672">...</span>                 Address(email_address<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;j25@yahoo.com&#39;</span>)]</code></pre></div>
 <p>当使用双向关系的时候，在一个方向上添加的元素将立即在另一个方向上变得可见。即使当没有任何SQL执行的时候，也是如此：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> jack<span style="color:#f92672">.</span>addresses[<span style="color:#ae81ff">1</span>]
-<span style="color:#f92672">&lt;</span>Address(email_address<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;j25@yahoo.com&#39;</span>)<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span>Address(email_address<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;j25@yahoo.com&#39;</span>)<span style="color:#f92672">&gt;</span>
 
 <span style="color:#f92672">&gt;&gt;&gt;</span> jack<span style="color:#f92672">.</span>addresses[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>user
-<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Jack Bean&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;gjffdd&#39;</span>)<span style="color:#f92672">&gt;</span></code></pre></div>
+<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;jack&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Jack Bean&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;gjffdd&#39;</span>)<span style="color:#f92672">&gt;</span></code></pre></div>
 <p>现在让我们将<code>Jack Bean</code>添加到数据库中。<code>jack</code>和它<code>address</code>中的两个<code>Address</code>成员都会一起被级联地（cascading）添加到session中：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> session<span style="color:#f92672">.</span>add(jack)
 <span style="color:#f92672">&gt;&gt;&gt;</span> session<span style="color:#f92672">.</span>commit()</code></pre></div>
 <p>现在查询Jack，会发现执行的SQL只查询了Jack本身，我们也只得到了Jack本身：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> jack <span style="color:#f92672">=</span> session<span style="color:#f92672">.</span>query(User)<span style="color:#f92672">.</span>filter_by(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack&#39;</span>)<span style="color:#f92672">.</span>one()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> jack <span style="color:#f92672">=</span> session<span style="color:#f92672">.</span>query(User)<span style="color:#f92672">.</span>filter_by(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;jack&#39;</span>)<span style="color:#f92672">.</span>one()
 <span style="color:#f92672">&gt;&gt;&gt;</span> jack
-<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Jack Bean&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;gjffdd&#39;</span>)<span style="color:#f92672">&gt;</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">BEGIN</span> (<span style="color:#66d9ef">implicit</span>)
+<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;jack&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Jack Bean&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;gjffdd&#39;</span>)<span style="color:#f92672">&gt;</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">BEGIN</span> (<span style="color:#66d9ef">implicit</span>)
 <span style="color:#66d9ef">SELECT</span> users.id <span style="color:#66d9ef">AS</span> users_id,
         users.name <span style="color:#66d9ef">AS</span> users_name,
         users.fullname <span style="color:#66d9ef">AS</span> users_fullname,
@@ -223,7 +215,7 @@ session<span style="color:#f92672">.</span>commit()</code></pre></div>
 (<span style="color:#e6db74">&#39;jack&#39;</span>,)</code></pre></div>
 <p>现在来看看Jack的<code>addresses</code>属性。会发现下面的SQL立即被执行：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> jack<span style="color:#f92672">.</span>addresses
-[<span style="color:#f92672">&lt;</span>Address(email_address<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack@google.com&#39;</span>)<span style="color:#f92672">&gt;</span>, <span style="color:#f92672">&lt;</span>Address(email_address<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;j25@yahoo.com&#39;</span>)<span style="color:#f92672">&gt;</span>]</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> addresses.id <span style="color:#66d9ef">AS</span> addresses_id,
+[<span style="color:#f92672">&lt;</span>Address(email_address<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;jack@google.com&#39;</span>)<span style="color:#f92672">&gt;</span>, <span style="color:#f92672">&lt;</span>Address(email_address<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;j25@yahoo.com&#39;</span>)<span style="color:#f92672">&gt;</span>]</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> addresses.id <span style="color:#66d9ef">AS</span> addresses_id,
         addresses.email_address <span style="color:#66d9ef">AS</span>
         addresses_email_address,
         addresses.user_id <span style="color:#66d9ef">AS</span> addresses_user_id
@@ -237,11 +229,11 @@ session<span style="color:#f92672">.</span>commit()</code></pre></div>
 <p>现在可以展示<code>Query</code>的更多功能了。要构造包含<code>User</code>和<code>Address</code>的、最简单的隐式INNER JOIN，可以直接用<code>Query.filter()</code>限定让它们相关联的列相等。比如说：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#66d9ef">for</span> u, a <span style="color:#f92672">in</span> session<span style="color:#f92672">.</span>query(User, address)<span style="color:#f92672">.</span>\
 <span style="color:#f92672">...</span>                     filter(User<span style="color:#f92672">.</span>id<span style="color:#f92672">==</span>Address<span style="color:#f92672">.</span>user_id)<span style="color:#f92672">.</span>\
-<span style="color:#f92672">...</span>                     filter(Address<span style="color:#f92672">.</span>email_address<span style="color:#f92672">==</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack@google.com&#39;</span>)<span style="color:#f92672">.</span>\
+<span style="color:#f92672">...</span>                     filter(Address<span style="color:#f92672">.</span>email_address<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;jack@google.com&#39;</span>)<span style="color:#f92672">.</span>\
 <span style="color:#f92672">...</span>                     all():
 <span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(u)
 <span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(a)
-<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Jack Bean&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;gjffdd&#39;</span>)<span style="color:#f92672">&gt;</span> <span style="color:#f92672">&lt;</span>Address(email_address<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack@google.com&#39;</span>)<span style="color:#f92672">&gt;</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> users.id <span style="color:#66d9ef">AS</span> users_id,
+<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;jack&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Jack Bean&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;gjffdd&#39;</span>)<span style="color:#f92672">&gt;</span> <span style="color:#f92672">&lt;</span>Address(email_address<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;jack@google.com&#39;</span>)<span style="color:#f92672">&gt;</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> users.id <span style="color:#66d9ef">AS</span> users_id,
         users.name <span style="color:#66d9ef">AS</span> users_name,
         users.fullname <span style="color:#66d9ef">AS</span> users_fullname,
         users.password <span style="color:#66d9ef">AS</span> users_password,
@@ -254,9 +246,9 @@ session<span style="color:#f92672">.</span>commit()</code></pre></div>
 (<span style="color:#e6db74">&#39;jack@google.com&#39;</span>,)</code></pre></div>
 <p>要显式地构造SQL JOIN，使用<code>Query.join()</code>比较容易：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> session<span style="color:#f92672">.</span>query(User)<span style="color:#f92672">.</span>join(Address)<span style="color:#f92672">.</span>\
-<span style="color:#f92672">...</span>         filter(Address<span style="color:#f92672">.</span>email_address<span style="color:#f92672">==</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack@google.com&#39;</span>)<span style="color:#f92672">.</span>\
+<span style="color:#f92672">...</span>         filter(Address<span style="color:#f92672">.</span>email_address<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;jack@google.com&#39;</span>)<span style="color:#f92672">.</span>\
 <span style="color:#f92672">...</span>         all()
-[<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Jack Bean&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;gjffdd&#39;</span>)<span style="color:#f92672">&gt;</span>]</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> users.id <span style="color:#66d9ef">AS</span> users_id,
+[<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;jack&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Jack Bean&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;gjffdd&#39;</span>)<span style="color:#f92672">&gt;</span>]</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> users.id <span style="color:#66d9ef">AS</span> users_id,
         users.name <span style="color:#66d9ef">AS</span> users_name,
         users.fullname <span style="color:#66d9ef">AS</span> users_fullname,
         users.password <span style="color:#66d9ef">AS</span> users_password
@@ -267,7 +259,7 @@ session<span style="color:#f92672">.</span>commit()</code></pre></div>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">query<span style="color:#f92672">.</span>join(Address, User<span style="color:#f92672">.</span>id<span style="color:#f92672">==</span>Address<span style="color:#f92672">.</span>user_id)       <span style="color:#75715e"># 显示声明条件</span>
 query<span style="color:#f92672">.</span>join(User<span style="color:#f92672">.</span>addresses)                          <span style="color:#75715e"># 声明左侧到右侧的关系</span>
 query<span style="color:#f92672">.</span>join(Address, User<span style="color:#f92672">.</span>addresses)                 <span style="color:#75715e"># 和上一种相同，但显式制定了连结目标</span>
-query<span style="color:#f92672">.</span>join(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;addresses&#39;</span>)                             <span style="color:#75715e"># 和第二种相同，使用字符串指定</span></code></pre></div>
+query<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;addresses&#39;</span>)                             <span style="color:#75715e"># 和第二种相同，使用字符串指定</span></code></pre></div>
 <p>OUTER JOIN可以用<code>outerjoin()</code>指定：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">query<span style="color:#f92672">.</span>outerjoin(User<span style="color:#f92672">.</span>addresses)   <span style="color:#75715e"># LEFT OUTER JOIN</span></code></pre></div>
 <p><code>join()</code>的参考文档会详细说明它可以接受的参数类型和其他使用方法。</p>
@@ -285,8 +277,8 @@ query<span style="color:#f92672">.</span>join(<span style="color:#e6db74"></span
 <span style="color:#f92672">...</span>     session<span style="color:#f92672">.</span>query(User<span style="color:#f92672">.</span>name, adalias1<span style="color:#f92672">.</span>email_address, adalias2<span style="color:#f92672">.</span>email_address)<span style="color:#f92672">.</span>\
 <span style="color:#f92672">...</span>     join(adalias1, User<span style="color:#f92672">.</span>addresses)<span style="color:#f92672">.</span>\
 <span style="color:#f92672">...</span>     join(adalias2, User<span style="color:#f92672">.</span>addresses)<span style="color:#f92672">.</span>\
-<span style="color:#f92672">...</span>     filter(adalias1<span style="color:#f92672">.</span>email_address<span style="color:#f92672">==</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack@google.com&#39;</span>)<span style="color:#f92672">.</span>\
-<span style="color:#f92672">...</span>     filter(adalias2<span style="color:#f92672">.</span>email_address<span style="color:#f92672">==</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;j25@yahoo.com&#39;</span>):
+<span style="color:#f92672">...</span>     filter(adalias1<span style="color:#f92672">.</span>email_address<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;jack@google.com&#39;</span>)<span style="color:#f92672">.</span>\
+<span style="color:#f92672">...</span>     filter(adalias2<span style="color:#f92672">.</span>email_address<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;j25@yahoo.com&#39;</span>):
 <span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(username, email1, email2)
 jack jack<span style="color:#a6e22e">@google.com</span> j25<span style="color:#a6e22e">@yahoo.com</span></code></pre></div>
 <h4 id="using-subqueries-使用子查询">Using Subqueries / 使用子查询</h4>
@@ -298,17 +290,17 @@ jack jack<span style="color:#a6e22e">@google.com</span> j25<span style="color:#a
     <span style="color:#66d9ef">ON</span> users.id<span style="color:#f92672">=</span>adr_count.user_id</code></pre></div>
 <p>使用<code>Query</code>构建语句的时候，需要自内而外。首先，<code>Query</code>的<code>statement</code>属性将返回生成的SQL表达式，在这里这是<code>select()</code>结构的一个实例：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#f92672">from</span> sqlalchemy.sql <span style="color:#f92672">import</span> func
-<span style="color:#f92672">&gt;&gt;&gt;</span> stmt <span style="color:#f92672">=</span> session<span style="color:#f92672">.</span>query(Address<span style="color:#f92672">.</span>user_id, func<span style="color:#f92672">.</span>count(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;*&#39;</span>)<span style="color:#f92672">.</span>label(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;address_count&#39;</span>))<span style="color:#f92672">.</span>\
+<span style="color:#f92672">&gt;&gt;&gt;</span> stmt <span style="color:#f92672">=</span> session<span style="color:#f92672">.</span>query(Address<span style="color:#f92672">.</span>user_id, func<span style="color:#f92672">.</span>count(<span style="color:#e6db74">&#39;*&#39;</span>)<span style="color:#f92672">.</span>label(<span style="color:#e6db74">&#39;address_count&#39;</span>))<span style="color:#f92672">.</span>\
 <span style="color:#f92672">...</span>         group_by(Address<span style="color:#f92672">.</span>user_id)<span style="color:#f92672">.</span>subquery()</code></pre></div>
 <p><code>func</code>将生成SQL函数，而<code>Query</code>的<code>subquery()</code>方法将生成一个SQL表达式结构，代表整个SELECT语句，并包含在一个别名（alias）中。实际上，<code>subquery()</code>是<code>query.statement.alias()</code>的简便写法。</p>
 
 <hr />
 
 <p>Note: 上面这个说法其实蛮乱的……看看这个执行结果可能比较容易理解。<code>Query</code>的<code>statement</code>属性返回了代表这个SQL结构的对象，在这里是<code>AnnotatedSelect</code>，其实是SQLAlchemy内部用于表示一个SELECT的对象。再调用<code>alias()</code>即为它创建了一个别名（和上面<code>aliased()</code>创建的<code>AliasedClass</code>不同）：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> session<span style="color:#f92672">.</span>query(Address<span style="color:#f92672">.</span>user_id, func<span style="color:#f92672">.</span>count(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;*&#39;</span>)<span style="color:#f92672">.</span>label(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;address_count&#39;</span>))<span style="color:#f92672">.</span>group_by(Address<span style="color:#f92672">.</span>user_id)<span style="color:#f92672">.</span>statement
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> session<span style="color:#f92672">.</span>query(Address<span style="color:#f92672">.</span>user_id, func<span style="color:#f92672">.</span>count(<span style="color:#e6db74">&#39;*&#39;</span>)<span style="color:#f92672">.</span>label(<span style="color:#e6db74">&#39;address_count&#39;</span>))<span style="color:#f92672">.</span>group_by(Address<span style="color:#f92672">.</span>user_id)<span style="color:#f92672">.</span>statement
 <span style="color:#f92672">&lt;</span>sqlalchemy<span style="color:#f92672">.</span>sql<span style="color:#f92672">.</span>annotation<span style="color:#f92672">.</span>AnnotatedSelect at <span style="color:#ae81ff">0x1e532da5668</span>; AnnotatedSelect object<span style="color:#f92672">&gt;</span>
 
-<span style="color:#f92672">&gt;&gt;&gt;</span> session<span style="color:#f92672">.</span>query(Address<span style="color:#f92672">.</span>user_id, func<span style="color:#f92672">.</span>count(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;*&#39;</span>)<span style="color:#f92672">.</span>label(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;address_count&#39;</span>))<span style="color:#f92672">.</span>group_by(Address<span style="color:#f92672">.</span>user_id)<span style="color:#f92672">.</span>statement<span style="color:#f92672">.</span>alias()
+<span style="color:#f92672">&gt;&gt;&gt;</span> session<span style="color:#f92672">.</span>query(Address<span style="color:#f92672">.</span>user_id, func<span style="color:#f92672">.</span>count(<span style="color:#e6db74">&#39;*&#39;</span>)<span style="color:#f92672">.</span>label(<span style="color:#e6db74">&#39;address_count&#39;</span>))<span style="color:#f92672">.</span>group_by(Address<span style="color:#f92672">.</span>user_id)<span style="color:#f92672">.</span>statement<span style="color:#f92672">.</span>alias()
 <span style="color:#f92672">&lt;</span>sqlalchemy<span style="color:#f92672">.</span>sql<span style="color:#f92672">.</span>selectable<span style="color:#f92672">.</span>Alias at <span style="color:#ae81ff">0x1e532da5860</span>; <span style="color:#f92672">%</span>(<span style="color:#ae81ff">2083912308832</span> anon)s<span style="color:#f92672">&gt;</span></code></pre></div>
 <hr />
 
@@ -316,11 +308,11 @@ jack jack<span style="color:#a6e22e">@google.com</span> j25<span style="color:#a
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#66d9ef">for</span> u, count <span style="color:#f92672">in</span> session<span style="color:#f92672">.</span>query(User, stmt<span style="color:#f92672">.</span>c<span style="color:#f92672">.</span>address_count)<span style="color:#f92672">.</span>\
 <span style="color:#f92672">...</span>     outerjoin(stmt, User<span style="color:#f92672">.</span>id<span style="color:#f92672">==</span>stmt<span style="color:#f92672">.</span>c<span style="color:#f92672">.</span>user_id)<span style="color:#f92672">.</span>order_by(User<span style="color:#f92672">.</span>id):
 <span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(u, count)
-<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;ed&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Ed Jones&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;f8s7ccs&#39;</span>)<span style="color:#f92672">&gt;</span> None
-<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;wendy&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Wendy Williams&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;foobar&#39;</span>)<span style="color:#f92672">&gt;</span> None
-<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;mary&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Mary Contrary&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;xxg527&#39;</span>)<span style="color:#f92672">&gt;</span> None
-<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;fred&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Fred Flinstone&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;blah&#39;</span>)<span style="color:#f92672">&gt;</span> None
-<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Jack Bean&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;gjffdd&#39;</span>)<span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> users.id <span style="color:#66d9ef">AS</span> users_id,
+<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;ed&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Ed Jones&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;f8s7ccs&#39;</span>)<span style="color:#f92672">&gt;</span> None
+<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;wendy&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Wendy Williams&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;foobar&#39;</span>)<span style="color:#f92672">&gt;</span> None
+<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;mary&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Mary Contrary&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;xxg527&#39;</span>)<span style="color:#f92672">&gt;</span> None
+<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;fred&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Fred Flinstone&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;blah&#39;</span>)<span style="color:#f92672">&gt;</span> None
+<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;jack&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Jack Bean&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;gjffdd&#39;</span>)<span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> users.id <span style="color:#66d9ef">AS</span> users_id,
         users.name <span style="color:#66d9ef">AS</span> users_name,
         users.fullname <span style="color:#66d9ef">AS</span> users_fullname,
         users.password <span style="color:#66d9ef">AS</span> users_password,
@@ -340,13 +332,13 @@ jack jack<span style="color:#a6e22e">@google.com</span> j25<span style="color:#a
 <h4 id="selecting-entities-from-subqueries-从子查询中选择数据对象">Selecting Entities from Subqueries / 从子查询中选择数据对象</h4>
 
 <p>在上面的例子中，我们只是从子查询中选择了包含一个列（address_count）的结果。如果需要把子查询和数据对象实体对应起来呢？我们可以使用<code>aliased()</code>来关联一个有了别名的映射类和子查询：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> stmt <span style="color:#f92672">=</span> session<span style="color:#f92672">.</span>query(Address)<span style="color:#f92672">.</span>filter(Address<span style="color:#f92672">.</span>email_address <span style="color:#f92672">!=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;j25@yahoo.com&#39;</span>)<span style="color:#f92672">.</span>subquery()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> stmt <span style="color:#f92672">=</span> session<span style="color:#f92672">.</span>query(Address)<span style="color:#f92672">.</span>filter(Address<span style="color:#f92672">.</span>email_address <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#39;j25@yahoo.com&#39;</span>)<span style="color:#f92672">.</span>subquery()
 <span style="color:#f92672">&gt;&gt;&gt;</span> adalias <span style="color:#f92672">=</span> aliased(Address, stmt)
 <span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#66d9ef">for</span> user, address <span style="color:#f92672">in</span> session<span style="color:#f92672">.</span>query(User, adalias)<span style="color:#f92672">.</span>join(adalias, User<span style="color:#f92672">.</span>addresses):
 <span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(user)
 <span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(address)
-<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Jack Bean&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;gjffdd&#39;</span>)<span style="color:#f92672">&gt;</span>
-<span style="color:#f92672">&lt;</span>Address(email_address<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack@google.com&#39;</span>)<span style="color:#f92672">&gt;</span></code></pre></div>
+<span style="color:#f92672">&lt;</span>User(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;jack&#39;</span>, fullname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Jack Bean&#39;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;gjffdd&#39;</span>)<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span>Address(email_address<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;jack@google.com&#39;</span>)<span style="color:#f92672">&gt;</span></code></pre></div>
 <hr />
 
 <p>Note: 上面这种实际上就是给了子查询的结果一个对应的类的别名，区别于上上面那个“把子查询作为一个新的类似于映射类的Table”的方式。上面这种方式的、现有映射类的别名具有现有映射类的所有属性。</p>
@@ -372,11 +364,11 @@ jack</code></pre></div>
 <span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(name)
 jack</code></pre></div>
 <p><code>any()</code>也可以加入限制条件：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#66d9ef">for</span> name, <span style="color:#f92672">in</span> session<span style="color:#f92672">.</span>query(User<span style="color:#f92672">.</span>name)<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>addresses<span style="color:#f92672">.</span>any(Address<span style="color:#f92672">.</span>email_address<span style="color:#f92672">.</span>like(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%g</span><span style="color:#e6db74">oogle%&#39;</span>))):
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#66d9ef">for</span> name, <span style="color:#f92672">in</span> session<span style="color:#f92672">.</span>query(User<span style="color:#f92672">.</span>name)<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>addresses<span style="color:#f92672">.</span>any(Address<span style="color:#f92672">.</span>email_address<span style="color:#f92672">.</span>like(<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%g</span><span style="color:#e6db74">oogle%&#39;</span>))):
 <span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(name)
 jack</code></pre></div>
 <p><code>has()</code>是和<code>any()</code>类似的操作符，但用于多对一关系（注意<code>~</code>操作符，意为“非”）：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> session<span style="color:#f92672">.</span>query(Address)<span style="color:#f92672">.</span>filter(<span style="color:#f92672">~</span>Address<span style="color:#f92672">.</span>user<span style="color:#f92672">.</span>has(User<span style="color:#f92672">.</span>name<span style="color:#f92672">==</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;jack&#39;</span>))<span style="color:#f92672">.</span>all()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> session<span style="color:#f92672">.</span>query(Address)<span style="color:#f92672">.</span>filter(<span style="color:#f92672">~</span>Address<span style="color:#f92672">.</span>user<span style="color:#f92672">.</span>has(User<span style="color:#f92672">.</span>name<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;jack&#39;</span>))<span style="color:#f92672">.</span>all()
 []</code></pre></div>
 <h4 id="common-relationship-operators-常用关系操作符">Common Relationship Operators / 常用关系操作符</h4>
 
@@ -396,16 +388,16 @@ jack</code></pre></div>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">query<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>addresses<span style="color:#f92672">.</span>contains(someaddress))</code></pre></div></li>
 
 <li><p><code>any()</code>（用于集合）：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">query<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>addresses<span style="color:#f92672">.</span>any(Address<span style="color:#f92672">.</span>email_address <span style="color:#f92672">==</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;bar&#39;</span>))
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">query<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>addresses<span style="color:#f92672">.</span>any(Address<span style="color:#f92672">.</span>email_address <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;bar&#39;</span>))
     
 <span style="color:#75715e"># 也通过命名参数接受比较条件：</span>
-query<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>addresses<span style="color:#f92672">.</span>any(email_address<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;bar&#39;</span>))</code></pre></div></li>
+query<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">.</span>addresses<span style="color:#f92672">.</span>any(email_address<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;bar&#39;</span>))</code></pre></div></li>
 
 <li><p><code>has()</code>（用于“一”那一侧的引用）：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">query<span style="color:#f92672">.</span>filter(Address<span style="color:#f92672">.</span>user<span style="color:#f92672">.</span>has(name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;ed&#39;</span>))</code></pre></div></li>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">query<span style="color:#f92672">.</span>filter(Address<span style="color:#f92672">.</span>user<span style="color:#f92672">.</span>has(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;ed&#39;</span>))</code></pre></div></li>
 
 <li><p><code>Query.with_parent()</code>（用于任意关系，查询关系的另一头是否是某个对象）：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">session<span style="color:#f92672">.</span>query(Address)<span style="color:#f92672">.</span>with_parent(someuser, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;addresses&#39;</span>)</code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">session<span style="color:#f92672">.</span>query(Address)<span style="color:#f92672">.</span>with_parent(someuser, <span style="color:#e6db74">&#39;addresses&#39;</span>)</code></pre></div>
 <p>Note: <code>with_parent()</code>实际上就是查询“关系另一头是某个对象的”这一头的对象。第二个参数用于标明另一头（第一个参数的类型那一头，上面的例子第一个参数是<code>User</code>）和要查询的对象相关联的集合是什么。当这两个映射类只有唯一一个关系的时候，第二个参数是可以省略的。</p></li>
 </ul>
 
@@ -417,27 +409,27 @@ query<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">
 
 </div>
 
-    
-<footer class='entry-footer-container'>
-  <div class='entry-footer'>
+  
+<footer class='entry-footer'>
+  <div class='container sep-before'>
   <div class='tags'>
-  <span class='taxonomyTerm-icon'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  <span class='taxonomy-icon'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
   
   <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
   <line x1="7" y1="7" x2="7" y2="7"/>
   
 </svg>
 </span>
-  <span class='screen-reader'>标签: </span><a class='tag' href='/tags/python'>Python</a>, <a class='tag' href='/tags/sqlalchemy'>SQLAlchemy</a>, <a class='tag' href='/tags/%E6%96%87%E6%A1%A3'>文档</a>, <a class='tag' href='/tags/%E7%BF%BB%E8%AF%91'>翻译</a></div>
+  <span class='screen-reader-text'>标签: </span><a class='tag' href='/tags/python'>Python</a>, <a class='tag' href='/tags/sqlalchemy'>SQLAlchemy</a>, <a class='tag' href='/tags/%E6%96%87%E6%A1%A3'>文档</a>, <a class='tag' href='/tags/%E7%BF%BB%E8%AF%91'>翻译</a></div>
 
   </div>
 </footer>
 
 
-  </article>
-  
-<nav class='entry-nav-container'>
-  <div class='entry-nav'><div class='prev-entry'>
+</article>
+
+<nav class='entry-nav'>
+  <div class='container'><div class='prev-entry sep-before'>
       <a href='/blog/0216-sqlalchemy-document-learning-note-2-2-orm-tutorial/'>
         <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
   
@@ -446,10 +438,10 @@ query<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">
   
 </svg>
  上一篇</span>
-        <span class='screen-reader'>上一篇: </span>SQLAlchemy文档和笔记 (2.2) - ORM指南 (2)</a>
-    </div><div class='next-entry'>
+        <span class='screen-reader-text'>上一篇: </span>SQLAlchemy文档和笔记 (2.2) - ORM指南 (2)</a>
+    </div><div class='next-entry sep-before'>
       <a href='/blog/0218-sqlalchemy-document-learning-note-2-4-orm-tutorial/'>
-        <span class='screen-reader'>下一篇: </span>SQLAlchemy文档和笔记 (2.4) - ORM指南 (4)<span aria-hidden='true'>下一篇 <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+        <span class='screen-reader-text'>下一篇: </span>SQLAlchemy文档和笔记 (2.4) - ORM指南 (4)<span aria-hidden='true'>下一篇 <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
   
   <line x1="4" y1="12" x2="20" y2="12"/>
   <polyline points="14 6 20 12 14 18"/>
@@ -460,74 +452,24 @@ query<span style="color:#f92672">.</span>filter(User<span style="color:#f92672">
     </div></div>
 </nav>
 
-  
-</main>
 
-    <footer id='footer' class='footer-container'>
-      <div class='footer'>
-        <div class='social-menu-container'>
-  <nav aria-label='找我吗？'>
-    <ul class='social-menu'><li>
-        <a href='https://github.com/tgmerge' target='_blank' rel='noopener'>
-          <span class='screen-reader'></span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  
-  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-  
-</svg>
-</a>
-      </li><li>
-        <a href='https://twitter.com/tgmerge' target='_blank' rel='noopener'>
-          <span class='screen-reader'></span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  
-  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
-  
-</svg>
-</a>
-      </li><li>
-        <a href='%3cnil%3etgmerge' target='_blank' rel='noopener'>
-          <span class='screen-reader'></span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  
-  <path d="m20.79684,15.88687c-0.07481,0.61015 -0.44417,1.42549 -0.81622,1.94626c-2.65119,3.71126 -10.64754,5.27117 -15.64104,2.4504c-1.67472,-0.94661 -3.40772,-2.33073 -3.14023,-5.08873c0.2301,-2.37344 1.82605,-4.21198 3.39216,-5.77809c1.4941,-1.49498 3.06954,-2.66459 5.21335,-3.20352c2.32587,-0.58479 3.01344,1.35428 2.38683,3.26628c1.34717,-0.09036 4.20219,-1.59426 5.46484,-0.12551c0.55629,0.6471 0.34311,1.80599 0,2.70099c1.56836,0.85803 3.45267,1.2853 3.14031,3.83192l0,0z"/>
-  <path d="m6.8656,17.27851c-0.85722,-2.33548 1.20109,-4.19298 3.34475,-4.41747c1.83017,-0.19181 3.19449,0.74143 3.59737,1.95635c1.34459,4.06376 -5.66104,5.9534 -6.94212,2.46112z"/>
-  <path d="m22.8634,10.89993c0.61627,-2.3711 0.32216,-4.27798 -0.8825,-5.72073c-1.20457,-1.44274 -3.10291,-1.98196 -5.69493,-1.61781"/>
-  <path d="m20.31177,9.60458c0.29682,-1.14182 0.15521,-2.0601 -0.42493,-2.75485c-0.58002,-0.69477 -1.49417,-0.95444 -2.74244,-0.7791"/>
-  
-</svg>
-</a>
-      </li><li>
-        <a href='%3cnil%3etgmergeSipan' target='_blank' rel='noopener'>
-          <span class='screen-reader'></span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  
-  <path d="m12.233419,10.443874l0,3.734704l6.224506,0c-0.311225,1.556127 -1.867352,4.66838 -6.224506,4.66838c-3.734704,0 -6.691344,-3.112253 -6.691344,-6.846957c0,-3.734704 2.95664,-6.846957 6.691344,-6.846957c2.178577,0 3.579091,0.933676 4.357154,1.711739l2.95664,-2.801028c-1.867352,-1.867352 -4.357154,-2.95664 -7.313795,-2.95664c-6.068894,0 -10.892886,4.823992 -10.892886,10.892886c0,6.068894 4.823992,10.892886 10.892886,10.892886c6.224506,0 10.426048,-4.357154 10.426048,-10.581661c0,-0.778063 0,-1.244901 -0.155613,-1.867352l-10.270435,0z"/>
-  
-</svg>
-</a>
-      </li><li>
-        <a href='#ZgotmplZ' target='_blank' rel='noopener'>
-          <span class='screen-reader'></span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
-  
-  <path d="m16.98649,1.83311c-1.92811,0 -3.77865,0.89757 -4.98649,2.30486c-1.20784,-1.4073 -3.05838,-2.30486 -4.98649,-2.30486c-3.41297,0 -6.09459,2.67054 -6.09459,6.09459c0,4.17757 3.76757,7.60162 9.47432,12.77649l1.60676,1.4627l1.60676,-1.4627c5.70676,-5.17486 9.47432,-8.59892 9.47432,-12.77649c0,-3.42405 -2.68162,-6.09459 -6.09459,-6.09459z"/>
-  
-</svg>
-</a>
-      </li></ul>
-  </nav>
-</div>
-        <div class='copyright'>
-  <p>
-        
-          
-        
-      
 
-       &copy; 2013-2017 tgmerge 
-  </p>
+
+      </main>
+
+      <footer id='footer' class='footer'>
+        <div class='container sep-before'><div class='copyright'>
+  <p> &copy; 2013-2018 tgmerge </p>
 </div>
 
-      </div>
-    </footer>
+        </div>
+      </footer>
 
-  </div><script src='/assets/js/main.5871befd.js'></script><script src='/js/custom.js'></script></body>
+    </div>
+  </div><script>window.__public_path__='\/assets\/js\/'</script>
+
+<script src='/assets/js/main.9daad1e6.js'></script><script src='/js/custom.js'></script>
+</body>
 
 </html>
 
